@@ -204,3 +204,89 @@ CREATE TABLE
         `duration` VARCHAR(255) NOT NULL,
         PRIMARY KEY (`id`)
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+
+INSERT INTO
+    administrator(
+        registration_number,
+        password,
+        mail,
+        firstname,
+        lastname
+    )
+VALUES(
+        SUBSTRING(
+            MD5(RAND())
+            FROM
+                1 FOR 8
+        ),
+        'test',
+        '1@1.com',
+        'test',
+        'test'
+    );
+
+INSERT INTO
+    practician(
+        registration_number,
+        password,
+        firstname,
+        lastname,
+        mail,
+        administrator_id
+    )
+VALUES(
+        SUBSTRING(
+            MD5(RAND())
+            FROM
+                1 FOR 8
+        ),
+        'test',
+        'test1P',
+        'test1P',
+        '1P@1.com',
+        1
+    );
+
+INSERT INTO
+    practician(
+        registration_number,
+        password,
+        firstname,
+        lastname,
+        mail,
+        administrator_id
+    )
+VALUES(
+        SUBSTRING(
+            MD5(RAND())
+            FROM
+                1 FOR 8
+        ),
+        'test',
+        'test2P',
+        'test2P',
+        '2P@2.com',
+        1
+    );
+
+INSERT INTO
+    practician(
+        registration_number,
+        password,
+        firstname,
+        lastname,
+        mail,
+        administrator_id
+    )
+VALUES(
+        SUBSTRING(
+            MD5(RAND())
+            FROM
+                1 FOR 8
+        ),
+        'test',
+        'test3P',
+        'test3P',
+        '3P@3.com',
+        1
+    );
