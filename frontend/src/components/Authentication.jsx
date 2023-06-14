@@ -3,10 +3,12 @@ import "../style/authentication.scss";
 
 export default function Authentication() {
   const regexMatricule = /^\d{0,8}$/;
+
   const [matricule, setMatricule] = useState("");
   const [warningMatricule, setWarningMatricule] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
+
   const handleSubmit = (event) => event.preventDefault();
   const handleMatriculeChange = (event) => {
     if (regexMatricule.test(event.target.value)) {
@@ -24,7 +26,7 @@ export default function Authentication() {
   return (
     <div>
       <form onSubmit={handleSubmit} className="connection">
-        <div className="matriculeInput">
+        <div className="connectionInput">
           <label htmlFor="matricule">Matricule</label>
           <input
             id="matricule"
@@ -38,7 +40,7 @@ export default function Authentication() {
             </p>
           )}
         </div>
-        <div className="passwordInput">
+        <div className="connectionInput">
           <label htmlFor="password">Password</label>
           <div>
             <input
@@ -52,6 +54,9 @@ export default function Authentication() {
             </button>
           </div>
         </div>
+        <button type="submit" className="connectionButton">
+          SE CONNECTER
+        </button>
       </form>
     </div>
   );

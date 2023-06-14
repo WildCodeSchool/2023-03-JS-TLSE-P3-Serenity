@@ -9,15 +9,12 @@ small {
 .connection {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 
-  .matriculeInput {
+  .connectionInput {
     display: flex;
     flex-direction: column;
-  }
-
-  .passwordInput {
-    display: flex;
-    flex-direction: column;
+    gap: 5px;
   }
 
   input {
@@ -26,5 +23,9 @@ small {
 
   .warningMatricule {
     color: red;
+  }
+  .connectionButton {
+    margin-top: 20px;
+    width: 20vw;
   }
 }
