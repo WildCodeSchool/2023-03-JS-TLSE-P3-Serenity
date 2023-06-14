@@ -205,6 +205,12 @@ CREATE TABLE
         PRIMARY KEY (`id`)
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
+-- -----------------------------------------------------
+
+-- INSERT INTO 'administrator'
+
+-- -----------------------------------------------------
+
 INSERT INTO
     administrator(
         registration_number,
@@ -224,6 +230,12 @@ VALUES(
         'test',
         'test'
     );
+
+-- -----------------------------------------------------
+
+-- INSERT INTO 'practician'
+
+-- -----------------------------------------------------
 
 INSERT INTO
     practician(
@@ -290,3 +302,119 @@ VALUES(
         '3P@3.com',
         1
     );
+
+-- -----------------------------------------------------
+
+-- INSERT INTO 'form'
+
+-- -----------------------------------------------------
+
+INSERT INTO
+    form(
+        user_type,
+        request_type,
+        request
+    )
+VALUES ('practician', 'test', 'test');
+
+-- -----------------------------------------------------
+
+-- INSERT INTO 'intervention'
+
+-- -----------------------------------------------------
+
+INSERT INTO
+    intervention(
+        name,
+        duration,
+        anesthesia,
+        practician_id
+    )
+VALUES ('intervention1', '1h', 'AG', 1);
+
+INSERT INTO
+    intervention(
+        name,
+        duration,
+        anesthesia,
+        practician_id
+    )
+VALUES ('intervention2', '5h', 'AL', 2);
+
+INSERT INTO
+    intervention(
+        name,
+        duration,
+        anesthesia,
+        practician_id
+    )
+VALUES (
+        'intervention3',
+        '2h30',
+        'Aucune',
+        3
+    );
+
+-- -----------------------------------------------------
+
+-- INSERT INTO 'patient'
+
+-- -----------------------------------------------------
+
+INSERT INTO
+    patient(
+        mail,
+        password,
+        firstname,
+        lastname
+    )
+VALUES (
+        'patient1@patient1.com',
+        'test',
+        'patient1',
+        'patient1'
+    );
+
+INSERT INTO
+    patient(
+        mail,
+        password,
+        firstname,
+        lastname
+    )
+VALUES (
+        'patient2@patient2.com',
+        'test',
+        'patient2',
+        'patient2'
+    );
+
+INSERT INTO
+    patient(
+        mail,
+        password,
+        firstname,
+        lastname
+    )
+VALUES (
+        'patient3@patient3.com',
+        'test',
+        'patient3',
+        'patient3'
+    );
+
+-- -----------------------------------------------------
+
+-- INSERT INTO 'theme_ressource'
+
+-- -----------------------------------------------------
+
+INSERT INTO theme_ressource(theme) VALUES('Comprendre');
+
+INSERT INTO theme_ressource(theme) VALUES('Administratif');
+
+INSERT INTO theme_ressource(theme) VALUES('Préparation');
+
+INSERT INTO theme_ressource(theme) VALUES('Anticipation');
+
+INSERT INTO theme_ressource(theme) VALUES('Checklist');
