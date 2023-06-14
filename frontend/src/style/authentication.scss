@@ -1,0 +1,30 @@
+label {
+  color: white;
+}
+
+small {
+  color: white;
+}
+
+.connection {
+  display: flex;
+  flex-direction: column;
+
+  .matriculeInput {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .passwordInput {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input {
+    width: 20vw;
+  }
+
+  .warningMatricule {
+    color: red;
+  }
+}
