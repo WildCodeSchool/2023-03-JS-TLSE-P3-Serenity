@@ -1,19 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import "../styles/Navbar.scss";
+import avatar from "../assets/avatar.svg";
 
 function navbar() {
   return (
     <div className="navbar">
       <div className="headerAvatar">
-        <img src="avatar.png" alt="avatar" className="adminAvatar" />
+        <img src={avatar} alt="avatar" className="adminAvatar" />
         {/* // Fetch du nom de l'admin */}
         <span className="adminName">Nom de l'admin</span>
       </div>
       <ul className="links">
         <li>
           <button
-            className="nav practician"
+            className="nav_practician"
             type="button"
             onClick={() => {
               console.info("Practician");
@@ -24,7 +25,7 @@ function navbar() {
         </li>
         <li>
           <button
-            className="nav compte"
+            className="nav_compte"
             type="button"
             onClick={() => {
               console.info("Mon compte");
@@ -35,7 +36,7 @@ function navbar() {
         </li>
         <li>
           <button
-            className="nav formulaires"
+            className="nav_formulaires"
             type="button"
             onClick={() => {
               console.info("Formulaires");
@@ -46,7 +47,7 @@ function navbar() {
         </li>
         <li>
           <button
-            className="nav stats"
+            className="nav_stats"
             type="button"
             onClick={() => {
               console.info("Stats");

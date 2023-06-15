@@ -42,7 +42,7 @@ CREATE TABLE
 CREATE TABLE
     IF NOT EXISTS `serenity`.`practician` (
         `id` INT NOT NULL AUTO_INCREMENT,
-        `registration_number` VARCHAR(8) NOT NULL,
+        `registration_number` VARCHAR(9) NOT NULL,
         `password` VARCHAR(255) NOT NULL,
         `firstname` VARCHAR(255) NOT NULL,
         `lastname` VARCHAR(255) NOT NULL,
