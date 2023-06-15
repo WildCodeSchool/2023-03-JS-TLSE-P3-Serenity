@@ -36,25 +36,27 @@ const linkAdmin = [
 
 function navbar() {
   return (
-    <div className="navbar">
+    <div>
       <div className="headerAvatar">
         <img src={avatar} alt="avatar" className="adminAvatar" />
         {/* // Fetch du nom de l'admin */}
-        <span className="adminName">Nom de l'admin</span>
+        <span className="adminName">Nom de l'administrateur</span>
       </div>
-      <ul className="links">
-        {linkAdmin.map((link) => (
-          <li key={link.label}>
-            <button
-              className={link.className}
-              type="button"
-              onClick={link.action}
-            >
-              {link.label}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="navbar">
+        <ul className="links">
+          {linkAdmin.map((link) => (
+            <li key={link.label}>
+              <button
+                className={link.className}
+                type="button"
+                onClick={link.action}
+              >
+                {link.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
