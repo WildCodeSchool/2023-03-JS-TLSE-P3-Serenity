@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-import "../styles/Navbar.css";
+import "../styles/Navbar.scss";
 
 function navbar() {
   return (
     <div className="navbar">
       <div className="headerAvatar">
         <img src="avatar.png" alt="avatar" className="adminAvatar" />
-        <span className="adminName">Nom du site</span>
+        {/* // Fetch du nom de l'admin */}
+        <span className="adminName">Nom de l'admin</span>
       </div>
       <ul className="links">
         <li>
