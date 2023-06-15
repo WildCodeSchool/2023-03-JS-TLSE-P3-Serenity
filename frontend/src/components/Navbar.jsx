@@ -36,10 +36,10 @@ function navbar() {
         </li>
         <li>
           <button
-            className="nav_formulaires"
+            className="nav_form"
             type="button"
             onClick={() => {
-              console.info("Formulaires");
+              console.info("Form");
             }}
           >
             Formulaires
