@@ -3,6 +3,37 @@ import React from "react";
 import "../styles/Navbar.scss";
 import avatar from "../assets/avatar.svg";
 
+const linkAdmin = [
+  {
+    className: "nav_practician",
+    label: "Praticiens",
+    action: () => {
+      console.info("Practician");
+    },
+  },
+  {
+    className: "nav_compte",
+    label: "Mon compte",
+    action: () => {
+      console.info("Mon compte");
+    },
+  },
+  {
+    className: "nav_form",
+    label: "Formulaires",
+    action: () => {
+      console.info("Form");
+    },
+  },
+  {
+    className: "nav_stats",
+    label: "Stats",
+    action: () => {
+      console.info("Stats");
+    },
+  },
+];
+
 function navbar() {
   return (
     <div className="navbar">
@@ -12,50 +43,17 @@ function navbar() {
         <span className="adminName">Nom de l'admin</span>
       </div>
       <ul className="links">
-        <li>
-          <button
-            className="nav_practician"
-            type="button"
-            onClick={() => {
-              console.info("Practician");
-            }}
-          >
-            Praticiens
-          </button>
-        </li>
-        <li>
-          <button
-            className="nav_compte"
-            type="button"
-            onClick={() => {
-              console.info("Mon compte");
-            }}
-          >
-            Mon compte
-          </button>
-        </li>
-        <li>
-          <button
-            className="nav_form"
-            type="button"
-            onClick={() => {
-              console.info("Form");
-            }}
-          >
-            Formulaires
-          </button>
-        </li>
-        <li>
-          <button
-            className="nav_stats"
-            type="button"
-            onClick={() => {
-              console.info("Stats");
-            }}
-          >
-            Stats
-          </button>
-        </li>
+        {linkAdmin.map((link) => (
+          <li key={link.label}>
+            <button
+              className={link.className}
+              type="button"
+              onClick={link.action}
+            >
+              {link.label}
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   );

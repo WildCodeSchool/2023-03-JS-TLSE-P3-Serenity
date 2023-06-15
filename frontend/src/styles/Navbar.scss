@@ -37,7 +37,6 @@
   bottom: 40.23%;
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
 }
 .nav_practician {
   position: absolute;
@@ -51,6 +50,11 @@
   background: #6C5DD3;
   border-radius: 12px;
 }
+
+.nav_practician:hover {
+  background: rgb(50, 53, 66);
+  cursor: pointer;
+}
 .nav_compte {
   position: absolute;
   width: 216px;
@@ -63,7 +67,11 @@
   background: var(--main-bg-admin-practician);
   border-radius: 12px;
 }
-.nav_formulaires {
+.nav_compte:hover {
+  background: rgb(50, 53, 66);
+  cursor: pointer;
+}
+.nav_form {
   position: absolute;
   width: 216px;
   height: 56px;
@@ -74,6 +82,10 @@
   font-size: 16px;
   background: var(--main-bg-admin-practician);
   border-radius: 12px;
+}
+.nav_form:hover {
+  background: rgb(50, 53, 66);
+  cursor: pointer;
 }
 .nav_stats {
   position: absolute;
@@ -86,4 +98,8 @@
   font-size: 16px;
   background: var(--main-bg-admin-practician);
   border-radius: 12px;
+}
+.nav_stats:hover {
+  background: rgb(50, 53, 66);
+  cursor: pointer;
 }
