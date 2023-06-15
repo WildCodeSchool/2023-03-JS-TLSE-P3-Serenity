@@ -1,0 +1,36 @@
+.headerAvatar {
+  position: absolute;
+  left: 9.38%;
+  top: 2.44%;
+  bottom: 92.78%;
+}
+
+.navbar {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  bottom: 0%;
+  background-color: #282828;
+  width: 256px;
+}
+
+.adminAvatar {
+  width: 30px;
+  height: 30px;
+}
+
+.adminName {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.links {
+  position: absolute;
+  left: 7.81%;
+  right: 7.81%;
+  top: 19.53%;
+  bottom: 40.23%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
