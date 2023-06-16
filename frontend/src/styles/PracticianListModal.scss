@@ -51,7 +51,7 @@
       display: flex;
       justify-content: center;
       margin-bottom: 1rem;
-
+      font-size: 0.8rem;
       .add-practician {
         align-items: center;
         justify-content: center;
@@ -59,7 +59,8 @@
         background-color: rgba(0, 0, 0, 0.759);
         color: white;
         height: 2.5rem;
-        width: 10rem;
+        width: 25%;
+        padding: 0.3rem;
       }
     }
   }
