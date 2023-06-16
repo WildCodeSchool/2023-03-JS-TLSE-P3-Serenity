@@ -5,28 +5,28 @@ import avatar from "../assets/avatar.svg";
 
 const linkAdmin = [
   {
-    className: "nav_practician",
+    className: "navPractician",
     label: "Praticiens",
     action: () => {
       console.info("Practician");
     },
   },
   {
-    className: "nav_compte",
+    className: "navCompte",
     label: "Mon compte",
     action: () => {
       console.info("Mon compte");
     },
   },
   {
-    className: "nav_form",
+    className: "navForm",
     label: "Formulaires",
     action: () => {
       console.info("Form");
     },
   },
   {
-    className: "nav_stats",
+    className: "navStats",
     label: "Stats",
     action: () => {
       console.info("Stats");

@@ -42,7 +42,7 @@ CREATE TABLE
 CREATE TABLE
     IF NOT EXISTS `serenity`.`practician` (
         `id` INT NOT NULL AUTO_INCREMENT,
-        `registration_number` VARCHAR(9) NOT NULL,
+        `adeli_number` VARCHAR(9) NOT NULL,
         `password` VARCHAR(255) NOT NULL,
         `firstname` VARCHAR(255) NOT NULL,
         `lastname` VARCHAR(255) NOT NULL,
@@ -225,7 +225,11 @@ VALUES(
             FROM
                 1 FOR 8
         ),
-        'test',
+        SUBSTRING(
+            MD5(RAND())
+            FROM
+                1 FOR 8
+        ),
         '1@1.com',
         'test',
         'test'
@@ -239,7 +243,7 @@ VALUES(
 
 INSERT INTO
     practician(
-        registration_number,
+        adeli_number,
         password,
         firstname,
         lastname,
@@ -250,9 +254,13 @@ VALUES(
         SUBSTRING(
             MD5(RAND())
             FROM
-                1 FOR 8
+                1 FOR 9
         ),
-        'test',
+        SUBSTRING(
+            MD5(RAND())
+            FROM
+                1 FOR 9
+        ),
         'test1P',
         'test1P',
         '1P@1.com',
@@ -261,7 +269,7 @@ VALUES(
 
 INSERT INTO
     practician(
-        registration_number,
+        adeli_number,
         password,
         firstname,
         lastname,
@@ -272,9 +280,13 @@ VALUES(
         SUBSTRING(
             MD5(RAND())
             FROM
-                1 FOR 8
+                1 FOR 9
         ),
-        'test',
+        SUBSTRING(
+            MD5(RAND())
+            FROM
+                1 FOR 9
+        ),
         'test2P',
         'test2P',
         '2P@2.com',
@@ -283,7 +295,7 @@ VALUES(
 
 INSERT INTO
     practician(
-        registration_number,
+        adeli_number,
         password,
         firstname,
         lastname,
@@ -294,9 +306,13 @@ VALUES(
         SUBSTRING(
             MD5(RAND())
             FROM
-                1 FOR 8
+                1 FOR 9
         ),
-        'test',
+        SUBSTRING(
+            MD5(RAND())
+            FROM
+                1 FOR 9
+        ),
         'test3P',
         'test3P',
         '3P@3.com',
