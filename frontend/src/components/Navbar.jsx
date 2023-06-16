@@ -5,28 +5,28 @@ import avatar from "../assets/avatar.svg";
 
 const linkAdmin = [
   {
-    className: "navPractician",
+    className: "nav-practician",
     label: "Praticiens",
     action: () => {
       console.info("Practician");
     },
   },
   {
-    className: "navCompte",
+    className: "nav-compte",
     label: "Mon compte",
     action: () => {
       console.info("Mon compte");
     },
   },
   {
-    className: "navForm",
+    className: "nav-form",
     label: "Formulaires",
     action: () => {
       console.info("Form");
     },
   },
   {
-    className: "navStats",
+    className: "nav-stats",
     label: "Stats",
     action: () => {
       console.info("Stats");
@@ -37,10 +37,10 @@ const linkAdmin = [
 function navbar() {
   return (
     <div>
-      <div className="headerAvatar">
-        <img src={avatar} alt="avatar" className="adminAvatar" />
+      <div className="header-avatar">
+        <img src={avatar} alt="avatar" className="admin-avatar" />
         {/* // Fetch du nom de l'admin */}
-        <span className="adminName">Nom de l'administrateur</span>
+        <span className="admin-name">Nom de l'administrateur</span>
       </div>
       <div className="navbar">
         <ul className="links">

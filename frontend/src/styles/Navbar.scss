@@ -6,7 +6,7 @@
   width: 20vw;
 }
 
-.headerAvatar {
+.header-avatar {
   z-index: 2;
   display: flex;
   position: absolute;
@@ -15,12 +15,12 @@
   width: 20vw;
 }
 
-.adminAvatar {
+.admin-avatar {
   width: 50px;
   height: 50px;
 }
 
-.adminName {
+.admin-name {
   display: flex;
   align-items: center;  
   font-family: var(--main-font);
@@ -38,7 +38,7 @@
   display: flex;
   flex-direction: column;
 }
-.navPractician {
+.nav-practician {
   position: absolute;
   width: 100%;
   height: 19%;
@@ -49,11 +49,11 @@
   border-radius: 12px;
 }
 
-.navPractician:hover {
+.nav-practician:hover {
   background: rgb(50, 53, 66);
   cursor: pointer;
 }
-.navCompte {
+.nav-compte {
   position: absolute;
   width: 100%;
   height: 19%;
@@ -64,11 +64,11 @@
   background: var(--main-bg-admin-practician);
   border-radius: 12px;
 }
-.navCompte:hover {
+.nav-compte:hover {
   background: rgb(50, 53, 66);
   cursor: pointer;
 }
-.navForm {
+.nav-form {
   position: absolute;
   width: 100%;
   height: 19%;
@@ -79,11 +79,11 @@
   background: var(--main-bg-admin-practician);
   border-radius: 12px;
 }
-.navForm:hover {
+.nav-form:hover {
   background: rgb(50, 53, 66);
   cursor: pointer;
 }
-.navStats {
+.nav-stats {
   position: absolute;
   width: 100%;
   height: 19%;
@@ -94,25 +94,25 @@
   background: var(--main-bg-admin-practician);
   border-radius: 12px;
 }
-.navStats:hover {
+.nav-stats:hover {
   background: rgb(50, 53, 66);
   cursor: pointer;
 }
-
-@media (max-width: 600px) {
-  .headerAvatar {
+//768px
+@media (max-width: 480px) {
+  .header-avatar {
     flex-direction: row-reverse;
     right: 0;
     top: 0;
     width: 60vw;
   }
 
-  .adminAvatar {
+  .admin-avatar {
     width: 80px;
     height: 80px;
   }
 
-  .adminName {
+  .admin-name {
     color: #5C5C5C;
   }
 
@@ -129,10 +129,10 @@
     align-items: center;
   }
 
-  .navPractician,
-  .navCompte,
-  .navForm,
-  .navStats {
+  .nav-practician,
+  .nav-compte,
+  .nav-form,
+  .nav-stats {
     position: static;
     width: auto;
     height: auto;
@@ -140,9 +140,9 @@
     color: black;
     background: white;
   }
-  .navPractician:hover,
-  .navCompte:hover,
-  .navForm:hover,
-  .navStats:hover {
+  .nav-practician:hover,
+  .nav-compte:hover,
+  .nav-form:hover,
+  .nav-stats:hover {
     background: #5C5C5C;  }
 }
