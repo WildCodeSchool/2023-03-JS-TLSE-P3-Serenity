@@ -2,12 +2,12 @@ const express = require("express");
 
 const router = express.Router();
 
-const itemControllers = require("./controllers/itemControllers");
+// const admins = require("./controllers/adminControllers");
 
-router.get("/items", itemControllers.browse);
-router.get("/items/:id", itemControllers.read);
-router.put("/items/:id", itemControllers.edit);
-router.post("/items", itemControllers.add);
-router.delete("/items/:id", itemControllers.destroy);
+// router.get("/admins", admins.browse);
+// router.get("/admins/:id", admins.read);
+// router.put("/admins/:id", admins.edit);
+// router.post("/admins", admins.add);
+// router.delete("/admins/:id", admins.destroy);
 
 module.exports = router;

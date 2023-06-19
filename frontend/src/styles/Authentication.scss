@@ -11,7 +11,7 @@ small {
   flex-direction: column;
   gap: 10px;
 
-  .connectionInput {
+  .connection-input {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -21,10 +21,10 @@ small {
     width: 20vw;
   }
 
-  .warningMatricule {
+  .warning-matricule {
     color: red;
   }
-  .connectionButton {
+  .connection-button {
     margin-top: 20px;
     width: 20vw;
   }
