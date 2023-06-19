@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../styles/Authentication.scss";
 
 import eyePwShown from "../assets/eye_pw_show_icon.svg";
@@ -26,7 +27,16 @@ export default function Authentication() {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
-    return Object.fromEntries(formData.entries());
+    const dataFromForm = Object.fromEntries(formData.entries());
+    if (credentials === "admin") {
+      axios
+        .post("http://localhost:6000/admins", dataFromForm)
+        .then((response) => console.info(response))
+        // .then((data) => console.info(data))
+        .catch((err) => {
+          console.error(err.message);
+        });
+    }
   };
 
   // handler for change in input admin matricule
@@ -76,7 +86,7 @@ export default function Authentication() {
           <>
             <label htmlFor="matricule">Matricule</label>
             <input
-              name="matriculeInput"
+              name="matricule"
               id="matricule"
               type="text"
               autoComplete="true"
@@ -96,7 +106,7 @@ export default function Authentication() {
           <>
             <label htmlFor="adeli">Numéro Adeli</label>
             <input
-              name="adeliInput"
+              name="adeli"
               id="adeli"
               type="text"
               autoComplete="true"
@@ -116,7 +126,7 @@ export default function Authentication() {
           <>
             <label htmlFor="mail">Mail</label>
             <input
-              name="mailInput"
+              name="mail"
               id="mail"
               type="text"
               autoComplete="true"
@@ -142,7 +152,7 @@ export default function Authentication() {
         <label htmlFor="password">Password</label>
         <div>
           <input
-            name="password-input"
+            name="password"
             id="password"
             autoComplete="current-password"
             type={!passwordShown ? "password" : "text"}
