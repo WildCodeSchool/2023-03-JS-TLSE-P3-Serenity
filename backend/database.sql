@@ -42,7 +42,7 @@ CREATE TABLE
 CREATE TABLE
     IF NOT EXISTS `serenity`.`practician` (
         `id` INT NOT NULL AUTO_INCREMENT,
-        `registration_number` VARCHAR(8) NOT NULL,
+        `adeli_number` VARCHAR(9) NOT NULL,
         `password` VARCHAR(255) NOT NULL,
         `firstname` VARCHAR(255) NOT NULL,
         `lastname` VARCHAR(255) NOT NULL,
@@ -205,6 +205,12 @@ CREATE TABLE
         PRIMARY KEY (`id`)
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
+-- -----------------------------------------------------
+
+-- INSERT INTO 'administrator'
+
+-- -----------------------------------------------------
+
 INSERT INTO
     administrator(
         registration_number,
@@ -219,15 +225,25 @@ VALUES(
             FROM
                 1 FOR 8
         ),
-        'test',
+        SUBSTRING(
+            MD5(RAND())
+            FROM
+                1 FOR 8
+        ),
         '1@1.com',
         'test',
         'test'
     );
 
+-- -----------------------------------------------------
+
+-- INSERT INTO 'practician'
+
+-- -----------------------------------------------------
+
 INSERT INTO
     practician(
-        registration_number,
+        adeli_number,
         password,
         firstname,
         lastname,
@@ -238,9 +254,13 @@ VALUES(
         SUBSTRING(
             MD5(RAND())
             FROM
-                1 FOR 8
+                1 FOR 9
         ),
-        'test',
+        SUBSTRING(
+            MD5(RAND())
+            FROM
+                1 FOR 9
+        ),
         'test1P',
         'test1P',
         '1P@1.com',
@@ -249,7 +269,7 @@ VALUES(
 
 INSERT INTO
     practician(
-        registration_number,
+        adeli_number,
         password,
         firstname,
         lastname,
@@ -260,9 +280,13 @@ VALUES(
         SUBSTRING(
             MD5(RAND())
             FROM
-                1 FOR 8
+                1 FOR 9
         ),
-        'test',
+        SUBSTRING(
+            MD5(RAND())
+            FROM
+                1 FOR 9
+        ),
         'test2P',
         'test2P',
         '2P@2.com',
@@ -271,7 +295,7 @@ VALUES(
 
 INSERT INTO
     practician(
-        registration_number,
+        adeli_number,
         password,
         firstname,
         lastname,
@@ -282,11 +306,131 @@ VALUES(
         SUBSTRING(
             MD5(RAND())
             FROM
-                1 FOR 8
+                1 FOR 9
         ),
-        'test',
+        SUBSTRING(
+            MD5(RAND())
+            FROM
+                1 FOR 9
+        ),
         'test3P',
         'test3P',
         '3P@3.com',
         1
     );
+
+-- -----------------------------------------------------
+
+-- INSERT INTO 'form'
+
+-- -----------------------------------------------------
+
+INSERT INTO
+    form(
+        user_type,
+        request_type,
+        request
+    )
+VALUES ('practician', 'test', 'test');
+
+-- -----------------------------------------------------
+
+-- INSERT INTO 'intervention'
+
+-- -----------------------------------------------------
+
+INSERT INTO
+    intervention(
+        name,
+        duration,
+        anesthesia,
+        practician_id
+    )
+VALUES ('intervention1', '1h', 'AG', 1);
+
+INSERT INTO
+    intervention(
+        name,
+        duration,
+        anesthesia,
+        practician_id
+    )
+VALUES ('intervention2', '5h', 'AL', 2);
+
+INSERT INTO
+    intervention(
+        name,
+        duration,
+        anesthesia,
+        practician_id
+    )
+VALUES (
+        'intervention3',
+        '2h30',
+        'Aucune',
+        3
+    );
+
+-- -----------------------------------------------------
+
+-- INSERT INTO 'patient'
+
+-- -----------------------------------------------------
+
+INSERT INTO
+    patient(
+        mail,
+        password,
+        firstname,
+        lastname
+    )
+VALUES (
+        'patient1@patient1.com',
+        'test',
+        'patient1',
+        'patient1'
+    );
+
+INSERT INTO
+    patient(
+        mail,
+        password,
+        firstname,
+        lastname
+    )
+VALUES (
+        'patient2@patient2.com',
+        'test',
+        'patient2',
+        'patient2'
+    );
+
+INSERT INTO
+    patient(
+        mail,
+        password,
+        firstname,
+        lastname
+    )
+VALUES (
+        'patient3@patient3.com',
+        'test',
+        'patient3',
+        'patient3'
+    );
+
+-- -----------------------------------------------------
+
+-- INSERT INTO 'theme_ressource'
+
+-- -----------------------------------------------------
+
+INSERT INTO theme_ressource(theme) VALUES('Comprendre');
+
+INSERT INTO theme_ressource(theme) VALUES('Administratif');
+
+INSERT INTO theme_ressource(theme) VALUES('Préparation');
+
+INSERT INTO theme_ressource(theme) VALUES('Anticipation');
+
+INSERT INTO theme_ressource(theme) VALUES('Checklist');

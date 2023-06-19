@@ -1,0 +1,149 @@
+.navbar {
+  z-index: 1;
+  position: absolute;
+  height: 100vh;
+  background-color: var(--main-bg-admin-practician);
+  width: 20vw;
+}
+
+.headerAvatar {
+  z-index: 2;
+  display: flex;
+  position: absolute;
+  padding: 1rem;
+  gap: 8px;
+  width: 20vw;
+}
+
+.adminAvatar {
+  width: 50px;
+  height: 50px;
+}
+
+.adminName {
+  display: flex;
+  align-items: center;
+  font-family: var(--main-font);
+  color: white;
+  line-height: 1rem;
+  width: 70%;
+}
+
+.links {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 20%;
+  bottom: 40%;
+  display: flex;
+  flex-direction: column;
+}
+.navPractician {
+  position: absolute;
+  width: 100%;
+  height: 19%;
+  font-family: var(--main-font);
+  color: white;
+  font-size: 1rem;
+  background: #6c5dd3;
+  border-radius: 12px;
+}
+
+.navPractician:hover {
+  background: rgb(50, 53, 66);
+  cursor: pointer;
+}
+.navCompte {
+  position: absolute;
+  width: 100%;
+  height: 19%;
+  top: 20%;
+  font-family: var(--main-font);
+  color: white;
+  font-size: 1rem;
+  background: var(--main-bg-admin-practician);
+  border-radius: 12px;
+}
+.navCompte:hover {
+  background: rgb(50, 53, 66);
+  cursor: pointer;
+}
+.navForm {
+  position: absolute;
+  width: 100%;
+  height: 19%;
+  top: 40%;
+  font-family: var(--main-font);
+  color: white;
+  font-size: 1rem;
+  background: var(--main-bg-admin-practician);
+  border-radius: 12px;
+}
+.navForm:hover {
+  background: rgb(50, 53, 66);
+  cursor: pointer;
+}
+.navStats {
+  position: absolute;
+  width: 100%;
+  height: 19%;
+  top: 60%;
+  font-family: var(--main-font);
+  color: white;
+  font-size: 1rem;
+  background: var(--main-bg-admin-practician);
+  border-radius: 12px;
+}
+.navStats:hover {
+  background: rgb(50, 53, 66);
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .headerAvatar {
+    flex-direction: row-reverse;
+    right: 0;
+    top: 0;
+    width: 60vw;
+  }
+
+  .adminAvatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .adminName {
+    color: #5c5c5c;
+  }
+
+  .navbar {
+    bottom: 0;
+    width: 100vw;
+    height: 12vh;
+    background: white;
+  }
+
+  .links {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .navPractician,
+  .navCompte,
+  .navForm,
+  .navStats {
+    position: static;
+    width: auto;
+    height: auto;
+    font-size: 1rem;
+    color: black;
+    background: white;
+  }
+  .navPractician:hover,
+  .navCompte:hover,
+  .navForm:hover,
+  .navStats:hover {
+    background: #5c5c5c;
+  }
+}

@@ -70,61 +70,67 @@ export default function Authentication() {
   // change the authentication "username" according to the type of user
   const authenticationType = () => {
     let authentificationTypeToShow = "";
-    if (credentials === "admin") {
-      authentificationTypeToShow = (
-        <>
-          <label htmlFor="matricule">Matricule</label>
-          <input
-            name="matriculeInput"
-            id="matricule"
-            type="text"
-            autoComplete="true"
-            value={matricule}
-            onChange={handleMatriculeChange}
-          />
-          {warningMatricule && (
-            <p className="warning-matricule">
-              Le matricule n'est composé que de 8 chiffres
-            </p>
-          )}
-        </>
-      );
-    } else if (credentials === "espacepro") {
-      authentificationTypeToShow = (
-        <>
-          <label htmlFor="adeli">Numéro Adeli</label>
-          <input
-            name="adeliInput"
-            id="adeli"
-            type="text"
-            autoComplete="true"
-            value={adeli}
-            onChange={handleAdeliChange}
-          />
-          {warningAdeli && (
-            <p className="warning-adeli">
-              Le numéro Adeli est composé de seulement 8 chiffres
-            </p>
-          )}
-        </>
-      );
-    } else if (credentials === "login") {
-      authentificationTypeToShow = (
-        <>
-          <label htmlFor="mail">Mail</label>
-          <input
-            name="mailInput"
-            id="mail"
-            type="text"
-            autoComplete="true"
-            value={mail}
-            onChange={handleMailChange}
-          />
-          {warningMail && (
-            <p className="warning-mail">Le nom d'utilisateur est le mail</p>
-          )}
-        </>
-      );
+    switch (credentials) {
+      case "admin":
+        authentificationTypeToShow = (
+          <>
+            <label htmlFor="matricule">Matricule</label>
+            <input
+              name="matriculeInput"
+              id="matricule"
+              type="text"
+              autoComplete="true"
+              value={matricule}
+              onChange={handleMatriculeChange}
+            />
+            {warningMatricule && (
+              <p className="warning-matricule">
+                Le matricule n'est composé que de 8 chiffres
+              </p>
+            )}
+          </>
+        );
+        break;
+      case "espacepro":
+        authentificationTypeToShow = (
+          <>
+            <label htmlFor="adeli">Numéro Adeli</label>
+            <input
+              name="adeliInput"
+              id="adeli"
+              type="text"
+              autoComplete="true"
+              value={adeli}
+              onChange={handleAdeliChange}
+            />
+            {warningAdeli && (
+              <p className="warning-adeli">
+                Le numéro Adeli est composé de seulement 8 chiffres
+              </p>
+            )}
+          </>
+        );
+        break;
+      case "login":
+        authentificationTypeToShow = (
+          <>
+            <label htmlFor="mail">Mail</label>
+            <input
+              name="mailInput"
+              id="mail"
+              type="text"
+              autoComplete="true"
+              value={mail}
+              onChange={handleMailChange}
+            />
+            {warningMail && (
+              <p className="warning-mail">Le nom d'utilisateur est le mail</p>
+            )}
+          </>
+        );
+        break;
+      default:
+        break;
     }
     return authentificationTypeToShow;
   };
