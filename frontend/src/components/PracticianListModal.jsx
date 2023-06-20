@@ -10,6 +10,7 @@ function PracticianListModal() {
       .get(`${import.meta.env.VITE_BACKEND_URL}/practicians`)
       .then((response) => {
         setPracticians(response.data);
+        console.log(practicians);
       })
       .catch((error) => console.log(error));
   }, []);
