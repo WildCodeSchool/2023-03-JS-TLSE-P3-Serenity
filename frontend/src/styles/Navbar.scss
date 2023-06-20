@@ -1,3 +1,8 @@
+.header-navbar {
+  background: var(--main-bg-admin-practician);
+  border-right: solid 2px rgb(72, 72, 72);  
+}
+
 .header-avatar {
   display: flex;
   padding: 1rem;
@@ -20,11 +25,7 @@
 }
 
 .navbar {
-  background: var(--main-bg-admin-practician);
-  max-width: 20vw;
   min-width: 217px;
-  border-right: solid 2px rgb(72, 72, 72);
-
 }
 
 .links {
@@ -62,15 +63,48 @@
   background: #6C5DD3;
   border: solid 1px rgb(72, 72, 72);
 }
+
 .nav:hover {
   background: rgb(50, 53, 66);
   cursor: pointer;
 }
-.navbar-semi-circle{
+
+.button-content{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-left: 15%;
+}
+
+.link-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.home-icon-mobile {
+  display: none;
+}
+
+.menu-burger {
+  display: none;
+}
+
+.menu-burger-icon{
   display: none;
 }
 
 @media (max-width: 480px) {
+  .header-navbar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: transparent;
+    position: fixed;
+    height: 100%;
+  }
+  
   .header-avatar {    
     flex-direction: row-reverse;
     width: 100vw;
@@ -82,6 +116,7 @@
   }
   
   .admin-name {
+    text-align: end;
     color: #5C5C5C;
     width: 50%;
   }
@@ -89,27 +124,62 @@
   .navbar {
     display: flex;
     max-width: 100vw;
-    height: 100vh;
-    background: transparent;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    flex-direction: column;
-    justify-content: space-between;
-    position: fixed;
+    height: 10vh;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background: white;
   }
   
-  .links {
-    flex-direction: row;
-    align-items: stretch;    
-    margin-top: 0;
-    background: white;
+  .burger-invisible {
+    display: none;
+  }
+  
+  .burger-visible{
+    display: flex;
+    position: absolute;
+    background: lightgrey;
+    border: red 1px solid;
+    bottom: 10%;
+    right: 0%;
+    width: 60%;
+    align-items: center;
   }
   
   .nav {
     font-size: 1rem;
     color: black;
     background: white;
+    margin-bottom: 5%;
   }
-
+  
+  .active {
+    font-size: 1rem;
+    color: black;
+    background: white;
+    margin-bottom: 5%;
+  }
+  
+  .home-icon-mobile {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    border: solid 1px rgb(72, 72, 72);
+    border-radius: 12px;
+  }
+  
+  .menu-burger {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border: solid 1px rgb(72, 72, 72);
+    border-radius: 12px;
+  }
+  
+  .menu-burger-icon{
+    display: flex;
+    width: 60px;
+    height: 60px;
+  }
+  
 }
