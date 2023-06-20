@@ -2,12 +2,19 @@ const express = require("express");
 
 const router = express.Router();
 
-const itemControllers = require("./controllers/itemControllers");
+const AdministratorControllers = require("./controllers/AdministratorControllers");
+const PracticianControllers = require("./controllers/PraticianControllers");
 
-router.get("/items", itemControllers.browse);
-router.get("/items/:id", itemControllers.read);
-router.put("/items/:id", itemControllers.edit);
-router.post("/items", itemControllers.add);
-router.delete("/items/:id", itemControllers.destroy);
+router.get("/admin", AdministratorControllers.browse);
+router.get("/admin/:id", AdministratorControllers.read);
+router.put("/admin/:id", AdministratorControllers.edit);
+router.post("/admin", AdministratorControllers.add);
+router.delete("/admin/:id", AdministratorControllers.destroy);
+
+router.get("/espacepro", PracticianControllers.browse);
+router.get("/espacepro/:id", PracticianControllers.read);
+router.put("/espacepro/:id", PracticianControllers.edit);
+router.post("/espacepro", PracticianControllers.add);
+router.delete("/espacepro/:id", PracticianControllers.destroy);
 
 module.exports = router;

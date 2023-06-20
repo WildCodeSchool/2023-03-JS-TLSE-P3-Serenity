@@ -10,6 +10,10 @@ const express = require("express");
 const app = express();
 
 // use some application-level middlewares
+// const bodyParser = require("body-parser");
+
+// Utilisation de body-parser pour analyser les données du formulaire
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.json());
 

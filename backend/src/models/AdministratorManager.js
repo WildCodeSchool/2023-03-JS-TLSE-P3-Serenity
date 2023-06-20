@@ -1,8 +1,8 @@
 const AbstractManager = require("./AbstractManager");
 
-class ItemManager extends AbstractManager {
+class AdministratorManager extends AbstractManager {
   constructor() {
-    super({ table: "item" });
+    super({ table: "administrator" });
   }
 
   insert(item) {
@@ -19,4 +19,4 @@ class ItemManager extends AbstractManager {
   }
 }
 
-module.exports = ItemManager;
+module.exports = AdministratorManager;

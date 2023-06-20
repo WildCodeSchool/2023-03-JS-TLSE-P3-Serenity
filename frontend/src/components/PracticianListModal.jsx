@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/PracticianListModal.scss";
+import Buttonadd from "./Buttonadd";
 
 function PracticianListModal() {
   return (
@@ -19,9 +20,7 @@ function PracticianListModal() {
           </td>
         </div>
         <div className="practician-list-footer">
-          <button type="button" className="add-practician">
-            <p>Nouveau practicien</p>
-          </button>
+          <Buttonadd />
         </div>
       </div>
     </div>
