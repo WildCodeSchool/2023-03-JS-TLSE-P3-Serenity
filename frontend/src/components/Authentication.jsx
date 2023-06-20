@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../styles/Authentication.scss";
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import eyePwShown from "../assets/eye_pw_show_icon.svg";
 import eyePwHide from "../assets/eye_pw_hide_icon.svg";
 
-export default function Authentication() {
+export default function Authentication({ setUser }) {
   const credentials = window.location.href.split("/").at(-1);
   // regex definition for matricule and mail user
   const regexMatricule = /^\d{0,8}$/;
@@ -21,21 +23,29 @@ export default function Authentication() {
   const [password, setPassword] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
 
+  const navigate = useNavigate();
+
   // submit handler for the form
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const form = event.target;
     const formData = new FormData(form);
     const dataFromForm = Object.fromEntries(formData.entries());
-    console.info(dataFromForm);
     if (credentials === "admin") {
       axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/admins/login`, dataFromForm)
         .then((response) => {
-          console.info(response);
+          if (response.data.token) {
+            setUser(response.data.token);
+            navigate("/");
+          } else {
+            console.info(response);
+          }
         })
-        .catch((err) => {
-          console.error(err.message);
+        .catch((error) => {
+          console.error(error.message);
+          // modal to say "wrong password or username, retry"
         });
     }
   };
@@ -181,3 +191,11 @@ export default function Authentication() {
     </div>
   );
 }
+
+Authentication.propTypes = {
+  setUser: PropTypes.func,
+};
+
+Authentication.defaultProps = {
+  setUser: () => {},
+};
