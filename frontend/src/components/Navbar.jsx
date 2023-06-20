@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "../styles/Navbar.scss";
 import avatar from "../assets/avatar.svg";
+import StateContext from "../contexts/StateContext";
 
 function navbar() {
-  const [linkToActive, setLinkToActive] = useState("Home");
+  const { linkToActive, setLinkToActive } = useContext(StateContext);
   const navbarLinks = [
     {
       role: "admin",
@@ -26,11 +27,11 @@ function navbar() {
     },
     {
       role: "patient",
-      className: linkToActive === "Mon médecin" ? "active" : "nav",
-      label: "Mon médecin",
+      className: linkToActive === "Home" ? "active" : "nav",
+      label: "Ma préparation",
       action: () => {
-        setLinkToActive("Mon médecin");
-        console.info("Mon médecin");
+        setLinkToActive("Home");
+        console.info("Ma préparation");
       },
     },
     {
@@ -62,7 +63,7 @@ function navbar() {
     },
     {
       role: "patient",
-      className: linkToActive === "Ma préparation" ? "active" : "nav",
+      className: linkToActive === "Mon médecin" ? "active" : "nav",
       label: "Mon médecin",
       action: () => {
         setLinkToActive("Mon médecin");
@@ -118,7 +119,6 @@ function navbar() {
               </button>
             </li>
           ))}
-        <div className="navbar-semi-circle" />
       </ul>
     </div>
   );
