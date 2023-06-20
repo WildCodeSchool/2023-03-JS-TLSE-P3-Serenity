@@ -8,10 +8,11 @@ CREATE TABLE
     IF NOT EXISTS `serenity`.`administrator` (
         `id` INT NOT NULL AUTO_INCREMENT,
         `registration_number` VARCHAR(8) NOT NULL,
-        `password` VARCHAR(255) NOT NULL,
+        `hashed_password` VARCHAR(255) NOT NULL,
         `mail` VARCHAR(255) NULL DEFAULT NULL,
         `firstname` VARCHAR(255) NULL DEFAULT NULL,
         `lastname` VARCHAR(255) NULL DEFAULT NULL,
+        `role` VARCHAR(5) NOT NULL DEFAULT 'admin',
         PRIMARY KEY (`id`),
         UNIQUE INDEX `registration_number` (`registration_number` ASC) VISIBLE
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
@@ -43,7 +44,7 @@ CREATE TABLE
     IF NOT EXISTS `serenity`.`practician` (
         `id` INT NOT NULL AUTO_INCREMENT,
         `adeli_number` VARCHAR(9) NOT NULL,
-        `password` VARCHAR(255) NOT NULL,
+        `hashed_password` VARCHAR(255) NOT NULL,
         `firstname` VARCHAR(255) NOT NULL,
         `lastname` VARCHAR(255) NOT NULL,
         `mail` VARCHAR(255) NOT NULL,
@@ -58,6 +59,7 @@ CREATE TABLE
         `award` TEXT NULL DEFAULT NULL,
         `picture` TEXT NULL DEFAULT NULL,
         `administrator_id` INT NOT NULL,
+        `role` VARCHAR(10) NOT NULL DEFAULT "practician",
         PRIMARY KEY (`id`),
         CONSTRAINT `fk_administrator_id` FOREIGN KEY (`administrator_id`) REFERENCES `serenity`.`administrator` (`id`)
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
@@ -89,7 +91,7 @@ CREATE TABLE
     IF NOT EXISTS `serenity`.`patient` (
         `id` INT NOT NULL AUTO_INCREMENT,
         `mail` VARCHAR(255) NOT NULL,
-        `password` VARCHAR(255) NOT NULL,
+        `hashed_password` VARCHAR(255) NOT NULL,
         `firstname` VARCHAR(255) NOT NULL,
         `lastname` VARCHAR(255) NOT NULL,
         `gender` VARCHAR(8) NULL DEFAULT NULL,
@@ -106,6 +108,7 @@ CREATE TABLE
         `emergency_firstname` VARCHAR(255) NULL DEFAULT NULL,
         `emergency_lastname` VARCHAR(255) NULL DEFAULT NULL,
         `emergency_phone` VARCHAR(20) NULL DEFAULT NULL,
+        `role` VARCHAR(7) NOT NULL DEFAULT "patient",
         PRIMARY KEY (`id`)
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -214,10 +217,11 @@ CREATE TABLE
 INSERT INTO
     administrator(
         registration_number,
-        password,
+        hashed_password,
         mail,
         firstname,
-        lastname
+        lastname,
+        role
     )
 VALUES(
         SUBSTRING(
@@ -232,7 +236,8 @@ VALUES(
         ),
         '1@1.com',
         'test',
-        'test'
+        'test',
+        'admin'
     );
 
 -- -----------------------------------------------------
@@ -244,11 +249,12 @@ VALUES(
 INSERT INTO
     practician(
         adeli_number,
-        password,
+        hashed_password,
         firstname,
         lastname,
         mail,
-        administrator_id
+        administrator_id,
+        role
     )
 VALUES(
         SUBSTRING(
@@ -264,17 +270,19 @@ VALUES(
         'test1P',
         'test1P',
         '1P@1.com',
-        1
+        1,
+        "practician"
     );
 
 INSERT INTO
     practician(
         adeli_number,
-        password,
+        hashed_password,
         firstname,
         lastname,
         mail,
-        administrator_id
+        administrator_id,
+        role
     )
 VALUES(
         SUBSTRING(
@@ -290,17 +298,19 @@ VALUES(
         'test2P',
         'test2P',
         '2P@2.com',
-        1
+        1,
+        "practician"
     );
 
 INSERT INTO
     practician(
         adeli_number,
-        password,
+        hashed_password,
         firstname,
         lastname,
         mail,
-        administrator_id
+        administrator_id,
+        role
     )
 VALUES(
         SUBSTRING(
@@ -316,7 +326,8 @@ VALUES(
         'test3P',
         'test3P',
         '3P@3.com',
-        1
+        1,
+        "practician"
     );
 
 -- -----------------------------------------------------
@@ -380,43 +391,49 @@ VALUES (
 INSERT INTO
     patient(
         mail,
-        password,
+        hashed_password,
         firstname,
-        lastname
+        lastname,
+        role
     )
 VALUES (
         'patient1@patient1.com',
         'test',
         'patient1',
-        'patient1'
+        'patient1',
+        'patient'
     );
 
 INSERT INTO
     patient(
         mail,
-        password,
+        hashed_password,
         firstname,
-        lastname
+        lastname,
+        role
     )
 VALUES (
         'patient2@patient2.com',
         'test',
         'patient2',
-        'patient2'
+        'patient2',
+        'patient'
     );
 
 INSERT INTO
     patient(
         mail,
-        password,
+        hashed_password,
         firstname,
-        lastname
+        lastname,
+        role
     )
 VALUES (
         'patient3@patient3.com',
         'test',
         'patient3',
-        'patient3'
+        'patient3',
+        'patient'
     );
 
 -- -----------------------------------------------------

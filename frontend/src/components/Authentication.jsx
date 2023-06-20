@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../styles/Authentication.scss";
-
 import eyePwShown from "../assets/eye_pw_show_icon.svg";
 import eyePwHide from "../assets/eye_pw_hide_icon.svg";
 
@@ -28,11 +27,13 @@ export default function Authentication() {
     const form = event.target;
     const formData = new FormData(form);
     const dataFromForm = Object.fromEntries(formData.entries());
+    console.info(dataFromForm);
     if (credentials === "admin") {
       axios
-        .post("http://localhost:5000/admins", dataFromForm)
-        .then((response) => console.info(response))
-        // .then((data) => console.info(data))
+        .post(`${import.meta.env.VITE_BACKEND_URL}/admins`, dataFromForm)
+        .then((response) => {
+          console.info(response);
+        })
         .catch((err) => {
           console.error(err.message);
         });

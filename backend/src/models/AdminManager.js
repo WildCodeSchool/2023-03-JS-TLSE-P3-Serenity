@@ -14,10 +14,10 @@ class AdminManager extends AbstractManager {
 
   insert(admin) {
     return this.database.query(
-      `insert into ${this.table} (registration_number, password, mail, firstname, lastname) values (?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (registration_number, hashed_password, mail, firstname, lastname) values (?, ?, ?, ?, ?)`,
       [
         admin.registration_number,
-        admin.password,
+        admin.hashedPassword,
         admin.mail,
         admin.firstname,
         admin.lastname,
@@ -25,10 +25,10 @@ class AdminManager extends AbstractManager {
     );
   }
 
-  update(matricule, password, id) {
+  update(matricule, hashedPassword, id) {
     return this.database.query(
-      `update ${this.table} set registration_number = ?, password = ? where id = ?`,
-      [matricule, password, id]
+      `update ${this.table} set registration_number = ?, hashed_password = ? where id = ?`,
+      [matricule, hashedPassword, id]
     );
   }
 }

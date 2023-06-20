@@ -21,10 +21,10 @@ const authenticationCheck = (req, res, next) => {
 
 const modifyAdmin = (req, res) => {
   const { id } = req.params;
-  const { matricule, password } = req.body;
+  const { matricule, hashedPassword } = req.body;
 
   models.administrator
-    .update(matricule, password, id)
+    .update(matricule, hashedPassword, id)
     .then(([result]) => {
       if (result.affectedRows !== 0) {
         res.sendStatus(204);
