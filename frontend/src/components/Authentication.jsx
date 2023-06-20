@@ -30,7 +30,7 @@ export default function Authentication() {
     const dataFromForm = Object.fromEntries(formData.entries());
     if (credentials === "admin") {
       axios
-        .post("http://localhost:6000/admins", dataFromForm)
+        .post("http://localhost:5000/admins", dataFromForm)
         .then((response) => console.info(response))
         // .then((data) => console.info(data))
         .catch((err) => {
