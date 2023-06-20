@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/PracticianListModal.scss";
@@ -10,9 +9,11 @@ function PracticianListModal() {
       .get(`${import.meta.env.VITE_BACKEND_URL}/practicians`)
       .then((response) => {
         setPracticians(response.data);
-        console.log(practicians);
+        console.info(practicians); // practicians will be replaced when data is fetched
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        error.sendStatus(500);
+      });
   }, []);
   return (
     <div className="practician-list-container">
