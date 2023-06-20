@@ -30,7 +30,7 @@ export default function Authentication() {
     console.info(dataFromForm);
     if (credentials === "admin") {
       axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/admins`, dataFromForm)
+        .post(`${import.meta.env.VITE_BACKEND_URL}/admins/login`, dataFromForm)
         .then((response) => {
           console.info(response);
         })
@@ -150,27 +150,29 @@ export default function Authentication() {
     <div>
       <form onSubmit={handleSubmit} className="connection">
         <div className="connection-input">{authenticationType()}</div>
-        <label htmlFor="password">Password</label>
-        <div>
-          <input
-            name="password"
-            id="password"
-            autoComplete="current-password"
-            type={!passwordShown ? "password" : "text"}
-            value={password}
-            onChange={handlePasswordChange}
-          />
-          <button
-            onClick={togglePassword}
-            type="button"
-            className="hide-or-show-button"
-          >
-            <img
-              id="pw-icon-show-hide"
-              src={passwordShown ? eyePwHide : eyePwShown}
-              alt="button to show or hide password"
+        <div className="password-input">
+          <label htmlFor="password">Password</label>
+          <div className="password-input-and-show">
+            <input
+              name="password"
+              id="password"
+              autoComplete="current-password"
+              type={!passwordShown ? "password" : "text"}
+              value={password}
+              onChange={handlePasswordChange}
             />
-          </button>
+            <button
+              onClick={togglePassword}
+              type="button"
+              className="hide-or-show-button"
+            >
+              <img
+                id="pw-icon-show-hide"
+                src={passwordShown ? eyePwHide : eyePwShown}
+                alt="button to show or hide password"
+              />
+            </button>
+          </div>
         </div>
         <button type="submit" className="connection-button">
           SE CONNECTER
