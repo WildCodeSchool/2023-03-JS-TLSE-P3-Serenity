@@ -1,26 +1,16 @@
-.navbar {
-  z-index: 1;
-  position: absolute;
-  height: 100vh;
-  background-color: var(--main-bg-admin-practician);
-  width: 20vw;
-}
-
-.headerAvatar {
-  z-index: 2;
+.header-avatar {
   display: flex;
-  position: absolute;
   padding: 1rem;
   gap: 8px;
-  width: 20vw;
+  width: 20%;
 }
 
-.adminAvatar {
+.admin-avatar {
   width: 50px;
   height: 50px;
 }
 
-.adminName {
+.admin-name {
   display: flex;
   align-items: center;
   font-family: var(--main-font);
@@ -29,121 +19,95 @@
   width: 70%;
 }
 
+.navbar {
+  background: var(--main-bg-admin-practician);
+  max-width: 20vw;
+  min-width: 217px;
+  border-right: solid 2px rgb(72, 72, 72);
+}
+
 .links {
-  position: absolute;
-  left: 8%;
-  right: 8%;
-  top: 20%;
-  bottom: 40%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-top: 40%;
 }
-.navPractician {
-  position: absolute;
+
+.list-item-navbar {
+  width: 90%;
+  margin-top: 5%;
+}
+
+.nav {
+  padding: 16px 0px;
   width: 100%;
-  height: 19%;
+  height: 100%;
   font-family: var(--main-font);
   color: white;
   font-size: 1rem;
+  background: var(--main-bg-admin-practician);
+  border-radius: 12px;
+  border: solid 1px rgb(72, 72, 72);
+}
+
+.active {
+  padding: 16px 0px;
+  width: 100%;
+  height: 100%;
+  font-family: var(--main-font);
+  color: white;
+  font-size: 1rem;
+  border-radius: 12px;
   background: #6c5dd3;
-  border-radius: 12px;
+  border: solid 1px rgb(72, 72, 72);
+}
+.nav:hover {
+  background: rgb(50, 53, 66);
+  cursor: pointer;
+}
+.navbar-semi-circle {
+  display: none;
 }
 
-.navPractician:hover {
-  background: rgb(50, 53, 66);
-  cursor: pointer;
-}
-.navCompte {
-  position: absolute;
-  width: 100%;
-  height: 19%;
-  top: 20%;
-  font-family: var(--main-font);
-  color: white;
-  font-size: 1rem;
-  background: var(--main-bg-admin-practician);
-  border-radius: 12px;
-}
-.navCompte:hover {
-  background: rgb(50, 53, 66);
-  cursor: pointer;
-}
-.navForm {
-  position: absolute;
-  width: 100%;
-  height: 19%;
-  top: 40%;
-  font-family: var(--main-font);
-  color: white;
-  font-size: 1rem;
-  background: var(--main-bg-admin-practician);
-  border-radius: 12px;
-}
-.navForm:hover {
-  background: rgb(50, 53, 66);
-  cursor: pointer;
-}
-.navStats {
-  position: absolute;
-  width: 100%;
-  height: 19%;
-  top: 60%;
-  font-family: var(--main-font);
-  color: white;
-  font-size: 1rem;
-  background: var(--main-bg-admin-practician);
-  border-radius: 12px;
-}
-.navStats:hover {
-  background: rgb(50, 53, 66);
-  cursor: pointer;
-}
-
-@media (max-width: 600px) {
-  .headerAvatar {
+@media (max-width: 480px) {
+  .header-avatar {
     flex-direction: row-reverse;
-    right: 0;
-    top: 0;
-    width: 60vw;
+    width: 100vw;
   }
 
-  .adminAvatar {
+  .admin-avatar {
     width: 80px;
     height: 80px;
   }
 
-  .adminName {
+  .admin-name {
     color: #5c5c5c;
+    width: 50%;
   }
 
   .navbar {
+    display: flex;
+    max-width: 100vw;
+    height: 100vh;
+    background: transparent;
     bottom: 0;
-    width: 100vw;
-    height: 12vh;
-    background: white;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
   }
 
   .links {
     flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    align-items: stretch;
+    margin-top: 0;
+    background: white;
   }
 
-  .navPractician,
-  .navCompte,
-  .navForm,
-  .navStats {
-    position: static;
-    width: auto;
-    height: auto;
+  .nav {
     font-size: 1rem;
     color: black;
     background: white;
-  }
-  .navPractician:hover,
-  .navCompte:hover,
-  .navForm:hover,
-  .navStats:hover {
-    background: #5c5c5c;
   }
 }
