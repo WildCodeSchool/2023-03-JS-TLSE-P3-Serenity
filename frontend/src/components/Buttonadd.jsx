@@ -12,22 +12,19 @@ function Buttonadd() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const form = event.target; // Référence au formulaire
+    const form = event.target;
 
     const formData = new FormData(form); // Crée un objet FormData avec les données du formulaire
-    const urlEncodedData = new URLSearchParams(formData); // Convertit l'objet FormData en une chaîne de requête codée en URL
+    const formJson = Object.fromEntries(formData.entries());
+    // console.log(formJson);
+
     axios
-      .post("http://localhost:5001/espacepro", urlEncodedData, {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      }) // Remplacez "/api/endpoint" par l'URL de votre API
+      .post(`${import.meta.env.VITE_BACKEND_URL}/espacepro`, formJson) // Remplacez "/api/endpoint" par l'URL de votre API
       .then(() => {
         // Gérer la réponse de l'API en cas de succès
         // eslint-disable-next-line no-alert
         alert("Données envoyées avec succès !");
         handleClose();
-        // console.log(response.data); // Vous pouvez afficher la réponse ou effectuer d'autres actions
       })
       .catch((error) => {
         // Gérer les erreurs de requête ou de réponse de l'API
