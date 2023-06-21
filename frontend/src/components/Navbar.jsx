@@ -9,7 +9,7 @@ function navbar() {
   const navbarLinks = [
     {
       role: "admin",
-      className: linkToActive === "Home" ? "active" : "nav",
+      className: linkToActive === "Home" ? "active" : "nav-serenity",
       label: "Praticiens",
       action: () => {
         setLinkToActive("Home");
@@ -18,7 +18,7 @@ function navbar() {
     },
     {
       role: "practician",
-      className: linkToActive === "Home" ? "active" : "nav",
+      className: linkToActive === "Home" ? "active" : "nav-serenity",
       label: "Vos Patiens",
       action: () => {
         setLinkToActive("Home");
@@ -27,7 +27,7 @@ function navbar() {
     },
     {
       role: "patient",
-      className: linkToActive === "Home" ? "active" : "nav",
+      className: linkToActive === "Home" ? "active" : "nav-serenity",
       label: "Ma préparation",
       action: () => {
         setLinkToActive("Home");
@@ -36,7 +36,8 @@ function navbar() {
     },
     {
       role: "practician",
-      className: linkToActive === "Vos interventions" ? "active" : "nav",
+      className:
+        linkToActive === "Vos interventions" ? "active" : "nav-serenity",
       label: "Vos interventions",
       action: () => {
         setLinkToActive("Vos interventions");
@@ -45,7 +46,7 @@ function navbar() {
     },
     {
       role: "practician",
-      className: linkToActive === "Vos ressources" ? "active" : "nav",
+      className: linkToActive === "Vos ressources" ? "active" : "nav-serenity",
       label: "Vos ressources",
       action: () => {
         setLinkToActive("Vos ressources");
@@ -54,7 +55,7 @@ function navbar() {
     },
     {
       role: "all",
-      className: linkToActive === "Mon Compte" ? "active" : "nav",
+      className: linkToActive === "Mon Compte" ? "active" : "nav-serenity",
       label: "Mon Compte",
       action: () => {
         setLinkToActive("Mon Compte");
@@ -63,7 +64,7 @@ function navbar() {
     },
     {
       role: "patient",
-      className: linkToActive === "Mon médecin" ? "active" : "nav",
+      className: linkToActive === "Mon médecin" ? "active" : "nav-serenity",
       label: "Mon médecin",
       action: () => {
         setLinkToActive("Mon médecin");
@@ -72,7 +73,7 @@ function navbar() {
     },
     {
       role: "all",
-      className: linkToActive === "Formulaires" ? "active" : "nav",
+      className: linkToActive === "Formulaires" ? "active" : "nav-serenity",
       label: "Formulaires",
       action: () => {
         setLinkToActive("Formulaires");
@@ -81,7 +82,7 @@ function navbar() {
     },
     {
       role: "admin",
-      className: linkToActive === "Stats" ? "active" : "nav",
+      className: linkToActive === "Stats" ? "active" : "nav-serenity",
       label: "Stats",
       action: () => {
         setLinkToActive("Stats");
@@ -90,7 +91,7 @@ function navbar() {
     },
     {
       role: "all",
-      className: linkToActive === "A propos" ? "active" : "nav",
+      className: linkToActive === "A propos" ? "active" : "nav-serenity",
       label: "A propos",
       action: () => {
         setLinkToActive("A propos");
@@ -99,7 +100,7 @@ function navbar() {
     },
   ];
   return (
-    <div className="navbar">
+    <div className="navbar-serenity">
       <div className="header-avatar">
         <img src={avatar} alt="avatar" className="admin-avatar" />
         {/* // Fetch du nom de l'admin */}
