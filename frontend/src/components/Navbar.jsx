@@ -121,12 +121,10 @@ function navbar() {
         <button className="menu-burger" type="button" onClick={toggleMenu}>
           <i alt="Menu" className="fi fi-rr-menu-burger menu-burger-icon" />
         </button>
-        <div
+        <button
           className={isMenuOpen ? "bg-burger" : "burger-invisible"}
           onClick={() => setIsMenuOpen(false)}
-          onKeyDown={() => {}}
-          role="button"
-          tabIndex="0"
+          type="button"
           aria-label="Close Menu Burger"
         />
         <ul
