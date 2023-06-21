@@ -48,6 +48,41 @@
         }
       }
     }
+    .practician-list-body {
+      display: flex;
+      .practician-list-table {
+        width: 100%;
+        .practician-list-table-header {
+          display: flex;
+          font-size: 0.7rem;
+          color: #B2B3BD;
+          padding: 1rem;
+          tr {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 2.5rem;
+            justify-content: space-between;
+            border-bottom: #8f8f973a solid 0.5px;
+          }
+        }
+        .practician-list-table-body {
+          display: flex;
+          flex-direction: column;
+          font-size: 0.7rem;
+          color: #B2B3BD;
+          padding: 1rem;
+          tr {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 2.5rem;
+            justify-content: space-between;
+            border-bottom: #8f8f973a solid 0.5px;
+          }
+        }
+      }
+    }
     .practician-list-footer {
       display: flex;
       justify-content: center;

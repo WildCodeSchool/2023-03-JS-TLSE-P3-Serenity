@@ -9,16 +9,13 @@ import { StateProvider } from "./contexts/StateContext";
 function App() {
   return (
     <StateProvider>
-      <div>
+      <div className="App">
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/espaceadmin" element={<Home />} />
           </Routes>
         </Router>
-      </div>
-      <div className="app">
-        <Home />
       </div>
     </StateProvider>
   );

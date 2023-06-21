@@ -48,6 +48,7 @@ CREATE TABLE
         `lastname` VARCHAR(255) NOT NULL,
         `mail` VARCHAR(255) NOT NULL,
         `speciality` VARCHAR(255) NULL DEFAULT NULL,
+        `phone` VARCHAR(20) NULL DEFAULT NULL,
         `language` VARCHAR(255) NULL DEFAULT NULL,
         `biography` TEXT NULL DEFAULT NULL,
         `diploma` TEXT NULL DEFAULT NULL,
@@ -248,6 +249,8 @@ INSERT INTO
         firstname,
         lastname,
         mail,
+        speciality,
+        phone,
         administrator_id
     )
 VALUES(
@@ -264,6 +267,8 @@ VALUES(
         'test1P',
         'test1P',
         '1P@1.com',
+        'test1',
+        '123456789',
         1
     );
 
@@ -274,6 +279,8 @@ INSERT INTO
         firstname,
         lastname,
         mail,
+        speciality,
+        phone,
         administrator_id
     )
 VALUES(
@@ -290,6 +297,8 @@ VALUES(
         'test2P',
         'test2P',
         '2P@2.com',
+        'test2',
+        '123456789',
         1
     );
 
@@ -300,6 +309,8 @@ INSERT INTO
         firstname,
         lastname,
         mail,
+        speciality,
+        phone,
         administrator_id
     )
 VALUES(
@@ -316,6 +327,8 @@ VALUES(
         'test3P',
         'test3P',
         '3P@3.com',
+        'test3',
+        '123456789',
         1
     );
 
