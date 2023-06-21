@@ -18,7 +18,6 @@ function navbar() {
       icon: "users",
       action: () => {
         setLinkToActive("Home");
-        console.info("home");
       },
     },
     {
