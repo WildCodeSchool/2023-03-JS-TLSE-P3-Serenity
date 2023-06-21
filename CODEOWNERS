@@ -5,4 +5,4 @@
 # the repo. Unless a later match takes precedence,
 # @global-owner1 and @global-owner2 will be requested for
 # review when someone opens a pull request.
-*       @WildCodeSchool/2023-03-js-tlse/tlse-instructors
+*       @WildCodeSchool/tlse-instructors
