@@ -32,7 +32,7 @@ class PraticianManager extends AbstractManager {
       id,
     } = practician;
     return this.database.query(
-      `update ${this.table} set  
+      `update ${this.table} set
          adeli_number = ?,
         password =?,
         firstname=?,

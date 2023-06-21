@@ -4,24 +4,42 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
-function Buttonadd() {
-  const [show, setShow] = useState(false);
+function ButtonUpdate() {
+  const [practicianData, setPracticianData] = useState(null);
 
-  const handleClose = () => setShow(false);
+  const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+
+  const getPraticianInfo = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/espacepro`)
+      .then((response) => response.data)
+      .then((data) => {
+        // console.log(data);
+        setPracticianData(data);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la récupération des données:", error);
+      });
+  };
+  const handleClick = () => {
+    getPraticianInfo();
+    handleShow();
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const form = event.target;
-
-    const formData = new FormData(form); // Crée un objet FormData avec les données du formulaire
+    const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
     // console.log(formJson);
 
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/espacepro`, formJson) // Remplacez "/api/endpoint" par l'URL de votre API
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/espacepro/${practicianData[0].id}`,
+        formJson
+      ) // Remplacez "/api/endpoint" par l'URL de votre API
       .then(() => {
-        // Gérer la réponse de l'API en cas de succès
         // eslint-disable-next-line no-alert
         alert("Données envoyées avec succès !");
         handleClose();
@@ -31,11 +49,14 @@ function Buttonadd() {
         console.error("Erreur lors de l'envoi des données :", error);
       });
   };
-
   return (
     <>
-      <Button variant="primary" onClick={handleShow} className="add-practician">
-        Ajout de praticien
+      <Button
+        variant="primary"
+        onClick={handleClick}
+        className="add-practician"
+      >
+        Modifier un praticien
       </Button>
 
       <Modal
@@ -45,7 +66,7 @@ function Buttonadd() {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Modifier un praticien</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -54,7 +75,7 @@ function Buttonadd() {
               <Form.Control
                 type="text"
                 name="lastname"
-                placeholder="Nom"
+                defaultValue={practicianData ? practicianData[0].lastname : ""}
                 autoFocus
               />
             </Form.Group>
@@ -63,7 +84,7 @@ function Buttonadd() {
               <Form.Control
                 type="text"
                 name="firstname"
-                placeholder="Prénom"
+                defaultValue={practicianData ? practicianData[0].firstname : ""}
                 autoFocus
               />
             </Form.Group>
@@ -72,35 +93,39 @@ function Buttonadd() {
               <Form.Control
                 type="email"
                 name="mail"
-                placeholder="name@example.com"
+                defaultValue={practicianData ? practicianData[0].mail : ""}
                 autoFocus
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
               <Form.Label>Matricule</Form.Label>
               <Form.Control
-                type="number"
-                name="adeli_number"
-                placeholder="00-00-00"
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
-              <Form.Label>Mot de passe</Form.Label>
-              <Form.Control
                 type="text"
-                name="password"
-                placeholder="00-00-00"
+                name="adeli_number"
+                defaultValue={
+                  practicianData ? practicianData[0].adeli_number : ""
+                }
                 autoFocus
               />
             </Form.Group>
-            <input type="hidden" name="administrator_id" value={1} />
+            <input
+              type="hidden"
+              name="administrator_id"
+              defaultValue={
+                practicianData ? practicianData[0].administrator_id : 1
+              }
+            />
+            <input
+              type="hidden"
+              name="password"
+              value={practicianData ? practicianData[0].password : ""}
+            />
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
               <Button type="submit" variant="primary">
-                Save Changes
+                Modifier
               </Button>
             </Modal.Footer>
           </Form>
@@ -110,7 +135,7 @@ function Buttonadd() {
   );
 }
 
-export default Buttonadd;
+export default ButtonUpdate;
 
 // Dans cet exemple, nous utilisons Axios pour effectuer une requête POST vers l'URL /api/endpoint. Vous devrez remplacer cette URL par l'URL de votre propre backend ou de votre API qui recevra les données du formulaire.
 
