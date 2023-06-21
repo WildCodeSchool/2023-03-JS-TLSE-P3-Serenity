@@ -3,16 +3,6 @@ import React, { useContext } from "react";
 import "../styles/Navbar.scss";
 import avatar from "../assets/avatar.svg";
 import StateContext from "../contexts/StateContext";
-import scalpel from "../assets/scalpel.svg";
-import home from "../assets/home.svg";
-import form from "../assets/form.svg";
-import document from "../assets/document.svg";
-import doctor from "../assets/doctor.svg";
-import compte from "../assets/compte.svg";
-import stats from "../assets/stats.svg";
-import about from "../assets/about.svg";
-import homeBottom from "../assets/homeBottom.svg";
-import menuBurger from "../assets/menuBurger.svg";
 
 function navbar() {
   const { linkToActive, setLinkToActive, isMenuOpen, setIsMenuOpen } =
@@ -23,90 +13,92 @@ function navbar() {
   const navbarLinks = [
     {
       role: "admin",
-      className: linkToActive === "Home" ? "active" : "nav",
+      className: linkToActive === "Home" ? "active" : "nav-serenity",
       label: "Praticiens",
-      icon: scalpel,
+      icon: "users",
       action: () => {
         setLinkToActive("Home");
+        console.info("home");
       },
     },
     {
       role: "practician",
-      className: linkToActive === "Home" ? "active" : "nav",
-      label: "Vos Patiens",
-      icon: home,
+      className: linkToActive === "Home" ? "active" : "nav-serenity",
+      label: "Patient",
+      icon: "users",
       action: () => {
         setLinkToActive("Home");
       },
     },
     {
       role: "patient",
-      className: linkToActive === "Home" ? "active" : "nav",
+      className: linkToActive === "Home" ? "active" : "nav-serenity",
       label: "Ma préparation",
-      icon: home,
+      icon: "poll-h",
       action: () => {
         setLinkToActive("Home");
       },
     },
     {
       role: "practician",
-      className: linkToActive === "Vos interventions" ? "active" : "nav",
+      className:
+        linkToActive === "Vos interventions" ? "active" : "nav-serenity",
       label: "Vos interventions",
-      icon: scalpel,
+      icon: "file-medical-alt",
       action: () => {
         setLinkToActive("Vos interventions");
       },
     },
     {
       role: "practician",
-      className: linkToActive === "Vos ressources" ? "active" : "nav",
+      className: linkToActive === "Vos ressources" ? "active" : "nav-serenity",
       label: "Vos ressources",
-      icon: document,
+      icon: "folder-tree",
       action: () => {
         setLinkToActive("Vos ressources");
       },
     },
     {
       role: "all",
-      className: linkToActive === "Mon Compte" ? "active" : "nav",
+      className: linkToActive === "Mon Compte" ? "active" : "nav-serenity",
       label: "Mon Compte",
-      icon: compte,
+      icon: "circle-user",
       action: () => {
         setLinkToActive("Mon Compte");
       },
     },
     {
       role: "patient",
-      className: linkToActive === "Mon médecin" ? "active" : "nav",
+      className: linkToActive === "Mon médecin" ? "active" : "nav-serenity",
       label: "Mon médecin",
-      icon: doctor,
+      icon: "user-md",
       action: () => {
         setLinkToActive("Mon médecin");
       },
     },
     {
       role: "all",
-      className: linkToActive === "Formulaires" ? "active" : "nav",
+      className: linkToActive === "Formulaires" ? "active" : "nav-serenity",
       label: "Formulaires",
-      icon: form,
+      icon: "document-signed",
       action: () => {
         setLinkToActive("Formulaires");
       },
     },
     {
       role: "admin",
-      className: linkToActive === "Stats" ? "active" : "nav",
+      className: linkToActive === "Stats" ? "active" : "nav-serenity",
       label: "Stats",
-      icon: stats,
+      icon: "chart-histogram",
       action: () => {
         setLinkToActive("Stats");
       },
     },
     {
       role: "all",
-      className: linkToActive === "A propos" ? "active" : "nav",
+      className: linkToActive === "A propos" ? "active" : "nav-serenity",
       label: "A propos",
-      icon: about,
+      icon: "info",
       action: () => {
         setLinkToActive("A propos");
       },
@@ -119,18 +111,26 @@ function navbar() {
         {/* // Fetch du nom de l'admin */}
         <span className="admin-name">Nom de l'administrateur</span>
       </div>
-      <div className="navbar">
+      <div className="navbar-serenity">
         <button
           type="button"
           onClick={() => {
             setLinkToActive("Home");
           }}
         >
-          <img src={homeBottom} alt="Home" className="home-icon-mobile" />
+          <i alt="Home" className="fi fi-rr-home home-icon-mobile" />
         </button>
         <button className="menu-burger" type="button" onClick={toggleMenu}>
-          <img src={menuBurger} alt="Menu" className="menu-burger-icon" />
+          <i alt="Menu" className="fi fi-rr-menu-burger menu-burger-icon" />
         </button>
+        <div
+          className={isMenuOpen ? "bg-burger" : "burger-invisible"}
+          onClick={() => setIsMenuOpen(false)}
+          onKeyDown={() => {}}
+          role="button"
+          tabIndex="0"
+          aria-label="Close Menu Burger"
+        />
         <ul
           className={
             isMenuOpen ? "links burger-visible" : "links burger-invisible"
@@ -146,10 +146,9 @@ function navbar() {
                   onClick={link.action}
                 >
                   <div className="button-content">
-                    <img
-                      src={link.icon}
+                    <i
                       alt={link.label}
-                      className="link-icon"
+                      className={`fi fi-rr-${link.icon} link-icon`}
                     />
                     {link.label}
                   </div>
