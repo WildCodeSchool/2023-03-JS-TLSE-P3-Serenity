@@ -4,6 +4,7 @@ class RessourceManager extends AbstractManager {
   constructor() {
     super({ table: "ressource" });
   }
+
   findRessourceCount(id) {
     return this.database.query(
       `select count(id) from  ${this.table} where practician_id = ?`,

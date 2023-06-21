@@ -10,16 +10,20 @@ function PracticianListModal() {
       .then((response) => {
         const promises = response.data.map((practician) =>
           axios.get(
-            `${import.meta.env.VITE_BACKEND_URL}/practicians/countintervention/${practician.id}`
+            `${
+              import.meta.env.VITE_BACKEND_URL
+            }/practicians/countintervention/${practician.id}`
           )
         );
 
         Promise.all(promises)
           .then((countResponses) => {
-            const updatedPracticians = response.data.map((practician, index) => ({
-              ...practician,
-              countIntervention: countResponses[index].data.interventionCount,
-            }));
+            const updatedPracticians = response.data.map(
+              (practician, index) => ({
+                ...practician,
+                countIntervention: countResponses[index].data.interventionCount,
+              })
+            );
             setPracticians(updatedPracticians);
           })
           .catch((error) => {
