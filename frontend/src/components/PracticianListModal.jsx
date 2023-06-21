@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "../styles/PracticianListModal.scss";
 
 function PracticianListModal() {
+  const [practicians, setPracticians] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/practicians`)
+      .then((response) => {
+        setPracticians(response.data);
+        console.info(practicians); // practicians will be replaced when data is fetched
+      })
+      .catch((error) => {
+        error.sendStatus(500);
+      });
+  }, []);
   return (
     <div className="practician-list-container">
       <div className="practician-list">
@@ -12,11 +25,18 @@ function PracticianListModal() {
           </button>
         </div>
         <div className="practician-list-body">
-          <td>
-            <div className="practician-list-table">
-              <p>Practicien 1</p>
-            </div>
-          </td>
+          <table>
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Mail</th>
+                <th>Poste</th>
+                <th>Téléphone</th>
+                <th>Nb Interventions</th>
+                <th>Nb Ressources</th>
+              </tr>
+            </thead>
+          </table>
         </div>
         <div className="practician-list-footer">
           <button type="button" className="add-practician">
