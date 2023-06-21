@@ -8,10 +8,26 @@ function PracticianListModal() {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/practicians`)
       .then((response) => {
-        setPracticians(response.data);
+        const promises = response.data.map((practician) =>
+          axios.get(
+            `${import.meta.env.VITE_BACKEND_URL}/practicians/countintervention/${practician.id}`
+          )
+        );
+
+        Promise.all(promises)
+          .then((countResponses) => {
+            const updatedPracticians = response.data.map((practician, index) => ({
+              ...practician,
+              countIntervention: countResponses[index].data.interventionCount,
+            }));
+            setPracticians(updatedPracticians);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       })
       .catch((error) => {
-        error.sendStatus(500);
+        console.error(error);
       });
   }, []);
   return (
@@ -31,18 +47,29 @@ function PracticianListModal() {
                 <th>Mail</th>
                 <th>Poste</th>
                 <th>Téléphone</th>
-                <th>Nombre<br />Interventions</th>
-                <th>Nombre<br />Ressources</th>
+                <th>
+                  Nombre
+                  <br />
+                  Interventions
+                </th>
+                <th>
+                  Nombre
+                  <br />
+                  Ressources
+                </th>
               </tr>
             </thead>
             <tbody className="practician-list-table-body">
               {practicians.map((practician) => (
                 <tr key={practician.id}>
-                  <td>{practician.firstname}{practician.lastname}</td>
+                  <td>
+                    {practician.firstname}
+                    {practician.lastname}
+                  </td>
                   <td>{practician.mail}</td>
                   <td>{practician.speciality}</td>
                   <td>{practician.phone}</td>
-                  <td>{practician.interventions}</td>
+                  <td>{practician.countIntervention}</td>
                   <td>{practician.ressources}</td>
                 </tr>
               ))}

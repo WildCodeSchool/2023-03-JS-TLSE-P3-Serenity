@@ -384,6 +384,15 @@ VALUES (
         3
     );
 
+    INSERT INTO
+    intervention(
+        name,
+        duration,
+        anesthesia,
+        practician_id
+    )
+VALUES ('intervention4', '1h', 'AG', 1);
+
 -- -----------------------------------------------------
 
 -- INSERT INTO 'patient'
