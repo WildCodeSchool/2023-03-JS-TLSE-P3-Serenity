@@ -7,7 +7,8 @@ import axios from "axios";
 
 function Buttonadd() {
   const [show, setShow] = useState(false);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // État pour le suivi de l'affichage du message de succès
+  // État pour le suivi de l'affichage du message de succès
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleClose = () => {
     setShow(false);
@@ -17,7 +18,7 @@ function Buttonadd() {
     setShow(true);
   };
   const handleSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());

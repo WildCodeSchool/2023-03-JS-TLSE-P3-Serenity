@@ -1,12 +1,72 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/PracticianListModal.scss";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 import Buttonadd from "./Buttonadd";
-import ButtonUpdate from "./ButtonUpdate";
 
 function PracticianListModal() {
   const [practicians, setPracticians] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [selectedPractician, setSelectedPractician] = useState(null);
+  const [modalInputs, setModalInputs] = useState({
+    firstname: "",
+    lastname: "",
+    mail: "",
+    adeli_number: "",
+    administrator_id: "",
+  });
+  // État pour le suivi de l'affichage du message de succès
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  // gestion of modal
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    setShow(false);
+    setShowSuccessMessage(false);
+  };
+
+  const handleTrClick = (practician) => {
+    setSelectedPractician(practician);
+    setModalInputs(practician);
+    handleShow(true);
+  };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setModalInputs((prevModalInputs) => ({
+      ...prevModalInputs,
+      [name]: value,
+    }));
+  };
+  const handleFormSubmit = () => {
+    // event.preventDefault();
+    // Effectuer une requête HTTP PUT ou PATCH pour mettre à jour les informations du praticien sélectionné
+    if (selectedPractician) {
+      axios
+        .put(
+          `${import.meta.env.VITE_BACKEND_URL}/admins/practicians/${
+            selectedPractician.id
+          }`,
+          modalInputs
+        )
+        .then((response) => {
+          // Mettre à jour les données du praticien dans l'état
+          const updatedPracticians = practicians.map((practician) => {
+            if (practician.id === selectedPractician.id) {
+              return response.data; // Utilisez la réponse de la requête pour mettre à jour le praticien
+            }
+            return practician;
+          });
+          setPracticians(updatedPracticians);
+          setShowSuccessMessage(true);
+          // setShow(true); // Fermer la modale après la mise à jour
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians`)
@@ -77,19 +137,24 @@ function PracticianListModal() {
                 <th>
                   Nombre
                   <br />
-                  Ressources <ButtonUpdate />
+                  Ressources
                 </th>
               </tr>
             </thead>
             <tbody className="practician-list-table-body">
               {practicians
-                .filter((practician) =>
-                  practician.lastname
-                    .toLowerCase()
-                    .includes(searchValue.toLowerCase())
+                .filter(
+                  (practician) =>
+                    practician.lastname &&
+                    practician.lastname
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase())
                 )
                 .map((practician) => (
-                  <tr key={practician.id}>
+                  <tr
+                    key={practician.id}
+                    onClick={() => handleTrClick(practician)}
+                  >
                     <td>
                       {practician.firstname} {practician.lastname}
                     </td>
@@ -103,6 +168,97 @@ function PracticianListModal() {
             </tbody>
           </table>
         </div>
+        <Modal
+          show={show}
+          onHide={handleClose}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Modifier un praticien</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form onSubmit={handleFormSubmit} encType="multipart/form-data">
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Prénom</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="firstname"
+                  defaultValue={modalInputs.firstname}
+                  autoFocus
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput2"
+              >
+                <Form.Label>Nom</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="lastname"
+                  defaultValue={modalInputs.lastname}
+                  autoFocus
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput3"
+              >
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="mail"
+                  defaultValue={modalInputs.mail}
+                  autoFocus
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput4"
+              >
+                <Form.Label>Numero ADELI</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="adeli_number"
+                  defaultValue={modalInputs.adeli_number}
+                  autoFocus
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <input
+                type="hidden"
+                name="administrator_id"
+                defaultValue={modalInputs.administrator_id}
+                onChange={handleInputChange}
+              />
+              <input
+                type="hidden"
+                name="password"
+                defaultValue={modalInputs.password}
+                onChange={handleInputChange}
+              />
+              <Modal.Footer>
+                {showSuccessMessage && (
+                  <span className="success-message">
+                    Modification effectuée !
+                  </span>
+                )}
+                <Button variant="danger" onClick={handleClose}>
+                  Annuler
+                </Button>
+                <Button type="submit" variant="primary">
+                  Modifier
+                </Button>
+              </Modal.Footer>
+            </Form>
+          </Modal.Body>
+        </Modal>
         <div className="practician-list-footer">
           <Buttonadd />
         </div>

@@ -136,13 +136,3 @@ function ButtonUpdate() {
 }
 
 export default ButtonUpdate;
-
-// Dans cet exemple, nous utilisons Axios pour effectuer une requête POST vers l'URL /api/endpoint. Vous devrez remplacer cette URL par l'URL de votre propre backend ou de votre API qui recevra les données du formulaire.
-
-// L'objet formData est créé à partir des données du formulaire en utilisant new FormData(form). Cela nous permet d'envoyer les données au format approprié (encodage multipart/form-data) en incluant les fichiers le cas échéant.
-
-// Lorsque la requête est effectuée avec succès, la fonction .then() est appelée avec la réponse de l'API. Vous pouvez gérer la réponse selon vos besoins, par exemple en affichant un message de succès ou en effectuant d'autres actions.
-
-// En cas d'erreur lors de la requête, la fonction .catch() est appelée et vous pouvez gérer l'erreur, par exemple en affichant un message d'erreur à l'utilisateur ou en journalisant les détails de l'erreur.
-
-// Assurez-vous de remplacer /api/endpoint par l'URL appropriée vers votre backend ou votre API, et adaptez le code pour traiter la réponse de l'API selon vos besoins spécifiques.
