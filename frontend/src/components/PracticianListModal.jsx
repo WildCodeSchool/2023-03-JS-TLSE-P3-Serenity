@@ -9,11 +9,18 @@ function PracticianListModal() {
       .get(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians`)
       .then((response) => {
         const promises = response.data.map((practician) =>
-          axios.get(
-            `${
-              import.meta.env.VITE_BACKEND_URL
-            }/admins/practicians/countintervention/${practician.id}`
-          )
+          Promise.all([
+            axios.get(
+              `${
+                import.meta.env.VITE_BACKEND_URL
+              }/admins/practicians/countintervention/${practician.id}`
+            ),
+            axios.get(
+              `${
+                import.meta.env.VITE_BACKEND_URL
+              }/admins/practicians/countressource/${practician.id}`
+            ),
+          ])
         );
 
         Promise.all(promises)
@@ -21,7 +28,9 @@ function PracticianListModal() {
             const updatedPracticians = response.data.map(
               (practician, index) => ({
                 ...practician,
-                countIntervention: countResponses[index].data.interventionCount,
+                countIntervention:
+                  countResponses[index][0].data.interventionCount,
+                countRessource: countResponses[index][1].data.ressourceCount,
               })
             );
             setPracticians(updatedPracticians);
@@ -74,7 +83,7 @@ function PracticianListModal() {
                   <td>{practician.speciality}</td>
                   <td>{practician.phone}</td>
                   <td>{practician.countIntervention}</td>
-                  <td>{practician.ressources}</td>
+                  <td>{practician.countRessource}</td>
                 </tr>
               ))}
             </tbody>

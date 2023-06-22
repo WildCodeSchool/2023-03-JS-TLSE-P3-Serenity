@@ -1,6 +1,6 @@
 .header-navbar {
   background: var(--main-bg-admin-practician);
-  border-right: solid 2px rgb(72, 72, 72);  
+  border-right: solid 2px rgb(72, 72, 72);
 }
 
 .header-avatar {
@@ -17,7 +17,7 @@
 
 .admin-name {
   display: flex;
-  align-items: center;  
+  align-items: center;
   font-family: var(--main-font);
   color: white;
   line-height: 1rem;
@@ -35,7 +35,7 @@
   margin-top: 40%;
 }
 
-.list-item-navbar{
+.list-item-navbar {
   width: 90%;
   margin-top: 5%;
 }
@@ -60,7 +60,7 @@
   color: white;
   font-size: 1rem;
   border-radius: 12px;
-  background: #6C5DD3;
+  background: #6c5dd3;
   border: solid 1px rgb(72, 72, 72);
 }
 
@@ -69,7 +69,7 @@
   cursor: pointer;
 }
 
-.button-content{
+.button-content {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -77,7 +77,7 @@
   margin-left: 15%;
 }
 
-.fi{
+.fi {
   font-size: 20px;
 }
 
@@ -95,12 +95,12 @@
   display: none;
 }
 
-.menu-burger-icon{
+.menu-burger-icon {
   display: none;
 }
 
 @media (max-width: 480px) {
-  .header-navbar{
+  .header-navbar {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -108,23 +108,23 @@
     position: fixed;
     height: 100%;
   }
-  
-  .header-avatar {    
+
+  .header-avatar {
     flex-direction: row-reverse;
     width: 100vw;
   }
-  
+
   .admin-avatar {
     width: 80px;
     height: 80px;
   }
-  
+
   .admin-name {
     text-align: end;
-    color: #5C5C5C;
+    color: #5c5c5c;
     width: 50%;
   }
-  
+
   .navbar-serenity {
     display: flex;
     max-width: 100vw;
@@ -132,22 +132,22 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border-top: #5C5C5C 2px;
+    border-top: #5c5c5c 2px;
   }
-  
-.bg-burger{
-  background: transparent;
-  position: absolute;
-  bottom: 10%;
-  width: 100vw;
-  height: 90vh;
-}
+
+  .bg-burger {
+    background: transparent;
+    position: absolute;
+    bottom: 10%;
+    width: 100vw;
+    height: 90vh;
+  }
 
   .burger-invisible {
     display: none;
   }
-  
-  .burger-visible{
+
+  .burger-visible {
     display: flex;
     position: absolute;
     background: rgba(36, 39, 49, 1);
@@ -158,37 +158,36 @@
     width: 70%;
     align-items: center;
   }
-  
+
   .nav-serenity {
     font-size: 1rem;
     color: black;
     background: white;
     margin-bottom: 8%;
   }
-  
+
   .active {
     font-size: 1rem;
     color: black;
     background: white;
     margin-bottom: 8%;
   }
-  
+
   .home-icon-mobile {
     font-size: 60px;
     display: flex;
     background: var(--main-bg-admin-practician);
     color: white;
   }
-  
+
   .menu-burger {
     display: flex;
   }
-  
-  .menu-burger-icon{
+
+  .menu-burger-icon {
     font-size: 60px;
     display: flex;
     background: var(--main-bg-admin-practician);
     color: white;
   }
-  
 }
