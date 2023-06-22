@@ -4,6 +4,7 @@ import "../styles/PracticianListModal.scss";
 
 function PracticianListModal() {
   const [practicians, setPracticians] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians`)
@@ -47,7 +48,13 @@ function PracticianListModal() {
     <div className="practician-list-container">
       <div className="practician-list">
         <div className="practician-list-header">
-          <input className="search-input" type="text" placeholder="Search" />
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Search"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
           <button type="button" className="delete-button">
             <i className="bi bi-trash" />
           </button>
@@ -73,19 +80,24 @@ function PracticianListModal() {
               </tr>
             </thead>
             <tbody className="practician-list-table-body">
-              {practicians.map((practician) => (
-                <tr key={practician.id}>
-                  <td>
-                    {practician.firstname}
-                    {practician.lastname}
-                  </td>
-                  <td>{practician.mail}</td>
-                  <td>{practician.speciality}</td>
-                  <td>{practician.phone}</td>
-                  <td>{practician.countIntervention}</td>
-                  <td>{practician.countRessource}</td>
-                </tr>
-              ))}
+              {practicians
+                .filter((practician) =>
+                  practician.lastname
+                    .toLowerCase()
+                    .includes(searchValue.toLowerCase())
+                )
+                .map((practician) => (
+                  <tr key={practician.id}>
+                    <td>
+                      {practician.firstname} {practician.lastname}
+                    </td>
+                    <td>{practician.mail}</td>
+                    <td>{practician.speciality}</td>
+                    <td>{practician.phone}</td>
+                    <td>{practician.countIntervention}</td>
+                    <td>{practician.countRessource}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
