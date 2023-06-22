@@ -1,6 +1,7 @@
 .header-navbar {
   background: var(--main-bg-admin-practician);
   border-right: solid 2px rgb(72, 72, 72);  
+  height: 100vh;
 }
 
 .header-avatar {
@@ -8,6 +9,7 @@
   padding: 1rem;
   gap: 8px;
   width: 20%;
+  height: 10vh;
 }
 
 .admin-avatar {
@@ -26,18 +28,21 @@
 
 .navbar-serenity {
   min-width: 217px;
+  height: 90vh;
 }
 
 .links {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40%;
+  margin-top: 20%;
+  height: 90%;
+  gap: 3%;
+  padding: 4%;
 }
 
 .list-item-navbar{
   width: 90%;
-  margin-top: 5%;
 }
 
 .nav-serenity {
@@ -64,9 +69,13 @@
   border: solid 1px rgb(72, 72, 72);
 }
 
-.nav:hover {
+.nav-serenity:hover {
   background: rgb(50, 53, 66);
   cursor: pointer;
+}
+
+.logout{
+bottom: 0%;
 }
 
 .button-content{
@@ -112,6 +121,7 @@
   .header-avatar {    
     flex-direction: row-reverse;
     width: 100vw;
+    height: 15vh;
   }
   
   .admin-avatar {
@@ -156,6 +166,7 @@
     bottom: 10%;
     right: 0%;
     width: 70%;
+    height: auto;
     align-items: center;
   }
   
