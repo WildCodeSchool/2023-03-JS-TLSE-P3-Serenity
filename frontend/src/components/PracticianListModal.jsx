@@ -77,7 +77,7 @@ function PracticianListModal() {
                 <th>
                   Nombre
                   <br />
-                  Ressources
+                  Ressources <ButtonUpdate />
                 </th>
               </tr>
             </thead>
