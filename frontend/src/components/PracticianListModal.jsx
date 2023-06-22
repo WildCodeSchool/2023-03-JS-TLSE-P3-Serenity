@@ -56,7 +56,7 @@ function PracticianListModal() {
             onChange={(e) => setSearchValue(e.target.value)}
           />
           <button type="button" className="delete-button">
-            <i className="bi bi-trash" />
+            <i className="fi fi-rr-trash" />
           </button>
         </div>
         <div className="practician-list-body">
