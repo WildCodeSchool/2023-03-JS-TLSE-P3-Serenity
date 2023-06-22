@@ -38,6 +38,11 @@ const PracticianManager = require("./PracticianManager");
 
 models.practician = new PracticianManager();
 models.practician.setDatabase(pool);
+
+const InterventionManager = require("./InterventionManager");
+
+models.intervention = new InterventionManager();
+models.intervention.setDatabase(pool);
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 

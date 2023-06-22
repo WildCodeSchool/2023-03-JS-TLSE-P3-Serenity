@@ -1,3 +1,8 @@
+.header-navbar {
+  background: var(--main-bg-admin-practician);
+  border-right: solid 2px rgb(72, 72, 72);  
+}
+
 .header-avatar {
   display: flex;
   padding: 1rem;
@@ -19,11 +24,12 @@
   width: 70%;
 }
 
-.navbar-serenity {
+.navbar {
   background: var(--main-bg-admin-practician);
   max-width: 20vw;
   min-width: 217px;
   border-right: solid 2px rgb(72, 72, 72);
+
 }
 
 .links {
@@ -61,16 +67,17 @@
   background: #6c5dd3;
   border: solid 1px rgb(72, 72, 72);
 }
+
 .nav:hover {
   background: rgb(50, 53, 66);
   cursor: pointer;
 }
-.navbar-semi-circle {
+.navbar-semi-circle{
   display: none;
 }
 
 @media (max-width: 480px) {
-  .header-avatar {
+  .header-avatar {    
     flex-direction: row-reverse;
     width: 100vw;
   }
@@ -81,33 +88,75 @@
   }
 
   .admin-name {
-    color: #5c5c5c;
+    color: #5C5C5C;
     width: 50%;
   }
-
-  .navbar-serenity {
+  
+  .navbar {
     display: flex;
     max-width: 100vw;
-    height: 100vh;
-    background: transparent;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    flex-direction: column;
-    justify-content: space-between;
-    position: fixed;
+    height: 10vh;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-top: #5C5C5C 2px;
   }
+  
+.bg-burger{
+  background: transparent;
+  position: absolute;
+  bottom: 10%;
+  width: 100vw;
+  height: 90vh;
+}
 
+  .burger-invisible {
+    display: none;
+  }
+  
+  .burger-visible{
+    display: flex;
+    position: absolute;
+    background: rgba(36, 39, 49, 1);
+    border: lightgray 2px solid;
+    border-radius: 15px;
+    bottom: 10%;
+    right: 0%;
+    width: 70%;
+    align-items: center;
+  }
+  
   .links {
     flex-direction: row;
-    align-items: stretch;
+    align-items: stretch;    
     margin-top: 0;
     background: white;
+    margin-bottom: 8%;
   }
-
-  .nav-serenity {
+  
+  .nav {
     font-size: 1rem;
     color: black;
     background: white;
+    margin-bottom: 8%;
   }
+  
+  .home-icon-mobile {
+    font-size: 60px;
+    display: flex;
+    background: var(--main-bg-admin-practician);
+    color: white;
+  }
+  
+  .menu-burger {
+    display: flex;
+  }
+  
+  .menu-burger-icon{
+    font-size: 60px;
+    display: flex;
+    background: var(--main-bg-admin-practician);
+    color: white;
+  }
+
 }

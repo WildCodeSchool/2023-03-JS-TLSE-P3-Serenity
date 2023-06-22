@@ -1,37 +1,39 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext } from "react";
 import "../styles/Navbar.scss";
 import avatar from "../assets/avatar.svg";
 import StateContext from "../contexts/StateContext";
 
 function navbar() {
-  const { linkToActive, setLinkToActive } = useContext(StateContext);
+  const { linkToActive, setLinkToActive, isMenuOpen, setIsMenuOpen } =
+    useContext(StateContext);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   const navbarLinks = [
     {
       role: "admin",
       className: linkToActive === "Home" ? "active" : "nav-serenity",
       label: "Praticiens",
+      icon: "users",
       action: () => {
         setLinkToActive("Home");
-        console.info("Practician");
       },
     },
     {
       role: "practician",
-      className: linkToActive === "Home" ? "active" : "nav-serenity",
+      className: linkToActive === "Home" ? "active" : "nav",
       label: "Vos Patiens",
       action: () => {
         setLinkToActive("Home");
-        console.info("Vos Patiens");
       },
     },
     {
       role: "patient",
       className: linkToActive === "Home" ? "active" : "nav-serenity",
       label: "Ma préparation",
+      icon: "poll-h",
       action: () => {
         setLinkToActive("Home");
-        console.info("Ma préparation");
       },
     },
     {
@@ -39,88 +41,117 @@ function navbar() {
       className:
         linkToActive === "Vos interventions" ? "active" : "nav-serenity",
       label: "Vos interventions",
+      icon: "file-medical-alt",
       action: () => {
         setLinkToActive("Vos interventions");
-        console.info("Vos interventions");
       },
     },
     {
       role: "practician",
       className: linkToActive === "Vos ressources" ? "active" : "nav-serenity",
       label: "Vos ressources",
+      icon: "folder-tree",
       action: () => {
         setLinkToActive("Vos ressources");
-        console.info("Vos ressources");
       },
     },
     {
       role: "all",
       className: linkToActive === "Mon Compte" ? "active" : "nav-serenity",
       label: "Mon Compte",
+      icon: "circle-user",
       action: () => {
         setLinkToActive("Mon Compte");
-        console.info("Mon compte");
       },
     },
     {
       role: "patient",
       className: linkToActive === "Mon médecin" ? "active" : "nav-serenity",
       label: "Mon médecin",
+      icon: "user-md",
       action: () => {
         setLinkToActive("Mon médecin");
-        console.info("Mon médecin");
       },
     },
     {
       role: "all",
       className: linkToActive === "Formulaires" ? "active" : "nav-serenity",
       label: "Formulaires",
+      icon: "document-signed",
       action: () => {
         setLinkToActive("Formulaires");
-        console.info("Formulaires");
       },
     },
     {
       role: "admin",
       className: linkToActive === "Stats" ? "active" : "nav-serenity",
       label: "Stats",
+      icon: "chart-histogram",
       action: () => {
         setLinkToActive("Stats");
-        console.info("Stats");
       },
     },
     {
       role: "all",
       className: linkToActive === "A propos" ? "active" : "nav-serenity",
       label: "A propos",
+      icon: "info",
       action: () => {
         setLinkToActive("A propos");
-        console.info("A propos");
       },
     },
   ];
   return (
-    <div className="navbar-serenity">
+    <div className="navbar">
       <div className="header-avatar">
         <img src={avatar} alt="avatar" className="admin-avatar" />
         {/* // Fetch du nom de l'admin */}
         <span className="admin-name">Nom de l'administrateur</span>
       </div>
-      <ul className="links">
-        {navbarLinks
-          .filter((link) => link.role === "admin" || link.role === "all")
-          .map((link) => (
-            <li key={link.label} className="list-item-navbar">
-              <button
-                className={link.className}
-                type="button"
-                onClick={link.action}
-              >
-                {link.label}
-              </button>
-            </li>
-          ))}
-      </ul>
+      <div className="navbar-serenity">
+        <button
+          type="button"
+          onClick={() => {
+            setLinkToActive("Home");
+          }}
+        >
+          <i alt="Home" className="fi fi-rr-home home-icon-mobile" />
+        </button>
+        <button className="menu-burger" type="button" onClick={toggleMenu}>
+          <i alt="Menu" className="fi fi-rr-menu-burger menu-burger-icon" />
+        </button>
+        <button
+          className={isMenuOpen ? "bg-burger" : "burger-invisible"}
+          onClick={() => setIsMenuOpen(false)}
+          type="button"
+          aria-label="Close Menu Burger"
+        />
+        <ul
+          className={
+            isMenuOpen ? "links burger-visible" : "links burger-invisible"
+          }
+        >
+          {navbarLinks
+            .filter((link) => link.role === "admin" || link.role === "all")
+            .map((link) => (
+              <li key={link.label} className="list-item-navbar">
+                <button
+                  className={link.className}
+                  type="button"
+                  onClick={link.action}
+                >
+                  <div className="button-content">
+                    <i
+                      alt={link.label}
+                      className={`fi fi-rr-${link.icon} link-icon`}
+                    />
+                    {link.label}
+                  </div>
+                </button>
+              </li>
+            ))}
+        </ul>
+      </div>
     </div>
   );
 }
