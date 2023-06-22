@@ -15,5 +15,6 @@ router.get(
   "/admins/practicians/countressource/:id",
   ressourceCountController.getRessourceCount
 );
+router.delete("/admins/practicians/:id", practicianControllers.destroy);
 
 module.exports = router;

@@ -5,6 +5,8 @@ import "../styles/PracticianListModal.scss";
 function PracticianListModal() {
   const [practicians, setPracticians] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [selectedPracticians, setSelectedPracticians] = useState([]);
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians`)
@@ -44,6 +46,40 @@ function PracticianListModal() {
         console.error(error);
       });
   }, []);
+
+  const handleCheckboxChange = (practicianId) => {
+    setSelectedPracticians((prevSelectedPracticians) => {
+      if (prevSelectedPracticians.includes(practicianId)) {
+        return prevSelectedPracticians.filter((id) => id !== practicianId);
+      }
+      return [...prevSelectedPracticians, practicianId];
+    });
+  };
+
+  const handleDeleteButtonClick = () => {
+    selectedPracticians.forEach((practicianId) => {
+      axios
+        .delete(
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/admins/practicians/${practicianId}`
+        )
+        .then((response) => {
+          console.info(response);
+          const updatedPracticians = practicians.filter(
+            (practician) => practician.id !== practicianId
+          );
+          setPracticians(updatedPracticians);
+        })
+        .catch((error) => {
+          console.error(
+            `Error deleting practician with ID ${practicianId}:`,
+            error
+          );
+        });
+    });
+  };
+
   return (
     <div className="practician-list-container">
       <div className="practician-list">
@@ -55,7 +91,11 @@ function PracticianListModal() {
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
-          <button type="button" className="delete-button">
+          <button
+            type="button"
+            className="delete-button"
+            onClick={handleDeleteButtonClick}
+          >
             <i className="fi fi-rr-trash" />
           </button>
         </div>
@@ -63,6 +103,9 @@ function PracticianListModal() {
           <table className="practician-list-table">
             <thead className="practician-list-table-header">
               <tr>
+                <th>
+                  <input type="checkbox" name="cb" value="0" />
+                </th>
                 <th>Nom</th>
                 <th>Mail</th>
                 <th>Poste</th>
@@ -88,6 +131,15 @@ function PracticianListModal() {
                 )
                 .map((practician) => (
                   <tr key={practician.id}>
+                    <td>
+                      <input
+                        type="checkbox"
+                        name="cb"
+                        value="1"
+                        checked={selectedPracticians.includes(practician.id)}
+                        onChange={() => handleCheckboxChange(practician.id)}
+                      />
+                    </td>
                     <td>
                       {practician.firstname} {practician.lastname}
                     </td>

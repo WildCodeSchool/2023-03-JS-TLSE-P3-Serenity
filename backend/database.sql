@@ -63,8 +63,6 @@ CREATE TABLE
         CONSTRAINT `fk_administrator_id` FOREIGN KEY (`administrator_id`) REFERENCES `serenity`.`administrator` (`id`)
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
--- -----------------------------------------------------
-
 -- Table `serenity`.`intervention`
 
 -- -----------------------------------------------------
@@ -77,7 +75,7 @@ CREATE TABLE
         `anesthesia` VARCHAR(6) NOT NULL,
         `practician_id` INT NOT NULL,
         PRIMARY KEY (`id`),
-        CONSTRAINT `fk_intervention_practician` FOREIGN KEY (`practician_id`) REFERENCES `serenity`.`practician` (`id`)
+        CONSTRAINT `fk_intervention_practician` FOREIGN KEY (`practician_id`) REFERENCES `serenity`.`practician` (`id`) ON DELETE CASCADE
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
@@ -384,7 +382,7 @@ VALUES (
         3
     );
 
-    INSERT INTO
+INSERT INTO
     intervention(
         name,
         duration,
