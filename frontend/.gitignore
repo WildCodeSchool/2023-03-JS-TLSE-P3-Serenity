@@ -23,12 +23,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-
-#code ne marchant pas pour le entrée
-  // handle enter key to submit form
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      handleSubmit();
-    }
-  };

@@ -13,15 +13,13 @@ class AdminManager extends AbstractManager {
   }
 
   insert(admin) {
+    // eslint-disable-next-line camelcase
+    const { registration_number, hashedPassword, mail, firstname, lastname } =
+      admin;
     return this.database.query(
       `insert into ${this.table} (registration_number, hashed_password, mail, firstname, lastname) values (?, ?, ?, ?, ?)`,
-      [
-        admin.registration_number,
-        admin.hashedPassword,
-        admin.mail,
-        admin.firstname,
-        admin.lastname,
-      ]
+      // eslint-disable-next-line camelcase
+      [registration_number, hashedPassword, mail, firstname, lastname]
     );
   }
 

@@ -20,16 +20,9 @@ const {
   hashPassword,
   verifyPassword,
   verifyToken,
-  identifyRole,
 } = require("./services/auth");
 
 router.post("/admins/login", admins.authenticationCheck, verifyPassword);
-router.put(
-  "/admins/:id",
-  verifyToken,
-  identifyRole,
-  hashPassword,
-  admins.modifyAdmin
-);
+router.put("/admins/:id", verifyToken, hashPassword, admins.modifyAdmin);
 
 module.exports = router;

@@ -35,7 +35,7 @@ const verifyPassword = (req, res) => {
 
         delete req.user.hashed_password;
         console.info(token);
-        res.send({ token, user: req.user });
+        res.status(200).send({ token, user: req.user });
       } else {
         res.sendStatus(401);
       }
@@ -66,25 +66,8 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-const identifyRole = (req, res, next) => {
-  console.info(req.payload);
-  next();
-};
-
-// const checkId = (req, res, next) => {
-//   const id = parseInt(req.params.id);
-//   const payload = req.payload.sub;
-//   if (id === payload) {
-//     next();
-//   } else {
-//     res.status(403).send("Forbidden");
-//   }
-// };
-
 module.exports = {
   hashPassword,
   verifyPassword,
   verifyToken,
-  identifyRole,
-  //   checkId,
 };
