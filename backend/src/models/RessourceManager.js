@@ -7,7 +7,7 @@ class RessourceManager extends AbstractManager {
 
   findRessourceCount(id) {
     return this.database.query(
-      `select count(id) from  ${this.table} where practician_id = ?`,
+      `select count(id) as ressourceCount from  ${this.table} where practician_id = ?`,
       [id]
     );
   }

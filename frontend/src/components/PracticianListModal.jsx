@@ -6,13 +6,13 @@ function PracticianListModal() {
   const [practicians, setPracticians] = useState([]);
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/practicians`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians`)
       .then((response) => {
         const promises = response.data.map((practician) =>
           axios.get(
             `${
               import.meta.env.VITE_BACKEND_URL
-            }/practicians/countintervention/${practician.id}`
+            }/admins/practicians/countintervention/${practician.id}`
           )
         );
 

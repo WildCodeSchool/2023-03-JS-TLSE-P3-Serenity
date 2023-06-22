@@ -6,18 +6,13 @@ const practicianControllers = require("./controllers/practicianController");
 const interventionCountController = require("./controllers/interventionCountController");
 const ressourceCountController = require("./controllers/ressourceCountController");
 
+router.get("/admins/practicians/", practicianControllers.browse);
 router.get(
-  "/practicians",
-  practicianControllers.browse,
-  interventionCountController.getInterventionCount,
-  ressourceCountController.getRessourceCount
-);
-router.get(
-  "/practicians/countintervention/:id",
+  "/admins/practicians/countintervention/:id",
   interventionCountController.getInterventionCount
 );
 router.get(
-  "/practicians/countressource",
+  "/admins/practicians/countressource/:id",
   ressourceCountController.getRessourceCount
 );
 

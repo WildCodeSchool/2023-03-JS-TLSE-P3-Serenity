@@ -7,7 +7,7 @@ const getInterventionCount = (req, res) => {
       if (interventions[0] == null) {
         res.sendStatus(404);
       } else {
-        res.send(interventions[0]);
+        res.status(200).send(interventions[0]);
       }
     })
     .catch((err) => {
