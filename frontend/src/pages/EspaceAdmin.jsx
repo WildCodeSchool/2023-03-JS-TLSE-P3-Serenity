@@ -2,10 +2,10 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import PracticianListModal from "../components/PracticianListModal";
-import "../styles/Home.scss";
+import "../styles/EspaceAdmin.scss";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
-export default function Home() {
+export default function EspaceAdmin() {
   const navigate = useNavigate();
   const { userInfo } = useContext(AuthFunctionContext);
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function Home() {
         navigate("/espacepatient");
         break;
       default:
-        navigate("/test");
+        navigate("/admin");
         break;
     }
   }, [userInfo]);

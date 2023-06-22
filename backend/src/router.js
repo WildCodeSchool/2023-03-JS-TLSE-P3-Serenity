@@ -2,8 +2,20 @@ const express = require("express");
 
 const router = express.Router();
 
+const practicianControllers = require("./controllers/practicianController");
+const interventionCountController = require("./controllers/interventionCountController");
+const ressourceCountController = require("./controllers/ressourceCountController");
 const admins = require("./controllers/adminControllers");
 
+router.get("/admins/practicians/", practicianControllers.browse);
+router.get(
+  "/admins/practicians/countintervention/:id",
+  interventionCountController.getInterventionCount
+);
+router.get(
+  "/admins/practicians/countressource/:id",
+  ressourceCountController.getRessourceCount
+);
 const {
   hashPassword,
   verifyPassword,
@@ -19,9 +31,5 @@ router.put(
   hashPassword,
   admins.modifyAdmin
 );
-// router.get("/admins", admins.browse);
-// router.get("/admins/:id", admins.read);
-// router.put("/admins/:id", admins.edit);
-// router.delete("/admins/:id", admins.destroy);
 
 module.exports = router;
