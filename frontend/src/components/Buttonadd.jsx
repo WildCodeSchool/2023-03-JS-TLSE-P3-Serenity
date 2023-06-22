@@ -6,9 +6,16 @@ import axios from "axios";
 
 function Buttonadd() {
   const [show, setShow] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // État pour le suivi de l'affichage du message de succès
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    setShow(false);
+    // Réinitialise l'état du message de succès lors de l'ouverture de la modale;
+    setShowSuccessMessage(false);
+  };
+  const handleShow = () => {
+    setShow(true);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -17,10 +24,8 @@ function Buttonadd() {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/espacepro`, formJson) // Remplacez "/api/endpoint" par l'URL de votre API
       .then(() => {
-        // Gérer la réponse de l'API en cas de succès
-        // eslint-disable-next-line no-alert
-        alert("Données envoyées avec succès !");
-        handleClose();
+        // Met à jour l'état pour indiquer la soumission réussie
+        setShowSuccessMessage(true); // Affiche le message de succès
       })
       .catch((error) => {
         // Gérer les erreurs de requête ou de réponse de l'API
@@ -117,11 +122,14 @@ function Buttonadd() {
             <input type="hidden" name="password" value={generatePassword()} />
             <input type="hidden" name="administrator_id" value={1} />
             <Modal.Footer>
+              {showSuccessMessage && (
+                <span className="success-message">Ajout effectué !</span>
+              )}
               <Button variant="danger" onClick={handleClose}>
                 Annuler
               </Button>
               <Button type="submit" variant="primary">
-                Save Changes
+                Ajouter
               </Button>
             </Modal.Footer>
           </Form>
