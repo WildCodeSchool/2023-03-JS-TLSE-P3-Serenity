@@ -71,20 +71,9 @@ const identifyRole = (req, res, next) => {
   next();
 };
 
-// const checkId = (req, res, next) => {
-//   const id = parseInt(req.params.id);
-//   const payload = req.payload.sub;
-//   if (id === payload) {
-//     next();
-//   } else {
-//     res.status(403).send("Forbidden");
-//   }
-// };
-
 module.exports = {
   hashPassword,
   verifyPassword,
   verifyToken,
   identifyRole,
-  //   checkId,
 };
