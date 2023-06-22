@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import "../styles/Authentication.scss";
 import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
-import eyePwShown from "../assets/eye_pw_show_icon.svg";
-import eyePwHide from "../assets/eye_pw_hide_icon.svg";
+import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
-export default function Authentication({ setUser }) {
+export default function Authentication() {
+  const { setUser, setUserInfo } = useContext(AuthFunctionContext);
   const credentials = window.location.href.split("/").at(-1);
+
   // regex definition for matricule and mail user
   const regexMatricule = /^\d{0,8}$/;
   const regexAdeli = /^\d{0,9}$/;
@@ -22,6 +22,7 @@ export default function Authentication({ setUser }) {
   const [warningAdeli, setWarningAdeli] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
+  const [failAuth, setFailAuth] = useState(false);
 
   const navigate = useNavigate();
 
@@ -38,6 +39,7 @@ export default function Authentication({ setUser }) {
         .then((response) => {
           if (response.data.token) {
             setUser(response.data.token);
+            setUserInfo(response.data.user);
             navigate("/");
           } else {
             console.info(response);
@@ -45,7 +47,7 @@ export default function Authentication({ setUser }) {
         })
         .catch((error) => {
           console.error(error.message);
-          // modal to say "wrong password or username, retry"
+          setFailAuth(true);
         });
     }
   };
@@ -104,9 +106,13 @@ export default function Authentication({ setUser }) {
               value={matricule}
               onChange={handleMatriculeChange}
             />
-            {warningMatricule && (
-              <p className="warning-matricule">
+            {warningMatricule ? (
+              <p className="warning-username">
                 Le matricule n'est composé que de 8 chiffres
+              </p>
+            ) : (
+              <p className="description-username">
+                Le matricule est une série de 8 chiffres
               </p>
             )}
           </>
@@ -124,9 +130,13 @@ export default function Authentication({ setUser }) {
               value={adeli}
               onChange={handleAdeliChange}
             />
-            {warningAdeli && (
-              <p className="warning-adeli">
-                Le numéro Adeli est composé de seulement 8 chiffres
+            {warningAdeli ? (
+              <p className="warning-username">
+                Le numéro Adeli est composé de seulement 9 chiffres
+              </p>
+            ) : (
+              <p className="description-username">
+                Le numéro Adeli est une série de 9 chiffres
               </p>
             )}
           </>
@@ -144,8 +154,15 @@ export default function Authentication({ setUser }) {
               value={mail}
               onChange={handleMailChange}
             />
-            {warningMail && (
-              <p className="warning-mail">Le nom d'utilisateur est le mail</p>
+            {warningMail ? (
+              <p className="warning-username">
+                Le nom d'utilisateur doit être un mail
+              </p>
+            ) : (
+              <p className="description-username">
+                Votre nom d'utilisateur est votre mail fournit à votre
+                inscription
+              </p>
             )}
           </>
         );
@@ -176,9 +193,11 @@ export default function Authentication({ setUser }) {
               type="button"
               className="hide-or-show-button"
             >
-              <img
+              <i
                 id="pw-icon-show-hide"
-                src={passwordShown ? eyePwHide : eyePwShown}
+                className={
+                  passwordShown ? "fi fi-rr-eye-crossed" : "fi fi-rr-eye"
+                }
                 alt="button to show or hide password"
               />
             </button>
@@ -188,14 +207,28 @@ export default function Authentication({ setUser }) {
           SE CONNECTER
         </button>
       </form>
+      {failAuth && (
+        <div>
+          <button
+            className="bg-fail-auth-modal"
+            type="button"
+            onClick={() => setFailAuth(false)}
+            label="close fail authentication modal"
+          />
+          <div className="fail-auth-modal">
+            <button
+              className="exit-modal-fail-button"
+              type="button"
+              onClick={() => setFailAuth(false)}
+            >
+              <i className="fi fi-rr-cross-small" />
+            </button>
+            <p>
+              Les champs renseignés ne correspondent pas, veuillez réessayer.
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-
-Authentication.propTypes = {
-  setUser: PropTypes.func,
-};
-
-Authentication.defaultProps = {
-  setUser: () => {},
-};

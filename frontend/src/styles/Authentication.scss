@@ -6,6 +6,9 @@ small {
   color: white;
 }
 
+.button-to-hide {
+  background-color: transparent;
+}
 .connection {
   display: flex;
   flex-direction: column;
@@ -27,8 +30,13 @@ small {
     cursor: pointer;
   }
 
-  .warning-matricule {
+  .warning-username {
     color: red;
+    font-size: clamp(0.8rem, 1vw, 1.2rem);
+  }
+
+  .description-username {
+    color: #545454;
     font-size: clamp(0.8rem, 1vw, 1.2rem);
   }
 
@@ -50,9 +58,7 @@ small {
     }
 
     #pw-icon-show-hide {
-      height: 30px;
-      width: 30px;
-      background-color: white;
+      font-size: 30px;
     }
   }
   .connection-button {
@@ -65,5 +71,57 @@ small {
     text-shadow: 1px 1px 1px black;
     width: 150px;
     margin: auto;
+    box-shadow: rgba(255, 255, 255, 0.18) 2px 2px 4px;
+  }
+}
+
+.bg-fail-auth-modal {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background-color: var(--main-bg-admin-practician-opacified);
+  backdrop-filter: blur(4px);
+}
+
+.fail-auth-modal {
+  position: absolute;
+  z-index: 3;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  border: #545454 1px solid;
+  border-radius: 15px;
+  padding-bottom: 20px;
+  background-color: var(--main-bg-admin-practician);
+  backdrop-filter: blur(5px);
+
+  .exit-modal-fail-button {
+    width: 30px;
+    height: 30px;
+    align-self: flex-end;
+    margin: 2px 2px 0 0;
+    background-color: transparent;
+  }
+
+  .fi-rr-cross-small {
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+  }
+
+  p {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    text-align: center;
+    color: white;
+    justify-self: center;
+    padding: 0 10px;
+    line-height: 30px;
   }
 }
