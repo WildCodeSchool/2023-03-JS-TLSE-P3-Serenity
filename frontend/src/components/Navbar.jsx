@@ -21,8 +21,9 @@ function navbar() {
     },
     {
       role: "practician",
-      className: linkToActive === "Home" ? "active" : "nav",
-      label: "Vos Patiens",
+      className: linkToActive === "Home" ? "active" : "nav-serenity",
+      label: "Patient",
+      icon: "users",
       action: () => {
         setLinkToActive("Home");
       },
@@ -102,7 +103,7 @@ function navbar() {
     },
   ];
   return (
-    <div className="navbar">
+    <div className="header-navbar">
       <div className="header-avatar">
         <img src={avatar} alt="avatar" className="admin-avatar" />
         {/* // Fetch du nom de l'admin */}

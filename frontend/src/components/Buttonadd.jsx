@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import "../styles/PracticianListModal.scss";
 import axios from "axios";
 
 function Buttonadd() {
@@ -10,7 +11,6 @@ function Buttonadd() {
 
   const handleClose = () => {
     setShow(false);
-    // Réinitialise l'état du message de succès lors de l'ouverture de la modale;
     setShowSuccessMessage(false);
   };
   const handleShow = () => {
@@ -19,10 +19,10 @@ function Buttonadd() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    const formData = new FormData(form); // Crée un objet FormData avec les données du formulaire
+    const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/espacepro`, formJson) // Remplacez "/api/endpoint" par l'URL de votre API
+      .post(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians/`, formJson)
       .then(() => {
         // Met à jour l'état pour indiquer la soumission réussie
         setShowSuccessMessage(true); // Affiche le message de succès
