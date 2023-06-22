@@ -2,34 +2,67 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import "../styles/PracticianListModal.scss";
 import axios from "axios";
 
 function Buttonadd() {
   const [show, setShow] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // État pour le suivi de l'affichage du message de succès
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    setShow(false);
+    setShowSuccessMessage(false);
+  };
+  const handleShow = () => {
+    setShow(true);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const form = event.target;
-
-    const formData = new FormData(form); // Crée un objet FormData avec les données du formulaire
+    const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
-    // console.log(formJson);
-
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/espacepro`, formJson) // Remplacez "/api/endpoint" par l'URL de votre API
+      .post(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians/`, formJson)
       .then(() => {
-        // Gérer la réponse de l'API en cas de succès
-        // eslint-disable-next-line no-alert
-        alert("Données envoyées avec succès !");
-        handleClose();
+        // Met à jour l'état pour indiquer la soumission réussie
+        setShowSuccessMessage(true); // Affiche le message de succès
       })
       .catch((error) => {
         // Gérer les erreurs de requête ou de réponse de l'API
         console.error("Erreur lors de l'envoi des données :", error);
       });
+  };
+  // Fonction pour générer un mot de passe aléatoire
+  const generatePassword = () => {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[{]};:',<.>/?";
+    let password = "";
+
+    // Ajoute une lettre majuscule
+    password += characters.charAt(Math.floor(Math.random() * 26));
+
+    // Ajoute une lettre minuscule
+    password += characters.charAt(Math.floor(Math.random() * 26) + 26);
+
+    // Ajoute un chiffre
+    password += characters.charAt(Math.floor(Math.random() * 10) + 52);
+
+    // Ajoute un caractère spécial
+    password += characters.charAt(Math.floor(Math.random() * 19) + 62);
+
+    // Génère les caractères restants
+    for (let i = 0; i < 4; i += 1) {
+      password += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+    // Mélange les caractères du mot de passe
+    password = password
+      .split("")
+      .sort(() => 0.5 - Math.random())
+      .join("");
+
+    return password;
   };
 
   return (
@@ -45,7 +78,7 @@ function Buttonadd() {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Ajouter un praticien</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -58,7 +91,7 @@ function Buttonadd() {
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+            <Form.Group className="mb-3" controlId="Buttonadd.ControlInput2">
               <Form.Label>Prénom</Form.Label>
               <Form.Control
                 type="text"
@@ -67,7 +100,7 @@ function Buttonadd() {
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
+            <Form.Group className="mb-3" controlId="Buttonadd.ControlInput3">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
@@ -76,31 +109,27 @@ function Buttonadd() {
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
-              <Form.Label>Matricule</Form.Label>
+            <Form.Group className="mb-3" controlId="Buttonadd.ControlInput4">
+              <Form.Label>Numéro ADELI</Form.Label>
               <Form.Control
-                type="number"
+                type="text"
                 name="adeli_number"
                 placeholder="00-00-00"
                 autoFocus
+                maxLength={9}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
-              <Form.Label>Mot de passe</Form.Label>
-              <Form.Control
-                type="text"
-                name="password"
-                placeholder="00-00-00"
-                autoFocus
-              />
-            </Form.Group>
+            <input type="hidden" name="password" value={generatePassword()} />
             <input type="hidden" name="administrator_id" value={1} />
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
+              {showSuccessMessage && (
+                <span className="success-message">Ajout effectué !</span>
+              )}
+              <Button variant="danger" onClick={handleClose}>
+                Annuler
               </Button>
               <Button type="submit" variant="primary">
-                Save Changes
+                Ajouter
               </Button>
             </Modal.Footer>
           </Form>
@@ -111,13 +140,3 @@ function Buttonadd() {
 }
 
 export default Buttonadd;
-
-// Dans cet exemple, nous utilisons Axios pour effectuer une requête POST vers l'URL /api/endpoint. Vous devrez remplacer cette URL par l'URL de votre propre backend ou de votre API qui recevra les données du formulaire.
-
-// L'objet formData est créé à partir des données du formulaire en utilisant new FormData(form). Cela nous permet d'envoyer les données au format approprié (encodage multipart/form-data) en incluant les fichiers le cas échéant.
-
-// Lorsque la requête est effectuée avec succès, la fonction .then() est appelée avec la réponse de l'API. Vous pouvez gérer la réponse selon vos besoins, par exemple en affichant un message de succès ou en effectuant d'autres actions.
-
-// En cas d'erreur lors de la requête, la fonction .catch() est appelée et vous pouvez gérer l'erreur, par exemple en affichant un message d'erreur à l'utilisateur ou en journalisant les détails de l'erreur.
-
-// Assurez-vous de remplacer /api/endpoint par l'URL appropriée vers votre backend ou votre API, et adaptez le code pour traiter la réponse de l'API selon vos besoins spécifiques.
