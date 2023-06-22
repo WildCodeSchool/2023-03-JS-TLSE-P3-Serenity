@@ -31,6 +31,11 @@ function Buttonadd() {
         console.error("Erreur lors de l'envoi des données :", error);
       });
   };
+  // Fonction pour générer un mot de passe aléatoire
+  const generateRandomPassword = () => {
+    const randomPassword = Math.random().toString(36).substring(2, 11);
+    return randomPassword;
+  };
 
   return (
     <>
@@ -85,21 +90,27 @@ function Buttonadd() {
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
-              <Form.Label>Mot de passe</Form.Label>
-              <Form.Control
+            {/* <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
+              <Form.Label>Mot de passe</Form.Label> */}
+            {/* <Form.Control
                 type="text"
                 name="password"
                 placeholder="00-00-00"
+                value={1}
                 autoFocus
               />
-            </Form.Group>
+            </Form.Group> */}
+            <input
+              type="hidden"
+              name="password"
+              value={generateRandomPassword()}
+            />
             <input type="hidden" name="administrator_id" value={1} />
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button type="submit" variant="primary" isvalide>
+              <Button type="submit" variant="primary">
                 Save Changes
               </Button>
             </Modal.Footer>
