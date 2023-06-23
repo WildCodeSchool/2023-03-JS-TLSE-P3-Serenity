@@ -1,13 +1,13 @@
 const models = require("../models");
 
 const getRessourceCount = (req, res) => {
-  models.intervention
-    .find(req.params.id)
-    .then(([rows]) => {
-      if (rows[0] == null) {
+  models.ressource
+    .findRessourceCount(req.params.id)
+    .then(([ressources]) => {
+      if (ressources[0] == null) {
         res.sendStatus(404);
       } else {
-        res.status(200).send(rows[0]);
+        res.status(200).send(ressources[0]);
       }
     })
     .catch((err) => {

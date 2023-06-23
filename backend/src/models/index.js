@@ -34,6 +34,11 @@ const ItemManager = require("./ItemManager");
 models.item = new ItemManager();
 models.item.setDatabase(pool);
 
+const AdminManager = require("./AdminManager");
+
+models.administrator = new AdminManager();
+models.administrator.setDatabase(pool);
+
 const PracticianManager = require("./PracticianManager");
 
 models.practician = new PracticianManager();
@@ -43,6 +48,11 @@ const InterventionManager = require("./InterventionManager");
 
 models.intervention = new InterventionManager();
 models.intervention.setDatabase(pool);
+
+const RessourceManager = require("./RessourceManager");
+
+models.ressource = new RessourceManager();
+models.ressource.setDatabase(pool);
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 

@@ -7,6 +7,7 @@ export default StateContext;
 
 export function StateProvider({ children }) {
   const [linkToActive, setLinkToActive] = useState("Home");
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentActiveLink, setCurrentActiveLink] = useState("");
   const userInfoTest = "admin"; // Replace userInfoTest by userInfo of Token for the role, the role define the first activeLink
