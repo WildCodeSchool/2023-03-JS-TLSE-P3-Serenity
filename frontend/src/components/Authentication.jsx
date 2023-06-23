@@ -223,9 +223,8 @@ export default function Authentication() {
             >
               <i className="fi fi-rr-cross-small" />
             </button>
-            <p>
-              Les champs renseignés ne correspondent pas, veuillez réessayer.
-            </p>
+            <p>Les champs renseignés ne correspondent pas.</p>
+            <p>Veuillez réessayer.</p>
           </div>
         </div>
       )}
