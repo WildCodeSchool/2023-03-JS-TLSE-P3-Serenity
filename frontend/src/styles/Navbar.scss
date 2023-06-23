@@ -1,0 +1,204 @@
+.header-navbar {
+  background: var(--main-bg-admin-practician);
+  border-right: solid 2px rgb(72, 72, 72);  
+  height: 100vh;
+}
+
+.header-avatar {
+  display: flex;
+  padding: 1rem;
+  gap: 8px;
+  width: 20%;
+  height: 10vh;
+}
+
+.admin-avatar {
+  width: 50px;
+  height: 50px;
+}
+
+.admin-name {
+  display: flex;
+  align-items: center;
+  font-family: var(--main-font);
+  color: white;
+  line-height: 1rem;
+  width: 70%;
+}
+
+.navbar-serenity {
+  min-width: 217px;
+  height: 90vh;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20%;
+  height: 90%;
+  gap: 3%;
+  padding: 4%;
+}
+
+.list-item-navbar {
+  width: 90%;
+}
+
+.nav-serenity {
+  padding: 16px 0px;
+  width: 100%;
+  height: 100%;
+  font-family: var(--main-font);
+  color: white;
+  font-size: 1rem;
+  background: var(--main-bg-admin-practician);
+  border-radius: 12px;
+  border: solid 1px rgb(72, 72, 72);
+}
+
+.active {
+  padding: 16px 0px;
+  width: 100%;
+  height: 100%;
+  font-family: var(--main-font);
+  color: white;
+  font-size: 1rem;
+  border-radius: 12px;
+  background: #6c5dd3;
+  border: solid 1px rgb(72, 72, 72);
+}
+
+.nav-serenity:hover {
+  background: rgb(50, 53, 66);
+  cursor: pointer;
+}
+
+.logout{
+bottom: 0%;
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-left: 15%;
+}
+
+.fi {
+  font-size: 20px;
+}
+
+.link-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.home-icon-mobile {
+  display: none;
+}
+
+.menu-burger {
+  display: none;
+}
+
+.menu-burger-icon {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .header-navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: transparent;
+    position: fixed;
+    height: 100%;
+  }
+
+  .header-avatar {
+    flex-direction: row-reverse;
+    width: 100vw;
+    height: 15vh;
+  }
+
+  .admin-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .admin-name {
+    text-align: end;
+    color: #5c5c5c;
+    width: 50%;
+  }
+
+  .navbar-serenity {
+    display: flex;
+    max-width: 100vw;
+    height: 10vh;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-top: #5c5c5c 2px;
+  }
+
+  .bg-burger {
+    background: transparent;
+    position: absolute;
+    bottom: 10%;
+    width: 100vw;
+    height: 90vh;
+  }
+
+  .burger-invisible {
+    display: none;
+  }
+
+  .burger-visible {
+    display: flex;
+    position: absolute;
+    background: rgba(36, 39, 49, 1);
+    border: lightgray 2px solid;
+    border-radius: 15px;
+    bottom: 10%;
+    right: 0%;
+    width: 70%;
+    height: auto;
+    align-items: center;
+  }
+
+  .nav-serenity {
+    font-size: 1rem;
+    color: black;
+    background: white;
+    margin-bottom: 8%;
+  }
+
+  .active {
+    font-size: 1rem;
+    color: black;
+    background: white;
+    margin-bottom: 8%;
+  }
+
+  .home-icon-mobile {
+    font-size: 60px;
+    display: flex;
+    background: var(--main-bg-admin-practician);
+    color: white;
+  }
+
+  .menu-burger {
+    display: flex;
+  }
+
+  .menu-burger-icon {
+    font-size: 60px;
+    display: flex;
+    background: var(--main-bg-admin-practician);
+    color: white;
+  }
+}

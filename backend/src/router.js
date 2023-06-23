@@ -2,12 +2,27 @@ const express = require("express");
 
 const router = express.Router();
 
-const itemControllers = require("./controllers/itemControllers");
+const practicianControllers = require("./controllers/practicianController");
+const interventionCountController = require("./controllers/interventionCountController");
+const ressourceCountController = require("./controllers/ressourceCountController");
+const admins = require("./controllers/adminControllers");
 
-router.get("/items", itemControllers.browse);
-router.get("/items/:id", itemControllers.read);
-router.put("/items/:id", itemControllers.edit);
-router.post("/items", itemControllers.add);
-router.delete("/items/:id", itemControllers.destroy);
+router.get("/admins/practicians/", practicianControllers.browse);
+router.get(
+  "/admins/practicians/countintervention/:id",
+  interventionCountController.getInterventionCount
+);
+router.get(
+  "/admins/practicians/countressource/:id",
+  ressourceCountController.getRessourceCount
+);
+const {
+  hashPassword,
+  verifyPassword,
+  verifyToken,
+} = require("./services/auth");
+
+router.post("/admins/login", admins.authenticationCheck, verifyPassword);
+router.put("/admins/:id", verifyToken, hashPassword, admins.modifyAdmin);
 
 module.exports = router;
