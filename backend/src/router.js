@@ -9,7 +9,6 @@ const PracticianControllers = require("./controllers/PraticianControllers");
 
 router.get("/admins/practicians/:id", PracticianControllers.read);
 router.put("/admins/practicians/:id", PracticianControllers.edit);
-router.post("/admins/practicians/", PracticianControllers.add);
 router.delete("/admins/practicians/:id", PracticianControllers.destroy);
 router.get("/admins/practicians/", PracticianControllers.browse);
 router.get(
@@ -28,5 +27,8 @@ const {
 
 router.post("/admins/login", admins.authenticationCheck, verifyPassword);
 router.put("/admins/:id", verifyToken, hashPassword, admins.modifyAdmin);
+
+// Ajout de praticiens
+router.post("/admins/practicians/", PracticianControllers.add);
 
 module.exports = router;

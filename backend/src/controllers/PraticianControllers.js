@@ -36,7 +36,7 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const {
     adeli_number,
-    password,
+    hashed_password,
     firstname,
     lastname,
     mail,
@@ -47,7 +47,7 @@ const edit = (req, res) => {
   models.practician
     .update({
       adeli_number,
-      password,
+      hashed_password,
       firstname,
       lastname,
       mail,
@@ -70,7 +70,7 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const {
     adeli_number,
-    password,
+    hashed_password,
     firstname,
     lastname,
     mail,
@@ -80,7 +80,7 @@ const add = (req, res) => {
   models.practician
     .insert({
       adeli_number,
-      password,
+      hashed_password,
       firstname,
       lastname,
       mail,
@@ -91,7 +91,7 @@ const add = (req, res) => {
         res.status(201).json({
           id: result.insertId,
           adeli_number,
-          password,
+          hashed_password,
           firstname,
           lastname,
           mail,

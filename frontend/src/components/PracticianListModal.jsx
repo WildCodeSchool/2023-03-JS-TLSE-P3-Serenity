@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "../styles/PracticianListModal.scss";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Buttonadd from "./Buttonadd";
+import StateContext from "../contexts/StateContext";
 
 function PracticianListModal() {
   const [practicians, setPracticians] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [selectedPractician, setSelectedPractician] = useState(null);
+  const { showSuccessMessageModification, setShowSuccessMessageModification } =
+    useContext(StateContext);
+  const { showSuccessMessageAdd, setShowSuccessMessageAdd } =
+    useContext(StateContext);
+
   const [modalInputs, setModalInputs] = useState({
     firstname: "",
     lastname: "",
@@ -17,20 +23,19 @@ function PracticianListModal() {
     adeli_number: "",
     administrator_id: "",
   });
-  // État pour le suivi de l'affichage du message de succès
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   // gestion of modal
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => {
     setShow(false);
-    setShowSuccessMessage(false);
+    setShowSuccessMessageModification(false);
   };
 
   const handleTrClick = (practician) => {
     setSelectedPractician(practician);
     setModalInputs(practician);
     handleShow(true);
+    setShowSuccessMessageAdd(false);
   };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -39,8 +44,8 @@ function PracticianListModal() {
       [name]: value,
     }));
   };
-  const handleFormSubmit = () => {
-    // event.preventDefault();
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
     // Effectuer une requête HTTP PUT ou PATCH pour mettre à jour les informations du praticien sélectionné
     if (selectedPractician) {
       axios
@@ -59,8 +64,7 @@ function PracticianListModal() {
             return practician;
           });
           setPracticians(updatedPracticians);
-          setShowSuccessMessage(true);
-          // setShow(true); // Fermer la modale après la mise à jour
+          setShowSuccessMessageModification(true);
         })
         .catch((error) => {
           console.error(error);
@@ -105,7 +109,7 @@ function PracticianListModal() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [showSuccessMessageModification, showSuccessMessageAdd]);
   return (
     <div className="practician-list-container">
       <div className="practician-list">
@@ -244,7 +248,7 @@ function PracticianListModal() {
                 onChange={handleInputChange}
               />
               <Modal.Footer>
-                {showSuccessMessage && (
+                {showSuccessMessageModification && (
                   <span className="success-message">
                     Modification effectuée !
                   </span>

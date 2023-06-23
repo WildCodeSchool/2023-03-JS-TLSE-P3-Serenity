@@ -1,24 +1,26 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import "../styles/PracticianListModal.scss";
 import axios from "axios";
+import StateContext from "../contexts/StateContext";
 
 function Buttonadd() {
   const [show, setShow] = useState(false);
   // État pour le suivi de l'affichage du message de succès
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const { showSuccessMessageAdd, setShowSuccessMessageAdd } =
+    useContext(StateContext);
 
   const handleClose = () => {
     setShow(false);
-    setShowSuccessMessage(false);
+    setShowSuccessMessageAdd(false);
   };
   const handleShow = () => {
     setShow(true);
   };
   const handleSubmit = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
@@ -26,7 +28,7 @@ function Buttonadd() {
       .post(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians/`, formJson)
       .then(() => {
         // Met à jour l'état pour indiquer la soumission réussie
-        setShowSuccessMessage(true); // Affiche le message de succès
+        setShowSuccessMessageAdd(true); // Affiche le message de succès
       })
       .catch((error) => {
         // Gérer les erreurs de requête ou de réponse de l'API
@@ -120,10 +122,14 @@ function Buttonadd() {
                 maxLength={9}
               />
             </Form.Group>
-            <input type="hidden" name="password" value={generatePassword()} />
+            <input
+              type="hidden"
+              name="hashed_password"
+              value={generatePassword()}
+            />
             <input type="hidden" name="administrator_id" value={1} />
             <Modal.Footer>
-              {showSuccessMessage && (
+              {showSuccessMessageAdd && (
                 <span className="success-message">Ajout effectué !</span>
               )}
               <Button variant="danger" onClick={handleClose}>
