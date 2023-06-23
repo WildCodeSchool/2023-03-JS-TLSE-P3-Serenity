@@ -22,7 +22,7 @@ function navbar() {
     {
       role: "practician",
       className: linkToActive === "Home" ? "active" : "nav-serenity",
-      label: "Patient",
+      label: "Patients",
       icon: "users",
       action: () => {
         setLinkToActive("Home");
@@ -39,21 +39,20 @@ function navbar() {
     },
     {
       role: "practician",
-      className:
-        linkToActive === "Vos interventions" ? "active" : "nav-serenity",
-      label: "Vos interventions",
+      className: linkToActive === "Interventions" ? "active" : "nav-serenity",
+      label: "Interventions",
       icon: "file-medical-alt",
       action: () => {
-        setLinkToActive("Vos interventions");
+        setLinkToActive("Interventions");
       },
     },
     {
       role: "practician",
-      className: linkToActive === "Vos ressources" ? "active" : "nav-serenity",
-      label: "Vos ressources",
+      className: linkToActive === "Ressources" ? "active" : "nav-serenity",
+      label: "Ressources",
       icon: "folder-tree",
       action: () => {
-        setLinkToActive("Vos ressources");
+        setLinkToActive("Ressources");
       },
     },
     {
@@ -151,6 +150,21 @@ function navbar() {
                 </button>
               </li>
             ))}
+          <li className="list-item-navbar logout">
+            <button
+              className="nav-serenity"
+              alt="Déconnexion"
+              type="button"
+              onClick={() => {
+                console.info("Déconnexion");
+              }}
+            >
+              <div className="button-content">
+                <i alt="Déconnexion" className="fi fi-rr-exit link-icon" />
+                Déconnexion
+              </div>
+            </button>
+          </li>
         </ul>
       </div>
     </div>
