@@ -15,7 +15,7 @@ function App() {
     <StateProvider>
       <AuthFunctionProvider>
         <Router>
-          <div className="App">
+          <div className="app">
             <Routes>
               <Route path="/admin" element={<AdminAuthentication />} />
               <Route path="/login" element={<PatientAuthentication />} />
