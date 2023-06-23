@@ -19,10 +19,11 @@ router.get(
 const {
   hashPassword,
   verifyPassword,
-  verifyToken,
+  // verifyToken, remove comment after password modification on admin
 } = require("./services/auth");
 
 router.post("/admins/login", admins.authenticationCheck, verifyPassword);
-router.put("/admins/:id", verifyToken, hashPassword, admins.modifyAdmin);
+router.put("/admins/:id", hashPassword, admins.modifyAdmin); //to delete after password modification on admin
+// router.put("/admins/:id", verifyToken, hashPassword, admins.modifyAdmin);
 
 module.exports = router;
