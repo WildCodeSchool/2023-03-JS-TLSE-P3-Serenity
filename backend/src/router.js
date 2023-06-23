@@ -4,6 +4,7 @@ const router = express.Router();
 
 const interventionCountController = require("./controllers/interventionCountController");
 const ressourceCountController = require("./controllers/ressourceCountController");
+const admins = require("./controllers/adminControllers");
 const PracticianControllers = require("./controllers/PraticianControllers");
 
 router.get("/admins/practicians/:id", PracticianControllers.read);
@@ -19,5 +20,13 @@ router.get(
   "/admins/practicians/countressource/:id",
   ressourceCountController.getRessourceCount
 );
+const {
+  hashPassword,
+  verifyPassword,
+  verifyToken,
+} = require("./services/auth");
+
+router.post("/admins/login", admins.authenticationCheck, verifyPassword);
+router.put("/admins/:id", verifyToken, hashPassword, admins.modifyAdmin);
 
 module.exports = router;
