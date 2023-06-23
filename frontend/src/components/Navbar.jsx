@@ -132,7 +132,7 @@ function navbar() {
           }
         >
           {navbarLinks
-            .filter((link) => link.role === "practician" || link.role === "all")
+            .filter((link) => link.role === "admin" || link.role === "all")
             .map((link) => (
               <li key={link.label} className="list-item-navbar">
                 <button
