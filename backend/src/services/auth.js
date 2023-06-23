@@ -66,8 +66,14 @@ const verifyToken = (req, res, next) => {
   }
 };
 
+const verifyRole = (req, res, next) => {
+  console.info(req.user);
+  next();
+};
+
 module.exports = {
   hashPassword,
   verifyPassword,
   verifyToken,
+  verifyRole,
 };
