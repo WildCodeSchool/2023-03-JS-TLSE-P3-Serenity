@@ -27,3 +27,8 @@ body {
     text-align: center;
   }
 }
+// hide the password reveal button in the password 
+// fields on Microsoft Edge and Internet Explorer browsers
+::-ms-reveal {
+  display: none
+}
