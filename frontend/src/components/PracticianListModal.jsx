@@ -6,13 +6,32 @@ function PracticianListModal() {
   const [practicians, setPracticians] = useState([]);
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/practicians`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians`)
       .then((response) => {
-        setPracticians(response.data);
-        console.info(practicians); // practicians will be replaced when data is fetched
+        const promises = response.data.map((practician) =>
+          axios.get(
+            `${
+              import.meta.env.VITE_BACKEND_URL
+            }/admins/practicians/countintervention/${practician.id}`
+          )
+        );
+
+        Promise.all(promises)
+          .then((countResponses) => {
+            const updatedPracticians = response.data.map(
+              (practician, index) => ({
+                ...practician,
+                countIntervention: countResponses[index].data.interventionCount,
+              })
+            );
+            setPracticians(updatedPracticians);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       })
       .catch((error) => {
-        error.sendStatus(500);
+        console.error(error);
       });
   }, []);
   return (
@@ -25,17 +44,40 @@ function PracticianListModal() {
           </button>
         </div>
         <div className="practician-list-body">
-          <table>
-            <thead>
+          <table className="practician-list-table">
+            <thead className="practician-list-table-header">
               <tr>
                 <th>Nom</th>
                 <th>Mail</th>
                 <th>Poste</th>
                 <th>Téléphone</th>
-                <th>Nb Interventions</th>
-                <th>Nb Ressources</th>
+                <th>
+                  Nombre
+                  <br />
+                  Interventions
+                </th>
+                <th>
+                  Nombre
+                  <br />
+                  Ressources
+                </th>
               </tr>
             </thead>
+            <tbody className="practician-list-table-body">
+              {practicians.map((practician) => (
+                <tr key={practician.id}>
+                  <td>
+                    {practician.firstname}
+                    {practician.lastname}
+                  </td>
+                  <td>{practician.mail}</td>
+                  <td>{practician.speciality}</td>
+                  <td>{practician.phone}</td>
+                  <td>{practician.countIntervention}</td>
+                  <td>{practician.ressources}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
         <div className="practician-list-footer">
