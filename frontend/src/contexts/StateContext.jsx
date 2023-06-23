@@ -7,6 +7,7 @@ export default StateContext;
 
 export function StateProvider({ children }) {
   const [linkToActive, setLinkToActive] = useState("Home");
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const stateContext = useMemo(
     () => ({ linkToActive, setLinkToActive, isMenuOpen, setIsMenuOpen }),

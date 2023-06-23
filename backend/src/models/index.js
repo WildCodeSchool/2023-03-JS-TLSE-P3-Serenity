@@ -34,6 +34,11 @@ const ItemManager = require("./ItemManager");
 models.item = new ItemManager();
 models.item.setDatabase(pool);
 
+const AdminManager = require("./AdminManager");
+
+models.administrator = new AdminManager();
+models.administrator.setDatabase(pool);
+
 const PracticianManager = require("./PracticianManager");
 
 models.practician = new PracticianManager();
