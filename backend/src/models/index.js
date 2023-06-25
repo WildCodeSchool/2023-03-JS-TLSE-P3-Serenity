@@ -29,11 +29,6 @@ pool.getConnection().catch(() => {
 
 const models = {};
 
-const AdministratorManager = require("./AdministratorManager");
-
-models.administrator = new AdministratorManager();
-models.administrator.setDatabase(pool);
-
 const AdminManager = require("./AdminManager");
 
 models.administrator = new AdminManager();

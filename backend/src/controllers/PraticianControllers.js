@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 const models = require("../models");
 
-const browse = (req, res) => {
+const getListOfAllPracticians = (req, res) => {
   models.practician
     .findAll()
     .then(([result]) => {
@@ -17,7 +17,7 @@ const browse = (req, res) => {
     });
 };
 
-const read = (req, res) => {
+const getPracticianById = (req, res) => {
   models.practician
     .find(req.params.id)
     .then(([rows]) => {
@@ -33,7 +33,7 @@ const read = (req, res) => {
     });
 };
 
-const edit = (req, res) => {
+const AddPractician = (req, res) => {
   const {
     adeli_number,
     hashed_password,
@@ -67,7 +67,7 @@ const edit = (req, res) => {
     });
 };
 
-const add = (req, res) => {
+const updatePractician = (req, res) => {
   const {
     adeli_number,
     hashed_password,
@@ -107,7 +107,7 @@ const add = (req, res) => {
     });
 };
 
-const destroy = (req, res) => {
+const deletePractician = (req, res) => {
   models.administrator
     .delete(req.params.id)
     .then(([result]) => {
@@ -124,9 +124,9 @@ const destroy = (req, res) => {
 };
 
 module.exports = {
-  browse,
-  read,
-  edit,
-  add,
-  destroy,
+  getListOfAllPracticians,
+  getPracticianById,
+  AddPractician,
+  updatePractician,
+  deletePractician,
 };

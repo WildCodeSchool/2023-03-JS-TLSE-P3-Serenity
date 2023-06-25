@@ -11,10 +11,12 @@ function PracticianListModal() {
   const [practicians, setPracticians] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [selectedPractician, setSelectedPractician] = useState(null);
-  const { showSuccessMessageModification, setShowSuccessMessageModification } =
-    useContext(StateContext);
-  const { showSuccessMessageAdd, setShowSuccessMessageAdd } =
-    useContext(StateContext);
+  const {
+    showSuccessMessageModification,
+    setShowSuccessMessageModification,
+    showSuccessMessageAdd,
+    setShowSuccessMessageAdd,
+  } = useContext(StateContext);
 
   const [modalInputs, setModalInputs] = useState({
     firstname: "",
@@ -46,7 +48,6 @@ function PracticianListModal() {
   };
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    // Effectuer une requête HTTP PUT ou PATCH pour mettre à jour les informations du praticien sélectionné
     if (selectedPractician) {
       axios
         .put(
@@ -56,10 +57,10 @@ function PracticianListModal() {
           modalInputs
         )
         .then((response) => {
-          // Mettre à jour les données du praticien dans l'état
+          // Update practitioner data in the state
           const updatedPracticians = practicians.map((practician) => {
             if (practician.id === selectedPractician.id) {
-              return response.data; // Utilisez la réponse de la requête pour mettre à jour le praticien
+              return response.data;
             }
             return practician;
           });

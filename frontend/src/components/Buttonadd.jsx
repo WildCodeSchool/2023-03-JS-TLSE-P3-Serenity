@@ -8,7 +8,7 @@ import StateContext from "../contexts/StateContext";
 
 function Buttonadd() {
   const [show, setShow] = useState(false);
-  // État pour le suivi de l'affichage du message de succès
+  // Status for tracking success message display
   const { showSuccessMessageAdd, setShowSuccessMessageAdd } =
     useContext(StateContext);
 
@@ -27,39 +27,38 @@ function Buttonadd() {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians/`, formJson)
       .then(() => {
-        // Met à jour l'état pour indiquer la soumission réussie
-        setShowSuccessMessageAdd(true); // Affiche le message de succès
+        // Updates status to indicate successful submission
+        setShowSuccessMessageAdd(true); // Displays success message
       })
       .catch((error) => {
-        // Gérer les erreurs de requête ou de réponse de l'API
+        // Handle API request or response errors
         console.error("Erreur lors de l'envoi des données :", error);
       });
   };
-  // Fonction pour générer un mot de passe aléatoire
+  // Function to generate random password
   const generatePassword = () => {
     const characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[{]};:',<.>/?";
     let password = "";
 
-    // Ajoute une lettre majuscule
+    // Adds an uppercase letter
     password += characters.charAt(Math.floor(Math.random() * 26));
 
-    // Ajoute une lettre minuscule
+    // Adds an lowercase letter
     password += characters.charAt(Math.floor(Math.random() * 26) + 26);
 
-    // Ajoute un chiffre
+    // Adds number
     password += characters.charAt(Math.floor(Math.random() * 10) + 52);
 
     // Ajoute un caractère spécial
     password += characters.charAt(Math.floor(Math.random() * 19) + 62);
-
-    // Génère les caractères restants
+    // Generates remaining characters
     for (let i = 0; i < 4; i += 1) {
       password += characters.charAt(
         Math.floor(Math.random() * characters.length)
       );
     }
-    // Mélange les caractères du mot de passe
+    // Mixes password characters
     password = password
       .split("")
       .sort(() => 0.5 - Math.random())
@@ -104,7 +103,7 @@ function Buttonadd() {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="Buttonadd.ControlInput3">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Mail</Form.Label>
               <Form.Control
                 type="email"
                 name="mail"
@@ -117,7 +116,7 @@ function Buttonadd() {
               <Form.Control
                 type="text"
                 name="adeli_number"
-                placeholder="00-00-00"
+                placeholder="12345678"
                 autoFocus
                 maxLength={9}
               />

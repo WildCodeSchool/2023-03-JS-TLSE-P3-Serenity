@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 const AbstractManager = require("./AbstractManager");
 
-class PraticianManager extends AbstractManager {
+class PracticianManager extends AbstractManager {
   constructor() {
     super({ table: "practician" });
   }
@@ -60,4 +60,4 @@ class PraticianManager extends AbstractManager {
   }
 }
 
-module.exports = PraticianManager;
+module.exports = PracticianManager;
