@@ -7,22 +7,40 @@ const interventionCountController = require("./controllers/interventionCountCont
 const ressourceCountController = require("./controllers/ressourceCountController");
 const admins = require("./controllers/adminControllers");
 
-router.get("/admins/practicians/", practicianControllers.browse);
+const {
+  hashPassword,
+  verifyPassword,
+  // verifyToken,
+  // verifyAdminRole,
+} = require("./services/auth");
+
+router.post("/admins/login", admins.authenticationCheck, verifyPassword);
+
+router.get(
+  "/admins/practicians/",
+  // verifyToken,
+  // verifyAdminRole,
+  practicianControllers.browse
+);
 router.get(
   "/admins/practicians/countintervention/:id",
+  // verifyToken,
+  // verifyAdminRole,
   interventionCountController.getInterventionCount
 );
 router.get(
   "/admins/practicians/countressource/:id",
+  // verifyToken,
+  // verifyAdminRole,
   ressourceCountController.getRessourceCount
 );
-const {
-  hashPassword,
-  verifyPassword,
-  verifyToken,
-} = require("./services/auth");
 
-router.post("/admins/login", admins.authenticationCheck, verifyPassword);
-router.put("/admins/:id", verifyToken, hashPassword, admins.modifyAdmin);
+router.put(
+  "/admins/:id",
+  // verifyToken,
+  // verifyAdminRole,
+  hashPassword,
+  admins.modifyAdmin
+);
 
 module.exports = router;
