@@ -1,11 +1,13 @@
-import { useMemo, useState, createContext } from "react";
+import { useMemo, useState, createContext, useContext } from "react";
 import PropTypes from "prop-types";
+import AuthFunctionContext from "./AuthFunctionContext";
 
 const StateContext = createContext();
 
 export default StateContext;
 
 export function StateProvider({ children }) {
+  const { userInfo } = useContext(AuthFunctionContext);
   const [linkToActive, setLinkToActive] = useState("Home");
   const [showSuccessMessageModification, setShowSuccessMessageModification] =
     useState(false);
@@ -13,18 +15,17 @@ export function StateProvider({ children }) {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentActiveLink, setCurrentActiveLink] = useState("");
-  const userInfoTest = "admin"; // Replace userInfoTest by userInfo of Token for the role, the role define the first activeLink
   useMemo(() => {
-    if (userInfoTest === "admin") {
+    if (userInfo.role === "admin") {
       setCurrentActiveLink("Praticiens");
     }
-    if (userInfoTest === "practician") {
+    if (userInfo.role === "practician") {
       setCurrentActiveLink("Patients");
     }
-    if (userInfoTest === "patient") {
+    if (userInfo.role === "patient") {
       setCurrentActiveLink("Ma préparation");
     }
-  }, [userInfoTest]);
+  }, [userInfo.role]);
 
   const stateContext = useMemo(
     () => ({

@@ -15,7 +15,7 @@ function App() {
     <StateProvider>
       <AuthFunctionProvider>
         <Router>
-          <div className="app">
+          <div className="app backgroud-dark">
             <Routes>
               <Route path="/admin" element={<AdminAuthentication />} />
               <Route path="/login" element={<PatientAuthentication />} />

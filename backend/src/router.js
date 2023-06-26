@@ -12,6 +12,7 @@ const {
   verifyPassword,
   verifyToken,
 } = require("./services/auth");
+
 router.get("/admins/practicians/:id", practicianControllers.getPracticianById);
 router.put("/admins/practicians/:id", practicianControllers.updatePractician);
 router.delete(
