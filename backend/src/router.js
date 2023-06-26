@@ -44,9 +44,6 @@ router.get("/admins/forms/:id", formControllers.getFormById);
 router.post("/admins/forms/", formControllers.AddForm);
 router.put("/admins/forms/:id", formControllers.updateForm);
 router.delete("/admins/forms/:id", formControllers.deleteForm);
-router.get(
-  "/admins/practicians/countintervention/:id",
-  formControllers.getFormCount
-);
+router.get("/admins/forms/countform/:id", formControllers.getFormCount);
 
 module.exports = router;
