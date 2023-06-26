@@ -7,7 +7,7 @@ import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 export default function EspaceAdmin() {
   const navigate = useNavigate();
-  const { userInfo } = useContext(AuthFunctionContext);
+  const { userInfo, userToken } = useContext(AuthFunctionContext);
   useEffect(() => {
     switch (userInfo.role) {
       case "admin":
@@ -23,12 +23,12 @@ export default function EspaceAdmin() {
         break;
     }
   }, [userInfo]);
-  return (
-    userInfo.role === "admin" && (
-      <div className="home">
-        <Navbar />
-        <PracticianListModal />
-      </div>
-    )
+  return userInfo.role === "admin" && userToken ? (
+    <div className="home">
+      <Navbar />
+      <PracticianListModal />
+    </div>
+  ) : (
+    <>Nothing</>
   );
 }

@@ -10,34 +10,36 @@ const admins = require("./controllers/adminControllers");
 const {
   hashPassword,
   verifyPassword,
-  // verifyToken,
-  // verifyAdminRole,
+  verifyToken,
+  verifyAdminRole,
 } = require("./services/auth");
 
 router.post("/admins/login", admins.authenticationCheck, verifyPassword);
 
 router.get(
   "/admins/practicians/",
-  // verifyToken,
-  // verifyAdminRole,
+  verifyToken,
+  verifyAdminRole,
   practicianControllers.browse
 );
+
 router.get(
   "/admins/practicians/countintervention/:id",
-  // verifyToken,
+  verifyToken,
   // verifyAdminRole,
   interventionCountController.getInterventionCount
 );
+
 router.get(
   "/admins/practicians/countressource/:id",
-  // verifyToken,
+  verifyToken,
   // verifyAdminRole,
   ressourceCountController.getRessourceCount
 );
 
 router.put(
   "/admins/:id",
-  // verifyToken,
+  verifyToken,
   // verifyAdminRole,
   hashPassword,
   admins.modifyAdmin

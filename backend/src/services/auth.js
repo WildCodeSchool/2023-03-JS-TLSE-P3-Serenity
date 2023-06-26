@@ -32,7 +32,6 @@ const verifyPassword = (req, res) => {
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
           expiresIn: "12h",
         });
-
         delete req.user.hashed_password;
         res.status(200).send({ token, user: req.user });
       } else {
@@ -66,7 +65,8 @@ const verifyToken = (req, res, next) => {
 };
 
 const verifyAdminRole = (req, res, next) => {
-  if (req.user.role === "admin") {
+  const role = req.get("Role");
+  if (role === "admin") {
     next();
   } else {
     res.sendStatus(403).send("Forbidden");
