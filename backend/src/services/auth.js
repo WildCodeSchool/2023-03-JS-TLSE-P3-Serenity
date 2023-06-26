@@ -34,7 +34,6 @@ const verifyPassword = (req, res) => {
         });
 
         delete req.user.hashed_password;
-        console.info(token);
         res.status(200).send({ token, user: req.user });
       } else {
         res.sendStatus(401);
