@@ -8,7 +8,7 @@ const admins = require("./controllers/adminControllers");
 const practicianControllers = require("./controllers/PraticianControllers");
 
 router.get("/admins/practicians/:id", practicianControllers.getPracticianById);
-router.put("/admins/practicians/:id", practicianControllers.AddPractician);
+router.put("/admins/practicians/:id", practicianControllers.updatePractician);
 router.delete(
   "/admins/practicians/:id",
   practicianControllers.deletePractician
@@ -34,6 +34,6 @@ const {
 router.post("/admins/login", admins.authenticationCheck, verifyPassword);
 router.put("/admins/:id", verifyToken, hashPassword, admins.modifyAdmin);
 
-router.post("/admins/practicians/", practicianControllers.updatePractician);
+router.post("/admins/practicians/", practicianControllers.AddPractician);
 
 module.exports = router;

@@ -24,7 +24,7 @@ const getPracticianById = (req, res) => {
       if (rows[0] == null) {
         res.sendStatus(404);
       } else {
-        res.send(rows[0]);
+        res.status(200).send(rows[0]);
       }
     })
     .catch((err) => {
@@ -33,7 +33,7 @@ const getPracticianById = (req, res) => {
     });
 };
 
-const AddPractician = (req, res) => {
+const updatePractician = (req, res) => {
   const {
     adeli_number,
     hashed_password,
@@ -67,7 +67,7 @@ const AddPractician = (req, res) => {
     });
 };
 
-const updatePractician = (req, res) => {
+const AddPractician = (req, res) => {
   const {
     adeli_number,
     hashed_password,
@@ -126,7 +126,7 @@ const deletePractician = (req, res) => {
 module.exports = {
   getListOfAllPracticians,
   getPracticianById,
-  AddPractician,
   updatePractician,
+  AddPractician,
   deletePractician,
 };
