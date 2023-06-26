@@ -7,6 +7,12 @@ const interventionCountController = require("./controllers/interventionCountCont
 const ressourceCountController = require("./controllers/ressourceCountController");
 const admins = require("./controllers/adminControllers");
 
+const {
+  hashPassword,
+  verifyPassword,
+  verifyToken,
+} = require("./services/auth");
+
 router.get("/admins/practicians/", practicianControllers.browse);
 router.get(
   "/admins/practicians/countintervention/:id",
@@ -16,11 +22,6 @@ router.get(
   "/admins/practicians/countressource/:id",
   ressourceCountController.getRessourceCount
 );
-const {
-  hashPassword,
-  verifyPassword,
-  verifyToken,
-} = require("./services/auth");
 
 router.post("/admins/login", admins.authenticationCheck, verifyPassword);
 router.put("/admins/:id", verifyToken, hashPassword, admins.modifyAdmin);
