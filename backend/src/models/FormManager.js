@@ -14,17 +14,10 @@ class FormManager extends AbstractManager {
     );
   }
 
-  update(form) {
-    const { user_type, request_type, request, is_read, is_done, id } = form;
+  update(values, valueQuery, id) {
     return this.database.query(
-      `update ${this.table} set
-         user_type = ?,
-        request_type =?,
-        request=?,
-        is_read=?,
-        is_done =?,
-       where id = ?`,
-      [user_type, request_type, request, is_read, is_done, id]
+      `update ${this.table} set ${valueQuery} where id = ?`,
+      [...values, id]
     );
   }
 

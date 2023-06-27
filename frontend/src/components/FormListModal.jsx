@@ -8,27 +8,10 @@ function FormListModal() {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/admins/forms`)
       .then((response) => {
-        const promises = response.data.map((form) =>
-          Promise.all([
-            axios.get(
-              `${import.meta.env.VITE_BACKEND_URL}/admins/forms/countform/${
-                form.id
-              }`
-            ),
-          ])
-        );
-
-        Promise.all(promises)
-          .then((countResponses) => {
-            const updatedForms = response.data.map((form, index) => ({
-              ...form,
-              countForm: countResponses[index][0].data.formCount,
-            }));
-            setForms(updatedForms);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
+        const updatedForms = response.data.map((form) => ({
+          ...form,
+        }));
+        setForms(updatedForms);
       })
       .catch((error) => {
         console.error(error);

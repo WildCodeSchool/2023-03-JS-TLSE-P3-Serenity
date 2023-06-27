@@ -34,18 +34,12 @@ const getFormById = (req, res) => {
 };
 
 const updateForm = (req, res) => {
-  const { user_type, request_type, request, is_read, is_done } = req.body;
   const { id } = req.params;
-
+  const keys = Object.keys(req.body);
+  const values = Object.values(req.body);
+  const valueQuery = keys.map((key) => `${key} = ?`).join(", ");
   models.form
-    .update({
-      user_type,
-      request_type,
-      request,
-      is_read,
-      is_done,
-      id,
-    })
+    .update(values, valueQuery, id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -60,25 +54,13 @@ const updateForm = (req, res) => {
 };
 
 const AddForm = (req, res) => {
-  const { user_type, request_type, request, is_read, is_done } = req.body;
-
   models.form
-    .insert({
-      user_type,
-      request_type,
-      request,
-      is_read,
-      is_done,
-    })
+    .insert(req.body)
     .then(([result]) => {
       if (result.affectedRows) {
         res.status(201).json({
           id: result.insertId,
-          user_type,
-          request_type,
-          request,
-          is_read,
-          is_done,
+          ...req.body,
         });
       } else {
         res.sendStatus(400);
