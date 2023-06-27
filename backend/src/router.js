@@ -7,6 +7,12 @@ const ressourceCountController = require("./controllers/ressourceCountController
 const admins = require("./controllers/adminControllers");
 const practicianControllers = require("./controllers/PraticianControllers");
 
+const {
+  hashPassword,
+  verifyPassword,
+  verifyToken,
+} = require("./services/auth");
+
 router.get("/admins/practicians/:id", practicianControllers.getPracticianById);
 router.put("/admins/practicians/:id", practicianControllers.updatePractician);
 router.delete(
@@ -25,11 +31,6 @@ router.get(
   "/admins/practicians/countressource/:id",
   ressourceCountController.getRessourceCount
 );
-const {
-  hashPassword,
-  verifyPassword,
-  verifyToken,
-} = require("./services/auth");
 
 router.post("/admins/login", admins.authenticationCheck, verifyPassword);
 router.put("/admins/:id", verifyToken, hashPassword, admins.modifyAdmin);
