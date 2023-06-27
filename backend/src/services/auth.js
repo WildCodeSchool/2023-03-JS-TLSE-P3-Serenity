@@ -12,7 +12,7 @@ const hashPassword = (req, res, next) => {
   argon2
     .hash(req.body.password, hashingOptions)
     .then((hashedPassword) => {
-      req.body.hashedPassword = hashedPassword;
+      req.body.hashed_password = hashedPassword;
       delete req.body.password;
       next();
     })
@@ -32,7 +32,6 @@ const verifyPassword = (req, res) => {
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
           expiresIn: "12h",
         });
-
         delete req.user.hashed_password;
         res.status(200).send({ token, user: req.user });
       } else {
@@ -65,8 +64,18 @@ const verifyToken = (req, res, next) => {
   }
 };
 
+const verifyAdminRole = (req, res, next) => {
+  const role = req.get("Role");
+  if (role === "admin") {
+    next();
+  } else {
+    res.sendStatus(403).send("Forbidden");
+  }
+};
+
 module.exports = {
   hashPassword,
   verifyPassword,
   verifyToken,
+  verifyAdminRole,
 };

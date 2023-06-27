@@ -10,7 +10,7 @@ import AuthFunctionContext from "../contexts/AuthFunctionContext";
 export default function EspaceAdmin() {
   const navigate = useNavigate();
   const { linkToActive } = useContext(StateContext);
-  const { userInfo } = useContext(AuthFunctionContext);
+  const { userInfo, userToken } = useContext(AuthFunctionContext);
   useEffect(() => {
     switch (userInfo.role) {
       case "admin":
@@ -45,7 +45,8 @@ export default function EspaceAdmin() {
       break;
   }
   return (
-    userInfo.role === "admin" && (
+    userInfo.role === "admin" &&
+    userToken && (
       <div className="home">
         <Navbar />
         <div className="modal-container">{CurrentModaleAdmin}</div>

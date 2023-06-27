@@ -21,10 +21,11 @@ const authenticationCheck = (req, res, next) => {
 
 const modifyAdmin = (req, res) => {
   const { id } = req.params;
-  const { matricule, hashedPassword } = req.body;
-
+  const keys = Object.keys(req.body);
+  const values = Object.values(req.body);
+  const valueQuery = keys.map((key) => `${key} = ?`).join(", ");
   models.administrator
-    .update(matricule, hashedPassword, id)
+    .update(values, valueQuery, id)
     .then(([result]) => {
       if (result.affectedRows !== 0) {
         res.sendStatus(204);
