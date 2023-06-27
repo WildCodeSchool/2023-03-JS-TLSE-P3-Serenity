@@ -23,10 +23,10 @@ class AdminManager extends AbstractManager {
     );
   }
 
-  update(matricule, hashedPassword, id) {
+  update(values, valueQuery, id) {
     return this.database.query(
-      `update ${this.table} set registration_number = ?, hashed_password = ? where id = ?`,
-      [matricule, hashedPassword, id]
+      `update ${this.table} set ${valueQuery} where id = ?`,
+      [...values, id]
     );
   }
 }

@@ -178,7 +178,7 @@ export default function Authentication() {
       <form onSubmit={handleSubmit} className="connection">
         <div className="connection-input">{authenticationType()}</div>
         <div className="password-input">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Mot de passe</label>
           <div className="password-input-and-show">
             <input
               name="password"
@@ -223,9 +223,8 @@ export default function Authentication() {
             >
               <i className="fi fi-rr-cross-small" />
             </button>
-            <p>
-              Les champs renseignés ne correspondent pas, veuillez réessayer.
-            </p>
+            <p>Les champs renseignés ne correspondent pas.</p>
+            <p>Veuillez réessayer.</p>
           </div>
         </div>
       )}
