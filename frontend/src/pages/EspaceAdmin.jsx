@@ -23,12 +23,13 @@ export default function EspaceAdmin() {
         break;
     }
   }, [userInfo]);
-  return userInfo.role === "admin" && userToken ? (
-    <div className="home">
-      <Navbar />
-      <PracticianListModal />
-    </div>
-  ) : (
-    <>Nothing</>
+  return (
+    userInfo.role === "admin" &&
+    userToken && (
+      <div className="home">
+        <Navbar />
+        <PracticianListModal />
+      </div>
+    )
   );
 }

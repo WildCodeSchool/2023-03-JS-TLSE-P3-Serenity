@@ -178,7 +178,7 @@ export default function Authentication() {
       <form onSubmit={handleSubmit} className="connection">
         <div className="connection-input">{authenticationType()}</div>
         <div className="password-input">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Mot de passe</label>
           <div className="password-input-and-show">
             <input
               name="password"
