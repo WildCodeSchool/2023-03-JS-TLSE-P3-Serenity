@@ -48,7 +48,7 @@ export default function EspaceAdmin() {
     userInfo.role === "admin" && (
       <div className="home">
         <Navbar />
-        {CurrentModaleAdmin}
+        <div className="modal-container">{CurrentModaleAdmin}</div>
       </div>
     )
   );

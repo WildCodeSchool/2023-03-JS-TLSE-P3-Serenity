@@ -1,14 +1,4 @@
-.form-list-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  height: 100vh;
-  width: 80vw;
-  padding-right: 2rem;
-  background-color: #242731;
-
-  .form-list {
+.form-list {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -90,4 +80,3 @@
       }
     }
   }
-}

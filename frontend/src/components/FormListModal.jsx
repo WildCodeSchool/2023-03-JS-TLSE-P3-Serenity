@@ -4,11 +4,6 @@ import "../styles/FormListModal.scss";
 
 function FormListModal() {
   const [forms, setForms] = useState([]);
-  // const [selectedForm, setSelectedForm] = useState(null);
-
-  // const handleTrClick = (form) => {
-  //   setSelectedForm(form);
-  // };
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/admins/forms`)
@@ -40,40 +35,35 @@ function FormListModal() {
       });
   }, []);
   return (
-    <div className="form-list-container">
-      <div className="form-list">
-        <div className="form-list-header">
-          <button type="button" className="delete-button">
-            <i className="fi fi-rr-trash" />
-          </button>
-        </div>
-        <div className="form-list-body">
-          <table className="form-list-table">
-            <thead className="form-list-table-header">
-              <tr>
-                <th>Qui?</th>
-                <th>Pourquoi?</th>
-                <th>Requête</th>
-                <th>Lu</th>
-                <th>Fait</th>
+    <div className="form-list">
+      <div className="form-list-header">
+        <button type="button" className="delete-button">
+          <i className="fi fi-rr-trash" />
+        </button>
+      </div>
+      <div className="form-list-body">
+        <table className="form-list-table">
+          <thead className="form-list-table-header">
+            <tr>
+              <th>Qui?</th>
+              <th>Pourquoi?</th>
+              <th>Requête</th>
+              <th>Lu</th>
+              <th>Fait</th>
+            </tr>
+          </thead>
+          <tbody className="form-list-table-body">
+            {forms.map((form) => (
+              <tr key={form.id}>
+                <td>{form.user_type}</td>
+                <td>{form.request_type}</td>
+                <td>{form.request}</td>
+                <td>{form.is_read}</td>
+                <td>{form.is_done}</td>
               </tr>
-            </thead>
-            <tbody className="form-list-table-body">
-              {forms.map((form) => (
-                <tr
-                  key={form.id}
-                  // onClick={() => handleTrClick(form)}
-                >
-                  <td>{form.user_type}</td>
-                  <td>{form.request_type}</td>
-                  <td>{form.request}</td>
-                  <td>{form.is_read}</td>
-                  <td>{form.is_done}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
