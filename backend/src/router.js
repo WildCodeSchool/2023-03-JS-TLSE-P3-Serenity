@@ -16,7 +16,12 @@ const {
 
 router.post("/admins/login", admins.authenticationCheck, verifyPassword);
 
-router.get("/admins/practicians/:id", practicianControllers.getPracticianById);
+router.get(
+  "/admins/practicians/:id",
+  verifyToken,
+  verifyAdminRole,
+  practicianControllers.getPracticianById
+);
 
 router.put(
   "/admins/practicians/:id",
