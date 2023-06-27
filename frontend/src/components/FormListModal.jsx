@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import "../styles/PracticianListModal.scss";
+import "../styles/FormListModal.scss";
 
 function FormListModal() {
   const [forms, setForms] = useState([]);
@@ -40,16 +40,16 @@ function FormListModal() {
       });
   }, []);
   return (
-    <div className="practician-list-container">
-      <div className="practician-list">
-        <div className="practician-list-header">
+    <div className="form-list-container">
+      <div className="form-list">
+        <div className="form-list-header">
           <button type="button" className="delete-button">
             <i className="fi fi-rr-trash" />
           </button>
         </div>
-        <div className="practician-list-body">
-          <table className="practician-list-table">
-            <thead className="practician-list-table-header">
+        <div className="form-list-body">
+          <table className="form-list-table">
+            <thead className="form-list-table-header">
               <tr>
                 <th>Qui?</th>
                 <th>Pourquoi?</th>
@@ -58,7 +58,7 @@ function FormListModal() {
                 <th>Fait</th>
               </tr>
             </thead>
-            <tbody className="practician-list-table-body">
+            <tbody className="form-list-table-body">
               {forms.map((form) => (
                 <tr
                   key={form.id}
