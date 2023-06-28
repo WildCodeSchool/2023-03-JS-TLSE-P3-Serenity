@@ -133,27 +133,30 @@ function navbar() {
             isMenuOpen ? "links burger-visible" : "links burger-invisible"
           }
         >
-          {navbarLinks
-            .filter(
-              (link) => link.role === `${userInfo.role}` || link.role === "all"
-            )
-            .map((link) => (
-              <li key={link.label} className="list-item-navbar">
-                <button
-                  className={link.className}
-                  type="button"
-                  onClick={link.action}
-                >
-                  <div className="button-content">
-                    <i
-                      alt={link.label}
-                      className={`fi fi-rr-${link.icon} link-icon`}
-                    />
-                    {link.label}
-                  </div>
-                </button>
-              </li>
-            ))}
+          <li className="list-item-navbar">
+            {navbarLinks
+              .filter(
+                (link) =>
+                  link.role === `${userInfo.role}` || link.role === "all"
+              )
+              .map((link) => (
+                <li key={link.label} className="list-navbar">
+                  <button
+                    className={link.className}
+                    type="button"
+                    onClick={link.action}
+                  >
+                    <div className="button-content">
+                      <i
+                        alt={link.label}
+                        className={`fi fi-rr-${link.icon} link-icon`}
+                      />
+                      {link.label}
+                    </div>
+                  </button>
+                </li>
+              ))}
+          </li>
           <li className="list-item-navbar logout">
             <button
               className="nav-serenity"
