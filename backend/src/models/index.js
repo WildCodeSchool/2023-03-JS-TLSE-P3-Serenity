@@ -48,6 +48,11 @@ const RessourceManager = require("./RessourceManager");
 
 models.ressource = new RessourceManager();
 models.ressource.setDatabase(pool);
+
+const FormManager = require("./FormManager");
+
+models.form = new FormManager();
+models.form.setDatabase(pool);
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 
