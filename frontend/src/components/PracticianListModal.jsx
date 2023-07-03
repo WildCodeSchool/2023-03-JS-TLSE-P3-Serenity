@@ -1,12 +1,80 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "../styles/PracticianListModal.scss";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
+import Buttonadd from "./Buttonadd";
+import StateContext from "../contexts/StateContext";
+import DeleteButton from "../DeleteButton";
 
 function PracticianListModal() {
   const [practicians, setPracticians] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [selectedPracticians, setSelectedPracticians] = useState([]);
 
+  const [selectedPractician, setSelectedPractician] = useState(null);
+  const {
+    showSuccessMessageModification,
+    setShowSuccessMessageModification,
+    showSuccessMessageAdd,
+    setShowSuccessMessageAdd,
+  } = useContext(StateContext);
+
+  const [modalInputs, setModalInputs] = useState({
+    firstname: "",
+    lastname: "",
+    mail: "",
+    adeli_number: "",
+    administrator_id: "",
+  });
+  // gestion of modal
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    setShow(false);
+    setShowSuccessMessageModification(false);
+  };
+
+  const handleTrClick = (practician) => {
+    setSelectedPractician(practician);
+    setModalInputs(practician);
+    handleShow(true);
+    setShowSuccessMessageAdd(false);
+  };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setModalInputs((prevModalInputs) => ({
+      ...prevModalInputs,
+      [name]: value,
+    }));
+  };
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    if (selectedPractician) {
+      axios
+        .put(
+          `${import.meta.env.VITE_BACKEND_URL}/admins/practicians/${
+            selectedPractician.id
+          }`,
+          modalInputs
+        )
+        .then((response) => {
+          // Update practitioner data in the state
+          const updatedPracticians = practicians.map((practician) => {
+            if (practician.id === selectedPractician.id) {
+              return response.data;
+            }
+            return practician;
+          });
+          setPracticians(updatedPracticians);
+          setShowSuccessMessageModification(true);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians`)
@@ -45,38 +113,13 @@ function PracticianListModal() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
-
+  }, [showSuccessMessageModification, showSuccessMessageAdd]);
   const handleCheckboxChange = (practicianId) => {
     setSelectedPracticians((prevSelectedPracticians) => {
       if (prevSelectedPracticians.includes(practicianId)) {
         return prevSelectedPracticians.filter((id) => id !== practicianId);
       }
       return [...prevSelectedPracticians, practicianId];
-    });
-  };
-
-  const handleDeleteButtonClick = () => {
-    selectedPracticians.forEach((practicianId) => {
-      axios
-        .delete(
-          `${
-            import.meta.env.VITE_BACKEND_URL
-          }/admins/practicians/${practicianId}`
-        )
-        .then((response) => {
-          console.info(response);
-          const updatedPracticians = practicians.filter(
-            (practician) => practician.id !== practicianId
-          );
-          setPracticians(updatedPracticians);
-        })
-        .catch((error) => {
-          console.error(
-            `Error deleting practician with ID ${practicianId}:`,
-            error
-          );
-        });
     });
   };
 
@@ -91,13 +134,7 @@ function PracticianListModal() {
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
-          <button
-            type="button"
-            className="delete-button"
-            onClick={handleDeleteButtonClick}
-          >
-            <i className="fi fi-rr-trash" />
-          </button>
+          <DeleteButton selectedPracticians={selectedPracticians} />
         </div>
         <div className="practician-list-body">
           <table className="practician-list-table">
@@ -124,13 +161,18 @@ function PracticianListModal() {
             </thead>
             <tbody className="practician-list-table-body">
               {practicians
-                .filter((practician) =>
-                  practician.lastname
-                    .toLowerCase()
-                    .includes(searchValue.toLowerCase())
+                .filter(
+                  (practician) =>
+                    practician.lastname &&
+                    practician.lastname
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase())
                 )
                 .map((practician) => (
-                  <tr key={practician.id}>
+                  <tr
+                    key={practician.id}
+                    onClick={() => handleTrClick(practician)}
+                  >
                     <td>
                       <input
                         type="checkbox"
@@ -153,10 +195,99 @@ function PracticianListModal() {
             </tbody>
           </table>
         </div>
+        <Modal
+          show={show}
+          onHide={handleClose}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Modifier un praticien</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form onSubmit={handleFormSubmit} encType="multipart/form-data">
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Prénom</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="firstname"
+                  defaultValue={modalInputs.firstname}
+                  autoFocus
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput2"
+              >
+                <Form.Label>Nom</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="lastname"
+                  defaultValue={modalInputs.lastname}
+                  autoFocus
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput3"
+              >
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="mail"
+                  defaultValue={modalInputs.mail}
+                  autoFocus
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput4"
+              >
+                <Form.Label>Numero ADELI</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="adeli_number"
+                  defaultValue={modalInputs.adeli_number}
+                  autoFocus
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <input
+                type="hidden"
+                name="administrator_id"
+                defaultValue={modalInputs.administrator_id}
+                onChange={handleInputChange}
+              />
+              <input
+                type="hidden"
+                name="password"
+                defaultValue={modalInputs.password}
+                onChange={handleInputChange}
+              />
+              <Modal.Footer>
+                {showSuccessMessageModification && (
+                  <span className="success-message">
+                    Modification effectuée !
+                  </span>
+                )}
+                <Button variant="danger" onClick={handleClose}>
+                  Annuler
+                </Button>
+                <Button type="submit" variant="primary">
+                  Modifier
+                </Button>
+              </Modal.Footer>
+            </Form>
+          </Modal.Body>
+        </Modal>
         <div className="practician-list-footer">
-          <button type="button" className="add-practician">
-            <p>Nouveau practicien</p>
-          </button>
+          <Buttonadd />
         </div>
       </div>
     </div>
