@@ -43,54 +43,6 @@ router.get(
   practicianControllers.getListOfAllPracticians
 );
 
-router.get("/admins/practicians/:id", practicianControllers.getPracticianById);
-router.put("/admins/practicians/:id", practicianControllers.updatePractician);
-router.delete(
-  "/admins/practicians/:id",
-  practicianControllers.deletePractician
-);
-router.get(
-  "/admins/practicians/",
-  practicianControllers.getListOfAllPracticians
-);
-router.get(
-  "/admins/practicians/countintervention/:id",
-  verifyToken,
-  verifyAdminRole,
-  interventionCountController.getInterventionCount
-);
-router.get(
-  "/admins/practicians/countressource/:id",
-  ressourceCountController.getRessourceCount
-);
-router.post("/admins/login", admins.authenticationCheck, verifyPassword);
-
-router.get(
-  "/admins/practicians/:id",
-  verifyToken,
-  verifyAdminRole,
-  practicianControllers.getPracticianById
-);
-
-router.put(
-  "/admins/practicians/:id",
-  verifyToken,
-  verifyAdminRole,
-  practicianControllers.updatePractician
-);
-router.delete(
-  "/admins/practicians/:id",
-  verifyToken,
-  verifyAdminRole,
-  practicianControllers.deletePractician
-);
-router.get(
-  "/admins/practicians/",
-  verifyToken,
-  verifyAdminRole,
-  practicianControllers.getListOfAllPracticians
-);
-
 router.get(
   "/admins/practicians/countintervention/:id",
   verifyToken,
@@ -127,7 +79,5 @@ router.post("/admins/forms/", formControllers.AddForm);
 router.put("/admins/forms/:id", formControllers.updateForm);
 router.delete("/admins/forms/:id", formControllers.deleteForm);
 router.get("/admins/forms/countform/:id", formControllers.getFormCount);
-
-router.post("/admins/practicians/", practicianControllers.AddPractician);
 
 module.exports = router;
