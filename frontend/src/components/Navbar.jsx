@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 import "../styles/Navbar.scss";
 import avatar from "../assets/avatar.svg";
 import StateContext from "../contexts/StateContext";
+import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function navbar() {
   const { linkToActive, setLinkToActive, isMenuOpen, setIsMenuOpen } =
     useContext(StateContext);
+  const { userInfo } = useContext(AuthFunctionContext);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -132,7 +134,9 @@ function navbar() {
           }
         >
           {navbarLinks
-            .filter((link) => link.role === "admin" || link.role === "all")
+            .filter(
+              (link) => link.role === `${userInfo.role}` || link.role === "all"
+            )
             .map((link) => (
               <li key={link.label} className="list-item-navbar">
                 <button
