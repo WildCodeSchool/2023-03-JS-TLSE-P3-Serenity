@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-import proptypes from "prop-types";
+import axios from "axios";
 
-function DeleteButton({ selectedPracticians }) {
+function DeleteButton({ selectedPracticians, setPracticians, practicians }) {
   const handleDeleteButtonClick = () => {
     selectedPracticians.forEach((practicianId) => {
       axios

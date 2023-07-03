@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Buttonadd from "./Buttonadd";
 import StateContext from "../contexts/StateContext";
-import DeleteButton from "../DeleteButton";
+import DeleteButton from "./DeleteButton";
 
 function PracticianListModal() {
   const [practicians, setPracticians] = useState([]);
@@ -134,7 +134,11 @@ function PracticianListModal() {
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
-          <DeleteButton selectedPracticians={selectedPracticians} />
+          <DeleteButton
+            selectedPracticians={selectedPracticians}
+            practicians={practicians}
+            setPracticians={setPracticians}
+          />
         </div>
         <div className="practician-list-body">
           <table className="practician-list-table">
