@@ -1,11 +1,10 @@
 .form-list {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   color: white;
   background-color: #242731;
-  width: 70%;
-  height: 60%;
+  width: 100%;
+  max-height: 70%;
   border-radius: 20px;
   box-shadow: 0 0 1rem #000000;
   .form-list-header {
