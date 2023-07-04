@@ -137,14 +137,6 @@ function PracticianListModal() {
         console.error(error);
       });
   }, [showSuccessMessageModification, showSuccessMessageAdd]);
-  const handleCheckboxChange = (practicianId) => {
-    setSelectedPractician((prevSelectedPracticians) => {
-      if (prevSelectedPracticians.includes(practicianId)) {
-        return prevSelectedPracticians.filter((id) => id !== practicianId);
-      }
-      return [...prevSelectedPracticians, practicianId];
-    });
-  };
 
   return (
     <>
@@ -155,7 +147,7 @@ function PracticianListModal() {
             <input
               className="search-input"
               type="text"
-              placeholder="Search"
+              placeholder="Rechercher un praticien"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
             />
@@ -169,9 +161,6 @@ function PracticianListModal() {
             <table className="practician-list-table">
               <thead className="practician-list-table-header">
                 <tr>
-                  <th>
-                    <input type="checkbox" name="cb" value="0" />
-                  </th>
                   <th>Nom</th>
                   <th>Mail</th>
                   <th>Poste</th>
@@ -202,13 +191,6 @@ function PracticianListModal() {
                       key={practician.id}
                       onClick={() => handleTrClick(practician)}
                     >
-                      <td>
-                        <input
-                          type="checkbox"
-                          value={practician.id}
-                          onChange={() => handleCheckboxChange(practician.id)}
-                        />
-                      </td>
                       <td>
                         {practician.firstname} {practician.lastname}
                       </td>
