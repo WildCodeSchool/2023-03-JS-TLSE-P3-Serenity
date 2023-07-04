@@ -55,7 +55,13 @@ function PracticianListModal() {
           `${import.meta.env.VITE_BACKEND_URL}/admins/practicians/${
             selectedPractician.id
           }`,
-          modalInputs
+          modalInputs,
+          {
+            headers: {
+              Authorization: `Bearer ${userToken}`,
+              Role: `${role}`,
+            },
+          }
         )
         .then((response) => {
           // Update practitioner data in the state

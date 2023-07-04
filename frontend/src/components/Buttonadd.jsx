@@ -5,12 +5,14 @@ import Modal from "react-bootstrap/Modal";
 import "../styles/PracticianListModal.scss";
 import axios from "axios";
 import StateContext from "../contexts/StateContext";
+import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function Buttonadd() {
   // Status for tracking success message display
   const { showSuccessMessageAdd, setShowSuccessMessageAdd, show, setShow } =
     useContext(StateContext);
-
+  const { userToken, userInfo } = useContext(AuthFunctionContext);
+  const { role } = userInfo;
   const handleClose = () => {
     setShow(false);
     setShowSuccessMessageAdd(false);
@@ -24,7 +26,16 @@ function Buttonadd() {
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians/`, formJson)
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}/admins/practicians/`,
+        formJson,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
+      )
       .then(() => {
         // Updates status to indicate successful submission
         setShowSuccessMessageAdd(true); // Displays success message
