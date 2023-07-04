@@ -59,18 +59,6 @@ function ModalUpdate({
               onChange={handleInputChange}
             />
           </Form.Group>
-          <input
-            type="hidden"
-            name="administrator_id"
-            defaultValue={modalInputs.administrator_id}
-            onChange={handleInputChange}
-          />
-          <input
-            type="hidden"
-            name="password"
-            defaultValue={modalInputs.password}
-            onChange={handleInputChange}
-          />
           <Modal.Footer>
             {showSuccessMessageModification && (
               <span className="success-message">Modification effectuée !</span>
@@ -99,9 +87,7 @@ ModalUpdate.propTypes = {
     firstname: PropTypes.string.isRequired,
     lastname: PropTypes.string.isRequired,
     mail: PropTypes.string.isRequired,
-    adeli_number: PropTypes.number.isRequired,
-    administrator_id: PropTypes.number.isRequired,
-    password: PropTypes.string.isRequired,
+    adeli_number: PropTypes.string.isRequired,
   }).isRequired,
   showSuccessMessageModification: PropTypes.bool.isRequired,
 };
