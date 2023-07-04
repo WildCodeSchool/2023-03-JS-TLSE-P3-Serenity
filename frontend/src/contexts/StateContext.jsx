@@ -8,8 +8,9 @@ export default StateContext;
 export function StateProvider({ children }) {
   const [linkToActive, setLinkToActive] = useState("Home");
   const [showSuccessMessageModification, setShowSuccessMessageModification] =
-    useState(false);
+    useState(false); // for tracking success message display
   const [showSuccessMessageAdd, setShowSuccessMessageAdd] = useState(false);
+  const [show, setShow] = useState(false); // Display modal
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentActiveLink, setCurrentActiveLink] = useState("");
@@ -26,12 +27,15 @@ export function StateProvider({ children }) {
       setShowSuccessMessageModification,
       showSuccessMessageAdd,
       setShowSuccessMessageAdd,
+      show,
+      setShow,
     }),
     [
       linkToActive,
       isMenuOpen,
       showSuccessMessageModification,
       showSuccessMessageAdd,
+      show,
     ]
   );
   return (
