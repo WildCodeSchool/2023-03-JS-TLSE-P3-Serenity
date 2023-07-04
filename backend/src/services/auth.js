@@ -47,7 +47,6 @@ const verifyPassword = (req, res) => {
 const verifyToken = (req, res, next) => {
   try {
     const authorizationHeader = req.get("Authorization");
-
     if (authorizationHeader == null) {
       throw new Error("Authorization header is missing");
     }
@@ -73,9 +72,20 @@ const verifyAdminRole = (req, res, next) => {
   }
 };
 
+const checkId = (req, res, next) => {
+  const id = parseInt(req.params.id, 10);
+  const payload = req.payload.sub;
+  if (id === payload) {
+    next();
+  } else {
+    res.status(403).send("Forbidden");
+  }
+};
+
 module.exports = {
   hashPassword,
   verifyPassword,
   verifyToken,
   verifyAdminRole,
+  checkId,
 };

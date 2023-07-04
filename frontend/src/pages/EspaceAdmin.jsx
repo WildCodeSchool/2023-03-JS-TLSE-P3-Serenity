@@ -6,6 +6,7 @@ import FormListModal from "../components/FormListModal";
 import "../styles/EspaceAdmin.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
+import AccountAdminModal from "../components/AccountAdminModal";
 
 export default function EspaceAdmin() {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ export default function EspaceAdmin() {
       CurrentModaleAdmin = <PracticianListModal />;
       break;
     case "Mon Compte":
+      CurrentModaleAdmin = <AccountAdminModal />;
       break;
     case "Formulaires":
       CurrentModaleAdmin = <FormListModal />;
