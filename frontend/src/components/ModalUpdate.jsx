@@ -1,10 +1,8 @@
-// import { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import "../styles/PracticianListModal.scss";
-// import StateContext from "../contexts/StateContext";
 
 function ModalUpdate({
   show,
