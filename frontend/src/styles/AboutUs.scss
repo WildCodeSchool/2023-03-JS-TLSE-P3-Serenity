@@ -1,0 +1,53 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100vh;
+  width: 80vw;
+  padding-left: 2rem;
+  background-color: #242731;
+
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    background-color: #242731;
+    width: 70%;
+    height: 60px;
+    border-radius: 20px;
+    box-shadow: 0 0 1rem #000000;
+
+    a {
+      color: #8f8f97;
+      text-decoration: none;
+      margin: 1rem;
+      cursor: pointer;
+
+      &:hover,
+      &.active {
+        color: white;
+      }
+    }
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: #242731;
+    width: 70%;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 20px;
+    box-shadow: 0 0 1rem #000000;
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #8f8f97;
+    }
+  }
+}

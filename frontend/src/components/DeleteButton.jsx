@@ -1,15 +1,24 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
+import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function DeleteButton({ selectedPracticians, setPracticians, practicians }) {
+  const { userToken, userInfo } = useContext(AuthFunctionContext);
+  const { role } = userInfo;
   const handleDeleteButtonClick = () => {
     selectedPracticians.forEach((practicianId) => {
       axios
         .delete(
           `${
             import.meta.env.VITE_BACKEND_URL
-          }/admins/practicians/${practicianId}`
+          }/admins/practicians/${practicianId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${userToken}`,
+              Role: `${role}`,
+            },
+          }
         )
         .then((response) => {
           console.info(response);

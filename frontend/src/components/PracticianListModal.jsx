@@ -14,7 +14,7 @@ function PracticianListModal() {
   const [searchValue, setSearchValue] = useState("");
   const { userToken, userInfo } = useContext(AuthFunctionContext);
   const { role } = userInfo;
-  const [selectedPractician, setSelectedPractician] = useState(null);
+  const [selectedPractician, setSelectedPractician] = useState([]);
   const {
     showSuccessMessageModification,
     setShowSuccessMessageModification,
@@ -38,7 +38,7 @@ function PracticianListModal() {
   };
 
   const handleTrClick = (practician) => {
-    setSelectedPractician(practician);
+    setSelectedPractician([practician]);
     setModalInputs(practician);
     handleShow(true);
     setShowSuccessMessageAdd(false);
@@ -153,7 +153,7 @@ function PracticianListModal() {
             onChange={(e) => setSearchValue(e.target.value)}
           />
           <DeleteButton
-            selectedPractician={selectedPractician}
+            selectedPracticians={selectedPractician}
             practicians={practicians}
             setPracticians={setPracticians}
           />

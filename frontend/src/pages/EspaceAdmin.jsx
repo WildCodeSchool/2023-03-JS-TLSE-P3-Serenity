@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import PracticianListModal from "../components/PracticianListModal";
 import FormListModal from "../components/FormListModal";
+import AboutUs from "../components/AboutUs";
 import "../styles/EspaceAdmin.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
@@ -39,6 +40,7 @@ export default function EspaceAdmin() {
     case "Stats":
       break;
     case "A propos":
+      CurrentModaleAdmin = <AboutUs />;
       break;
     default:
       CurrentModaleAdmin = <PracticianListModal />;

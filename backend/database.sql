@@ -157,7 +157,7 @@ CREATE TABLE
         `practician_id` INT NOT NULL,
         `theme_ressource_id` INT NOT NULL,
         PRIMARY KEY (`id`),
-        CONSTRAINT `fk_ressource_practician` FOREIGN KEY (`practician_id`) REFERENCES `serenity`.`practician` (`id`),
+        CONSTRAINT `fk_ressource_practician` FOREIGN KEY (`practician_id`) REFERENCES `serenity`.`practician` (`id`) ON DELETE CASCADE,
         CONSTRAINT `fk_ressource_theme_ressource` FOREIGN KEY (`theme_ressource_id`) REFERENCES `serenity`.`theme_ressource` (`id`)
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
