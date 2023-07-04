@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "../styles/PracticianListModal.scss";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
 import Buttonadd from "./Buttonadd";
 import StateContext from "../contexts/StateContext";
+import ModalUpdate from "./ModalUpdate";
 import DeleteButton from "./DeleteButton";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
+import HeaderLocation from "./HeaderLocation";
 
 function PracticianListModal() {
   const [practicians, setPracticians] = useState([]);
@@ -58,7 +57,13 @@ function PracticianListModal() {
           `${import.meta.env.VITE_BACKEND_URL}/admins/practicians/${
             selectedPractician.id
           }`,
-          modalInputs
+          modalInputs,
+          {
+            headers: {
+              Authorization: `Bearer ${userToken}`,
+              Role: `${role}`,
+            },
+          }
         )
         .then((response) => {
           // Update practitioner data in the state
@@ -142,175 +147,96 @@ function PracticianListModal() {
   };
 
   return (
-    <div className="practician-list-container">
-      <div className="practician-list">
-        <div className="practician-list-header">
-          <input
-            className="search-input"
-            type="text"
-            placeholder="Search"
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
+    <>
+      <HeaderLocation />
+      <div className="practician-list-container">
+        <div className="practician-list">
+          <div className="practician-list-header">
+            <input
+              className="search-input"
+              type="text"
+              placeholder="Search"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <DeleteButton
+              selectedPracticians={selectedPractician}
+              practicians={practicians}
+              setPracticians={setPracticians}
+            />
+          </div>
+          <div className="practician-list-body">
+            <table className="practician-list-table">
+              <thead className="practician-list-table-header">
+                <tr>
+                  <th>
+                    <input type="checkbox" name="cb" value="0" />
+                  </th>
+                  <th>Nom</th>
+                  <th>Mail</th>
+                  <th>Poste</th>
+                  <th>Téléphone</th>
+                  <th>
+                    Nombre
+                    <br />
+                    Interventions
+                  </th>
+                  <th>
+                    Nombre
+                    <br />
+                    Ressources
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="practician-list-table-body">
+                {practicians
+                  .filter(
+                    (practician) =>
+                      practician.lastname &&
+                      practician.lastname
+                        .toLowerCase()
+                        .includes(searchValue.toLowerCase())
+                  )
+                  .map((practician) => (
+                    <tr
+                      key={practician.id}
+                      onClick={() => handleTrClick(practician)}
+                    >
+                      <td>
+                        <input
+                          type="checkbox"
+                          value={practician.id}
+                          onChange={() => handleCheckboxChange(practician.id)}
+                        />
+                      </td>
+                      <td>
+                        {practician.firstname} {practician.lastname}
+                      </td>
+                      <td>{practician.mail}</td>
+                      <td>{practician.speciality}</td>
+                      <td>{practician.phone}</td>
+                      <td>{practician.countIntervention}</td>
+                      <td>{practician.countRessource}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+
+          <ModalUpdate
+            show={show}
+            handleClose={handleClose}
+            handleFormSubmit={handleFormSubmit}
+            handleInputChange={handleInputChange}
+            modalInputs={modalInputs}
+            showSuccessMessageModification={showSuccessMessageModification}
           />
-          <DeleteButton
-            selectedPracticians={selectedPractician}
-            practicians={practicians}
-            setPracticians={setPracticians}
-          />
-        </div>
-        <div className="practician-list-body">
-          <table className="practician-list-table">
-            <thead className="practician-list-table-header">
-              <tr>
-                <th>
-                  <input type="checkbox" name="cb" value="0" />
-                </th>
-                <th>Nom</th>
-                <th>Mail</th>
-                <th>Poste</th>
-                <th>Téléphone</th>
-                <th>
-                  Nombre
-                  <br />
-                  Interventions
-                </th>
-                <th>
-                  Nombre
-                  <br />
-                  Ressources
-                </th>
-              </tr>
-            </thead>
-            <tbody className="practician-list-table-body">
-              {practicians
-                .filter(
-                  (practician) =>
-                    practician.lastname &&
-                    practician.lastname
-                      .toLowerCase()
-                      .includes(searchValue.toLowerCase())
-                )
-                .map((practician) => (
-                  <tr
-                    key={practician.id}
-                    onClick={() => handleTrClick(practician)}
-                  >
-                    <td>
-                      <input
-                        type="checkbox"
-                        value={practician.id}
-                        onChange={() => handleCheckboxChange(practician.id)}
-                      />
-                    </td>
-                    <td>
-                      {practician.firstname} {practician.lastname}
-                    </td>
-                    <td>{practician.mail}</td>
-                    <td>{practician.speciality}</td>
-                    <td>{practician.phone}</td>
-                    <td>{practician.countIntervention}</td>
-                    <td>{practician.countRessource}</td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </div>
-        <Modal
-          show={show}
-          onHide={handleClose}
-          backdrop="static"
-          keyboard={false}
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Modifier un praticien</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form onSubmit={handleFormSubmit} encType="multipart/form-data">
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Prénom</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="firstname"
-                  defaultValue={modalInputs.firstname}
-                  autoFocus
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput2"
-              >
-                <Form.Label>Nom</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="lastname"
-                  defaultValue={modalInputs.lastname}
-                  autoFocus
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput3"
-              >
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="mail"
-                  defaultValue={modalInputs.mail}
-                  autoFocus
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput4"
-              >
-                <Form.Label>Numero ADELI</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="adeli_number"
-                  defaultValue={modalInputs.adeli_number}
-                  autoFocus
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-              <input
-                type="hidden"
-                name="administrator_id"
-                defaultValue={modalInputs.administrator_id}
-                onChange={handleInputChange}
-              />
-              <input
-                type="hidden"
-                name="password"
-                defaultValue={modalInputs.password}
-                onChange={handleInputChange}
-              />
-              <Modal.Footer>
-                {showSuccessMessageModification && (
-                  <span className="success-message">
-                    Modification effectuée !
-                  </span>
-                )}
-                <Button variant="danger" onClick={handleClose}>
-                  Annuler
-                </Button>
-                <Button type="submit" variant="primary">
-                  Modifier
-                </Button>
-              </Modal.Footer>
-            </Form>
-          </Modal.Body>
-        </Modal>
-        <div className="practician-list-footer">
-          <Buttonadd />
+          <div className="practician-list-footer">
+            <Buttonadd />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
