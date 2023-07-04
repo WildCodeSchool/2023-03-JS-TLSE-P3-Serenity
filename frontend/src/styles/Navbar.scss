@@ -39,8 +39,6 @@
   flex: auto;
   align-items: center;
   margin-top: 20%;
-  // height: 90%;
-  // gap: 3%;
   padding-top: 5%;
   justify-content: space-between;
   
@@ -54,6 +52,10 @@
   .logout {
     margin: 4%;
   }
+}
+
+.list-item-navbar {
+  width: 90%;
 }
 
 

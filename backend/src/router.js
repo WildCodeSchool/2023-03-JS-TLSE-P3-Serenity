@@ -23,7 +23,6 @@ router.get(
   verifyAdminRole,
   practicianControllers.getPracticianById
 );
-
 router.put(
   "/admins/practicians/:id",
   verifyToken,

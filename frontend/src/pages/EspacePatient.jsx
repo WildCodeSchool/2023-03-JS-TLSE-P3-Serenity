@@ -46,7 +46,7 @@ export default function EspaceAdmin() {
       break;
   }
   return (
-    userInfo.role === "admin" &&
+    userInfo.role === "patient" &&
     userToken && (
       <div className="home">
         <Navbar />

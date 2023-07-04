@@ -3,11 +3,9 @@
   
   .modal-container {
     display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  height: 100vh;
-  width: 80vw;
-  padding-right: 2rem;
+    flex-direction: column;
+    padding: 0 2rem;
+    height: 100vh;
+    width: 80vw;
   }
 }

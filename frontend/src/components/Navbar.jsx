@@ -133,7 +133,7 @@ function navbar() {
             isMenuOpen ? "links burger-visible" : "links burger-invisible"
           }
         >
-          <li className="list-item-navbar">
+          <div className="list-item-navbar">
             {navbarLinks
               .filter(
                 (link) =>
@@ -156,8 +156,8 @@ function navbar() {
                   </button>
                 </li>
               ))}
-          </li>
-          <li className="list-item-navbar logout">
+          </div>
+          <div className="list-item-navbar logout">
             <button
               className="nav-serenity"
               alt="Déconnexion"
@@ -171,7 +171,7 @@ function navbar() {
                 Déconnexion
               </div>
             </button>
-          </li>
+          </div>
         </ul>
       </div>
     </div>
