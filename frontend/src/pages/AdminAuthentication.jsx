@@ -7,7 +7,7 @@ function AdminAuthentication() {
     <div className="authentication-container">
       <h1 className="title-connection-admin">
         <p>Connectez vous à</p>
-        <p>votre compte adminitrateur</p>
+        <p>votre compte administrateur</p>
       </h1>
       <div className="auth-admin-practician">
         <Authentication />

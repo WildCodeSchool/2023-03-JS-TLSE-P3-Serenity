@@ -1,14 +1,4 @@
-.practician-list-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  height: 100vh;
-  width: 80vw;
-  padding-right: 2rem;
-  background-color: #242731;
-
-  .practician-list {
+.form-list {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -18,20 +8,9 @@
     height: 60%;
     border-radius: 20px;
     box-shadow: 0 0 1rem #000000;
-    .practician-list-header {
+    .form-list-header {
       display: flex;
       justify-content: space-between;
-      .search-input {
-        display: flex;
-        padding-left: 0.5rem;
-        background-color: #8f8f9720;
-        height: 2.5rem;
-        width: 35%;
-        margin: 1rem;
-        border-radius: 10px;
-        color: #8f8f97;
-        box-shadow: 0 0 0.5rem #00000075;
-      }
       .delete-button {
         display: flex;
         background-color: #8f8f9720;
@@ -48,11 +27,11 @@
         }
       }
     }
-    .practician-list-body {
+    .form-list-body {
       display: flex;
-      .practician-list-table {
+      .form-list-table {
         width: 100%;
-        .practician-list-table-header {
+        .form-list-table-header {
           display: flex;
           font-size: 0.7rem;
           color: #b2b3bd;
@@ -66,7 +45,7 @@
             border-bottom: #8f8f973a solid 0.5px;
           }
         }
-        .practician-list-table-body {
+        .form-list-table-body {
           display: flex;
           flex-direction: column;
           font-size: 0.7rem;
@@ -83,12 +62,12 @@
         }
       }
     }
-    .practician-list-footer {
+    .form-list-footer {
       display: flex;
       justify-content: center;
       margin-bottom: 1rem;
       font-size: 0.8rem;
-      .add-practician {
+      .add-form {
         align-items: center;
         justify-content: center;
         border-radius: 10px;
@@ -101,4 +80,3 @@
       }
     }
   }
-}

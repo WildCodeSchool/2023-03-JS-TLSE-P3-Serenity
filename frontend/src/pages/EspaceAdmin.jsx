@@ -2,12 +2,15 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import PracticianListModal from "../components/PracticianListModal";
+import FormListModal from "../components/FormListModal";
 import "../styles/EspaceAdmin.scss";
+import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 export default function EspaceAdmin() {
   const navigate = useNavigate();
-  const { userInfo } = useContext(AuthFunctionContext);
+  const { linkToActive } = useContext(StateContext);
+  const { userInfo, userToken } = useContext(AuthFunctionContext);
   useEffect(() => {
     switch (userInfo.role) {
       case "admin":
@@ -23,11 +26,30 @@ export default function EspaceAdmin() {
         break;
     }
   }, [userInfo]);
+  let CurrentModaleAdmin;
+  switch (linkToActive) {
+    case "home":
+      CurrentModaleAdmin = <PracticianListModal />;
+      break;
+    case "Mon Compte":
+      break;
+    case "Formulaires":
+      CurrentModaleAdmin = <FormListModal />;
+      break;
+    case "Stats":
+      break;
+    case "A propos":
+      break;
+    default:
+      CurrentModaleAdmin = <PracticianListModal />;
+      break;
+  }
   return (
-    userInfo.role === "admin" && (
+    userInfo.role === "admin" &&
+    userToken && (
       <div className="home">
         <Navbar />
-        <PracticianListModal />
+        <div className="modal-container">{CurrentModaleAdmin}</div>
       </div>
     )
   );

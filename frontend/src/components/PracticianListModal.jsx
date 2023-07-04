@@ -4,10 +4,13 @@ import "../styles/PracticianListModal.scss";
 import Buttonadd from "./Buttonadd";
 import StateContext from "../contexts/StateContext";
 import ModalUpdate from "./ModalUpdate";
+import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function PracticianListModal() {
   const [practicians, setPracticians] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const { userToken, userInfo } = useContext(AuthFunctionContext);
+  const { role } = userInfo;
   const [selectedPractician, setSelectedPractician] = useState(null);
   const {
     showSuccessMessageModification,
@@ -72,19 +75,36 @@ function PracticianListModal() {
   };
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians`, {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+          Role: `${role}`,
+        },
+      })
       .then((response) => {
         const promises = response.data.map((practician) =>
           Promise.all([
             axios.get(
               `${
                 import.meta.env.VITE_BACKEND_URL
-              }/admins/practicians/countintervention/${practician.id}`
+              }/admins/practicians/countintervention/${practician.id}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${userToken}`,
+                  Role: `${role}`,
+                },
+              }
             ),
             axios.get(
               `${
                 import.meta.env.VITE_BACKEND_URL
-              }/admins/practicians/countressource/${practician.id}`
+              }/admins/practicians/countressource/${practician.id}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${userToken}`,
+                  Role: `${role}`,
+                },
+              }
             ),
           ])
         );

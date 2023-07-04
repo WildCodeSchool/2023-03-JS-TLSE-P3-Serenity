@@ -224,17 +224,10 @@ INSERT INTO
         lastname,
         role
     )
+
 VALUES(
-        SUBSTRING(
-            MD5(RAND())
-            FROM
-                1 FOR 8
-        ),
-        SUBSTRING(
-            MD5(RAND())
-            FROM
-                1 FOR 8
-        ),
+        '12345678',
+        '$argon2id$v=19$m=65536,t=5,p=1$lgQhMd6/YI8RXwZQrt1VMA$oBtHiEp7JSwbC+H8aVkORWC2ycR5fln8a2CrKvPT9pQ',
         '1@1.com',
         'test',
         'test',
