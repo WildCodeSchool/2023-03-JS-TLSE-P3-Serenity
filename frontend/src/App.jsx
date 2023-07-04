@@ -9,6 +9,7 @@ import "./styles/variable.scss";
 import { StateProvider } from "./contexts/StateContext";
 import { AuthFunctionProvider } from "./contexts/AuthFunctionContext";
 import EspaceAdmin from "./pages/EspaceAdmin";
+import EspacePatient from "./pages/EspacePatient";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path="/admin" element={<AdminAuthentication />} />
               <Route path="/login" element={<PatientAuthentication />} />
               <Route path="/espaceadmin" element={<EspaceAdmin />} />
+              <Route path="/espacepatient" element={<EspacePatient />} />
             </Routes>
           </div>
         </Router>

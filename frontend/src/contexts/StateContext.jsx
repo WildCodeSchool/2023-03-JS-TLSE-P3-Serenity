@@ -7,6 +7,7 @@ export default StateContext;
 
 export function StateProvider({ children }) {
   const [linkToActive, setLinkToActive] = useState("Home");
+  const [activeModal, setActiveModal] = useState("");
   const [showSuccessMessageModification, setShowSuccessMessageModification] =
     useState(false);
   const [showSuccessMessageAdd, setShowSuccessMessageAdd] = useState(false);
@@ -26,12 +27,15 @@ export function StateProvider({ children }) {
       setShowSuccessMessageModification,
       showSuccessMessageAdd,
       setShowSuccessMessageAdd,
+      activeModal,
+      setActiveModal,
     }),
     [
       linkToActive,
       isMenuOpen,
       showSuccessMessageModification,
       showSuccessMessageAdd,
+      activeModal,
     ]
   );
   return (

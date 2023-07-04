@@ -7,11 +7,10 @@ import AuthFunctionContext from "../contexts/AuthFunctionContext";
 export default function Authentication() {
   const { setUser, setUserInfo } = useContext(AuthFunctionContext);
   const credentials = window.location.href.split("/").at(-1);
-
   // regex definition for matricule and mail user
   const regexMatricule = /^\d{0,8}$/;
   const regexAdeli = /^\d{0,9}$/;
-  const regexMail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const regexMail = /^$|^[a-zA-Z0-9._%+-@]+$/;
 
   // useState definition
   const [matricule, setMatricule] = useState("");

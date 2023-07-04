@@ -36,8 +36,19 @@
   flex-direction: column;
   align-items: center;
   margin-top: 20%;
-  height: 90%;
-  gap: 3%;
+  padding-top: 5%;
+  justify-content: space-between;
+  
+  .list-item-navbar {
+    width: 90%;
+    
+    .list-navbar{
+      margin-top: 4%;
+    }
+  }
+  .logout {
+    margin: 4%;
+  }
 }
 
 .list-item-navbar {
