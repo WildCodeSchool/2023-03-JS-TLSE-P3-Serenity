@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import React, { useContext } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import PropTypes from "prop-types";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function DeleteButton({ selectedPracticians, setPracticians, practicians }) {
@@ -67,5 +67,28 @@ function DeleteButton({ selectedPracticians, setPracticians, practicians }) {
     </button>
   );
 }
+DeleteButton.propTypes = {
+  selectedPracticians: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      firstname: PropTypes.string,
+      lastname: PropTypes.string,
+      mail: PropTypes.string,
+      adeli_number: PropTypes.string,
+      administrator_id: PropTypes.number,
+    })
+  ).isRequired,
+  setPracticians: PropTypes.func.isRequired,
+  practicians: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      firstname: PropTypes.string,
+      lastname: PropTypes.string,
+      mail: PropTypes.string,
+      adeli_number: PropTypes.string,
+      administrator_id: PropTypes.number,
+    })
+  ).isRequired,
+};
 
 export default DeleteButton;

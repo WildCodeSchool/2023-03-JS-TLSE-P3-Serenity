@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 /* eslint-disable camelcase */
 const models = require("../models");
 
