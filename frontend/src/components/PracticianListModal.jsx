@@ -12,7 +12,7 @@ function PracticianListModal() {
   const [searchValue, setSearchValue] = useState("");
   const { userToken, userInfo } = useContext(AuthFunctionContext);
   const { role } = userInfo;
-  const [selectedPractician, setSelectedPractician] = useState([]);
+  const [selectedPractician, setSelectedPractician] = useState(null);
   const {
     showSuccessMessageModification,
     setShowSuccessMessageModification,
@@ -27,7 +27,7 @@ function PracticianListModal() {
     adeli_number: "",
     administrator_id: "",
   });
-  // gestion of modal
+
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => {
@@ -36,11 +36,12 @@ function PracticianListModal() {
   };
 
   const handleTrClick = (practician) => {
-    setSelectedPractician([practician]);
+    setSelectedPractician(practician);
     setModalInputs(practician);
     handleShow(true);
     setShowSuccessMessageAdd(false);
   };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setModalInputs((prevModalInputs) => ({
@@ -48,6 +49,7 @@ function PracticianListModal() {
       [name]: value,
     }));
   };
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
     if (selectedPractician) {
@@ -65,7 +67,6 @@ function PracticianListModal() {
           }
         )
         .then((response) => {
-          // Update practitioner data in the state
           const updatedPracticians = practicians.map((practician) => {
             if (practician.id === selectedPractician.id) {
               return response.data;
@@ -80,6 +81,7 @@ function PracticianListModal() {
         });
     }
   };
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians`, {
@@ -148,11 +150,6 @@ function PracticianListModal() {
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
-          <DeleteButton
-            selectedPracticians={selectedPractician}
-            practicians={practicians}
-            setPracticians={setPracticians}
-          />
         </div>
         <div className="practician-list-body">
           <table className="practician-list-table">
@@ -196,6 +193,13 @@ function PracticianListModal() {
                     <td>{practician.phone}</td>
                     <td>{practician.countIntervention}</td>
                     <td>{practician.countRessource}</td>
+                    <td>
+                      <DeleteButton
+                        selectedPracticians={[selectedPractician]}
+                        practicians={practicians}
+                        setPracticians={setPracticians}
+                      />
+                    </td>
                   </tr>
                 ))}
             </tbody>

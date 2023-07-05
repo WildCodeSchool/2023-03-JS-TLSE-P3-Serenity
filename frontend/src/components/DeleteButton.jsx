@@ -6,13 +6,14 @@ import AuthFunctionContext from "../contexts/AuthFunctionContext";
 function DeleteButton({ selectedPracticians, setPracticians, practicians }) {
   const { userToken, userInfo } = useContext(AuthFunctionContext);
   const { role } = userInfo;
+
   const handleDeleteButtonClick = () => {
-    selectedPracticians.forEach((practicianId) => {
+    selectedPracticians.forEach((practician) => {
       axios
         .delete(
-          `${
-            import.meta.env.VITE_BACKEND_URL
-          }/admins/practicians/${practicianId}`,
+          `${import.meta.env.VITE_BACKEND_URL}/admins/practicians/${
+            practician.id
+          }`,
           {
             headers: {
               Authorization: `Bearer ${userToken}`,
@@ -23,18 +24,19 @@ function DeleteButton({ selectedPracticians, setPracticians, practicians }) {
         .then((response) => {
           console.info(response);
           const updatedPracticians = practicians.filter(
-            (practician) => practician.id !== practicianId
+            (existingPractician) => existingPractician.id !== practician.id
           );
           setPracticians(updatedPracticians);
         })
         .catch((error) => {
           console.error(
-            `Error deleting practician with ID ${practicianId}:`,
+            `Error deleting practician with ID ${practician.id}:`,
             error
           );
         });
     });
   };
+
   return (
     <button
       type="button"
