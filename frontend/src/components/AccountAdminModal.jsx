@@ -76,10 +76,8 @@ function AccountAdminModal() {
       )
       .then((response) => {
         if (response.status === 204) {
-          setValidationMessagePw(true);
           setModificationDone(true);
         } else {
-          setValidationMessagePw(false);
           setModificationDone(false);
         }
       })
@@ -171,7 +169,9 @@ function AccountAdminModal() {
           <button type="submit" className="button-modification-info-validation">
             <p>Valider modification</p>
           </button>
-          {validationMessageInfo && <p>Informations modifiées</p>}
+          {validationMessageInfo && modificationDone && (
+            <p>Informations modifiées</p>
+          )}
         </form>
 
         <form onSubmit={handleValidatePassword} className="password-form">
