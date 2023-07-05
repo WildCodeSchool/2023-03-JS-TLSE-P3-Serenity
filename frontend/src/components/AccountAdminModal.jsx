@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
+import axios from "axios";
 import "../styles/AccountAdminModal.scss";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function AccountAdminModal() {
-  const { userInfo } = useContext(AuthFunctionContext);
+  const { userInfo, userToken } = useContext(AuthFunctionContext);
   // eslint-disable-next-line camelcase
-  const { firstname, lastname, mail, registration_number } = userInfo;
+  const { firstname, lastname, mail, registration_number, id, role } = userInfo;
   const [firstnameInfo, setFirstnameInfo] = useState(firstname);
   const [lastnameInfo, setLastnameInfo] = useState(lastname);
   const [mailInfo, setMailInfo] = useState(mail);
@@ -21,6 +22,9 @@ function AccountAdminModal() {
   const regexPw =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
   const [messageCheckCharPw, setMessageCheckCharPw] = useState(false);
+  const [validationMessagePw, setValidationMessagePw] = useState("");
+  const [validationMessageInfo, setValidationMessageInfo] = useState("");
+  const [modificationDone, setModificationDone] = useState(false);
 
   const checkPasswordCharacter = (password) => {
     if (regexPw.test(password)) {
@@ -53,16 +57,53 @@ function AccountAdminModal() {
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
+
   const toggleCheckPassword = () => {
     setPasswordCheckShown(!passwordCheckShown);
   };
 
+  const modifyAdmin = (event, dataFromForm) => {
+    axios
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/admins/account/${id}`,
+        dataFromForm,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
+      )
+      .then((response) => {
+        if (response.status === 204) {
+          setValidationMessagePw(true);
+          setModificationDone(true);
+        } else {
+          setValidationMessagePw(false);
+          setModificationDone(false);
+        }
+      })
+      .catch((error) => {
+        console.error(error.message);
+        setModificationDone(false);
+      });
+  };
+
   const handleValidatePassword = (event) => {
     event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    const dataFromForm = Object.fromEntries(formData.entries());
+    const passwordFromForm = { password: dataFromForm.password };
     checkPasswordCharacter(passwordChange);
     if (passwordCharacterVerification) {
-      // input to do in db
       setMessageCheckCharPw(false);
+      modifyAdmin(event, passwordFromForm);
+      if (modificationDone) {
+        setValidationMessagePw(true);
+      } else {
+        setValidationMessagePw(false);
+      }
     } else {
       setMessageCheckCharPw(true);
     }
@@ -70,6 +111,15 @@ function AccountAdminModal() {
 
   const handleValidateInfo = (event) => {
     event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    const dataFromForm = Object.fromEntries(formData.entries());
+    modifyAdmin(event, dataFromForm);
+    if (modificationDone) {
+      setValidationMessageInfo(true);
+    } else {
+      setValidationMessageInfo(false);
+    }
   };
 
   return (
@@ -112,7 +162,7 @@ function AccountAdminModal() {
               <input
                 type="text"
                 value={matriculeInfo}
-                name="matricule"
+                name="registration_number"
                 id="matricule"
                 onChange={(e) => setMatriculeInfo(e.target.value)}
               />
@@ -121,6 +171,7 @@ function AccountAdminModal() {
           <button type="submit" className="button-modification-info-validation">
             <p>Valider modification</p>
           </button>
+          {validationMessageInfo && <p>Informations modifiées</p>}
         </form>
 
         <form onSubmit={handleValidatePassword} className="password-form">
@@ -137,7 +188,6 @@ function AccountAdminModal() {
                   id="password"
                   autoComplete="new-password"
                   onChange={(e) => setPasswordChange(e.target.value)}
-                  onFocus={() => setPasswordChange("")}
                 />
                 <button
                   onClick={togglePassword}
@@ -166,7 +216,6 @@ function AccountAdminModal() {
                   name="passwordCheck"
                   id="passwordCheck"
                   onChange={handlePasswordCheck}
-                  onFocus={() => setPasswordCheckChange("")}
                 />
                 <button
                   onClick={toggleCheckPassword}
@@ -205,6 +254,7 @@ function AccountAdminModal() {
           >
             Valider changement de mot de passe
           </button>
+          {validationMessagePw && <p>Mot de passe modifié</p>}
           {messageCheckCharPw && (
             <p>
               Le mot de passe doit contenir au moins 8 caractères dont au moins

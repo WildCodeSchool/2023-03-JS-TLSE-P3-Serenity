@@ -81,11 +81,18 @@ router.delete("/admins/forms/:id", formControllers.deleteForm);
 router.get("/admins/forms/countform/:id", formControllers.getFormCount);
 
 // route "account"
-router.get(
-  "/account/admin/:id",
+// router.get(
+//   "/admins/account/:id",
+//   verifyToken,
+//   checkId,
+//   admins.getAccountInfoAdminById
+// );
+router.put(
+  "/admins/account/:id",
   verifyToken,
+  hashPassword,
   checkId,
-  admins.getAccountInfoAdminById
+  admins.modifyAdmin
 );
 
 module.exports = router;
