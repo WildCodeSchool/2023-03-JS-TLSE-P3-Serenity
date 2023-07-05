@@ -22,8 +22,8 @@ function FormListModal() {
       <table className="form-list-table">
         <thead className="form-list-table-body">
           <tr>
-            <th>Qui?</th>
-            <th>Pourquoi?</th>
+            <th>Utilisateur</th>
+            <th>Objet</th>
             <th>Requête</th>
             <th>Date</th>
             <th>Lu</th>
