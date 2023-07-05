@@ -29,6 +29,7 @@ CREATE TABLE
         `user_type` VARCHAR(255) NULL DEFAULT NULL,
         `request_type` VARCHAR(255) NULL DEFAULT NULL,
         `request` VARCHAR(1000) NULL DEFAULT NULL,
+        `create_time` DATE NOT NULL,
         `is_read` TINYINT NULL DEFAULT '0',
         `is_done` TINYINT NULL DEFAULT '0',
         PRIMARY KEY (`id`)
@@ -346,6 +347,7 @@ INSERT INTO
         user_type,
         request_type,
         request,
+        create_time,
         is_read,
         is_done
     )
@@ -353,24 +355,28 @@ VALUES (
         "patient",
         "Demande de devis",
         "1Mz4gsU5g2QC6KOOP3dXP9m53151361FkP6Yod8AR",
+        "2023-07-04",
         0,
         0
     ), (
         "patient",
         "Demande de renseignements",
         "V1wsIDEJe3YS9RFTNAkwmjeq2Dyfk7hiJHX91rY9o9926p8XL",
+        "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de renseignements",
         "31LllxPtQ9MyrnKxNvTkqVQamRKo674s72oX",
+        "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de support technique",
         "842402BNlGcpYM9g2P2Vm5SdzaJFe7999q5WfLN7",
+        "2023-07-04",
         0,
         0
     );
