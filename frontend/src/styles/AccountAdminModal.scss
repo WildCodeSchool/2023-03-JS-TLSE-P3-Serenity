@@ -1,0 +1,192 @@
+.container-list-info {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background-color: #242731;
+  width: 100%;
+  max-height: 70%;
+  border-radius: 20px;
+  box-shadow: 0 0 1rem #000000;
+
+  .account-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 1rem;
+
+    .global-info-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .button-modification-info-validation {
+        width: 60%;
+        margin: 0 auto;
+        padding: 10px;
+        border-radius: 5px;
+        min-width: 130px;
+        max-width: 300px;
+        p {
+          width: 100%;
+        }
+      }
+    }
+
+    .global-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 10px 1fr;
+      grid-template-rows: 1fr 20px 1fr;
+      label {
+        width: 100%;
+      }
+      input {
+        width: 100%;
+      }
+      .lastname-input {
+        grid-column: 3;
+        grid-row: 1;
+      }
+      .mail-input {
+        grid-column: 1;
+        grid-row: 3;
+      }
+      .matricule-input {
+        grid-column: 3;
+        grid-row: 3;
+      }
+    }
+
+    .firstname-input,
+    .lastname-input,
+    .mail-input,
+    .matricule-input,
+    .password-input,
+    .password-input-check {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 350px;
+      gap: 8px;
+      margin: 0 auto;
+
+      input {
+        border-radius: 5px;
+      }
+
+      #firstname,
+      #lastname,
+      #mail,
+      #matricule,
+      #password,
+      #passwordCheck {
+        height: 24px;
+        padding: 0 0.5rem;
+      }
+    }
+    .password-input,
+    .password-input-check {
+      width: 100%;
+      label {
+        width: 100%;
+      }
+      input {
+        width: 100%;
+      }
+    }
+
+    .password-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .verified-message {
+        color: red;
+        font-size: 0.9rem;
+        align-self: center;
+      }
+      .verified-message-hidden {
+        display: none;
+      }
+      .password-form-grid {
+        display: grid;
+        grid-template-columns: 1fr 10px 1fr;
+
+        .password-input {
+          justify-content: flex-end;
+
+          .password-input-and-show {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+            position: relative;
+          }
+          .hide-or-show-button {
+            height: 20px;
+            width: 20px;
+            position: absolute;
+            right: 3px;
+            bottom: 0px;
+            background-color: white;
+          }
+
+          #pw-icon-show-hide {
+            font-size: 15px;
+          }
+        }
+
+        .password-input-check {
+          justify-content: flex-end;
+          grid-column: 3;
+
+          .password-check-input-and-show {
+            display: flex;
+            height: 100%;
+            position: relative;
+          }
+          .hide-or-show-button {
+            height: 20px;
+            width: 20px;
+            position: absolute;
+            right: 3px;
+            top: 3px;
+            background-color: white;
+          }
+
+          #pw-icon-show-hide {
+            font-size: 15px;
+          }
+        }
+      }
+      .button-modification-pw-validation {
+        width: 60%;
+        margin: 0 auto;
+        padding: 10px;
+        border-radius: 5px;
+        min-width: 130px;
+        max-width: 300px;
+        p {
+          width: 100%;
+        }
+      }
+    }
+    .disable-button {
+      cursor: not-allowed;
+      background-color: grey;
+    }
+    @media screen and (max-width: 480px) {
+      .password-form {
+        .password-form-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+      }
+      .global-info-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+  }
+}
