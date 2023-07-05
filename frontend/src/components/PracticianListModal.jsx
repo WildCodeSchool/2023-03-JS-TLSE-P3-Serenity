@@ -6,7 +6,6 @@ import StateContext from "../contexts/StateContext";
 import ModalUpdate from "./ModalUpdate";
 import DeleteButton from "./DeleteButton";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
-import HeaderLocation from "./HeaderLocation";
 
 function PracticianListModal() {
   const [practicians, setPracticians] = useState([]);
@@ -139,86 +138,83 @@ function PracticianListModal() {
   }, [showSuccessMessageModification, showSuccessMessageAdd]);
 
   return (
-    <>
-      <HeaderLocation />
-      <div className="practician-list-container">
-        <div className="practician-list">
-          <div className="practician-list-header">
-            <input
-              className="search-input"
-              type="text"
-              placeholder="Rechercher un praticien"
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-            />
-            <DeleteButton
-              selectedPracticians={selectedPractician}
-              practicians={practicians}
-              setPracticians={setPracticians}
-            />
-          </div>
-          <div className="practician-list-body">
-            <table className="practician-list-table">
-              <thead className="practician-list-table-header">
-                <tr>
-                  <th>Nom</th>
-                  <th>Mail</th>
-                  <th>Poste</th>
-                  <th>Téléphone</th>
-                  <th>
-                    Nombre
-                    <br />
-                    Interventions
-                  </th>
-                  <th>
-                    Nombre
-                    <br />
-                    Ressources
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="practician-list-table-body">
-                {practicians
-                  .filter(
-                    (practician) =>
-                      practician.lastname &&
-                      practician.lastname
-                        .toLowerCase()
-                        .includes(searchValue.toLowerCase())
-                  )
-                  .map((practician) => (
-                    <tr
-                      key={practician.id}
-                      onClick={() => handleTrClick(practician)}
-                    >
-                      <td>
-                        {practician.firstname} {practician.lastname}
-                      </td>
-                      <td>{practician.mail}</td>
-                      <td>{practician.speciality}</td>
-                      <td>{practician.phone}</td>
-                      <td>{practician.countIntervention}</td>
-                      <td>{practician.countRessource}</td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
-
-          <ModalUpdate
-            show={show}
-            handleClose={handleClose}
-            handleFormSubmit={handleFormSubmit}
-            handleInputChange={handleInputChange}
-            modalInputs={modalInputs}
-            showSuccessMessageModification={showSuccessMessageModification}
+    <div className="practician-list-container">
+      <div className="practician-list">
+        <div className="practician-list-header">
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Rechercher un praticien"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
           />
-          <div className="practician-list-footer">
-            <Buttonadd />
-          </div>
+          <DeleteButton
+            selectedPracticians={selectedPractician}
+            practicians={practicians}
+            setPracticians={setPracticians}
+          />
+        </div>
+        <div className="practician-list-body">
+          <table className="practician-list-table">
+            <thead className="practician-list-table-header">
+              <tr>
+                <th>Nom</th>
+                <th>Mail</th>
+                <th>Poste</th>
+                <th>Téléphone</th>
+                <th>
+                  Nombre
+                  <br />
+                  Interventions
+                </th>
+                <th>
+                  Nombre
+                  <br />
+                  Ressources
+                </th>
+              </tr>
+            </thead>
+            <tbody className="practician-list-table-body">
+              {practicians
+                .filter(
+                  (practician) =>
+                    practician.lastname &&
+                    practician.lastname
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase())
+                )
+                .map((practician) => (
+                  <tr
+                    key={practician.id}
+                    onClick={() => handleTrClick(practician)}
+                  >
+                    <td>
+                      {practician.firstname} {practician.lastname}
+                    </td>
+                    <td>{practician.mail}</td>
+                    <td>{practician.speciality}</td>
+                    <td>{practician.phone}</td>
+                    <td>{practician.countIntervention}</td>
+                    <td>{practician.countRessource}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+
+        <ModalUpdate
+          show={show}
+          handleClose={handleClose}
+          handleFormSubmit={handleFormSubmit}
+          handleInputChange={handleInputChange}
+          modalInputs={modalInputs}
+          showSuccessMessageModification={showSuccessMessageModification}
+        />
+        <div className="practician-list-footer">
+          <Buttonadd />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

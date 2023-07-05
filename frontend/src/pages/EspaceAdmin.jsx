@@ -7,6 +7,7 @@ import AboutUs from "../components/AboutUs";
 import "../styles/EspaceAdmin.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
+import HeaderLocation from "../components/HeaderLocation";
 
 export default function EspaceAdmin() {
   const navigate = useNavigate();
@@ -52,7 +53,9 @@ export default function EspaceAdmin() {
     userToken && (
       <div className="home">
         <Navbar />
-        <div className="modal-container">{CurrentModaleAdmin}</div>
+        <div className="modal-container">
+          <HeaderLocation /> {CurrentModaleAdmin}
+        </div>
       </div>
     )
   );
