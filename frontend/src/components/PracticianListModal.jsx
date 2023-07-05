@@ -169,6 +169,7 @@ function PracticianListModal() {
                   <br />
                   Ressources
                 </th>
+                <th> </th>
               </tr>
             </thead>
             <tbody className="practician-list-table-body">

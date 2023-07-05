@@ -5,7 +5,7 @@
   height: 20vh;
   padding-top: 2rem;
   gap: 10px;
-  
+
   .header-logo {
     display: flex;
     flex-direction: row;
@@ -17,8 +17,8 @@
 @media (max-width: 480px) {
   .header-location {
     .header-logo {
-      p {        
-      display: none;
+      p {
+        display: none;
       }
     }
     h1 {
