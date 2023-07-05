@@ -23,6 +23,7 @@
     "react-scroll": "^1.8.9",
     "sass": "^1.63.4",
     "sort-by": "^0.0.2",
+    "sweetalert2": "^11.7.12",
     "vite": "^4.0.4"
   },
   "devDependencies": {

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function DeleteButton({ selectedPracticians, setPracticians, practicians }) {
@@ -9,31 +10,50 @@ function DeleteButton({ selectedPracticians, setPracticians, practicians }) {
 
   const handleDeleteButtonClick = () => {
     selectedPracticians.forEach((practician) => {
-      axios
-        .delete(
-          `${import.meta.env.VITE_BACKEND_URL}/admins/practicians/${
-            practician.id
-          }`,
-          {
-            headers: {
-              Authorization: `Bearer ${userToken}`,
-              Role: `${role}`,
-            },
-          }
-        )
-        .then((response) => {
-          console.info(response);
-          const updatedPracticians = practicians.filter(
-            (existingPractician) => existingPractician.id !== practician.id
-          );
-          setPracticians(updatedPracticians);
+      axios.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/admins/practicians/${
+          practician.id
+        }`,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
+      );
+      if (selectedPracticians.length > 0) {
+        Swal.fire({
+          title: "Êtes-vous sûr de vouloir supprimer ce praticien ?",
+          text: "Vous ne pourrez pas annuler cette action !",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Oui, supprimer !",
+          cancelButtonText: "Non, annuler !",
         })
-        .catch((error) => {
-          console.error(
-            `Error deleting practician with ID ${practician.id}:`,
-            error
-          );
-        });
+          .then((response) => {
+            if (response.isConfirmed) {
+              console.info(response);
+              const updatedPracticians = practicians.filter(
+                (existingPractician) => existingPractician.id !== practician.id
+              );
+              setPracticians(updatedPracticians);
+              Swal.fire(
+                "Supprimé !",
+                "Le praticien a été supprimé.",
+                "success"
+              );
+            }
+          })
+
+          .catch((error) => {
+            console.error(
+              `Error deleting practician with ID ${practician.id}:`,
+              error
+            );
+          });
+      }
     });
   };
 

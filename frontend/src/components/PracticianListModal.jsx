@@ -181,10 +181,7 @@ function PracticianListModal() {
                       .includes(searchValue.toLowerCase())
                 )
                 .map((practician) => (
-                  <tr
-                    key={practician.id}
-                    onClick={() => handleTrClick(practician)}
-                  >
+                  <tr key={practician.id}>
                     <td>
                       {practician.firstname} {practician.lastname}
                     </td>
@@ -193,7 +190,14 @@ function PracticianListModal() {
                     <td>{practician.phone}</td>
                     <td>{practician.countIntervention}</td>
                     <td>{practician.countRessource}</td>
-                    <td>
+                    <td className="practician-list-table-buttons">
+                      <button
+                        className="modify-button"
+                        type="button"
+                        onClick={() => handleTrClick(practician)}
+                      >
+                        <i className="fi fi-rr-pencil" />
+                      </button>
                       <DeleteButton
                         selectedPracticians={[selectedPractician]}
                         practicians={practicians}
