@@ -9,3 +9,13 @@
     width: 80vw;
   }
 }
+
+
+@media (max-width: 1024px) {
+  .home {
+    .modal-container {
+      padding: 0;
+      width: 100vw;
+    }
+  }
+}
