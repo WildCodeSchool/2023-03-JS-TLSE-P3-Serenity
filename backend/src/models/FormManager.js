@@ -7,10 +7,11 @@ class FormManager extends AbstractManager {
   }
 
   insert(form) {
-    const { user_type, request_type, request, is_read, is_done } = form;
+    const { user_type, request_type, request, create_time, is_read, is_done } =
+      form;
     return this.database.query(
-      `insert into ${this.table} (user_type,request_type, request, is_read, is_done) values (?, ?, ?, ?, ?)`,
-      [user_type, request_type, request, is_read, is_done]
+      `insert into ${this.table} (user_type,request_type, request, create_time, is_read, is_done) values (?, ?, ?, ?, ?, ?)`,
+      [user_type, request_type, request, create_time, is_read, is_done]
     );
   }
 

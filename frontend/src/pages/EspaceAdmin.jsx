@@ -53,8 +53,10 @@ export default function EspaceAdmin() {
     userToken && (
       <div className="home">
         <Navbar />
+
         <div className="modal-container">
-          <HeaderLocation /> {CurrentModaleAdmin}
+          <HeaderLocation />
+          {CurrentModaleAdmin}
         </div>
       </div>
     )
