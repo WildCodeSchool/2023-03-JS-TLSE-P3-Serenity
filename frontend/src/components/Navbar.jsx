@@ -107,8 +107,9 @@ function navbar() {
     <div className="header-navbar">
       <div className="header-avatar">
         <img src={avatar} alt="avatar" className="admin-avatar" />
-        {/* // Fetch du nom de l'admin */}
-        <span className="admin-name">Nom de l'administrateur</span>
+        <span className="admin-name">
+          {userInfo.firstname} {userInfo.lastname}
+        </span>
       </div>
       <div className="navbar-serenity">
         <button

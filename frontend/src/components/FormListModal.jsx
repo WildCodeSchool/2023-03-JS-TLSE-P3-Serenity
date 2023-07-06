@@ -45,7 +45,7 @@ function FormListModal() {
                 <button
                   type="button"
                   className="delete-button"
-                  onClick={console.info("Delete Form")}
+                  onClick={() => console.info("Delete Form")}
                 >
                   <i className="fi fi-rr-trash" />
                 </button>
