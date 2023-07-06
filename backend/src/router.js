@@ -14,8 +14,6 @@ const {
   verifyToken,
   verifyAdminRole,
 } = require("./services/auth");
-// Home page
-router.get("/", practicianControllers.getPracticianById);
 
 router.post("/admins/login", admins.authenticationCheck, verifyPassword);
 

@@ -13,7 +13,7 @@ function HomePage() {
 
   return (
     <div className="card-home">
-      <img alt="" className="card-img-home" src={bgImg} />
+      <img alt="background-home" className="card-img-home" src={bgImg} />
       <div className="card-body-home">
         <div className="logo-serenity">
           <img alt="" src={logo} />
@@ -27,7 +27,7 @@ function HomePage() {
             onClick={() => handleNavigate("/espacepro")}
           >
             <i className="fi fi-rr-user-md" />
-            <div className="title-access-pro"> Practicien</div>
+            <div className="title-access-pro"> Praticien</div>
           </button>
 
           <button
