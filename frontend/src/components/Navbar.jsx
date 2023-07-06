@@ -5,8 +5,13 @@ import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function navbar() {
-  const { linkToActive, setLinkToActive, isMenuOpen, setIsMenuOpen } =
-    useContext(StateContext);
+  const {
+    linkToActive,
+    setLinkToActive,
+    isMenuOpen,
+    setIsMenuOpen,
+    setActiveModal,
+  } = useContext(StateContext);
   const { userInfo } = useContext(AuthFunctionContext);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -19,6 +24,8 @@ function navbar() {
       icon: "users",
       action: () => {
         setLinkToActive("Home");
+        setIsMenuOpen(false);
+        setActiveModal("Praticiens");
       },
     },
     {
@@ -28,6 +35,8 @@ function navbar() {
       icon: "users",
       action: () => {
         setLinkToActive("Home");
+        setIsMenuOpen(false);
+        setActiveModal("Patients");
       },
     },
     {
@@ -37,6 +46,8 @@ function navbar() {
       icon: "poll-h",
       action: () => {
         setLinkToActive("Home");
+        setIsMenuOpen(false);
+        setActiveModal("Ma préparation");
       },
     },
     {
@@ -46,6 +57,8 @@ function navbar() {
       icon: "file-medical-alt",
       action: () => {
         setLinkToActive("Interventions");
+        setIsMenuOpen(false);
+        setActiveModal("Interventions");
       },
     },
     {
@@ -55,6 +68,8 @@ function navbar() {
       icon: "folder-tree",
       action: () => {
         setLinkToActive("Ressources");
+        setIsMenuOpen(false);
+        setActiveModal("Ressources");
       },
     },
     {
@@ -64,6 +79,8 @@ function navbar() {
       icon: "circle-user",
       action: () => {
         setLinkToActive("Mon Compte");
+        setIsMenuOpen(false);
+        setActiveModal("Mon Compte");
       },
     },
     {
@@ -73,6 +90,8 @@ function navbar() {
       icon: "user-md",
       action: () => {
         setLinkToActive("Mon médecin");
+        setIsMenuOpen(false);
+        setActiveModal("Mon médecin");
       },
     },
     {
@@ -82,6 +101,8 @@ function navbar() {
       icon: "document-signed",
       action: () => {
         setLinkToActive("Formulaires");
+        setIsMenuOpen(false);
+        setActiveModal("Formulaires");
       },
     },
     {
@@ -91,6 +112,8 @@ function navbar() {
       icon: "chart-histogram",
       action: () => {
         setLinkToActive("Stats");
+        setIsMenuOpen(false);
+        setActiveModal("Stats");
       },
     },
     {
@@ -100,6 +123,8 @@ function navbar() {
       icon: "info",
       action: () => {
         setLinkToActive("A propos");
+        setIsMenuOpen(false);
+        setActiveModal("A propos");
       },
     },
   ];
@@ -115,6 +140,7 @@ function navbar() {
           type="button"
           onClick={() => {
             setLinkToActive("Home");
+            setIsMenuOpen(false);
           }}
         >
           <i alt="Home" className="fi fi-rr-home home-icon-mobile" />
