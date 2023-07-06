@@ -124,28 +124,28 @@
     position: fixed;
     width: 100vw;
   }
-  
+
   .header-avatar {
     flex-direction: row-reverse;
     width: 100vw;
     height: 15vh;
   }
-  
+
   .admin-avatar {
     width: 80px;
     height: 80px;
   }
-  
+
   .admin-name {
     text-align: end;
     color: #5c5c5c;
     width: auto;
   }
-  
+
   .list-item-navbar {
     margin-top: 0;
   }
-  
+
   .navbar-serenity {
     display: flex;
     flex: none;
@@ -156,7 +156,7 @@
     align-items: center;
     border-top: #5c5c5c 2px;
   }
-  
+
   .bg-burger {
     background: transparent;
     position: absolute;
@@ -164,11 +164,11 @@
     width: 100vw;
     height: 90vh;
   }
-  
+
   .burger-invisible {
     display: none;
   }
-  
+
   .burger-visible {
     position: absolute;
     background: rgba(36, 39, 49, 1);
@@ -180,32 +180,32 @@
     height: auto;
     align-items: center;
   }
-  
+
   .nav-serenity {
     font-size: 1rem;
     color: black;
     background: white;
     margin-bottom: 8%;
   }
-  
+
   .active {
     font-size: 1rem;
     color: black;
     background: white;
     margin-bottom: 8%;
   }
-  
+
   .home-icon-mobile {
     font-size: 60px;
     display: flex;
     background: var(--main-bg-admin-practician);
     color: white;
   }
-  
+
   .menu-burger {
     display: flex;
   }
-  
+
   .menu-burger-icon {
     font-size: 60px;
     display: flex;
