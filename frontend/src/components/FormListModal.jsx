@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/FormListModal.scss";
-// import DeleteButtonForm from "./DeleteButtonForm";
 
 function FormListModal() {
   const [forms, setForms] = useState([]);
@@ -45,7 +44,7 @@ function FormListModal() {
                 <button
                   type="button"
                   className="delete-button"
-                  onClick={console.info("Delete Form")}
+                  onClick={() => console.info("Delete Form")}
                 >
                   <i className="fi fi-rr-trash" />
                 </button>
