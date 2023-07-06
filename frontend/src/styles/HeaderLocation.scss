@@ -1,21 +1,42 @@
 .header-location {
   display: flex;
   flex-direction: column;
-  color: white;
   height: 20vh;
   padding-top: 2rem;
-  gap: 10px;
-
+  gap: 20px;
+  
+  h1 {
+    color: white;
+    font-size: 35px;
+  }
+  
   .header-logo {
     display: flex;
     flex-direction: row;
     width: 100%;
     gap: 1rem;
+
+    .fi-rr-layers {
+      color: blue;
+    }
+    
+    p {
+      color: hsla(0, 0%, 100%, 0.7);
+      font-size: 24px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .header-location {
+    padding-top: 0;
+    gap: 30px;
   }
 }
 
 @media (max-width: 480px) {
   .header-location {
+    padding: 1rem;
     .header-logo {
       p {
         display: none;
