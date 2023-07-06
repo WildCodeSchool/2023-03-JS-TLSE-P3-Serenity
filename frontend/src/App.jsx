@@ -10,6 +10,7 @@ import { StateProvider } from "./contexts/StateContext";
 import { AuthFunctionProvider } from "./contexts/AuthFunctionContext";
 import EspaceAdmin from "./pages/EspaceAdmin";
 import EspacePatient from "./pages/EspacePatient";
+import HomePage from "./components/HomePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Router>
           <div className="app backgroud-dark">
             <Routes>
+              <Route path="/" element={<HomePage />} />
               <Route path="/admin" element={<AdminAuthentication />} />
               <Route path="/login" element={<PatientAuthentication />} />
               <Route path="/espaceadmin" element={<EspaceAdmin />} />

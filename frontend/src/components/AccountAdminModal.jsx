@@ -180,6 +180,7 @@ function AccountAdminModal() {
               <label htmlFor="password" className="label-password">
                 Mot de passe
               </label>
+              <input hidden type="text" autoComplete="username" />
               <div className="password-input-and-show">
                 <input
                   type={!passwordShown ? "password" : "text"}
