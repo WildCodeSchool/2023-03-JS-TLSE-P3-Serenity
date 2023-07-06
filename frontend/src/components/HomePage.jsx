@@ -27,7 +27,7 @@ function HomePage() {
             onClick={() => handleNavigate("/espacepro")}
           >
             <i className="fi fi-rr-user-md" />
-            <div className="title-access-pro"> Practien</div>
+            <div className="title-access-pro"> Practicien</div>
           </button>
 
           <button
