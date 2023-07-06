@@ -11,7 +11,7 @@ function HeaderLocation() {
         <i className="fi fi-rr-layers" />
         <p>Serenity</p>
       </div>
-      <h1>Praticiens{activeModal}</h1>
+      <h1>{activeModal}</h1>
     </div>
   );
 }

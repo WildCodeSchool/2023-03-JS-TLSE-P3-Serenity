@@ -11,18 +11,22 @@ import HeaderLocation from "../components/HeaderLocation";
 
 export default function EspaceAdmin() {
   const navigate = useNavigate();
-  const { linkToActive } = useContext(StateContext);
+  const { linkToActive, setActiveModal } = useContext(StateContext);
   const { userInfo, userToken } = useContext(AuthFunctionContext);
+
   useEffect(() => {
     switch (userInfo.role) {
       case "admin":
         navigate("/espaceadmin");
+        setActiveModal("Practiciens");
         break;
       case "practician":
         navigate("/espacepro");
+        setActiveModal("Patients");
         break;
       case "patient":
         navigate("/espacepatient");
+        setActiveModal("Ma préparation");
         break;
       default:
         navigate("/admin");

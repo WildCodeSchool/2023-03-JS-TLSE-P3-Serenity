@@ -5,12 +5,14 @@
   border-right: solid 2px rgb(72, 72, 72);
   height: 100vh;
   width: clamp(205px, 20%, 20vw);
+  pointer-events: none;
 }
 
 .header-avatar {
   display: flex;
   padding: 1rem;
   gap: 8px;
+  pointer-events: auto;
 }
 
 .admin-avatar {
@@ -32,6 +34,7 @@
   flex-direction: column;
   height: auto;
   flex: auto;
+  pointer-events: auto;
 }
 .links {
   display: flex;
@@ -41,7 +44,7 @@
   margin-top: 20%;
   padding-top: 5%;
   justify-content: space-between;
-
+  
   .list-item-navbar {
     width: 90%;
 

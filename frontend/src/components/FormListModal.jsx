@@ -28,6 +28,7 @@ function FormListModal() {
             <th>Date</th>
             <th>Lu</th>
             <th>Fait</th>
+            <th> </th>
           </tr>
         </thead>
         <tbody className="form-list-table-body">
@@ -39,6 +40,15 @@ function FormListModal() {
               <td>{new Date(form.create_time).toLocaleDateString()}</td>
               <td>{form.is_read}</td>
               <td>{form.is_done}</td>
+              <td className="practician-list-table-buttons">
+                <button
+                  type="button"
+                  className="delete-button"
+                  onClick={() => console.info("Delete Form")}
+                >
+                  <i className="fi fi-rr-trash" />
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
