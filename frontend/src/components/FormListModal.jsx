@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/FormListModal.scss";
-// import DeleteButtonForm from "./DeleteButtonForm";
 
 function FormListModal() {
   const [forms, setForms] = useState([]);
