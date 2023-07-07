@@ -13,6 +13,7 @@
     flex-direction: column;
     gap: 30px;
     padding: 1.5rem 1rem;
+    z-index: 2;
 
     .global-info-form {
       display: flex;
@@ -174,19 +175,22 @@
       cursor: not-allowed;
       background-color: grey;
     }
-    @media screen and (max-width: 480px) {
-      .password-form {
-        .password-form-grid {
-          display: flex;
-          flex-direction: column;
-          gap: 5px;
-        }
+  }
+  @media screen and (max-width: 480px) {
+      .account-info-list {
+        height : 400px;
       }
-      .global-info-grid {
+    .password-form {
+      .password-form-grid {
         display: flex;
         flex-direction: column;
         gap: 5px;
       }
+    }
+    .global-info-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
     }
   }
 }

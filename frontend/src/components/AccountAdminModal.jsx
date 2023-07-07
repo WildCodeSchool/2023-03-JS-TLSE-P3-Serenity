@@ -1,10 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 import "../styles/AccountAdminModal.scss";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function AccountAdminModal() {
-  const { userInfo, userToken } = useContext(AuthFunctionContext);
+  const { userInfo, setUserInfo, userToken } = useContext(AuthFunctionContext);
   // eslint-disable-next-line camelcase
   const { firstname, lastname, mail, registration_number, id, role } = userInfo;
   const [firstnameInfo, setFirstnameInfo] = useState(firstname);
@@ -17,20 +18,15 @@ function AccountAdminModal() {
   const [messageVerifiedPassword, setMessageVerifiedPassword] = useState(false);
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordCheckShown, setPasswordCheckShown] = useState(false);
-  const [passwordCharacterVerification, setPasswordCharacterVerification] =
-    useState(false);
   const regexPw =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-  const [messageCheckCharPw, setMessageCheckCharPw] = useState(false);
-  const [validationMessagePw, setValidationMessagePw] = useState("");
-  const [validationMessageInfo, setValidationMessageInfo] = useState("");
-  const [modificationDone, setModificationDone] = useState(false);
-
-  const checkPasswordCharacter = (password) => {
+  const checkPasswordCharacter = (password, callback) => {
     if (regexPw.test(password)) {
-      setPasswordCharacterVerification(true);
+      if (callback) {
+        callback(true);
+      }
     } else {
-      setPasswordCharacterVerification(false);
+      callback(false);
     }
   };
   const checkPassword = (password) => {
@@ -43,6 +39,47 @@ function AccountAdminModal() {
 
   const handlePasswordCheck = (e) => {
     setPasswordCheckChange(e.target.value);
+  };
+
+  const modalValidateInfo = () => {
+    return Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Informations modifiées",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+
+  const modalValidatePw = () => {
+    return Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Mot de passe modifié",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+
+  const modalProblemWhileUpdate = () => {
+    return Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Erreur lors de la mise à jour, veuillez réessayer",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  };
+
+  const modalProblemChar = () => {
+    return Swal.fire({
+      position: "center",
+      icon: "error",
+      title:
+        "Le mot de passe doit contenir au moins 8 caractères dont au moins une majuscule, un chiffre et un caractère spécial.",
+      showConfirmButton: false,
+      timer: 3000,
+    });
   };
 
   useEffect(() => {
@@ -62,7 +99,7 @@ function AccountAdminModal() {
     setPasswordCheckShown(!passwordCheckShown);
   };
 
-  const modifyAdmin = (event, dataFromForm) => {
+  const modifyAdmin = (dataFromForm) => {
     axios
       .put(
         `${import.meta.env.VITE_BACKEND_URL}/admins/account/${id}`,
@@ -76,14 +113,24 @@ function AccountAdminModal() {
       )
       .then((response) => {
         if (response.status === 204) {
-          setModificationDone(true);
+          if (dataFromForm.password) {
+            modalValidatePw();
+          } else if (dataFromForm.registration_number) {
+            setUserInfo({
+              ...userInfo,
+              registration_number: dataFromForm.registration_number,
+              mail: dataFromForm.mail,
+              firstname: dataFromForm.firstname,
+              lastname: dataFromForm.lastname,
+            });
+            modalValidateInfo();
+          }
         } else {
-          setModificationDone(false);
+          modalProblemWhileUpdate();
         }
       })
       .catch((error) => {
         console.error(error.message);
-        setModificationDone(false);
       });
   };
 
@@ -93,18 +140,13 @@ function AccountAdminModal() {
     const formData = new FormData(form);
     const dataFromForm = Object.fromEntries(formData.entries());
     const passwordFromForm = { password: dataFromForm.password };
-    checkPasswordCharacter(passwordChange);
-    if (passwordCharacterVerification) {
-      setMessageCheckCharPw(false);
-      modifyAdmin(event, passwordFromForm);
-      if (modificationDone) {
-        setValidationMessagePw(true);
+    checkPasswordCharacter(passwordChange, (isValid) => {
+      if (isValid) {
+        modifyAdmin(passwordFromForm);
       } else {
-        setValidationMessagePw(false);
+        modalProblemChar();
       }
-    } else {
-      setMessageCheckCharPw(true);
-    }
+    });
   };
 
   const handleValidateInfo = (event) => {
@@ -112,12 +154,7 @@ function AccountAdminModal() {
     const form = event.target;
     const formData = new FormData(form);
     const dataFromForm = Object.fromEntries(formData.entries());
-    modifyAdmin(event, dataFromForm);
-    if (modificationDone) {
-      setValidationMessageInfo(true);
-    } else {
-      setValidationMessageInfo(false);
-    }
+    modifyAdmin(dataFromForm);
   };
 
   return (
@@ -169,9 +206,6 @@ function AccountAdminModal() {
           <button type="submit" className="button-modification-info-validation">
             <p>Valider modification</p>
           </button>
-          {validationMessageInfo && modificationDone && (
-            <p>Informations modifiées</p>
-          )}
         </form>
 
         <form onSubmit={handleValidatePassword} className="password-form">
@@ -255,13 +289,10 @@ function AccountAdminModal() {
           >
             Valider changement de mot de passe
           </button>
-          {validationMessagePw && <p>Mot de passe modifié</p>}
-          {messageCheckCharPw && (
-            <p>
-              Le mot de passe doit contenir au moins 8 caractères dont au moins
-              une majuscule, un chiffre et un caractère spécial.
-            </p>
-          )}
+          <p>
+            Le mot de passe doit contenir au moins 8 caractères dont au moins
+            une majuscule, un chiffre et un caractère spécial.
+          </p>
         </form>
       </div>
     </div>
