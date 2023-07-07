@@ -17,6 +17,33 @@ function FormListModal() {
         console.error(error);
       });
   }, []);
+
+  const handleCheckboxRead = (formId, field) => {
+    const updatedForms = forms.map((form) => {
+      if (form.id === formId) {
+        return {
+          ...form,
+          [field]: !form[field],
+        };
+      }
+      return form;
+    });
+    setForms(updatedForms);
+  };
+
+  const handleCheckboxDone = (formId, field) => {
+    const updatedForms = forms.map((form) => {
+      if (form.id === formId) {
+        return {
+          ...form,
+          [field]: !form[field],
+        };
+      }
+      return form;
+    });
+    setForms(updatedForms);
+  };
+
   return (
     <div className="form-list">
       <table className="form-list-table">
@@ -38,13 +65,27 @@ function FormListModal() {
               <td>{form.request_type}</td>
               <td>{form.request}</td>
               <td>{new Date(form.create_time).toLocaleDateString()}</td>
-              <td>{form.is_read}</td>
-              <td>{form.is_done}</td>
-              <td className="practician-list-table-buttons">
+              <td>
+                <input
+                  type="checkbox"
+                  className="checkbox-form"
+                  checked={form.is_read}
+                  onChange={() => handleCheckboxRead(form.id, "is_read")}
+                />
+              </td>
+              <td>
+                <input
+                  type="checkbox"
+                  className="checkbox-form"
+                  checked={form.is_done}
+                  onChange={() => handleCheckboxDone(form.id, "is_done")}
+                />
+              </td>
+              <td className="form-list-table-buttons">
                 <button
                   type="button"
                   className="delete-button"
-                  onClick={() => console.info("Delete Form")}
+                  onClick={() => console.info(`Delete form ${form.id}`)}
                 >
                   <i className="fi fi-rr-trash" />
                 </button>

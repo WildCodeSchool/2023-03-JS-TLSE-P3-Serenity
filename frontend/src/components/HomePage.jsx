@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/HomePage.scss";
 import bgImg from "../assets/homeAcess.svg";
-import logo from "../assets/- Layers.svg";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -16,7 +15,7 @@ function HomePage() {
       <img alt="background-home" className="card-img-home" src={bgImg} />
       <div className="card-body-home">
         <div className="logo-serenity">
-          <img alt="" src={logo} />
+          <img alt="" src="" />
           <h1>Serenity</h1>
         </div>
         <div className="card-body-choice">
