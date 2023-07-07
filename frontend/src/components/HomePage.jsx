@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/HomePage.scss";
-import bgImg from "../assets/homeAcess.svg";
+import bgImg from "../assets/home_access.svg";
+import logo from "../assets/icone_home_.svg";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -14,12 +15,11 @@ function HomePage() {
     <div className="card-home">
       <img alt="background-home" className="card-img-home" src={bgImg} />
       <div className="card-body-home">
-        <div className="logo-serenity">
-          <img alt="" src="" />
-          <h1>Serenity</h1>
+        <div>
+          <img alt="logo-serenity" src={logo} className="logo-serenity" />
         </div>
         <div className="card-body-choice">
-          <p>Espace de connexion </p>
+          <p className="title-connexion">Espace de connexion </p>
           <button
             type="button"
             className="button-access-page"
@@ -32,7 +32,7 @@ function HomePage() {
           <button
             type="button"
             className="button-access-page"
-            onClick={() => handleNavigate("/espacepatient")}
+            onClick={() => handleNavigate("/login")}
           >
             <i className="fi fi-rr-user" />
             <div className="title-access-patient">Patient</div>

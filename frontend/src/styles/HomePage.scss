@@ -1,24 +1,36 @@
 .card-home {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+}
+.logo-serenity
+{
+  width: 6rem;
+}
+.card-img-home {
+  width: 80vw;
+  height: auto;
+  margin: 0 auto;
 }
 
-.card-img-home {
-  width: 100vw;
-  height: auto;
+.title-connexion
+{
+  padding: 4px;
 }
 
 .card-body-home {
   display: flex;
-  justify-content: space-around;
+  justify-content:flex-start;
   align-items: center;
-  height: 60vh;
+  height: 63vh;
   background-image: linear-gradient(
     to bottom,
     var(--main-bg-admin-practician),
     rgb(85, 91, 112)
   );
   color: white;
+  flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .card-body-choice {
@@ -69,6 +81,10 @@
     width: 100vw;
     height: 100vh;
   }
+  .logo-serenity
+{
+  width: 9rem;
+}
 
   .card-img-home {
     height: auto;

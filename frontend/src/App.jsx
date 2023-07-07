@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import PatientAuthentication from "./pages/PatientAuthentication";
 import AdminAuthentication from "./pages/AdminAuthentication";
+import PracticianAuthentication from "./pages/PracticianAuthentication";
 import "./reset.css";
 import "./App.css";
 import "./styles/variable.scss";
@@ -22,6 +23,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/admin" element={<AdminAuthentication />} />
               <Route path="/login" element={<PatientAuthentication />} />
+              <Route path="/espacepro" element={<PracticianAuthentication />} />
               <Route path="/espaceadmin" element={<EspaceAdmin />} />
               <Route path="/espacepatient" element={<EspacePatient />} />
             </Routes>

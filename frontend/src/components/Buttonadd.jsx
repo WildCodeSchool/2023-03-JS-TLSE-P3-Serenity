@@ -6,6 +6,7 @@ import "../styles/PracticianListModal.scss";
 import axios from "axios";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
+import "../styles/Buttonadd.scss";
 
 function Buttonadd() {
   // Status for tracking success message display
@@ -88,6 +89,7 @@ function Buttonadd() {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
+        centered
       >
         <Modal.Header closeButton>
           <Modal.Title>Ajouter un praticien</Modal.Title>
@@ -145,10 +147,10 @@ function Buttonadd() {
               {showSuccessMessageAdd && (
                 <span className="success-message">Ajout effectué !</span>
               )}
-              <Button variant="danger" onClick={handleClose}>
+              <Button className="button-cancel" onClick={handleClose}>
                 Annuler
               </Button>
-              <Button type="submit" variant="primary">
+              <Button type="submit" className="button-add">
                 Ajouter
               </Button>
             </Modal.Footer>
