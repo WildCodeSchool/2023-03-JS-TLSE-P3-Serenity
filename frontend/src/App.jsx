@@ -11,7 +11,7 @@ import { StateProvider } from "./contexts/StateContext";
 import { AuthFunctionProvider } from "./contexts/AuthFunctionContext";
 import EspaceAdmin from "./pages/EspaceAdmin";
 import EspacePatient from "./pages/EspacePatient";
-import HomePage from "./components/HomePage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
