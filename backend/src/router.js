@@ -13,6 +13,7 @@ const {
   verifyPassword,
   verifyToken,
   verifyAdminRole,
+  checkId,
 } = require("./services/auth");
 
 router.post("/admins/login", admins.authenticationCheck, verifyPassword);
@@ -78,5 +79,14 @@ router.post("/admins/forms/", formControllers.AddForm);
 router.put("/admins/forms/:id", formControllers.updateForm);
 router.delete("/admins/forms/:id", formControllers.deleteForm);
 router.get("/admins/forms/countform/:id", formControllers.getFormCount);
+
+// route "account"
+router.put(
+  "/admins/account/:id",
+  verifyToken,
+  hashPassword,
+  checkId,
+  admins.modifyAdmin
+);
 
 module.exports = router;

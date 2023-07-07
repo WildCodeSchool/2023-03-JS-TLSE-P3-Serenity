@@ -7,6 +7,7 @@ import AboutUs from "../components/AboutUs";
 import "../styles/EspaceAdmin.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
+import AccountAdminModal from "../components/AccountAdminModal";
 import HeaderLocation from "../components/HeaderLocation";
 
 export default function EspaceAdmin() {
@@ -39,6 +40,7 @@ export default function EspaceAdmin() {
       CurrentModaleAdmin = <PracticianListModal />;
       break;
     case "Mon Compte":
+      CurrentModaleAdmin = <AccountAdminModal />;
       break;
     case "Formulaires":
       CurrentModaleAdmin = <FormListModal />;
