@@ -10,6 +10,7 @@ import "./styles/variable.scss";
 import { StateProvider } from "./contexts/StateContext";
 import { AuthFunctionProvider } from "./contexts/AuthFunctionContext";
 import EspaceAdmin from "./pages/EspaceAdmin";
+import EspacePro from "./pages/EspacePro";
 import EspacePatient from "./pages/EspacePatient";
 import HomePage from "./pages/HomePage";
 
@@ -23,8 +24,9 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/admin" element={<AdminAuthentication />} />
               <Route path="/login" element={<PatientAuthentication />} />
-              <Route path="/espacepro" element={<PracticianAuthentication />} />
+              <Route path="/loginpro" element={<PracticianAuthentication />} />
               <Route path="/espaceadmin" element={<EspaceAdmin />} />
+              <Route path="/espacepro" element={<EspacePro />} />
               <Route path="/espacepatient" element={<EspacePatient />} />
             </Routes>
           </div>

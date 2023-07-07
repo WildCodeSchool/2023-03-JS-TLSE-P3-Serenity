@@ -23,7 +23,7 @@ function HomePage() {
           <button
             type="button"
             className="button-access-page"
-            onClick={() => handleNavigate("/espacepro")}
+            onClick={() => handleNavigate("/loginpro")}
           >
             <i className="fi fi-rr-user-md" />
             <div className="title-access-pro"> Praticien</div>
