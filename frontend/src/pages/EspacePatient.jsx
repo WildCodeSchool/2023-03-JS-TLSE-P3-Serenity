@@ -46,7 +46,7 @@ export default function EspacePatient() {
   return (
     userInfo.role === "patient" &&
     userToken && (
-      <div className="home">
+      <div className="home-patient">
         <Navbar />
         <div className="modal-container">{CurrentModalePatient}</div>
       </div>

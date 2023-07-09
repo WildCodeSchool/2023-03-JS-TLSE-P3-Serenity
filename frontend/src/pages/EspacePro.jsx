@@ -52,7 +52,7 @@ export default function EspacePro() {
   return (
     userInfo.role === "practician" &&
     userToken && (
-      <div className="home">
+      <div className="home-practician">
         <Navbar />
 
         <div className="modal-container">
