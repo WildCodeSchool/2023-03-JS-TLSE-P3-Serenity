@@ -4,8 +4,8 @@ import "../styles/PracticianListModal.scss";
 import Buttonadd from "./Buttonadd";
 import StateContext from "../contexts/StateContext";
 import ModalUpdate from "./ModalUpdate";
+import DeleteButton from "./DeleteButton";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
-import HeaderLocation from "./HeaderLocation";
 
 function PracticianListModal() {
   const [practicians, setPracticians] = useState([]);
@@ -27,7 +27,7 @@ function PracticianListModal() {
     adeli_number: "",
     administrator_id: "",
   });
-  // gestion of modal
+
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => {
@@ -41,6 +41,7 @@ function PracticianListModal() {
     handleShow(true);
     setShowSuccessMessageAdd(false);
   };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setModalInputs((prevModalInputs) => ({
@@ -48,6 +49,7 @@ function PracticianListModal() {
       [name]: value,
     }));
   };
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
     if (selectedPractician) {
@@ -65,7 +67,6 @@ function PracticianListModal() {
           }
         )
         .then((response) => {
-          // Update practitioner data in the state
           const updatedPracticians = practicians.map((practician) => {
             if (practician.id === selectedPractician.id) {
               return response.data;
@@ -80,6 +81,7 @@ function PracticianListModal() {
         });
     }
   };
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/admins/practicians`, {
@@ -136,85 +138,92 @@ function PracticianListModal() {
         console.error(error);
       });
   }, [showSuccessMessageModification, showSuccessMessageAdd]);
-  return (
-    <>
-      <HeaderLocation />
-      <div className="practician-list-container">
-        <div className="practician-list">
-          <div className="practician-list-header">
-            <input
-              className="search-input"
-              type="text"
-              placeholder="Search"
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-            />
-            <button type="button" className="delete-button">
-              <i className="fi fi-rr-trash" />
-            </button>
-          </div>
-          <div className="practician-list-body">
-            <table className="practician-list-table">
-              <thead className="practician-list-table-header">
-                <tr>
-                  <th>Nom</th>
-                  <th>Mail</th>
-                  <th>Poste</th>
-                  <th>Téléphone</th>
-                  <th>
-                    Nombre
-                    <br />
-                    Interventions
-                  </th>
-                  <th>
-                    Nombre
-                    <br />
-                    Ressources
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="practician-list-table-body">
-                {practicians
-                  .filter(
-                    (practician) =>
-                      practician.lastname &&
-                      practician.lastname
-                        .toLowerCase()
-                        .includes(searchValue.toLowerCase())
-                  )
-                  .map((practician) => (
-                    <tr
-                      key={practician.id}
-                      onClick={() => handleTrClick(practician)}
-                    >
-                      <td>
-                        {practician.firstname} {practician.lastname}
-                      </td>
-                      <td>{practician.mail}</td>
-                      <td>{practician.speciality}</td>
-                      <td>{practician.phone}</td>
-                      <td>{practician.countIntervention}</td>
-                      <td>{practician.countRessource}</td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
 
-          <ModalUpdate
-            show={show}
-            handleClose={handleClose}
-            handleFormSubmit={handleFormSubmit}
-            handleInputChange={handleInputChange}
-            modalInputs={modalInputs}
-            showSuccessMessageModification={showSuccessMessageModification}
+  return (
+    <div className="practician-list-container">
+      <div className="practician-list">
+        <div className="practician-list-header">
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Rechercher un praticien"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
           />
-          <div className="practician-list-footer">
-            <Buttonadd />
-          </div>
+        </div>
+        <div className="practician-list-body">
+          <table className="practician-list-table">
+            <thead className="practician-list-table-header">
+              <tr>
+                <th>Nom</th>
+                <th>Mail</th>
+                <th>Poste</th>
+                <th>Téléphone</th>
+                <th>
+                  Nombre
+                  <br />
+                  Interventions
+                </th>
+                <th>
+                  Nombre
+                  <br />
+                  Ressources
+                </th>
+                <th> </th>
+              </tr>
+            </thead>
+            <tbody className="practician-list-table-body">
+              {practicians
+                .filter(
+                  (practician) =>
+                    practician.lastname &&
+                    practician.lastname
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase())
+                )
+                .map((practician) => (
+                  <tr key={practician.id}>
+                    <td>
+                      {practician.firstname} {practician.lastname}
+                    </td>
+                    <td>{practician.mail}</td>
+                    <td>{practician.speciality}</td>
+                    <td>{practician.phone}</td>
+                    <td>{practician.countIntervention}</td>
+                    <td>{practician.countRessource}</td>
+                    <td className="practician-list-table-buttons">
+                      <button
+                        className="modify-button"
+                        type="button"
+                        onClick={() => handleTrClick(practician)}
+                      >
+                        <i className="fi fi-rr-pencil" />
+                      </button>
+                      <DeleteButton
+                        selectedPracticians={[selectedPractician]}
+                        practicians={practicians}
+                        setPracticians={setPracticians}
+                      />
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+
+        <ModalUpdate
+          show={show}
+          handleClose={handleClose}
+          handleFormSubmit={handleFormSubmit}
+          handleInputChange={handleInputChange}
+          modalInputs={modalInputs}
+          showSuccessMessageModification={showSuccessMessageModification}
+        />
+        <div className="practician-list-footer">
+          <Buttonadd />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

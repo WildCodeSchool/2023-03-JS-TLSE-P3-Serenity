@@ -14,7 +14,6 @@ export function StateProvider({ children }) {
   const [show, setShow] = useState(false); // Display modal
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentActiveLink, setCurrentActiveLink] = useState("");
 
   const stateContext = useMemo(
     () => ({
@@ -22,8 +21,6 @@ export function StateProvider({ children }) {
       setLinkToActive,
       isMenuOpen,
       setIsMenuOpen,
-      currentActiveLink,
-      setCurrentActiveLink,
       showSuccessMessageModification,
       setShowSuccessMessageModification,
       showSuccessMessageAdd,

@@ -18,6 +18,23 @@ const authenticationCheck = (req, res, next) => {
       res.status(500).send("Error retrieving data from database");
     });
 };
+const getAccountInfoAdminById = (req, res) => {
+  const { id } = req.params;
+
+  models.administrator
+    .find(id)
+    .then(([users]) => {
+      if (users[0] != null) {
+        res.status(200).send(users[0]);
+      } else {
+        res.sendStatus(401);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error retrieving data from database");
+    });
+};
 
 const modifyAdmin = (req, res) => {
   const { id } = req.params;
@@ -41,4 +58,5 @@ const modifyAdmin = (req, res) => {
 module.exports = {
   authenticationCheck,
   modifyAdmin,
+  getAccountInfoAdminById,
 };

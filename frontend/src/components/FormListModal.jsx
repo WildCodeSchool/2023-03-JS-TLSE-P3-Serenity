@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import HeaderLocation from "./HeaderLocation";
 import "../styles/FormListModal.scss";
 
 function FormListModal() {
@@ -18,41 +17,84 @@ function FormListModal() {
         console.error(error);
       });
   }, []);
+
+  const handleCheckboxRead = (formId, field) => {
+    const updatedForms = forms.map((form) => {
+      if (form.id === formId) {
+        return {
+          ...form,
+          [field]: !form[field],
+        };
+      }
+      return form;
+    });
+    setForms(updatedForms);
+  };
+
+  const handleCheckboxDone = (formId, field) => {
+    const updatedForms = forms.map((form) => {
+      if (form.id === formId) {
+        return {
+          ...form,
+          [field]: !form[field],
+        };
+      }
+      return form;
+    });
+    setForms(updatedForms);
+  };
+
   return (
-    <>
-      <HeaderLocation />
-      <div className="form-list">
-        <div className="form-list-header">
-          <button type="button" className="delete-button">
-            <i className="fi fi-rr-trash" />
-          </button>
-        </div>
-        <div className="form-list-body">
-          <table className="form-list-table">
-            <thead className="form-list-table-header">
-              <tr>
-                <th>Qui?</th>
-                <th>Pourquoi?</th>
-                <th>Requête</th>
-                <th>Lu</th>
-                <th>Fait</th>
-              </tr>
-            </thead>
-            <tbody className="form-list-table-body">
-              {forms.map((form) => (
-                <tr key={form.id}>
-                  <td>{form.user_type}</td>
-                  <td>{form.request_type}</td>
-                  <td>{form.request}</td>
-                  <td>{form.is_read}</td>
-                  <td>{form.is_done}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </>
+    <div className="form-list">
+      <table className="form-list-table">
+        <thead className="form-list-table-body">
+          <tr>
+            <th>Utilisateur</th>
+            <th>Objet</th>
+            <th>Requête</th>
+            <th>Date</th>
+            <th>Lu</th>
+            <th>Fait</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody className="form-list-table-body">
+          {forms.map((form) => (
+            <tr key={form.id}>
+              <td>{form.user_type}</td>
+              <td>{form.request_type}</td>
+              <td>{form.request}</td>
+              <td>{new Date(form.create_time).toLocaleDateString()}</td>
+              <td>
+                <input
+                  type="checkbox"
+                  className="checkbox-form"
+                  checked={form.is_read}
+                  onChange={() => handleCheckboxRead(form.id, "is_read")}
+                />
+              </td>
+              <td>
+                <input
+                  type="checkbox"
+                  className="checkbox-form"
+                  checked={form.is_done}
+                  onChange={() => handleCheckboxDone(form.id, "is_done")}
+                />
+              </td>
+              <td className="form-list-table-buttons">
+                <button
+                  type="button"
+                  className="delete-button"
+                  onClick={() => console.info(`Delete form ${form.id}`)}
+                >
+                  <i className="fi fi-rr-trash" />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

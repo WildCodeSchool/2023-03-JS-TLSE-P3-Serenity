@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import "../styles/PracticianListModal.scss";
+import "../styles/ModalUpdate.scss";
 
 function ModalUpdate({
   show,
@@ -13,7 +14,13 @@ function ModalUpdate({
   showSuccessMessageModification,
 }) {
   return (
-    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+    <Modal
+      show={show}
+      onHide={handleClose}
+      backdrop="static"
+      keyboard={false}
+      centered
+    >
       <Modal.Header closeButton>
         <Modal.Title>Modifier un praticien</Modal.Title>
       </Modal.Header>
@@ -63,10 +70,10 @@ function ModalUpdate({
             {showSuccessMessageModification && (
               <span className="success-message">Modification effectuée !</span>
             )}
-            <Button variant="danger" onClick={handleClose}>
+            <Button onClick={handleClose} className="button-cancel">
               Annuler
             </Button>
-            <Button type="submit" variant="primary">
+            <Button type="submit" className="button-update">
               Modifier
             </Button>
           </Modal.Footer>

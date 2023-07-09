@@ -108,7 +108,7 @@ const AddPractician = (req, res) => {
 };
 
 const deletePractician = (req, res) => {
-  models.administrator
+  models.practician
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
