@@ -416,7 +416,7 @@ INSERT INTO
     )
 VALUES (
         'patient1@patient1.com',
-        'test',
+        '$argon2id$v=19$m=65536,t=5,p=1$lgQhMd6/YI8RXwZQrt1VMA$oBtHiEp7JSwbC+H8aVkORWC2ycR5fln8a2CrKvPT9pQ',
         'patient1',
         'patient1',
         'patient'

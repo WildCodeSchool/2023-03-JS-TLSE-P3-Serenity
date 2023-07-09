@@ -67,6 +67,25 @@ export default function Authentication() {
           console.error(error.message);
           setFailAuth(true);
         });
+    } else if (credentials === "login") {
+      axios
+        .post(
+          `${import.meta.env.VITE_BACKEND_URL}/patients/login`,
+          dataFromForm
+        )
+        .then((response) => {
+          if (response.data.token) {
+            setUser(response.data.token);
+            setUserInfo(response.data.user);
+            navigate("/espacepatient");
+          } else {
+            console.info(response);
+          }
+        })
+        .catch((error) => {
+          console.error(error.message);
+          setFailAuth(true);
+        });
     }
   };
 
