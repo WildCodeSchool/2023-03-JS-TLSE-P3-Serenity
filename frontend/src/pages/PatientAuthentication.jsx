@@ -6,7 +6,7 @@ import headerLogoBlack from "../assets/header_logo_white.svg";
 function PatientAuthentication() {
   return (
     <div className="background-light">
-      <div className="authentication-container">
+      <div className="authentication-patient-container">
         <img src={headerLogoBlack} alt="logo serenity" />
         <h1 className="title-connection-patient">
           <p>Connectez vous à</p>

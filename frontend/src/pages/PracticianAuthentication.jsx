@@ -6,7 +6,7 @@ import headerLogoBlack from "../assets/header_logo_black.svg";
 function PracticianAuthentication() {
   return (
     <div className="background-dark">
-      <div className="authentication-container">
+      <div className="authentication-practician-container">
         <img src={headerLogoBlack} alt="logo serenity" />
         <h1 className="title-connection-practician">
           <p>Connectez vous à</p>
