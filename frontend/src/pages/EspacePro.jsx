@@ -7,7 +7,7 @@ import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import HeaderLocation from "../components/HeaderLocation";
 
-export default function EspaceAdmin() {
+export default function EspacePro() {
   const navigate = useNavigate();
   const { linkToActive, setActiveModal } = useContext(StateContext);
   const { userInfo, userToken } = useContext(AuthFunctionContext);
