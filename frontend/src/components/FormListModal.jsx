@@ -22,25 +22,6 @@ function FormListModal() {
       });
   }, []);
 
-  const handleFormClick = (event, form) => {
-    const { tagName } = event.target;
-    if (tagName === "INPUT" || tagName === "BUTTON") {
-      return;
-    }
-
-    Swal.fire({
-      title: "Informations de la form",
-      html: `
-        <p>Utilisateur: ${form.user_type}</p>
-        <p>Objet: ${form.request_type}</p>
-        <p>Requête: ${form.request}</p>
-        <p>Date: ${new Date(form.create_time).toLocaleDateString()}</p>
-      `,
-      showCancelButton: false,
-      confirmButtonText: "Fermer",
-    });
-  };
-
   const updateFormCheckbox = (formId, field, value) => {
     const updatedForms = forms.map((form) => {
       if (form.id === formId) {
@@ -150,6 +131,26 @@ function FormListModal() {
           });
       }
     });
+  };
+
+  const handleFormClick = (event, form) => {
+    const { tagName } = event.target;
+    if (tagName === "INPUT" || tagName === "BUTTON") {
+      return;
+    }
+
+    Swal.fire({
+      title: "Informations de la requête",
+      html: `
+        <p>Utilisateur: ${form.user_type}</p>
+        <p>Objet: ${form.request_type}</p>
+        <p>Requête: ${form.request}</p>
+        <p>Date: ${new Date(form.create_time).toLocaleDateString()}</p>
+      `,
+      showCancelButton: false,
+      confirmButtonText: "Fermer",
+    });
+    updateFormCheckbox(form.id, "is_read", true);
   };
 
   return (

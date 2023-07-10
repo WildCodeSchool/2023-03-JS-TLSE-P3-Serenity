@@ -24,6 +24,7 @@
         width: 100%;
         height: 2.5rem;
         border-bottom: #8f8f973a solid 0.5px;
+        cursor: pointer;
         th:nth-child(1),
         td:nth-child(1) {
           min-width: 63px;
@@ -60,6 +61,7 @@
           width: 5%;
         }
         .checkbox-form {
+          cursor: pointer;
           accent-color: #6c5dd3;
         }
       }
