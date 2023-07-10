@@ -22,12 +22,12 @@ function FormListModal() {
       });
   }, []);
 
-  const handleCheckboxFormRead = (formId, field) => {
+  const updateFormCheckbox = (formId, field, value) => {
     const updatedForms = forms.map((form) => {
       if (form.id === formId) {
         return {
           ...form,
-          [field]: !form[field],
+          [field]: value,
         };
       }
       return form;
@@ -35,17 +35,62 @@ function FormListModal() {
     setForms(updatedForms);
   };
 
-  const handleCheckboxFormDone = (formId, field) => {
-    const updatedForms = forms.map((form) => {
-      if (form.id === formId) {
-        return {
-          ...form,
-          [field]: !form[field],
-        };
-      }
-      return form;
-    });
-    setForms(updatedForms);
+  const handleCheckboxFormRead = (formId) => {
+    const form = forms.find((el) => el.id === formId);
+    const updatedValue = !form.is_read;
+
+    updateFormCheckbox(formId, "is_read", updatedValue);
+
+    axios
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/admins/forms/${formId}`,
+        { is_read: updatedValue },
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
+      )
+      .catch((error) => {
+        console.error(`Error updating form with ID ${formId}:`, error);
+        Swal.fire(
+          "Erreur!",
+          "Une erreur est survenue lors de la mise à jour.",
+          "error"
+        );
+        // Revert the local state change if the update fails
+        updateFormCheckbox(formId, "is_read", !updatedValue);
+      });
+  };
+
+  const handleCheckboxFormDone = (formId) => {
+    const form = forms.find((el) => el.id === formId);
+    const updatedValue = !form.is_done;
+
+    updateFormCheckbox(formId, "is_done", updatedValue);
+
+    axios
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/admins/forms/${formId}`,
+        { is_done: updatedValue },
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
+      )
+      .catch((error) => {
+        console.error(`Error updating form with ID ${formId}:`, error);
+        Swal.fire(
+          "Erreur!",
+          "Une erreur est survenue lors de la mise à jour.",
+          "error"
+        );
+        // Revert the local state change if the update fails
+        updateFormCheckbox(formId, "is_done", !updatedValue);
+      });
   };
 
   const handleDeleteFormButtonClick = (formId) => {
@@ -113,7 +158,7 @@ function FormListModal() {
                   type="checkbox"
                   className="checkbox-form"
                   checked={form.is_read}
-                  onChange={() => handleCheckboxFormRead(form.id, "is_read")}
+                  onChange={() => handleCheckboxFormRead(form.id)}
                 />
               </td>
               <td>
@@ -121,7 +166,7 @@ function FormListModal() {
                   type="checkbox"
                   className="checkbox-form"
                   checked={form.is_done}
-                  onChange={() => handleCheckboxFormDone(form.id, "is_done")}
+                  onChange={() => handleCheckboxFormDone(form.id)}
                 />
               </td>
               <td className="form-list-table-buttons">
