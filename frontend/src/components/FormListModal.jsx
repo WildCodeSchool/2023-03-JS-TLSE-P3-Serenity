@@ -152,11 +152,6 @@ function FormListModal() {
     });
   };
 
-  // const handleDeleteButtonClick = (event, formId) => {
-  //   event.stopPropagation();
-  //   handleDeleteFormButtonClick(formId);
-  // };
-
   return (
     <div className="form-list">
       <table className="form-list-table">
