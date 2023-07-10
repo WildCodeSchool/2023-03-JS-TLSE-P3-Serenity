@@ -6,6 +6,7 @@ const interventionCountController = require("./controllers/interventionCountCont
 const ressourceCountController = require("./controllers/ressourceCountController");
 const admins = require("./controllers/adminControllers");
 const practicianControllers = require("./controllers/PraticianControllers");
+const patients = require("./controllers/PatientControllers");
 const formControllers = require("./controllers/FormControllers");
 
 const {
@@ -17,6 +18,16 @@ const {
 } = require("./services/auth");
 
 router.post("/admins/login", admins.authenticationCheck, verifyPassword);
+router.post(
+  "/practicians/login",
+  practicianControllers.authenticationPracticianCheck,
+  verifyPassword
+);
+router.post(
+  "/patients/login",
+  patients.authenticationPatientCheck,
+  verifyPassword
+);
 
 router.get(
   "/admins/practicians/:id",

@@ -33,6 +33,25 @@ const getPracticianById = (req, res) => {
     });
 };
 
+const authenticationPracticianCheck = (req, res, next) => {
+  const { adeli } = req.body;
+
+  models.practician
+    .getPracticianByAdeliNumber(adeli)
+    .then(([users]) => {
+      if (users[0] != null) {
+        [req.user] = users;
+        next();
+      } else {
+        res.sendStatus(401);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error retrieving data from database");
+    });
+};
+
 const updatePractician = (req, res) => {
   const {
     adeli_number,
@@ -129,4 +148,5 @@ module.exports = {
   updatePractician,
   AddPractician,
   deletePractician,
+  authenticationPracticianCheck,
 };
