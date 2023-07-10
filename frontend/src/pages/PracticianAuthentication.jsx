@@ -1,16 +1,20 @@
 import React from "react";
 import Authentication from "../components/Authentication";
-import "../styles/AdminAuthentication.scss";
+import "../styles/PracticianAuthentication.scss";
+import headerLogoBlack from "../assets/header_logo_black.svg";
 
 function PracticianAuthentication() {
   return (
-    <div className="authentication-container">
-      <h1 className="title-connection-admin">
-        <p>Connectez vous à</p>
-        <p>votre compte Professionnel</p>
-      </h1>
-      <div className="auth-admin-practician">
-        <Authentication />
+    <div className="background-dark">
+      <div className="authentication-practician-container">
+        <img src={headerLogoBlack} alt="logo serenity" />
+        <h1 className="title-connection-practician">
+          <p>Connectez vous à</p>
+          <p>votre compte Professionnel</p>
+        </h1>
+        <div className="auth-practician">
+          <Authentication />
+        </div>
       </div>
     </div>
   );

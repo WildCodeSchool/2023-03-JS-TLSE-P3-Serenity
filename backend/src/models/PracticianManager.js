@@ -1,10 +1,16 @@
 /* eslint-disable camelcase */
-/* eslint-disable camelcase */
 const AbstractManager = require("./AbstractManager");
 
 class PracticianManager extends AbstractManager {
   constructor() {
     super({ table: "practician" });
+  }
+
+  getPracticianByAdeliNumber(adeli) {
+    return this.database.query(
+      `SELECT * FROM ${this.table} WHERE adeli_number = ?`,
+      [adeli]
+    );
   }
 
   delete(id) {
