@@ -35,7 +35,7 @@ export default function EspacePro() {
 
   let CurrentModalePractician;
   switch (linkToActive) {
-    case "home":
+    case "Home":
       CurrentModalePractician = <PatientListModal />;
       break;
     case "Mon Compte":
