@@ -73,7 +73,7 @@ function FormListModal() {
           .then(() => {
             const updatedForms = forms.filter((form) => form.id !== formId);
             setForms(updatedForms);
-            Swal.fire("Supprimé !", "La requête a été supprimé.", "success");
+            Swal.fire("Supprimé !", "La requête a été supprimée.", "success");
           })
           .catch((error) => {
             console.error(`Error deleting form with ID ${formId}:`, error);
