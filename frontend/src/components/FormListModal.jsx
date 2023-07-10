@@ -118,45 +118,6 @@ function FormListModal() {
           .then(() => {
             const updatedForms = forms.filter((form) => form.id !== formId);
             setForms(updatedForms);
-            Swal.fire("Supprimé !", "La requête a été supprimé.", "success");
-          })
-          .catch((error) => {
-            console.error(`Error deleting form with ID ${formId}:`, error);
-            Swal.fire(
-              "Erreur!",
-              "Une erreur est survenue lors de la suppression.",
-              "error"
-            );
-          });
-      }
-    });
-  };
-
-  const handleDeleteFormButtonClick = (formId) => {
-    Swal.fire({
-      title: "Êtes-vous sûr de vouloir supprimer cette requête ?",
-      text: "Vous ne pourrez pas annuler cette action !",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Oui, supprimer !",
-      cancelButtonText: "Non, annuler !",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios
-          .delete(
-            `${import.meta.env.VITE_BACKEND_URL}/admins/forms/${formId}`,
-            {
-              headers: {
-                Authorization: `Bearer ${userToken}`,
-                Role: `${role}`,
-              },
-            }
-          )
-          .then(() => {
-            const updatedForms = forms.filter((form) => form.id !== formId);
-            setForms(updatedForms);
             Swal.fire("Supprimé !", "La requête a été supprimée.", "success");
           })
           .catch((error) => {
