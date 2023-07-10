@@ -93,7 +93,8 @@ function FormListModal() {
       });
   };
 
-  const handleDeleteFormButtonClick = (formId) => {
+  const handleDeleteFormButtonClick = (event, formId) => {
+    event.stopPropagation();
     Swal.fire({
       title: "Êtes-vous sûr de vouloir supprimer cette requête ?",
       text: "Vous ne pourrez pas annuler cette action !",
@@ -132,6 +133,26 @@ function FormListModal() {
     });
   };
 
+  const handleFormClick = (event, form) => {
+    const { tagName } = event.target;
+    if (tagName === "INPUT" || tagName === "BUTTON") {
+      return;
+    }
+
+    Swal.fire({
+      title: "Informations de la requête",
+      html: `
+        <p>Utilisateur: ${form.user_type}</p>
+        <p>Objet: ${form.request_type}</p>
+        <p>Requête: ${form.request}</p>
+        <p>Date: ${new Date(form.create_time).toLocaleDateString()}</p>
+      `,
+      showCancelButton: false,
+      confirmButtonText: "Fermer",
+    });
+    updateFormCheckbox(form.id, "is_read", true);
+  };
+
   return (
     <div className="form-list">
       <table className="form-list-table">
@@ -148,7 +169,11 @@ function FormListModal() {
         </thead>
         <tbody className="form-list-table-body">
           {forms.map((form) => (
-            <tr key={form.id}>
+            <tr
+              key={form.id}
+              className="clickable-row"
+              onClick={(event) => handleFormClick(event, form)}
+            >
               <td>{form.user_type}</td>
               <td>{form.request_type}</td>
               <td>{form.request}</td>
@@ -173,7 +198,9 @@ function FormListModal() {
                 <button
                   type="button"
                   className="delete-button"
-                  onClick={() => handleDeleteFormButtonClick(form.id)}
+                  onClick={(event) =>
+                    handleDeleteFormButtonClick(event, form.id)
+                  }
                 >
                   <i className="fi fi-rr-trash" />
                 </button>
