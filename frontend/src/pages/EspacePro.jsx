@@ -6,6 +6,7 @@ import "../styles/EspacePro.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import HeaderLocation from "../components/HeaderLocation";
+import PatientListModal from "../components/PatientListModal";
 
 export default function EspacePro() {
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ export default function EspacePro() {
   let CurrentModalePractician;
   switch (linkToActive) {
     case "home":
+      CurrentModalePractician = <PatientListModal />;
       break;
     case "Mon Compte":
       break;

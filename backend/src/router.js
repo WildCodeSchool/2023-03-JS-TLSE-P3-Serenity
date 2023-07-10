@@ -47,12 +47,14 @@ router.delete(
   verifyAdminRole,
   practicianControllers.deletePractician
 );
+router.delete("/practician/patients/:id", verifyToken, patients.deletePatient);
 router.get(
   "/admins/practicians/",
   verifyToken,
   verifyAdminRole,
   practicianControllers.getListOfAllPracticians
 );
+router.get("/practician/patients", verifyToken, patients.getListOfAllPatients);
 
 router.get(
   "/admins/practicians/countintervention/:id",

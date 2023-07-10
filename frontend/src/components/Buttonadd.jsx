@@ -81,7 +81,7 @@ function Buttonadd() {
   return (
     <>
       <Button variant="primary" onClick={handleShow} className="add-practician">
-        Ajout de praticien
+        Ajouter
       </Button>
 
       <Modal
