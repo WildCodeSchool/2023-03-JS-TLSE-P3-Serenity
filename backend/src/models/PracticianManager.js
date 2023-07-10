@@ -7,6 +7,13 @@ class PracticianManager extends AbstractManager {
     super({ table: "practician" });
   }
 
+  getPracticianByAdeliNumber(adeli) {
+    return this.database.query(
+      `SELECT * FROM ${this.table} WHERE adeli_number = ?`,
+      [adeli]
+    );
+  }
+
   delete(id) {
     return this.database.query(`delete from ${this.table} where id = ?`, [id]);
   }

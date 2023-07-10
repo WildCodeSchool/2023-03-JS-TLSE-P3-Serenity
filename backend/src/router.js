@@ -17,6 +17,11 @@ const {
 } = require("./services/auth");
 
 router.post("/admins/login", admins.authenticationCheck, verifyPassword);
+router.post(
+  "/practicians/login",
+  practicianControllers.authenticationPracticianCheck,
+  verifyPassword
+);
 
 router.get(
   "/admins/practicians/:id",

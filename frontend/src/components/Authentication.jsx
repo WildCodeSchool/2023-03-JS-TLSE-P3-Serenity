@@ -48,6 +48,25 @@ export default function Authentication() {
           console.error(error.message);
           setFailAuth(true);
         });
+    } else if (credentials === "loginpro") {
+      axios
+        .post(
+          `${import.meta.env.VITE_BACKEND_URL}/practicians/login`,
+          dataFromForm
+        )
+        .then((response) => {
+          if (response.data.token) {
+            setUser(response.data.token);
+            setUserInfo(response.data.user);
+            navigate("/espacepro");
+          } else {
+            console.info(response);
+          }
+        })
+        .catch((error) => {
+          console.error(error.message);
+          setFailAuth(true);
+        });
     }
   };
 
@@ -117,7 +136,7 @@ export default function Authentication() {
           </>
         );
         break;
-      case "espacepro":
+      case "loginpro":
         authentificationTypeToShow = (
           <>
             <label htmlFor="adeli">Numéro Adeli</label>
