@@ -39,6 +39,11 @@ const PracticianManager = require("./PracticianManager");
 models.practician = new PracticianManager();
 models.practician.setDatabase(pool);
 
+const PatientManager = require("./PatientManager");
+
+models.patient = new PatientManager();
+models.patient.setDatabase(pool);
+
 const InterventionManager = require("./InterventionManager");
 
 models.intervention = new InterventionManager();

@@ -12,31 +12,33 @@ function HomePage() {
   };
 
   return (
-    <div className="card-home">
-      <img alt="background-home" className="card-img-home" src={bgImg} />
-      <div className="card-body-home">
-        <div>
-          <img alt="logo-serenity" src={logo} className="logo-serenity" />
-        </div>
-        <div className="card-body-choice">
-          <p className="title-connexion">Espace de connexion </p>
-          <button
-            type="button"
-            className="button-access-page"
-            onClick={() => handleNavigate("/loginpro")}
-          >
-            <i className="fi fi-rr-user-md" />
-            <div className="title-access-pro"> Praticien</div>
-          </button>
+    <div className="background-dark">
+      <div className="card-home">
+        <img alt="background-home" className="card-img-home" src={bgImg} />
+        <div className="card-body-home">
+          <div>
+            <img alt="logo-serenity" src={logo} className="logo-serenity" />
+          </div>
+          <div className="card-body-choice">
+            <p className="title-connexion">Espace de connexion </p>
+            <button
+              type="button"
+              className="button-access-page"
+              onClick={() => handleNavigate("/loginpro")}
+            >
+              <i className="fi fi-rr-user-md" />
+              <div className="title-access-pro"> Praticien</div>
+            </button>
 
-          <button
-            type="button"
-            className="button-access-page"
-            onClick={() => handleNavigate("/login")}
-          >
-            <i className="fi fi-rr-user" />
-            <div className="title-access-patient">Patient</div>
-          </button>
+            <button
+              type="button"
+              className="button-access-page"
+              onClick={() => handleNavigate("/login")}
+            >
+              <i className="fi fi-rr-user" />
+              <div className="title-access-patient">Patient</div>
+            </button>
+          </div>
         </div>
       </div>
     </div>

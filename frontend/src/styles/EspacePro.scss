@@ -1,5 +1,6 @@
-.home {
+.home-practician {
   display: flex;
+  background-color: var(--main-bg-admin-practician);
 
   .modal-container {
     display: flex;
@@ -11,7 +12,7 @@
 }
 
 @media (max-width: 1024px) {
-  .home {
+  .home-practician {
     .modal-container {
       padding: 1rem;
       width: 100vw;
@@ -20,7 +21,7 @@
 }
 
 @media (max-width: 480px) {
-  .home {
+  .home-practician {
     .modal-container {
       padding: 0.5rem;
       width: 100vw;

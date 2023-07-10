@@ -1,9 +1,9 @@
-label {
+.admin-practician-label {
   color: white;
 }
 
-small {
-  color: white;
+.patient-label {
+  color: var(--main-bg-admin-practician)
 }
 
 .button-to-hide {
