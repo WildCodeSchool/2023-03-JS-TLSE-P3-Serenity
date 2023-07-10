@@ -27,10 +27,11 @@ export default function EspacePro() {
         setActiveModal("Ma préparation");
         break;
       default:
-        navigate("/admin");
+        navigate("/");
         break;
     }
   }, [userInfo]);
+
   let CurrentModalePractician;
   switch (linkToActive) {
     case "home":
@@ -51,7 +52,7 @@ export default function EspacePro() {
   return (
     userInfo.role === "practician" &&
     userToken && (
-      <div className="home">
+      <div className="home-practician">
         <Navbar />
 
         <div className="modal-container">

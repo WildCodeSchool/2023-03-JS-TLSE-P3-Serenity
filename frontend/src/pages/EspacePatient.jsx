@@ -1,13 +1,13 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import PracticianListModal from "../components/PracticianListModal";
-import FormListModal from "../components/FormListModal";
-import "../styles/EspaceAdmin.scss";
+import AboutUs from "../components/AboutUs";
+import "../styles/EspacePatient.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
+import HeaderLocation from "../components/HeaderLocation";
 
-export default function EspaceAdmin() {
+export default function EspacePatient() {
   const navigate = useNavigate();
   const { linkToActive } = useContext(StateContext);
   const { userInfo, userToken } = useContext(AuthFunctionContext);
@@ -23,35 +23,36 @@ export default function EspaceAdmin() {
         navigate("/espacepatient");
         break;
       default:
-        navigate("/admin");
+        navigate("/");
         break;
     }
   }, [userInfo]);
-  let CurrentModaleAdmin;
+  let CurrentModalePatient;
   switch (linkToActive) {
     case "home":
-      CurrentModaleAdmin = <PracticianListModal />;
       break;
     case "Mon Compte":
       break;
     case "Formulaires":
-      CurrentModaleAdmin = <FormListModal />;
       break;
     case "Stats":
       break;
     case "A propos":
+      CurrentModalePatient = <AboutUs />;
       break;
     default:
-      CurrentModaleAdmin = <PracticianListModal />;
       break;
   }
 
   return (
     userInfo.role === "patient" &&
     userToken && (
-      <div className="home">
+      <div className="home-patient">
         <Navbar />
-        <div className="modal-container">{CurrentModaleAdmin}</div>
+        <div className="modal-container">
+          <HeaderLocation />
+          {CurrentModalePatient}
+        </div>
       </div>
     )
   );

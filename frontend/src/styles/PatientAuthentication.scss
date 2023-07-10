@@ -1,8 +1,8 @@
-.background-dark .authentication-practician-container {
-  background-color: var(--main-bg-admin-practician);
+.background-light .authentication-patient-container {
+  background-color: white;
 }
 
-.authentication-practician-container {
+.authentication-patient-container {
   min-width: 300px;
   width: 20vw;
   max-width: 500px;
@@ -14,11 +14,11 @@
   gap: 50px;
 }
 
-.title-connection-practician {
+.title-connection-patient {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
+  color: var(--main-bg-admin-practician);
   align-self: center;
   font-size: clamp(1.3rem, 2.5vw, 1.8rem);
   line-height: 120%;
