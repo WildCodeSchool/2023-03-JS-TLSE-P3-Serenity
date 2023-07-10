@@ -57,7 +57,7 @@ export default function EspaceAdmin() {
   return (
     userInfo.role === "admin" &&
     userToken && (
-      <div className="home">
+      <div className="home-admin">
         <Navbar />
 
         <div className="modal-container">
