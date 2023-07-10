@@ -5,6 +5,7 @@ import AboutUs from "../components/AboutUs";
 import "../styles/EspacePatient.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
+import HeaderLocation from "../components/HeaderLocation";
 
 export default function EspacePatient() {
   const navigate = useNavigate();
@@ -48,7 +49,10 @@ export default function EspacePatient() {
     userToken && (
       <div className="home-patient">
         <Navbar />
-        <div className="modal-container">{CurrentModalePatient}</div>
+        <div className="modal-container">
+          <HeaderLocation />
+          {CurrentModalePatient}
+        </div>
       </div>
     )
   );
