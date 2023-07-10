@@ -36,7 +36,7 @@ export default function EspaceAdmin() {
   }, [userInfo]);
   let CurrentModaleAdmin;
   switch (linkToActive) {
-    case "home":
+    case "Home":
       CurrentModaleAdmin = <PracticianListModal />;
       break;
     case "Mon Compte":
