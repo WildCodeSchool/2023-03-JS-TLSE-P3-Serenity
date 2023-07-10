@@ -112,7 +112,8 @@ function FormListModal() {
       });
   };
 
-  const handleDeleteFormButtonClick = (formId) => {
+  const handleDeleteFormButtonClick = (event, formId) => {
+    event.stopPropagation();
     Swal.fire({
       title: "Êtes-vous sûr de vouloir supprimer cette requête ?",
       text: "Vous ne pourrez pas annuler cette action !",
@@ -150,6 +151,11 @@ function FormListModal() {
       }
     });
   };
+
+  // const handleDeleteButtonClick = (event, formId) => {
+  //   event.stopPropagation();
+  //   handleDeleteFormButtonClick(formId);
+  // };
 
   return (
     <div className="form-list">
@@ -196,7 +202,9 @@ function FormListModal() {
                 <button
                   type="button"
                   className="delete-button"
-                  onClick={() => handleDeleteFormButtonClick(form.id)}
+                  onClick={(event) =>
+                    handleDeleteFormButtonClick(event, form.id)
+                  }
                 >
                   <i className="fi fi-rr-trash" />
                 </button>
