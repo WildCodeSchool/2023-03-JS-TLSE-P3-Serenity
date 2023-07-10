@@ -3,7 +3,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
-import "../styles/PracticianListModal.scss";
 
 function DeleteButton({ practician, setPracticians, practicians }) {
   const { userToken, userInfo } = useContext(AuthFunctionContext);
