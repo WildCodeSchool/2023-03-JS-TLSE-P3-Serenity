@@ -75,6 +75,9 @@ function PracticianListModal() {
           });
           setPracticians(updatedPracticians);
           setShowSuccessMessageModification(true);
+          setTimeout(() => {
+            setShow(false);
+          }, 1000);
         })
         .catch((error) => {
           console.error(error);

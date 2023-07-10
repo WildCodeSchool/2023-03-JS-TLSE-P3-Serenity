@@ -40,6 +40,9 @@ function Buttonadd() {
       .then(() => {
         // Updates status to indicate successful submission
         setShowSuccessMessageAdd(true); // Displays success message
+        setTimeout(() => {
+          setShow(false);
+        }, 1000);
       })
       .catch((error) => {
         // Handle API request or response errors
