@@ -7,21 +7,13 @@ export default StateContext;
 
 export function StateProvider({ children }) {
   const [linkToActive, setLinkToActive] = useState("Home");
+  const [activeModal, setActiveModal] = useState("");
+  const [showSuccessMessageModification, setShowSuccessMessageModification] =
+    useState(false); // for tracking success message display
+  const [showSuccessMessageAdd, setShowSuccessMessageAdd] = useState(false);
+  const [show, setShow] = useState(false); // Display modal
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentActiveLink, setCurrentActiveLink] = useState("");
-  const userInfoTest = "admin"; // Replace userInfoTest by userInfo of Token for the role, the role define the first activeLink
-  useMemo(() => {
-    if (userInfoTest === "admin") {
-      setCurrentActiveLink("Praticiens");
-    }
-    if (userInfoTest === "practician") {
-      setCurrentActiveLink("Patients");
-    }
-    if (userInfoTest === "patient") {
-      setCurrentActiveLink("Ma préparation");
-    }
-  }, [userInfoTest]);
 
   const stateContext = useMemo(
     () => ({
@@ -29,10 +21,23 @@ export function StateProvider({ children }) {
       setLinkToActive,
       isMenuOpen,
       setIsMenuOpen,
-      currentActiveLink,
-      setCurrentActiveLink,
+      showSuccessMessageModification,
+      setShowSuccessMessageModification,
+      showSuccessMessageAdd,
+      setShowSuccessMessageAdd,
+      activeModal,
+      setActiveModal,
+      show,
+      setShow,
     }),
-    [linkToActive, isMenuOpen]
+    [
+      linkToActive,
+      isMenuOpen,
+      showSuccessMessageModification,
+      showSuccessMessageAdd,
+      activeModal,
+      show,
+    ]
   );
   return (
     <StateContext.Provider value={stateContext}>

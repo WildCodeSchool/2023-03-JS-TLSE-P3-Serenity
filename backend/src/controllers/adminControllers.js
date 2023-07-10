@@ -18,13 +18,31 @@ const authenticationCheck = (req, res, next) => {
       res.status(500).send("Error retrieving data from database");
     });
 };
+const getAccountInfoAdminById = (req, res) => {
+  const { id } = req.params;
+
+  models.administrator
+    .find(id)
+    .then(([users]) => {
+      if (users[0] != null) {
+        res.status(200).send(users[0]);
+      } else {
+        res.sendStatus(401);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error retrieving data from database");
+    });
+};
 
 const modifyAdmin = (req, res) => {
   const { id } = req.params;
-  const { matricule, hashedPassword } = req.body;
-
+  const keys = Object.keys(req.body);
+  const values = Object.values(req.body);
+  const valueQuery = keys.map((key) => `${key} = ?`).join(", ");
   models.administrator
-    .update(matricule, hashedPassword, id)
+    .update(values, valueQuery, id)
     .then(([result]) => {
       if (result.affectedRows !== 0) {
         res.sendStatus(204);
@@ -40,4 +58,5 @@ const modifyAdmin = (req, res) => {
 module.exports = {
   authenticationCheck,
   modifyAdmin,
+  getAccountInfoAdminById,
 };

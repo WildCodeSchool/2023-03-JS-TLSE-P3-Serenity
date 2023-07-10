@@ -2,10 +2,17 @@ import React, { useContext } from "react";
 import "../styles/Navbar.scss";
 import avatar from "../assets/avatar.svg";
 import StateContext from "../contexts/StateContext";
+import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function navbar() {
-  const { linkToActive, setLinkToActive, isMenuOpen, setIsMenuOpen } =
-    useContext(StateContext);
+  const {
+    linkToActive,
+    setLinkToActive,
+    isMenuOpen,
+    setIsMenuOpen,
+    setActiveModal,
+  } = useContext(StateContext);
+  const { userInfo } = useContext(AuthFunctionContext);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -17,6 +24,8 @@ function navbar() {
       icon: "users",
       action: () => {
         setLinkToActive("Home");
+        setIsMenuOpen(false);
+        setActiveModal("Praticiens");
       },
     },
     {
@@ -26,6 +35,8 @@ function navbar() {
       icon: "users",
       action: () => {
         setLinkToActive("Home");
+        setIsMenuOpen(false);
+        setActiveModal("Patients");
       },
     },
     {
@@ -35,6 +46,8 @@ function navbar() {
       icon: "poll-h",
       action: () => {
         setLinkToActive("Home");
+        setIsMenuOpen(false);
+        setActiveModal("Ma préparation");
       },
     },
     {
@@ -44,6 +57,8 @@ function navbar() {
       icon: "file-medical-alt",
       action: () => {
         setLinkToActive("Interventions");
+        setIsMenuOpen(false);
+        setActiveModal("Interventions");
       },
     },
     {
@@ -53,6 +68,8 @@ function navbar() {
       icon: "folder-tree",
       action: () => {
         setLinkToActive("Ressources");
+        setIsMenuOpen(false);
+        setActiveModal("Ressources");
       },
     },
     {
@@ -62,6 +79,8 @@ function navbar() {
       icon: "circle-user",
       action: () => {
         setLinkToActive("Mon Compte");
+        setIsMenuOpen(false);
+        setActiveModal("Mon Compte");
       },
     },
     {
@@ -71,6 +90,8 @@ function navbar() {
       icon: "user-md",
       action: () => {
         setLinkToActive("Mon médecin");
+        setIsMenuOpen(false);
+        setActiveModal("Mon médecin");
       },
     },
     {
@@ -80,6 +101,8 @@ function navbar() {
       icon: "document-signed",
       action: () => {
         setLinkToActive("Formulaires");
+        setIsMenuOpen(false);
+        setActiveModal("Formulaires");
       },
     },
     {
@@ -89,6 +112,8 @@ function navbar() {
       icon: "chart-histogram",
       action: () => {
         setLinkToActive("Stats");
+        setIsMenuOpen(false);
+        setActiveModal("Stats");
       },
     },
     {
@@ -98,6 +123,8 @@ function navbar() {
       icon: "info",
       action: () => {
         setLinkToActive("A propos");
+        setIsMenuOpen(false);
+        setActiveModal("A propos");
       },
     },
   ];
@@ -105,14 +132,16 @@ function navbar() {
     <div className="header-navbar">
       <div className="header-avatar">
         <img src={avatar} alt="avatar" className="admin-avatar" />
-        {/* // Fetch du nom de l'admin */}
-        <span className="admin-name">Nom de l'administrateur</span>
+        <span className="admin-name">
+          {userInfo.firstname} {userInfo.lastname}
+        </span>
       </div>
       <div className="navbar-serenity">
         <button
           type="button"
           onClick={() => {
             setLinkToActive("Home");
+            setIsMenuOpen(false);
           }}
         >
           <i alt="Home" className="fi fi-rr-home home-icon-mobile" />
@@ -131,26 +160,31 @@ function navbar() {
             isMenuOpen ? "links burger-visible" : "links burger-invisible"
           }
         >
-          {navbarLinks
-            .filter((link) => link.role === "admin" || link.role === "all")
-            .map((link) => (
-              <li key={link.label} className="list-item-navbar">
-                <button
-                  className={link.className}
-                  type="button"
-                  onClick={link.action}
-                >
-                  <div className="button-content">
-                    <i
-                      alt={link.label}
-                      className={`fi fi-rr-${link.icon} link-icon`}
-                    />
-                    {link.label}
-                  </div>
-                </button>
-              </li>
-            ))}
-          <li className="list-item-navbar logout">
+          <div className="list-item-navbar">
+            {navbarLinks
+              .filter(
+                (link) =>
+                  link.role === `${userInfo.role}` || link.role === "all"
+              )
+              .map((link) => (
+                <li key={link.label} className="list-navbar">
+                  <button
+                    className={link.className}
+                    type="button"
+                    onClick={link.action}
+                  >
+                    <div className="button-content">
+                      <i
+                        alt={link.label}
+                        className={`fi fi-rr-${link.icon} link-icon`}
+                      />
+                      {link.label}
+                    </div>
+                  </button>
+                </li>
+              ))}
+          </div>
+          <div className="list-item-navbar logout">
             <button
               className="nav-serenity"
               alt="Déconnexion"
@@ -164,7 +198,7 @@ function navbar() {
                 Déconnexion
               </div>
             </button>
-          </li>
+          </div>
         </ul>
       </div>
     </div>

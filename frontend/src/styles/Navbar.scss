@@ -1,15 +1,19 @@
 .header-navbar {
+  display: flex;
+  flex-direction: column;
   background: var(--main-bg-admin-practician);
-  border-right: solid 2px rgb(72, 72, 72);  
+  border-right: solid 2px rgb(72, 72, 72);
   height: 100vh;
+  width: clamp(205px, 20%, 20vw);
+  pointer-events: none;
+  z-index:5;
 }
 
 .header-avatar {
   display: flex;
   padding: 1rem;
   gap: 8px;
-  width: 20%;
-  height: 10vh;
+  pointer-events: auto;
 }
 
 .admin-avatar {
@@ -27,18 +31,32 @@
 }
 
 .navbar-serenity {
-  min-width: 217px;
-  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  flex: auto;
+  pointer-events: auto;
 }
-
 .links {
   display: flex;
   flex-direction: column;
+  flex: auto;
   align-items: center;
   margin-top: 20%;
-  height: 90%;
-  gap: 3%;
-  padding: 4%;
+  padding-top: 5%;
+  justify-content: space-between;
+  z-index: 2;
+
+  .list-item-navbar {
+    width: 90%;
+
+    .list-navbar {
+      margin-top: 4%;
+    }
+  }
+  .logout {
+    margin: 4%;
+  }
 }
 
 .list-item-navbar {
@@ -54,7 +72,6 @@
   font-size: 1rem;
   background: var(--main-bg-admin-practician);
   border-radius: 12px;
-  border: solid 1px rgb(72, 72, 72);
 }
 
 .active {
@@ -66,16 +83,11 @@
   font-size: 1rem;
   border-radius: 12px;
   background: #6c5dd3;
-  border: solid 1px rgb(72, 72, 72);
 }
 
 .nav-serenity:hover {
   background: rgb(50, 53, 66);
   cursor: pointer;
-}
-
-.logout{
-bottom: 0%;
 }
 
 .button-content {
@@ -108,14 +120,14 @@ bottom: 0%;
   display: none;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1024px) {
   .header-navbar {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background: transparent;
     position: fixed;
-    height: 100%;
+    width: 100vw;
   }
 
   .header-avatar {
@@ -132,11 +144,16 @@ bottom: 0%;
   .admin-name {
     text-align: end;
     color: #5c5c5c;
-    width: 50%;
+    width: auto;
+  }
+
+  .list-item-navbar {
+    margin-top: 0;
   }
 
   .navbar-serenity {
     display: flex;
+    flex: none;
     max-width: 100vw;
     height: 10vh;
     flex-direction: row;
@@ -158,7 +175,105 @@ bottom: 0%;
   }
 
   .burger-visible {
+    position: absolute;
+    background: rgba(36, 39, 49, 1);
+    border: lightgray 2px solid;
+    border-radius: 15px;
+    bottom: 10%;
+    right: 0%;
+    width: 70%;
+    height: auto;
+    align-items: center;
+  }
+
+  .nav-serenity {
+    font-size: 1rem;
+    color: black;
+    background: white;
+    margin-bottom: 8%;
+  }
+
+  .active {
+    font-size: 1rem;
+    color: black;
+    background: white;
+    margin-bottom: 8%;
+  }
+
+  .home-icon-mobile {
+    font-size: 60px;
     display: flex;
+    background: var(--main-bg-admin-practician);
+    color: white;
+  }
+
+  .menu-burger {
+    display: flex;
+  }
+
+  .menu-burger-icon {
+    font-size: 60px;
+    display: flex;
+    background: var(--main-bg-admin-practician);
+    color: white;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: transparent;
+    position: fixed;
+    width: 100vw;
+  }
+
+  .header-avatar {
+    flex-direction: row-reverse;
+    width: 100vw;
+    height: 15vh;
+  }
+
+  .admin-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .admin-name {
+    text-align: end;
+    color: #5c5c5c;
+    width: 40%;
+  }
+
+  .list-item-navbar {
+    margin-top: 0;
+  }
+
+  .navbar-serenity {
+    display: flex;
+    flex: none;
+    max-width: 100vw;
+    height: 10vh;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-top: #5c5c5c 2px;
+  }
+
+  .bg-burger {
+    background: transparent;
+    position: absolute;
+    bottom: 10%;
+    width: 100vw;
+    height: 90vh;
+  }
+
+  .burger-invisible {
+    display: none;
+  }
+
+  .burger-visible {
     position: absolute;
     background: rgba(36, 39, 49, 1);
     border: lightgray 2px solid;

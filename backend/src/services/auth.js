@@ -9,17 +9,21 @@ const hashingOptions = {
 };
 
 const hashPassword = (req, res, next) => {
-  argon2
-    .hash(req.body.password, hashingOptions)
-    .then((hashedPassword) => {
-      req.body.hashedPassword = hashedPassword;
-      delete req.body.password;
-      next();
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+  if (req.body.password) {
+    argon2
+      .hash(req.body.password, hashingOptions)
+      .then((hashedPassword) => {
+        req.body.hashed_password = hashedPassword;
+        delete req.body.password;
+        next();
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  } else {
+    next();
+  }
 };
 
 const verifyPassword = (req, res) => {
@@ -32,9 +36,7 @@ const verifyPassword = (req, res) => {
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
           expiresIn: "12h",
         });
-
         delete req.user.hashed_password;
-        console.info(token);
         res.status(200).send({ token, user: req.user });
       } else {
         res.sendStatus(401);
@@ -49,7 +51,6 @@ const verifyPassword = (req, res) => {
 const verifyToken = (req, res, next) => {
   try {
     const authorizationHeader = req.get("Authorization");
-
     if (authorizationHeader == null) {
       throw new Error("Authorization header is missing");
     }
@@ -66,8 +67,29 @@ const verifyToken = (req, res, next) => {
   }
 };
 
+const verifyAdminRole = (req, res, next) => {
+  const role = req.get("Role");
+  if (role === "admin") {
+    next();
+  } else {
+    res.sendStatus(403).send("Forbidden");
+  }
+};
+
+const checkId = (req, res, next) => {
+  const id = parseInt(req.params.id, 10);
+  const payload = req.payload.sub;
+  if (id === payload) {
+    next();
+  } else {
+    res.status(403).send("Forbidden");
+  }
+};
+
 module.exports = {
   hashPassword,
   verifyPassword,
   verifyToken,
+  verifyAdminRole,
+  checkId,
 };

@@ -1,3 +1,29 @@
 .home {
   display: flex;
+
+  .modal-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem;
+    height: 100vh;
+    width: 80vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  .home {
+    .modal-container {
+      padding: 1rem;
+      width: 100vw;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .home {
+    .modal-container {
+      padding: 0.5rem;
+      width: 100vw;
+    }
+  }
 }

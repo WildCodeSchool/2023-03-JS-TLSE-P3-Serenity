@@ -1,6 +1,38 @@
-.header-location{
-    position: absolute;
-    top: 0;
-    left: 30%;
+.header-location {
+  display: flex;
+  flex-direction: column;
+  height: 20vh;
+  padding-top: 1rem;
+  gap: 10px;
+  
+  h1 {
     color: white;
+    font-size: 35px;
+  }
+
+  .header-logo {
+    display: flex;
+    flex-direction: row;
+    width: 18rem;
+    height: 3.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header-location {
+    padding-top: 0;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-location {
+    padding: 1rem;
+    .header-logo {
+      width: 5rem;
+    }
+    h1 {
+      display: none;
+    }
+  }
 }

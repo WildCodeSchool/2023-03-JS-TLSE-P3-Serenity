@@ -14,6 +14,9 @@ export function AuthFunctionProvider({ children }) {
       Cookies.set("userToken", token, {
         expires: 12 / 24,
       });
+      Cookies.set("userRole", userInfo.role, {
+        expires: 12 / 24,
+      });
       setUserToken(token);
     } else {
       Cookies.remove("userToken");
