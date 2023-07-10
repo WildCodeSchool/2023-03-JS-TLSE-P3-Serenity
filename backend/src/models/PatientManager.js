@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-/* eslint-disable camelcase */
 const AbstractManager = require("./AbstractManager");
 
 class PatientManager extends AbstractManager {
