@@ -8,14 +8,19 @@
   padding: 1rem;
   overflow: auto;
     &::-webkit-scrollbar {
-        height: 0.5rem;
-      }
+      height: 0.5rem;
+      width: 0.5rem;
+      background-color: transparent;
+    }
     &::-webkit-scrollbar-thumb {
-      background-color: rgb(100, 100, 100);
       border-radius: 5px;
       visibility: hidden;
     }
+    &::-webkit-scrollbar-corner {
+      visibility: hidden;
+    }
     &:hover::-webkit-scrollbar-thumb {
+      background-color: rgb(100, 100, 100);
       visibility: visible;
     }
   .form-list-table {
