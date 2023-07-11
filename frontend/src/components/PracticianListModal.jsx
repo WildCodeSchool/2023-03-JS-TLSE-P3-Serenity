@@ -36,10 +36,10 @@ function PracticianListModal() {
   };
 
   const handleTrClick = (practician) => {
+    setShowSuccessMessageAdd(false);
     setSelectedPractician(practician);
     setModalInputs(practician);
     handleShow(true);
-    setShowSuccessMessageAdd(false);
   };
 
   const handleInputChange = (event) => {

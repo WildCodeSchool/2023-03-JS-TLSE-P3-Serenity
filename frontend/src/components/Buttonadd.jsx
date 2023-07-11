@@ -16,7 +16,6 @@ function Buttonadd() {
   const { role } = userInfo;
   const handleClose = () => {
     setShow(false);
-    setShowSuccessMessageAdd(false);
   };
   const handleShow = () => {
     setShow(true);
@@ -26,8 +25,9 @@ function Buttonadd() {
     const form = event.target;
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
-    axios
-      .post(
+
+    Promise.all([
+      axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/admins/practicians/`,
         formJson,
         {
@@ -36,12 +36,24 @@ function Buttonadd() {
             Role: `${role}`,
           },
         }
-      )
+      ),
+      axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/admins/practicians/mail`,
+        formJson,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
+      ),
+    ])
       .then(() => {
         // Updates status to indicate successful submission
         setShowSuccessMessageAdd(true); // Displays success message
         setTimeout(() => {
           setShow(false);
+          setShowSuccessMessageAdd(false);
         }, 1000);
       })
       .catch((error) => {
@@ -49,7 +61,8 @@ function Buttonadd() {
         console.error("Erreur lors de l'envoi des données :", error);
       });
   };
-  // Function to generate random password
+
+  // // Function to generate random password
   const generatePassword = () => {
     const characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[{]};:',<.>/?";
@@ -65,7 +78,7 @@ function Buttonadd() {
     password += characters.charAt(Math.floor(Math.random() * 10) + 52);
 
     // Ajoute un caractère spécial
-    password += characters.charAt(Math.floor(Math.random() * 19) + 62);
+    password += characters.charAt(Math.floor(Math.random() * 1) + 62);
     // Generates remaining characters
     for (let i = 0; i < 4; i += 1) {
       password += characters.charAt(
