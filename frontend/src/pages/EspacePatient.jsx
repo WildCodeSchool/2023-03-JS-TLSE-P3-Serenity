@@ -29,7 +29,7 @@ export default function EspacePatient() {
   }, [userInfo]);
   let CurrentModalePatient;
   switch (linkToActive) {
-    case "home":
+    case "Home":
       break;
     case "Mon Compte":
       break;

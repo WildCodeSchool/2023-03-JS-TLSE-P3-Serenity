@@ -205,8 +205,8 @@ function PracticianListModal() {
                         <i className="fi fi-rr-pencil" />
                       </button>
                       <DeleteButton
-                        selectedPracticians={[selectedPractician]}
                         practicians={practicians}
+                        practician={practician.id}
                         setPracticians={setPracticians}
                       />
                     </td>
