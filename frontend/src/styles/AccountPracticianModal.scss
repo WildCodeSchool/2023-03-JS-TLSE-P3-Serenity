@@ -1,0 +1,314 @@
+.container-list-info-practician {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background-color: #242731;
+  width: 100%;
+  max-height: 70%;
+  border-radius: 20px;
+  box-shadow: 0 0 1rem #000000;
+
+  .container-scroll {
+    overflow: auto;
+    margin: 20px 0;
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(100, 100, 100);
+      border-radius: 5px;
+      visibility: hidden;
+    }
+    &:hover::-webkit-scrollbar-thumb {
+      visibility: visible;
+    }
+    .button-modification-validation {
+      width: 60%;
+      margin: 0 auto;
+      padding: 10px;
+      border-radius: 5px;
+      min-width: 130px;
+      max-width: 300px;
+      background-color: var(--button-color);
+      color: white;
+      p {
+        width: 100%;
+      }
+    }
+    .disable-button {
+      cursor: not-allowed;
+      background-color: rgb(161, 161, 161);
+    }
+
+    input,
+    textarea {
+      background-color: var(--grey-10);
+      color: white;
+    }
+
+    textarea {
+      border: none;
+    }
+
+    .section-account-info {
+      font-size: 1.3rem;
+    }
+
+    hr {
+      width: 95%;
+      margin: 0 auto;
+    }
+
+    .first-infos-practician {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 1rem;
+      z-index: 2;
+
+      .account-info-list-practician {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 1.5rem 1rem;
+        z-index: 2;
+
+        .global-info-form-practician {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .global-info-practician-grid {
+          display: grid;
+          grid-template-columns: 1fr 10px 1fr;
+          grid-template-rows: 1fr 12px 1fr 12px 1fr;
+          label {
+            width: 100%;
+          }
+          input {
+            width: 100%;
+          }
+          .lastname-input-practician {
+            grid-column: 3;
+            grid-row: 1;
+          }
+          .mail-input-practician {
+            grid-column: 1;
+            grid-row: 3;
+          }
+          .adeli-input {
+            grid-column: 3;
+            grid-row: 3;
+          }
+          .speciality-input-practician {
+            grid-column: 1;
+            grid-row: 5;
+          }
+          .phone-input-practician {
+            grid-column: 3;
+            grid-row: 5;
+          }
+        }
+
+        .firstname-input-practician,
+        .lastname-input-practician,
+        .mail-input-practician,
+        .adeli-input,
+        .speciality-input-practician,
+        .phone-input-practician,
+        .password-input,
+        .password-input-check {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          max-width: 350px;
+          gap: 8px;
+          margin: 0 auto;
+
+          input {
+            border-radius: 5px;
+          }
+
+          #firstname,
+          #lastname,
+          #mail,
+          #adeli,
+          #speciality,
+          #phone,
+          #password,
+          #passwordCheck {
+            height: 24px;
+            padding: 0 0.5rem;
+          }
+        }
+        .password-input,
+        .password-input-check {
+          width: 100%;
+          label {
+            width: 100%;
+          }
+          input {
+            width: 100%;
+          }
+        }
+
+        .password-form {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+
+          .verified-message {
+            color: red;
+            font-size: 0.9rem;
+            align-self: center;
+          }
+          .verified-message-hidden {
+            display: none;
+          }
+          .password-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 10px 1fr;
+
+            .password-input {
+              justify-content: flex-end;
+
+              .password-input-and-show {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                height: 100%;
+                position: relative;
+              }
+              .hide-or-show-button {
+                height: 20px;
+                width: 20px;
+                position: absolute;
+                right: 3px;
+                bottom: 0px;
+                background-color: transparent;
+                color: white;
+              }
+
+              #pw-icon-show-hide {
+                font-size: 15px;
+              }
+            }
+
+            .password-input-check {
+              justify-content: flex-end;
+              grid-column: 3;
+
+              .password-check-input-and-show {
+                display: flex;
+                height: 100%;
+                position: relative;
+              }
+              .hide-or-show-button {
+                height: 20px;
+                width: 20px;
+                position: absolute;
+                right: 3px;
+                top: 3px;
+                background-color: transparent;
+                color: white;
+              }
+
+              #pw-icon-show-hide {
+                font-size: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .other-infos-practician {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 1rem;
+      z-index: 2;
+
+      .global-other-info-form-practician {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        .global-other-info-practician-flex {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          padding: 1.5rem 1rem;
+          .language-input,
+          .biography-input,
+          .diploma-input,
+          .formation-input,
+          .experience-input,
+          .association-input,
+          .publication-input,
+          .award-input {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            #language {
+              border-radius: 5px;
+              height: 24px;
+              padding: 0 0.5rem;
+            }
+
+            #biography,
+            #diploma,
+            #formation,
+            #experience,
+            #association,
+            #publication,
+            #award {
+              border-radius: 5px;
+              height: 150px;
+              padding: 0.5rem 0.5rem;
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .first-infos-practician {
+        .account-info-list-practician {
+          .global-info-form-practician {
+            .global-info-practician-grid {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+            }
+          }
+          .password-form {
+            .password-form-grid {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// @media screen and (max-width: 480px) {
+//   .home-practician {
+//     .modal-container {
+//       width:100%;
+//       padding:5%;
+//     }
+//   }
+// }
+
+// @media screen and (min-width: 480px) and (max-width: 768px) {
+//   .home-practician {
+//     .modal-container {
+//       width:100%;
+//       padding:10%;
+//     }
+//   }
+// }
