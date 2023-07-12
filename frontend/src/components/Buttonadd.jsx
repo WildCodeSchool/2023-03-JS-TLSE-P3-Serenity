@@ -25,7 +25,6 @@ function Buttonadd() {
     const form = event.target;
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
-
     Promise.all([
       axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/admins/practicians/`,
@@ -153,11 +152,7 @@ function Buttonadd() {
                 required
               />
             </Form.Group>
-            <input
-              type="hidden"
-              name="hashed_password"
-              value={generatePassword()}
-            />
+            <input type="hidden" name="password" value={generatePassword()} />
             <input type="hidden" name="administrator_id" value={1} />
             <Modal.Footer>
               {showSuccessMessageAdd && (

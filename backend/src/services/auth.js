@@ -9,9 +9,9 @@ const hashingOptions = {
 };
 
 const hashPassword = (req, res, next) => {
-  if (req.body.hashed_password) {
+  if (req.body.password) {
     argon2
-      .hash(req.body.hashed_password, hashingOptions)
+      .hash(req.body.password, hashingOptions)
       .then((hashedPassword) => {
         req.body.hashed_password = hashedPassword;
         delete req.body.password;
