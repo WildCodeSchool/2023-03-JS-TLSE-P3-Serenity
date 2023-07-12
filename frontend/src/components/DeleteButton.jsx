@@ -60,14 +60,7 @@ function DeleteButton({ practician, setPracticians, practicians }) {
 }
 
 DeleteButton.propTypes = {
-  practician: PropTypes.shape({
-    id: PropTypes.number,
-    firstname: PropTypes.string,
-    lastname: PropTypes.string,
-    mail: PropTypes.string,
-    adeli_number: PropTypes.string,
-    administrator_id: PropTypes.number,
-  }).isRequired,
+  practician: PropTypes.number.isRequired,
   setPracticians: PropTypes.func.isRequired,
   practicians: PropTypes.arrayOf(
     PropTypes.shape({

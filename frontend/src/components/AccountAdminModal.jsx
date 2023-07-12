@@ -159,141 +159,143 @@ function AccountAdminModal() {
 
   return (
     <div className="container-list-info">
-      <div className="account-info-list">
-        <form onSubmit={handleValidateInfo} className="global-info-form">
-          <div className="global-info-grid">
-            <div className="firstname-input">
-              <label htmlFor="firstname">Prénom</label>
-              <input
-                type="text"
-                value={firstnameInfo}
-                name="firstname"
-                id="firstname"
-                onChange={(e) => setFirstnameInfo(e.target.value)}
-              />
+      <div className="container-scroll-account-admin">
+        <div className="account-info-list">
+          <form onSubmit={handleValidateInfo} className="global-info-form">
+            <div className="global-info-grid">
+              <div className="firstname-input">
+                <label htmlFor="firstname">Prénom</label>
+                <input
+                  type="text"
+                  value={firstnameInfo}
+                  name="firstname"
+                  id="firstname"
+                  onChange={(e) => setFirstnameInfo(e.target.value)}
+                />
+              </div>
+              <div className="lastname-input">
+                <label htmlFor="lastname">Nom</label>
+                <input
+                  type="text"
+                  value={lastnameInfo}
+                  name="lastname"
+                  id="lastname"
+                  onChange={(e) => setLastnameInfo(e.target.value)}
+                />
+              </div>
+              <div className="mail-input">
+                <label htmlFor="mail">Mail</label>
+                <input
+                  type="text"
+                  value={mailInfo}
+                  name="mail"
+                  id="mail"
+                  onChange={(e) => setMailInfo(e.target.value)}
+                />
+              </div>
+              <div className="matricule-input">
+                <label htmlFor="matricule">Matricule</label>
+                <input
+                  type="text"
+                  value={matriculeInfo}
+                  name="registration_number"
+                  id="matricule"
+                  onChange={(e) => setMatriculeInfo(e.target.value)}
+                />
+              </div>
             </div>
-            <div className="lastname-input">
-              <label htmlFor="lastname">Nom</label>
-              <input
-                type="text"
-                value={lastnameInfo}
-                name="lastname"
-                id="lastname"
-                onChange={(e) => setLastnameInfo(e.target.value)}
-              />
-            </div>
-            <div className="mail-input">
-              <label htmlFor="mail">Mail</label>
-              <input
-                type="text"
-                value={mailInfo}
-                name="mail"
-                id="mail"
-                onChange={(e) => setMailInfo(e.target.value)}
-              />
-            </div>
-            <div className="matricule-input">
-              <label htmlFor="matricule">Matricule</label>
-              <input
-                type="text"
-                value={matriculeInfo}
-                name="registration_number"
-                id="matricule"
-                onChange={(e) => setMatriculeInfo(e.target.value)}
-              />
-            </div>
-          </div>
-          <button type="submit" className="button-modification-info-validation">
-            <p>Valider modification</p>
-          </button>
-        </form>
+            <button type="submit" className="button-modification-validation">
+              <p>Valider modification</p>
+            </button>
+          </form>
 
-        <form onSubmit={handleValidatePassword} className="password-form">
-          <div className="password-form-grid">
-            <div className="password-input">
-              <label htmlFor="password" className="label-password">
-                Mot de passe
-              </label>
-              <input hidden type="text" autoComplete="username" />
-              <div className="password-input-and-show">
-                <input
-                  type={!passwordShown ? "password" : "text"}
-                  value={passwordChange}
-                  name="password"
-                  id="password"
-                  autoComplete="new-password"
-                  onChange={(e) => setPasswordChange(e.target.value)}
-                />
-                <button
-                  onClick={togglePassword}
-                  type="button"
-                  className="hide-or-show-button"
-                >
-                  <i
-                    id="pw-icon-show-hide"
-                    className={
-                      passwordShown ? "fi fi-rr-eye-crossed" : "fi fi-rr-eye"
-                    }
-                    alt="button to show or hide password"
+          <form onSubmit={handleValidatePassword} className="password-form">
+            <div className="password-form-grid">
+              <div className="password-input">
+                <label htmlFor="password" className="label-password">
+                  Mot de passe
+                </label>
+                <input hidden type="text" autoComplete="username" />
+                <div className="password-input-and-show">
+                  <input
+                    type={!passwordShown ? "password" : "text"}
+                    value={passwordChange}
+                    name="password"
+                    id="password"
+                    autoComplete="new-password"
+                    onChange={(e) => setPasswordChange(e.target.value)}
                   />
-                </button>
+                  <button
+                    onClick={togglePassword}
+                    type="button"
+                    className="hide-or-show-button"
+                  >
+                    <i
+                      id="pw-icon-show-hide"
+                      className={
+                        passwordShown ? "fi fi-rr-eye-crossed" : "fi fi-rr-eye"
+                      }
+                      alt="button to show or hide password"
+                    />
+                  </button>
+                </div>
+              </div>
+              <div className="password-input-check">
+                <label htmlFor="passwordCheck" className="label-password-check">
+                  Confirmer le mot de passe
+                </label>
+                <div className="password-check-input-and-show">
+                  <input
+                    type={!passwordCheckShown ? "password" : "text"}
+                    value={passwordCheckChange}
+                    autoComplete="new-password"
+                    name="passwordCheck"
+                    id="passwordCheck"
+                    onChange={handlePasswordCheck}
+                  />
+                  <button
+                    onClick={toggleCheckPassword}
+                    type="button"
+                    className="hide-or-show-button"
+                  >
+                    <i
+                      id="pw-icon-show-hide"
+                      className={
+                        passwordCheckShown
+                          ? "fi fi-rr-eye-crossed"
+                          : "fi fi-rr-eye"
+                      }
+                      alt="button to show or hide password"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
-            <div className="password-input-check">
-              <label htmlFor="passwordCheck" className="label-password-check">
-                Confirmer le mot de passe
-              </label>
-              <div className="password-check-input-and-show">
-                <input
-                  type={!passwordCheckShown ? "password" : "text"}
-                  value={passwordCheckChange}
-                  autoComplete="new-password"
-                  name="passwordCheck"
-                  id="passwordCheck"
-                  onChange={handlePasswordCheck}
-                />
-                <button
-                  onClick={toggleCheckPassword}
-                  type="button"
-                  className="hide-or-show-button"
-                >
-                  <i
-                    id="pw-icon-show-hide"
-                    className={
-                      passwordCheckShown
-                        ? "fi fi-rr-eye-crossed"
-                        : "fi fi-rr-eye"
-                    }
-                    alt="button to show or hide password"
-                  />
-                </button>
-              </div>
-            </div>
-          </div>
-          <p
-            className={
-              messageCheckPassword.length
-                ? "verified-message"
-                : "verified-message-hidden"
-            }
-          >
-            {messageCheckPassword}
-          </p>
-          <button
-            type="submit"
-            className={
-              messageCheckPassword.length
-                ? "button-modification-pw-validation disable-button"
-                : "button-modification-pw-validation"
-            }
-          >
-            Valider changement de mot de passe
-          </button>
-          <p>
-            Le mot de passe doit contenir au moins 8 caractères dont au moins
-            une majuscule, un chiffre et un caractère spécial.
-          </p>
-        </form>
+            <p
+              className={
+                messageCheckPassword.length
+                  ? "verified-message"
+                  : "verified-message-hidden"
+              }
+            >
+              {messageCheckPassword}
+            </p>
+            <button
+              type="submit"
+              className={
+                messageCheckPassword.length
+                  ? "button-modification-validation disable-button"
+                  : "button-modification-validation"
+              }
+            >
+              Valider changement de mot de passe
+            </button>
+            <p>
+              Le mot de passe doit contenir au moins 8 caractères dont au moins
+              une majuscule, un chiffre et un caractère spécial.
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   );
