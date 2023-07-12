@@ -52,40 +52,6 @@ const authenticationPracticianCheck = (req, res, next) => {
     });
 };
 
-// const updatePractician = (req, res) => {
-//   const {
-//     adeli_number,
-//     hashed_password,
-//     firstname,
-//     lastname,
-//     mail,
-//     administrator_id,
-//   } = req.body;
-//   const { id } = req.params;
-
-//   models.practician
-//     .update({
-//       adeli_number,
-//       hashed_password,
-//       firstname,
-//       lastname,
-//       mail,
-//       administrator_id,
-//       id,
-//     })
-//     .then(([result]) => {
-//       if (result.affectedRows === 0) {
-//         res.sendStatus(404);
-//       } else {
-//         res.sendStatus(204);
-//       }
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//       res.sendStatus(500);
-//     });
-// };
-
 const AddPractician = (req, res) => {
   const {
     adeli_number,
@@ -168,5 +134,4 @@ module.exports = {
   AddPractician,
   deletePractician,
   authenticationPracticianCheck,
-  // modifyPractician,
 };

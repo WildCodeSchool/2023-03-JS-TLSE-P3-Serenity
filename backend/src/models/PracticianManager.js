@@ -40,47 +40,11 @@ class PracticianManager extends AbstractManager {
   }
 
   update(values, valueQuery, id) {
-    // console.log(
-    //   `update ${this.table} set ${valueQuery} where id = ?`,
-    //   values,
-    //   id
-    // );
     return this.database.query(
       `update ${this.table} set ${valueQuery} where id = ?`,
       [...values, id]
     );
   }
-
-  // update(practician) {
-  //   const {
-  //     adeli_number,
-  //     hashed_password,
-  //     firstname,
-  //     lastname,
-  //     mail,
-  //     administrator_id,
-  //     id,
-  //   } = practician;
-  //   return this.database.query(
-  //     `update ${this.table} set
-  //        adeli_number = ?,
-  //       hashed_password =?,
-  //       firstname=?,
-  //       lastname=?,
-  //       mail =?,
-  //       administrator_id=?
-  //      where id = ?`,
-  //     [
-  //       adeli_number,
-  //       hashed_password,
-  //       firstname,
-  //       lastname,
-  //       mail,
-  //       administrator_id,
-  //       id,
-  //     ]
-  //   );
-  // }
 }
 
 module.exports = PracticianManager;
