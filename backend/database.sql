@@ -251,7 +251,7 @@ INSERT INTO
         administrator_id,
         role
     )
-VALUES(
+VALUES (
         '123456789',
         '$argon2id$v=19$m=65536,t=5,p=1$lgQhMd6/YI8RXwZQrt1VMA$oBtHiEp7JSwbC+H8aVkORWC2ycR5fln8a2CrKvPT9pQ',
         'test1P',
@@ -345,28 +345,84 @@ INSERT INTO
 VALUES (
         "patient",
         "Demande de devis",
-        "1Mz4gsU5g2QC6KOOP3dXP9m53151361FkP6Yod8AR",
+        "1Mz4 gsU5g2QC6KOO P3dXP9m53151361F kP6Yod8AR",
         "2023-07-04",
         0,
         0
     ), (
         "patient",
         "Demande de renseignements",
-        "V1wsIDEJe3YS9RFTNAkwmjeq2Dyfk7hiJHX91rY9o9926p8XL",
+        "V1wsIDEJe3 YS9RFTNAkwmjeq 2Dyfk7hiJHX91rY9o9926p8XL",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de renseignements",
-        "31LllxPtQ9MyrnKxNvTkqVQamRKo674s72oX",
+        "31LllxPtQ9MyrnKx NvTkqVQamRK o674s72oX",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de support technique",
-        "842402BNlGcpYM9g2P2Vm5SdzaJFe7999q5WfLN7",
+        "842 402BN lGcpYM9g 2P2Vm5Sdz aJFe7999q5 WfLN7",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "patient",
+        "Demande de devis",
+        "1Mz4 gsU5g2QC6KOO P3dXP9m53151361F kP6Yod8AR",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "patient",
+        "Demande de renseignements",
+        "V1wsIDEJe3 YS9RFTNAkwmjeq 2Dyfk7hiJHX91rY9o9926p8XL",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "practician",
+        "Demande de renseignements",
+        "31LllxPtQ9MyrnKx NvTkqVQamRK o674s72oX",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "practician",
+        "Demande de support technique",
+        "842 402BN lGcpYM9g 2P2Vm5Sdz aJFe7999q5 WfLN7",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "patient",
+        "Demande de devis",
+        "1Mz4 gsU5g2QC6KOO P3dXP9m53151361F kP6Yod8AR",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "patient",
+        "Demande de renseignements",
+        "V1wsIDEJe3 YS9RFTNAkwmjeq 2Dyfk7hiJHX91rY9o9926p8XL",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "practician",
+        "Demande de renseignements",
+        "31LllxPtQ9MyrnKx NvTkqVQamRK o674s72oX",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "practician",
+        "Demande de support technique",
+        "842 402BN lGcpYM9g 2P2Vm5Sdz aJFe7999q5 WfLN7",
         "2023-07-04",
         0,
         0

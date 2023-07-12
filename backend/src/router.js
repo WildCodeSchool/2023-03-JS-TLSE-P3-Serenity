@@ -101,5 +101,12 @@ router.put(
   checkId,
   admins.modifyAdmin
 );
+router.put(
+  "/practicians/account/:id",
+  verifyToken,
+  hashPassword,
+  checkId,
+  practicianControllers.updatePractician
+);
 
 module.exports = router;
