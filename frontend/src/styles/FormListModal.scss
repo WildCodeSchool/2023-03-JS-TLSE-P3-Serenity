@@ -5,24 +5,24 @@
   max-height: 70%;
   border-radius: 20px;
   box-shadow: 0 0 1rem #000000;
-  padding: 1rem;
+  padding: 0 1rem;
   overflow: auto;
-    &::-webkit-scrollbar {
-      height: 0.5rem;
-      width: 0.5rem;
-      background-color: transparent;
-    }
-    &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      visibility: hidden;
-    }
-    &::-webkit-scrollbar-corner {
-      visibility: hidden;
-    }
-    &:hover::-webkit-scrollbar-thumb {
-      background-color: rgb(100, 100, 100);
-      visibility: visible;
-    }
+  &::-webkit-scrollbar {
+    height: 0.5rem;
+    width: 0.5rem;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    visibility: hidden;
+  }
+  &::-webkit-scrollbar-corner {
+    visibility: hidden;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: rgb(100, 100, 100);
+    visibility: visible;
+  }
   .form-list-table {
     width: 100%;
     .form-list-table-body {
@@ -30,17 +30,31 @@
       .clickable-row {
         cursor: pointer;
       }
+      .table-header {
+        top: 0;
+        position: sticky;
+        background-color: var(--main-bg-admin-practician);
+      }
       tr {
         height: 2.5rem;
         border-bottom: #8f8f973a solid 0.5px;
-        th, td {
+        th,
+        td {
           padding: 0.5rem;
           line-height: 1rem;
+          vertical-align: middle;
         }
         th:nth-child(3),
         td:nth-child(3) {
-          overflow: hidden;
-          text-overflow: ellipsis;
+          p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+            line-height: 1.5em;
+          }
         }
         .checkbox-form {
           cursor: pointer;
@@ -63,5 +77,11 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 1024px) {
+  .form-list {
+    max-height: 60%;
   }
 }
