@@ -140,6 +140,7 @@ export default function Authentication() {
             <input
               name="matricule"
               id="matricule"
+              className="input-username-black"
               type="text"
               autoComplete="true"
               value={matricule}
@@ -166,6 +167,7 @@ export default function Authentication() {
             <input
               name="adeli"
               id="adeli"
+              className="input-username-black"
               type="text"
               autoComplete="true"
               value={adeli}
@@ -192,6 +194,7 @@ export default function Authentication() {
             <input
               name="mail"
               id="mail"
+              className="input-username-white"
               type="text"
               autoComplete="true"
               value={mail}
@@ -235,6 +238,9 @@ export default function Authentication() {
             <input
               name="password"
               id="password"
+              className={
+                credentials === "login" ? "input-pw-white" : "input-pw-black"
+              }
               autoComplete="current-password"
               type={!passwordShown ? "password" : "text"}
               value={password}
