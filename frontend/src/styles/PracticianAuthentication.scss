@@ -13,6 +13,16 @@
   justify-content: center;
   gap: 50px;
 }
+.return-button-practician {
+  position: fixed;
+  margin: 2rem;
+  top: 0;
+  background-color: transparent;
+  .fi {
+    font-size: 2rem;
+    color: white;
+  }
+}
 
 .title-connection-practician {
   display: flex;
