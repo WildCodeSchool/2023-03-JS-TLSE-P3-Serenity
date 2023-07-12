@@ -12,8 +12,10 @@ class PatientManager extends AbstractManager {
     ]);
   }
 
-  delete(id) {
-    return this.database.query(`delete from ${this.table} where id = ?`, [id]);
+  delete(patient_id) {
+    return this.database.query(`delete from ${this.table} where id = ?`, [
+      patient_id,
+    ]);
   }
 
   getPatientIntervention() {
