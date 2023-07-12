@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const interventionCountController = require("./controllers/interventionCountController");
+const interventionController = require("./controllers/interventionController");
 const ressourceCountController = require("./controllers/ressourceCountController");
 const admins = require("./controllers/adminControllers");
 const practicianControllers = require("./controllers/PraticianControllers");
@@ -48,18 +48,20 @@ router.delete(
   verifyAdminRole,
   practicianControllers.deletePractician
 );
+router.delete("/practician/patients/:id", verifyToken, patients.deletePatient);
 router.get(
   "/admins/practicians/",
   verifyToken,
   verifyAdminRole,
   practicianControllers.getListOfAllPracticians
 );
+router.get("/practician/patients", verifyToken, patients.getListOfAllPatients);
 
 router.get(
   "/admins/practicians/countintervention/:id",
   verifyToken,
   verifyAdminRole,
-  interventionCountController.getInterventionCount
+  interventionController.getInterventionCount
 );
 
 router.get(

@@ -6,6 +6,7 @@ import "../styles/EspacePro.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import HeaderLocation from "../components/HeaderLocation";
+import PatientListModal from "../components/PatientListModal";
 import AccountPracticianModal from "../components/AccountPracticianModal";
 
 export default function EspacePro() {
@@ -36,6 +37,7 @@ export default function EspacePro() {
   let CurrentModalePractician;
   switch (linkToActive) {
     case "Home":
+      CurrentModalePractician = <PatientListModal />;
       break;
     case "Mon Compte":
       CurrentModalePractician = <AccountPracticianModal />;
@@ -48,6 +50,7 @@ export default function EspacePro() {
       CurrentModalePractician = <AboutUs />;
       break;
     default:
+      CurrentModalePractician = <PatientListModal />;
       break;
   }
 

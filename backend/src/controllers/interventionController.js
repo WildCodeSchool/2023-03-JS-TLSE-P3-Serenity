@@ -16,6 +16,19 @@ const getInterventionCount = (req, res) => {
     });
 };
 
+const getPatientIntervention = (req, res) => {
+  const patientId = req.params.id;
+  models.intervention
+    .getPatientIntervention(patientId)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+};
+
 module.exports = {
   getInterventionCount,
+  getPatientIntervention,
 };
