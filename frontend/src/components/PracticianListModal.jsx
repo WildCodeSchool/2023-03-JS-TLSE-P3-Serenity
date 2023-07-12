@@ -36,6 +36,7 @@ function PracticianListModal() {
   };
 
   const handleTrClick = (practician) => {
+    setShowSuccessMessageAdd(false);
     setSelectedPractician(practician);
     setModalInputs({
       firstname: practician.firstname,
@@ -44,7 +45,6 @@ function PracticianListModal() {
       adeli_number: practician.adeli_number,
     });
     handleShow(true);
-    setShowSuccessMessageAdd(false);
   };
 
   const handleInputChange = (event) => {
@@ -80,6 +80,9 @@ function PracticianListModal() {
           });
           setPracticians(updatedPracticians);
           setShowSuccessMessageModification(true);
+          setTimeout(() => {
+            setShow(false);
+          }, 1000);
         })
         .catch((error) => {
           console.error(error);

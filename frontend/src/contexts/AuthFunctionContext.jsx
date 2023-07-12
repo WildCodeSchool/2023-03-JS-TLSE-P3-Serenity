@@ -14,9 +14,6 @@ export function AuthFunctionProvider({ children }) {
       Cookies.set("userToken", token, {
         expires: 12 / 24,
       });
-      Cookies.set("userRole", userInfo.role, {
-        expires: 12 / 24,
-      });
       setUserToken(token);
     } else {
       Cookies.remove("userToken");
@@ -24,8 +21,12 @@ export function AuthFunctionProvider({ children }) {
     }
   };
 
+  const logoutHandler = () => {
+    Cookies.remove("userToken");
+  };
+
   const AuthValue = useMemo(
-    () => ({ userToken, setUser, userInfo, setUserInfo }),
+    () => ({ userToken, setUser, userInfo, setUserInfo, logoutHandler }),
     [userToken, userInfo]
   );
 

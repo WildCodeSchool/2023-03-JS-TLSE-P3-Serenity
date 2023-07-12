@@ -8,6 +8,7 @@ const admins = require("./controllers/adminControllers");
 const practicianControllers = require("./controllers/PraticianControllers");
 const patients = require("./controllers/PatientControllers");
 const formControllers = require("./controllers/FormControllers");
+const mailControllers = require("./controllers/mailControllers");
 
 const {
   hashPassword,
@@ -77,11 +78,18 @@ router.put(
   hashPassword,
   admins.modifyAdmin
 );
+router.post(
+  "/admins/practicians/mail",
+  verifyToken,
+  verifyAdminRole,
+  mailControllers.sendContactMail
+);
 
 router.post(
   "/admins/practicians/",
   verifyToken,
   verifyAdminRole,
+  hashPassword,
   practicianControllers.AddPractician
 );
 
