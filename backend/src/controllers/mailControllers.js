@@ -23,12 +23,11 @@ const sendContactMail = (req, res, next) => {
     Voici votre mot de passe pour vous connecter à votre espace professionnel
     Password:${password}
     Pensez à le changer dans l'onglet mon compte
-    <p>Cordialement !`,
+    Cordialement !`,
     html: `Bonjour ${firstname} ${lastname},
     <p>Voici votre mot de passe pour vous connecter à votre espace professionnel</p>
     <p>Password:<strong>${password}</strong></p>
     <p>Pensez à le changer dans l'onglet mon compte </p>
-  
     <p>Cordialement !</p>`,
   };
 
