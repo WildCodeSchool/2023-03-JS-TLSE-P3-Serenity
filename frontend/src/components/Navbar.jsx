@@ -12,7 +12,7 @@ function navbar() {
     setIsMenuOpen,
     setActiveModal,
   } = useContext(StateContext);
-  const { userInfo } = useContext(AuthFunctionContext);
+  const { userInfo, logoutHandler } = useContext(AuthFunctionContext);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -190,7 +190,7 @@ function navbar() {
               alt="Déconnexion"
               type="button"
               onClick={() => {
-                console.info("Déconnexion");
+                logoutHandler();
               }}
             >
               <div className="button-content">
