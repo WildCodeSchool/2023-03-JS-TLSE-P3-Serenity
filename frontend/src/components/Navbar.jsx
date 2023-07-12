@@ -106,17 +106,6 @@ function navbar() {
       },
     },
     {
-      role: "admin",
-      className: linkToActive === "Stats" ? "active" : "nav-serenity",
-      label: "Stats",
-      icon: "chart-histogram",
-      action: () => {
-        setLinkToActive("Stats");
-        setIsMenuOpen(false);
-        setActiveModal("Stats");
-      },
-    },
-    {
       role: "all",
       className: linkToActive === "A propos" ? "active" : "nav-serenity",
       label: "A propos",

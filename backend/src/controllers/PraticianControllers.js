@@ -52,40 +52,6 @@ const authenticationPracticianCheck = (req, res, next) => {
     });
 };
 
-const updatePractician = (req, res) => {
-  const {
-    adeli_number,
-    hashed_password,
-    firstname,
-    lastname,
-    mail,
-    administrator_id,
-  } = req.body;
-  const { id } = req.params;
-
-  models.practician
-    .update({
-      adeli_number,
-      hashed_password,
-      firstname,
-      lastname,
-      mail,
-      administrator_id,
-      id,
-    })
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.sendStatus(204);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-};
-
 const AddPractician = (req, res) => {
   const {
     adeli_number,
@@ -139,6 +105,25 @@ const deletePractician = (req, res) => {
     .catch((err) => {
       console.error(err);
       res.sendStatus(500);
+    });
+};
+
+const updatePractician = (req, res) => {
+  const { id } = req.params;
+  const keys = Object.keys(req.body);
+  const values = Object.values(req.body);
+  const valueQuery = keys.map((key) => `${key} = ?`).join(", ");
+  models.practician
+    .update(values, valueQuery, id)
+    .then(([result]) => {
+      if (result.affectedRows !== 0) {
+        res.sendStatus(204);
+      } else {
+        res.status(404).send("User not found...");
+      }
+    })
+    .catch(() => {
+      res.status(500).send("Error while updating user");
     });
 };
 
