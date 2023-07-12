@@ -1,5 +1,4 @@
 import { createContext, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Cookies from "js-cookie";
 
@@ -8,8 +7,6 @@ const AuthFunctionContext = createContext();
 export default AuthFunctionContext;
 
 export function AuthFunctionProvider({ children }) {
-  const navigate = useNavigate();
-
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
   const [userInfo, setUserInfo] = useState({});
   const setUser = (token) => {
@@ -21,7 +18,6 @@ export function AuthFunctionProvider({ children }) {
     } else {
       Cookies.remove("userToken");
       setUserToken(null);
-      navigate("/");
     }
   };
 

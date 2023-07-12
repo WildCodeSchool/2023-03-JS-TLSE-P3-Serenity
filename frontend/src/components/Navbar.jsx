@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/Navbar.scss";
 import avatar from "../assets/avatar.svg";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function navbar() {
+  const navigate = useNavigate();
+
   const {
     linkToActive,
     setLinkToActive,
@@ -180,6 +183,7 @@ function navbar() {
               type="button"
               onClick={() => {
                 logoutHandler();
+                navigate("/");
               }}
             >
               <div className="button-content">
