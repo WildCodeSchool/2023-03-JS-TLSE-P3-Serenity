@@ -80,8 +80,8 @@ function Buttonadd() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow} className="add-practician">
-        Ajouter
+      <Button variant="primary" onClick={handleShow} className="add-user">
+        Ajouter un cuckzer
       </Button>
 
       <Modal

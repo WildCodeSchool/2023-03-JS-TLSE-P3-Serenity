@@ -6,7 +6,7 @@ const StateContext = createContext();
 export default StateContext;
 
 export function StateProvider({ children }) {
-  const [linkToActive, setLinkToActive] = useState("home");
+  const [linkToActive, setLinkToActive] = useState("Home");
   const [activeModal, setActiveModal] = useState("");
   const [showSuccessMessageModification, setShowSuccessMessageModification] =
     useState(false); // for tracking success message display

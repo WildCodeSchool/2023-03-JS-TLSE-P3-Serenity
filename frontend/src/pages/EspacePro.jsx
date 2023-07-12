@@ -48,6 +48,7 @@ export default function EspacePro() {
       CurrentModalePractician = <AboutUs />;
       break;
     default:
+      CurrentModalePractician = <PatientListModal />;
       break;
   }
 

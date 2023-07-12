@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const interventionCountController = require("./controllers/interventionCountController");
+const interventionController = require("./controllers/interventionController");
 const ressourceCountController = require("./controllers/ressourceCountController");
 const admins = require("./controllers/adminControllers");
 const practicianControllers = require("./controllers/PraticianControllers");
@@ -60,7 +60,7 @@ router.get(
   "/admins/practicians/countintervention/:id",
   verifyToken,
   verifyAdminRole,
-  interventionCountController.getInterventionCount
+  interventionController.getInterventionCount
 );
 
 router.get(

@@ -1,4 +1,4 @@
-.practician-list-container {
+.patient-list-container {
   display: flex;
   flex-direction: column;
   color: white;
@@ -8,8 +8,8 @@
   border-radius: 20px;
   box-shadow: 0 0 1rem #000000;
 
-  .practician-list {
-    .practician-list-header {
+  .patient-list {
+    .patient-list-header {
       display: flex;
       justify-content: space-between;
 
@@ -26,13 +26,13 @@
       }
     }
 
-    .practician-list-body {
+    .patient-list-body {
       display: flex;
 
-      .practician-list-table {
+      .patient-list-table {
         width: 100%;
 
-        .practician-list-table-header {
+        .patient-list-table-header {
           display: flex;
           font-size: 0.7rem;
           padding: 1rem;
@@ -79,7 +79,7 @@
           }
         }
 
-        .practician-list-table-body {
+        .patient-list-table-body {
           display: flex;
           flex-direction: column;
           font-size: 0.8rem;
@@ -128,13 +128,13 @@
       }
     }
 
-    .practician-list-footer {
+    .patient-list-footer {
       display: flex;
       justify-content: center;
       margin-bottom: 1rem;
       font-size: 0.8rem;
 
-      .add-practician {
+      .add-user {
         align-items: center;
         justify-content: center;
         border-radius: 10px;
@@ -162,45 +162,20 @@
 .swal2-small {
   font-size: 10px;
 }
-
-.practician-list-table-buttons {
+.delete-button {
   display: flex;
-  justify-content: space-between;
-  font-size: 0.7rem;
+  background-color: #8f8f9720;
+  height: 2rem;
+  width: 2rem;
+  margin: 1rem 0rem 1rem 1rem;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0.5rem #00000075;
 
-  .modify-button {
-    display: flex;
-    background-color: #8f8f9720;
-    height: 2rem;
-    width: 2rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 20px;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 0.5rem #00000075;
-
-    .fi-rr-pencil {
-      color: white;
-      font-size: 1.2rem;
-    }
-  }
-
-  .delete-button {
-    display: flex;
-    background-color: #8f8f9720;
-    height: 2rem;
-    width: 2rem;
-    margin: 1rem 0rem 1rem 1rem;
-    border-radius: 20px;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 0.5rem #00000075;
-
-    .fi-rr-trash {
-      color: white;
-      font-size: 1.2rem;
-    }
+  .fi-rr-trash {
+    color: white;
+    font-size: 1.2rem;
   }
 }
 .swal2-popup {

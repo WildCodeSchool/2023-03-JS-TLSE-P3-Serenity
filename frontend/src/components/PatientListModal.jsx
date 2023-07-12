@@ -29,9 +29,9 @@ function PatientListModal() {
       });
   }, [showSuccessMessageAdd]);
   return (
-    <div className="practician-list-container">
-      <div className="practician-list">
-        <div className="practician-list-header">
+    <div className="patient-list-container">
+      <div className="patient-list">
+        <div className="patient-list-header">
           <input
             className="search-input"
             type="text"
@@ -40,9 +40,9 @@ function PatientListModal() {
             onChange={(e) => setSearchValue(e.target.value)}
           />
         </div>
-        <div className="practician-list-body">
-          <table className="practician-list-table">
-            <thead className="practician-list-table-header">
+        <div className="patient-list-body">
+          <table className="patient-list-table">
+            <thead className="patient-list-table-header">
               <tr>
                 <th>Nom</th>
                 <th>Mail</th>
@@ -52,7 +52,7 @@ function PatientListModal() {
                 <th> </th>
               </tr>
             </thead>
-            <tbody className="practician-list-table-body">
+            <tbody className="patient-list-table-body">
               {patients
                 .filter(
                   (patient) =>
@@ -68,7 +68,11 @@ function PatientListModal() {
                     </td>
                     <td>{patient.mail}</td>
                     <td>{patient.phone}</td>
-                    <td className="practician-list-table-buttons">
+                    <td>{patient.intervention_name}</td>
+                    <td>
+                      {new Date(patient.intervention_date).toLocaleDateString()}
+                    </td>
+                    <td className="patient-list-table-buttons">
                       <DeletePatientButton
                         patients={patients}
                         patient={patient.id}
@@ -80,7 +84,7 @@ function PatientListModal() {
             </tbody>
           </table>
         </div>
-        <div className="practician-list-footer">
+        <div className="patient-list-footer">
           <Buttonadd />
         </div>
       </div>
