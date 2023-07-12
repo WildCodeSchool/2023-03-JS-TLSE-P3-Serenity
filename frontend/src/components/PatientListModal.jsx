@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "../styles/PatientListModal.scss";
-import Buttonadd from "./Buttonadd";
+import ButtonAddPatient from "./ButtonAddPatient";
 import StateContext from "../contexts/StateContext";
 import DeletePatientButton from "./DeletePatientButton";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
@@ -42,8 +42,8 @@ function PatientListModal() {
         </div>
         <div className="patient-list-body">
           <table className="patient-list-table">
-            <thead className="patient-list-table-header">
-              <tr>
+            <thead className="patient-list-table-body">
+              <tr className="table-header">
                 <th>Nom</th>
                 <th>Mail</th>
                 <th>Téléphone</th>
@@ -85,7 +85,7 @@ function PatientListModal() {
           </table>
         </div>
         <div className="patient-list-footer">
-          <Buttonadd />
+          <ButtonAddPatient />
         </div>
       </div>
     </div>

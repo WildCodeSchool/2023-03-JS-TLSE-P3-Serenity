@@ -8,7 +8,7 @@ import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import "../styles/Buttonadd.scss";
 
-function Buttonadd() {
+function ButtonaddPractician() {
   // Status for tracking success message display
   const { showSuccessMessageAdd, setShowSuccessMessageAdd, show, setShow } =
     useContext(StateContext);
@@ -81,7 +81,7 @@ function Buttonadd() {
   return (
     <>
       <Button variant="primary" onClick={handleShow} className="add-user">
-        Ajouter un cuckzer
+        Ajouter un praticien
       </Button>
 
       <Modal
@@ -161,4 +161,4 @@ function Buttonadd() {
   );
 }
 
-export default Buttonadd;
+export default ButtonaddPractician;

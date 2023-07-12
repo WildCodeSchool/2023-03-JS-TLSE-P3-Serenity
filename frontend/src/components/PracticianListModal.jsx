@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "../styles/PracticianListModal.scss";
-import Buttonadd from "./Buttonadd";
+import ButtonAddPractician from "./ButtonAddPractician";
 import StateContext from "../contexts/StateContext";
 import ModalUpdate from "./ModalUpdate";
 import DeleteButton from "./DeleteButton";
@@ -158,8 +158,8 @@ function PracticianListModal() {
         </div>
         <div className="practician-list-body">
           <table className="practician-list-table">
-            <thead className="practician-list-table-header">
-              <tr>
+            <thead className="practician-list-table-body">
+              <tr className="table-header">
                 <th>Nom</th>
                 <th>Mail</th>
                 <th>Poste</th>
@@ -225,7 +225,7 @@ function PracticianListModal() {
           showSuccessMessageModification={showSuccessMessageModification}
         />
         <div className="practician-list-footer">
-          <Buttonadd />
+          <ButtonAddPractician />
         </div>
       </div>
     </div>
