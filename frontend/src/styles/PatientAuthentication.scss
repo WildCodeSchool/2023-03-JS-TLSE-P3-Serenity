@@ -13,6 +13,16 @@
   justify-content: center;
   gap: 50px;
 }
+.return-button-patient {
+  position: fixed;
+  margin: 2rem;
+  top: 0;
+  background-color: transparent;
+  .fi {
+    font-size: 2rem;
+    color: var(--main-bg-admin-practician);
+  }
+}
 
 .title-connection-patient {
   display: flex;

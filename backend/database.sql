@@ -105,11 +105,13 @@ CREATE TABLE
         `postal_code` VARCHAR(5) NULL DEFAULT NULL,
         `city` VARCHAR(255) NULL DEFAULT NULL,
         `country` VARCHAR(255) NULL DEFAULT NULL,
+        `phone` VARCHAR(20) NULL DEFAULT NULL,
         `emergency_firstname` VARCHAR(255) NULL DEFAULT NULL,
         `emergency_lastname` VARCHAR(255) NULL DEFAULT NULL,
         `emergency_phone` VARCHAR(20) NULL DEFAULT NULL,
         `role` VARCHAR(10) NOT NULL DEFAULT "patient",
-        PRIMARY KEY (`id`)
+        PRIMARY KEY (`id`),
+        CONSTRAINT `fk_practician_id` FOREIGN KEY (`id`) REFERENCES `serenity`.`practician` (`id`) ON DELETE CASCADE
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
@@ -468,6 +470,7 @@ INSERT INTO
         hashed_password,
         firstname,
         lastname,
+        phone,
         role
     )
 VALUES (
@@ -475,6 +478,7 @@ VALUES (
         '$argon2id$v=19$m=65536,t=5,p=1$lgQhMd6/YI8RXwZQrt1VMA$oBtHiEp7JSwbC+H8aVkORWC2ycR5fln8a2CrKvPT9pQ',
         'patient1',
         'patient1',
+        '0612345678',
         'patient'
     );
 
@@ -484,6 +488,7 @@ INSERT INTO
         hashed_password,
         firstname,
         lastname,
+        phone,
         role
     )
 VALUES (
@@ -491,6 +496,7 @@ VALUES (
         'test',
         'patient2',
         'patient2',
+        '0612345678',
         'patient'
     );
 
@@ -500,6 +506,7 @@ INSERT INTO
         hashed_password,
         firstname,
         lastname,
+        phone,
         role
     )
 VALUES (
@@ -507,8 +514,26 @@ VALUES (
         'test',
         'patient3',
         'patient3',
+        '0612345678',
         'patient'
     );
+-- -----------------------------------------------------
+
+-- INSERT INTO 'intervention_patient'
+
+-- -----------------------------------------------------
+INSERT INTO
+    intervention_patient(
+        intervention_id,
+        patient_id,
+        intervention_date
+    )
+VALUES (
+        1,
+        1,
+        '2023-07-04'
+    );
+
 
 -- -----------------------------------------------------
 

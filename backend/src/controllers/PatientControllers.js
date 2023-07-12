@@ -3,7 +3,7 @@ const models = require("../models");
 
 const getListOfAllPatients = (req, res) => {
   models.patient
-    .findAll()
+    .getPatientIntervention()
     .then(([result]) => {
       if (result.length) {
         res.status(200).json(result);
