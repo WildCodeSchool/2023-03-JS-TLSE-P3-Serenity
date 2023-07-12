@@ -37,7 +37,12 @@ function PracticianListModal() {
 
   const handleTrClick = (practician) => {
     setSelectedPractician(practician);
-    setModalInputs(practician);
+    setModalInputs({
+      firstname: practician.firstname,
+      lastname: practician.lastname,
+      mail: practician.mail,
+      adeli_number: practician.adeli_number,
+    });
     handleShow(true);
     setShowSuccessMessageAdd(false);
   };

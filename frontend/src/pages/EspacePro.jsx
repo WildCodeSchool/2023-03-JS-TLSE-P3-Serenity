@@ -6,6 +6,7 @@ import "../styles/EspacePro.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import HeaderLocation from "../components/HeaderLocation";
+import AccountPracticianModal from "../components/AccountPracticianModal";
 
 export default function EspacePro() {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ export default function EspacePro() {
     case "Home":
       break;
     case "Mon Compte":
+      CurrentModalePractician = <AccountPracticianModal />;
       break;
     case "Formulaires":
       break;
