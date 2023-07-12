@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/Navbar.scss";
 import avatar from "../assets/avatar.svg";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function navbar() {
+  const navigate = useNavigate();
+
   const {
     linkToActive,
     setLinkToActive,
@@ -12,7 +15,7 @@ function navbar() {
     setIsMenuOpen,
     setActiveModal,
   } = useContext(StateContext);
-  const { userInfo } = useContext(AuthFunctionContext);
+  const { userInfo, logoutHandler } = useContext(AuthFunctionContext);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -179,7 +182,8 @@ function navbar() {
               alt="Déconnexion"
               type="button"
               onClick={() => {
-                console.info("Déconnexion");
+                logoutHandler();
+                navigate("/");
               }}
             >
               <div className="button-content">
