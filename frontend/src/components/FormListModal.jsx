@@ -157,7 +157,7 @@ function FormListModal() {
     <div className="form-list">
       <table className="form-list-table">
         <thead className="form-list-table-body">
-          <tr>
+          <tr className="table-header">
             <th>Utilisateur</th>
             <th>Objet</th>
             <th>Requête</th>
@@ -176,7 +176,9 @@ function FormListModal() {
             >
               <td>{form.user_type}</td>
               <td>{form.request_type}</td>
-              <td>{form.request}</td>
+              <td>
+                <p>{form.request}</p>
+              </td>
               <td>{new Date(form.create_time).toLocaleDateString()}</td>
               <td>
                 <input
