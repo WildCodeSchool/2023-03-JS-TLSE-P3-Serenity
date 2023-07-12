@@ -200,14 +200,9 @@ export default function Authentication() {
               value={mail}
               onChange={handleMailChange}
             />
-            {warningMail ? (
+            {warningMail && (
               <p className="warning-username">
                 Le nom d'utilisateur doit être un mail
-              </p>
-            ) : (
-              <p className="description-username">
-                Votre nom d'utilisateur est votre mail fournit à votre
-                inscription
               </p>
             )}
           </>

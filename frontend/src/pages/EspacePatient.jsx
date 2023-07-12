@@ -6,6 +6,7 @@ import "../styles/EspacePatient.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import HeaderLocation from "../components/HeaderLocation";
+import AccountPatientModal from "../components/AccountPatientModal";
 
 export default function EspacePatient() {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ export default function EspacePatient() {
     case "Home":
       break;
     case "Mon Compte":
+      CurrentModalePatient = <AccountPatientModal />;
       break;
     case "Formulaires":
       break;

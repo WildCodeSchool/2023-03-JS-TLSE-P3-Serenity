@@ -414,7 +414,7 @@ function AccountPracticianModal() {
                 />
               </div>
               <div className="diploma-input">
-                <label htmlFor="diploma">Dîplomes</label>
+                <label htmlFor="diploma">Diplômes</label>
                 <textarea
                   type="text"
                   value={diplomaInfo}

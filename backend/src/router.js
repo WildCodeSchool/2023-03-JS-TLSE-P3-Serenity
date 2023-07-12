@@ -114,5 +114,12 @@ router.put(
   checkId,
   practicianControllers.updatePractician
 );
+router.put(
+  "/patients/account/:id",
+  verifyToken,
+  hashPassword,
+  checkId,
+  patients.updatePatient
+);
 
 module.exports = router;
