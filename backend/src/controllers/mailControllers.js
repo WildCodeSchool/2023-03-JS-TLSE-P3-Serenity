@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const sendContactMail = (req, res, next) => {
-  const { mail, firstname, lastname, hashed_password, adeli_number } = req.body;
+  const { mail, firstname, lastname, hashed_password } = req.body;
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_SENDIN,
@@ -19,11 +19,16 @@ const sendContactMail = (req, res, next) => {
     from: process.env.SMTP_SENDIN_USER,
     to: mail,
     subject: "Vos identifiants de connexion ",
-    text: `${hashed_password} \n\n Email: ${mail}`,
+    text: `Bonjour ${firstname} ${lastname},
+    Voici votre mot de passe pour vous connecter à votre espace professionnel
+    Password:${hashed_password}
+    Pensez à le changer dans l'onglet mon compte
+    <p>Cordialement !`,
     html: `Bonjour ${firstname} ${lastname},
-    <p>Voici vos identifiants de connexion à votre espace professionnel</p>
-    <p>Password:${hashed_password}</p>
-    <p>Numéro Adeli: ${adeli_number}</p>
+    <p>Voici votre mot de passe pour vous connecter à votre espace professionnel</p>
+    <p>Password:<strong>${hashed_password}</strong></p>
+    <p>Pensez à le changer dans l'onglet mon compte </p>
+  
     <p>Cordialement !</p>`,
   };
 
