@@ -4,13 +4,13 @@ import Swal from "sweetalert2";
 import PropTypes from "prop-types";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
-function DeleteButton({ practician, setPracticians, practicians }) {
+function DeletePatientButton({ patient, setPatients, patients }) {
   const { userToken, userInfo } = useContext(AuthFunctionContext);
   const { role } = userInfo;
 
   const handleDeleteButtonClick = () => {
     Swal.fire({
-      title: "Êtes-vous sûr de vouloir supprimer ce praticien ?",
+      title: "Êtes-vous sûr de vouloir supprimer ce patient ?",
       text: "Vous ne pourrez pas annuler cette action !",
       icon: "warning",
       showCancelButton: true,
@@ -25,7 +25,7 @@ function DeleteButton({ practician, setPracticians, practicians }) {
           .delete(
             `${
               import.meta.env.VITE_BACKEND_URL
-            }/admins/practicians/${practician}`,
+            }/practician/patients/${patient}`,
             {
               headers: {
                 Authorization: `Bearer ${userToken}`,
@@ -34,16 +34,16 @@ function DeleteButton({ practician, setPracticians, practicians }) {
             }
           )
           .then(() => {
-            const updatedPracticians = practicians.filter(
-              (el) => el.id !== practician
+            const updatedPatients = patients.filter(
+              (p) => p.patient_id !== patient
             );
-            setPracticians(updatedPracticians);
+            setPatients(updatedPatients);
 
             Swal.fire({
               background: "#242731",
               position: "center",
               icon: "success",
-              title: "Le praticien a été supprimé.",
+              title: "Le patient a été supprimé.",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -66,12 +66,12 @@ function DeleteButton({ practician, setPracticians, practicians }) {
   );
 }
 
-DeleteButton.propTypes = {
-  practician: PropTypes.number.isRequired,
-  setPracticians: PropTypes.func.isRequired,
-  practicians: PropTypes.arrayOf(
+DeletePatientButton.propTypes = {
+  patient: PropTypes.number.isRequired,
+  setPatients: PropTypes.func.isRequired,
+  patients: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      patient_id: PropTypes.number,
       firstname: PropTypes.string,
       lastname: PropTypes.string,
       mail: PropTypes.string,
@@ -81,4 +81,4 @@ DeleteButton.propTypes = {
   ).isRequired,
 };
 
-export default DeleteButton;
+export default DeletePatientButton;

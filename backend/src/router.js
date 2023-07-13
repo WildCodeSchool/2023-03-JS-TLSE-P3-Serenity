@@ -2,11 +2,13 @@ const express = require("express");
 
 const router = express.Router();
 
-const interventionCountController = require("./controllers/interventionCountController");
+const interventionController = require("./controllers/interventionController");
 const ressourceCountController = require("./controllers/ressourceCountController");
 const admins = require("./controllers/adminControllers");
 const practicianControllers = require("./controllers/PraticianControllers");
+const patients = require("./controllers/PatientControllers");
 const formControllers = require("./controllers/FormControllers");
+const mailControllers = require("./controllers/mailControllers");
 
 const {
   hashPassword,
@@ -17,6 +19,16 @@ const {
 } = require("./services/auth");
 
 router.post("/admins/login", admins.authenticationCheck, verifyPassword);
+router.post(
+  "/practicians/login",
+  practicianControllers.authenticationPracticianCheck,
+  verifyPassword
+);
+router.post(
+  "/patients/login",
+  patients.authenticationPatientCheck,
+  verifyPassword
+);
 
 router.get(
   "/admins/practicians/:id",
@@ -36,18 +48,20 @@ router.delete(
   verifyAdminRole,
   practicianControllers.deletePractician
 );
+router.delete("/practician/patients/:id", verifyToken, patients.deletePatient);
 router.get(
   "/admins/practicians/",
   verifyToken,
   verifyAdminRole,
   practicianControllers.getListOfAllPracticians
 );
+router.get("/practician/patients", verifyToken, patients.getListOfAllPatients);
 
 router.get(
   "/admins/practicians/countintervention/:id",
   verifyToken,
   verifyAdminRole,
-  interventionCountController.getInterventionCount
+  interventionController.getInterventionCount
 );
 
 router.get(
@@ -64,11 +78,18 @@ router.put(
   hashPassword,
   admins.modifyAdmin
 );
+router.post(
+  "/admins/practicians/mail",
+  verifyToken,
+  verifyAdminRole,
+  mailControllers.sendContactMail
+);
 
 router.post(
   "/admins/practicians/",
   verifyToken,
   verifyAdminRole,
+  hashPassword,
   practicianControllers.AddPractician
 );
 
@@ -87,6 +108,13 @@ router.put(
   hashPassword,
   checkId,
   admins.modifyAdmin
+);
+router.put(
+  "/practicians/account/:id",
+  verifyToken,
+  hashPassword,
+  checkId,
+  practicianControllers.updatePractician
 );
 
 module.exports = router;

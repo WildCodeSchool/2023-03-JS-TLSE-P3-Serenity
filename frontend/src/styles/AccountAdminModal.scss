@@ -8,6 +8,45 @@
   border-radius: 20px;
   box-shadow: 0 0 1rem #000000;
 
+  .container-scroll-account-admin {
+    overflow: auto;
+    margin: 20px 0;
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(100, 100, 100);
+      border-radius: 5px;
+      visibility: hidden;
+    }
+    &:hover::-webkit-scrollbar-thumb {
+      visibility: visible;
+    }
+  }
+  .button-modification-validation {
+    width: 60%;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 5px;
+    min-width: 130px;
+    max-width: 300px;
+    background-color: var(--button-color);
+    color: white;
+    p {
+      width: 100%;
+    }
+  }
+
+  .disable-button {
+    cursor: not-allowed;
+    background-color: rgb(161, 161, 161);
+  }
+
+  input {
+    background-color: var(--grey-10);
+    color: white;
+  }
+
   .account-info-list {
     display: flex;
     flex-direction: column;
@@ -19,18 +58,6 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
-
-      .button-modification-info-validation {
-        width: 60%;
-        margin: 0 auto;
-        padding: 10px;
-        border-radius: 5px;
-        min-width: 130px;
-        max-width: 300px;
-        p {
-          width: 100%;
-        }
-      }
     }
 
     .global-info-grid {
@@ -128,7 +155,8 @@
             position: absolute;
             right: 3px;
             bottom: 0px;
-            background-color: white;
+            background-color: transparent;
+            color: white;
           }
 
           #pw-icon-show-hide {
@@ -151,7 +179,8 @@
             position: absolute;
             right: 3px;
             top: 3px;
-            background-color: white;
+            background-color: transparent;
+            color: white;
           }
 
           #pw-icon-show-hide {
@@ -159,38 +188,23 @@
           }
         }
       }
-      .button-modification-pw-validation {
-        width: 60%;
-        margin: 0 auto;
-        padding: 10px;
-        border-radius: 5px;
-        min-width: 130px;
-        max-width: 300px;
-        p {
-          width: 100%;
+    }
+    @media screen and (max-width: 480px) {
+      .account-info-list {
+        height: 400px;
+      }
+      .password-form {
+        .password-form-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
         }
       }
-    }
-    .disable-button {
-      cursor: not-allowed;
-      background-color: grey;
-    }
-  }
-  @media screen and (max-width: 480px) {
-      .account-info-list {
-        height : 400px;
-      }
-    .password-form {
-      .password-form-grid {
+      .global-info-grid {
         display: flex;
         flex-direction: column;
         gap: 5px;
       }
-    }
-    .global-info-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
     }
   }
 }

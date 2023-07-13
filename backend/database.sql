@@ -63,7 +63,7 @@ CREATE TABLE
         `administrator_id` INT NOT NULL,
         `role` VARCHAR(10) NOT NULL DEFAULT "practician",
         PRIMARY KEY (`id`),
-        CONSTRAINT `fk_administrator_id` FOREIGN KEY (`administrator_id`) REFERENCES `serenity`.`administrator` (`id`)
+        CONSTRAINT `fk_administrator_id` FOREIGN KEY (`administrator_id`) REFERENCES `serenity`.`administrator` (`id`) ON DELETE CASCADE
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 -- Table `serenity`.`intervention`
@@ -105,6 +105,7 @@ CREATE TABLE
         `postal_code` VARCHAR(5) NULL DEFAULT NULL,
         `city` VARCHAR(255) NULL DEFAULT NULL,
         `country` VARCHAR(255) NULL DEFAULT NULL,
+        `phone` VARCHAR(20) NULL DEFAULT NULL,
         `emergency_firstname` VARCHAR(255) NULL DEFAULT NULL,
         `emergency_lastname` VARCHAR(255) NULL DEFAULT NULL,
         `emergency_phone` VARCHAR(20) NULL DEFAULT NULL,
@@ -126,7 +127,7 @@ CREATE TABLE
         `intervention_date` DATE NOT NULL,
         PRIMARY KEY (`id`),
         CONSTRAINT `fk_intervention_has_patient_intervention1` FOREIGN KEY (`intervention_id`) REFERENCES `serenity`.`intervention` (`id`),
-        CONSTRAINT `fk_intervention_has_patient_patient1` FOREIGN KEY (`patient_id`) REFERENCES `serenity`.`patient` (`id`)
+        CONSTRAINT `fk_intervention_has_patient_patient1` FOREIGN KEY (`patient_id`) REFERENCES `serenity`.`patient` (`id`) ON DELETE CASCADE
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
@@ -250,17 +251,9 @@ INSERT INTO
         administrator_id,
         role
     )
-VALUES(
-        SUBSTRING(
-            MD5(RAND())
-            FROM
-                1 FOR 9
-        ),
-        SUBSTRING(
-            MD5(RAND())
-            FROM
-                1 FOR 9
-        ),
+VALUES (
+        '123456789',
+        '$argon2id$v=19$m=65536,t=5,p=1$lgQhMd6/YI8RXwZQrt1VMA$oBtHiEp7JSwbC+H8aVkORWC2ycR5fln8a2CrKvPT9pQ',
         'test1P',
         'test1P',
         '1P@1.com',
@@ -352,28 +345,84 @@ INSERT INTO
 VALUES (
         "patient",
         "Demande de devis",
-        "1Mz4gsU5g2QC6KOOP3dXP9m53151361FkP6Yod8AR",
+        "1Mz4 gsU5g2QC6KOO P3dXP9m53151361F kP6Yod8AR",
         "2023-07-04",
         0,
         0
     ), (
         "patient",
         "Demande de renseignements",
-        "V1wsIDEJe3YS9RFTNAkwmjeq2Dyfk7hiJHX91rY9o9926p8XL",
+        "V1wsIDEJe3 YS9RFTNAkwmjeq 2Dyfk7hiJHX91rY9o9926p8XL",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de renseignements",
-        "31LllxPtQ9MyrnKxNvTkqVQamRKo674s72oX",
+        "31LllxPtQ9MyrnKx NvTkqVQamRK o674s72oX",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de support technique",
-        "842402BNlGcpYM9g2P2Vm5SdzaJFe7999q5WfLN7",
+        "842 402BN lGcpYM9g 2P2Vm5Sdz aJFe7999q5 WfLN7",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "patient",
+        "Demande de devis",
+        "1Mz4 gsU5g2QC6KOO P3dXP9m53151361F kP6Yod8AR",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "patient",
+        "Demande de renseignements",
+        "V1wsIDEJe3 YS9RFTNAkwmjeq 2Dyfk7hiJHX91rY9o9926p8XL",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "practician",
+        "Demande de renseignements",
+        "31LllxPtQ9MyrnKx NvTkqVQamRK o674s72oX",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "practician",
+        "Demande de support technique",
+        "842 402BN lGcpYM9g 2P2Vm5Sdz aJFe7999q5 WfLN7",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "patient",
+        "Demande de devis",
+        "1Mz4 gsU5g2QC6KOO P3dXP9m53151361F kP6Yod8AR",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "patient",
+        "Demande de renseignements",
+        "V1wsIDEJe3 YS9RFTNAkwmjeq 2Dyfk7hiJHX91rY9o9926p8XL",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "practician",
+        "Demande de renseignements",
+        "31LllxPtQ9MyrnKx NvTkqVQamRK o674s72oX",
+        "2023-07-04",
+        0,
+        0
+    ), (
+        "practician",
+        "Demande de support technique",
+        "842 402BN lGcpYM9g 2P2Vm5Sdz aJFe7999q5 WfLN7",
         "2023-07-04",
         0,
         0
@@ -420,13 +469,15 @@ INSERT INTO
         hashed_password,
         firstname,
         lastname,
+        phone,
         role
     )
 VALUES (
         'patient1@patient1.com',
-        'test',
+        '$argon2id$v=19$m=65536,t=5,p=1$lgQhMd6/YI8RXwZQrt1VMA$oBtHiEp7JSwbC+H8aVkORWC2ycR5fln8a2CrKvPT9pQ',
         'patient1',
         'patient1',
+        '0612345678',
         'patient'
     );
 
@@ -436,6 +487,7 @@ INSERT INTO
         hashed_password,
         firstname,
         lastname,
+        phone,
         role
     )
 VALUES (
@@ -443,6 +495,7 @@ VALUES (
         'test',
         'patient2',
         'patient2',
+        '0612345678',
         'patient'
     );
 
@@ -452,6 +505,7 @@ INSERT INTO
         hashed_password,
         firstname,
         lastname,
+        phone,
         role
     )
 VALUES (
@@ -459,8 +513,26 @@ VALUES (
         'test',
         'patient3',
         'patient3',
+        '0612345678',
         'patient'
     );
+-- -----------------------------------------------------
+
+-- INSERT INTO 'intervention_patient'
+
+-- -----------------------------------------------------
+INSERT INTO
+    intervention_patient(
+        intervention_id,
+        patient_id,
+        intervention_date
+    )
+VALUES (
+        1,
+        1,
+        '2023-07-04'
+    );
+
 
 -- -----------------------------------------------------
 

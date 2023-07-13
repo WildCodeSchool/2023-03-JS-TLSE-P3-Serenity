@@ -1,8 +1,8 @@
-.background-dark .authentication-admin-container {
+.background-dark .authentication-practician-container {
   background-color: var(--main-bg-admin-practician);
 }
 
-.authentication-admin-container {
+.authentication-practician-container {
   min-width: 300px;
   width: 20vw;
   max-width: 500px;
@@ -13,8 +13,18 @@
   justify-content: center;
   gap: 50px;
 }
+.return-button-practician {
+  position: fixed;
+  margin: 2rem;
+  top: 0;
+  background-color: transparent;
+  .fi {
+    font-size: 2rem;
+    color: white;
+  }
+}
 
-.title-connection-admin {
+.title-connection-practician {
   display: flex;
   flex-direction: column;
   align-items: center;

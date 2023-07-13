@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "../styles/PracticianListModal.scss";
-import Buttonadd from "./Buttonadd";
+import ButtonAddPractician from "./ButtonAddPractician";
 import StateContext from "../contexts/StateContext";
 import ModalUpdate from "./ModalUpdate";
 import DeleteButton from "./DeleteButton";
@@ -36,10 +36,15 @@ function PracticianListModal() {
   };
 
   const handleTrClick = (practician) => {
-    setSelectedPractician(practician);
-    setModalInputs(practician);
-    handleShow(true);
     setShowSuccessMessageAdd(false);
+    setSelectedPractician(practician);
+    setModalInputs({
+      firstname: practician.firstname,
+      lastname: practician.lastname,
+      mail: practician.mail,
+      adeli_number: practician.adeli_number,
+    });
+    handleShow(true);
   };
 
   const handleInputChange = (event) => {
@@ -75,6 +80,9 @@ function PracticianListModal() {
           });
           setPracticians(updatedPracticians);
           setShowSuccessMessageModification(true);
+          setTimeout(() => {
+            setShow(false);
+          }, 1000);
         })
         .catch((error) => {
           console.error(error);
@@ -153,8 +161,8 @@ function PracticianListModal() {
         </div>
         <div className="practician-list-body">
           <table className="practician-list-table">
-            <thead className="practician-list-table-header">
-              <tr>
+            <thead className="practician-list-table-body">
+              <tr className="table-header">
                 <th>Nom</th>
                 <th>Mail</th>
                 <th>Poste</th>
@@ -200,8 +208,8 @@ function PracticianListModal() {
                         <i className="fi fi-rr-pencil" />
                       </button>
                       <DeleteButton
-                        selectedPracticians={[selectedPractician]}
                         practicians={practicians}
+                        practician={practician.id}
                         setPracticians={setPracticians}
                       />
                     </td>
@@ -220,7 +228,7 @@ function PracticianListModal() {
           showSuccessMessageModification={showSuccessMessageModification}
         />
         <div className="practician-list-footer">
-          <Buttonadd />
+          <ButtonAddPractician />
         </div>
       </div>
     </div>

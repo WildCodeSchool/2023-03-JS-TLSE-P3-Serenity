@@ -48,6 +48,44 @@ export default function Authentication() {
           console.error(error.message);
           setFailAuth(true);
         });
+    } else if (credentials === "loginpro") {
+      axios
+        .post(
+          `${import.meta.env.VITE_BACKEND_URL}/practicians/login`,
+          dataFromForm
+        )
+        .then((response) => {
+          if (response.data.token) {
+            setUser(response.data.token);
+            setUserInfo(response.data.user);
+            navigate("/espacepro");
+          } else {
+            console.info(response);
+          }
+        })
+        .catch((error) => {
+          console.error(error.message);
+          setFailAuth(true);
+        });
+    } else if (credentials === "login") {
+      axios
+        .post(
+          `${import.meta.env.VITE_BACKEND_URL}/patients/login`,
+          dataFromForm
+        )
+        .then((response) => {
+          if (response.data.token) {
+            setUser(response.data.token);
+            setUserInfo(response.data.user);
+            navigate("/espacepatient");
+          } else {
+            console.info(response);
+          }
+        })
+        .catch((error) => {
+          console.error(error.message);
+          setFailAuth(true);
+        });
     }
   };
 
@@ -96,10 +134,13 @@ export default function Authentication() {
       case "admin":
         authentificationTypeToShow = (
           <>
-            <label htmlFor="matricule">Matricule</label>
+            <label className="admin-practician-label" htmlFor="matricule">
+              Matricule
+            </label>
             <input
               name="matricule"
               id="matricule"
+              className="input-username-black"
               type="text"
               autoComplete="true"
               value={matricule}
@@ -117,13 +158,16 @@ export default function Authentication() {
           </>
         );
         break;
-      case "espacepro":
+      case "loginpro":
         authentificationTypeToShow = (
           <>
-            <label htmlFor="adeli">Numéro Adeli</label>
+            <label className="admin-practician-label" htmlFor="adeli">
+              Numéro Adeli
+            </label>
             <input
               name="adeli"
               id="adeli"
+              className="input-username-black"
               type="text"
               autoComplete="true"
               value={adeli}
@@ -144,10 +188,13 @@ export default function Authentication() {
       case "login":
         authentificationTypeToShow = (
           <>
-            <label htmlFor="mail">Mail</label>
+            <label className="patient-label" htmlFor="mail">
+              Mail
+            </label>
             <input
               name="mail"
               id="mail"
+              className="input-username-white"
               type="text"
               autoComplete="true"
               value={mail}
@@ -177,11 +224,23 @@ export default function Authentication() {
       <form onSubmit={handleSubmit} className="connection">
         <div className="connection-input">{authenticationType()}</div>
         <div className="password-input">
-          <label htmlFor="password">Mot de passe</label>
+          <label
+            className={
+              credentials === "login"
+                ? "patient-label"
+                : "admin-practician-label"
+            }
+            htmlFor="password"
+          >
+            Mot de passe
+          </label>
           <div className="password-input-and-show">
             <input
               name="password"
               id="password"
+              className={
+                credentials === "login" ? "input-pw-white" : "input-pw-black"
+              }
               autoComplete="current-password"
               type={!passwordShown ? "password" : "text"}
               value={password}

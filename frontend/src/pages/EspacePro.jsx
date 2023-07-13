@@ -2,12 +2,14 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import AboutUs from "../components/AboutUs";
-import "../styles/EspacePatient.scss";
+import "../styles/EspacePro.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import HeaderLocation from "../components/HeaderLocation";
+import PatientListModal from "../components/PatientListModal";
+import AccountPracticianModal from "../components/AccountPracticianModal";
 
-export default function EspacePatient() {
+export default function EspacePro() {
   const navigate = useNavigate();
   const { linkToActive, setActiveModal } = useContext(StateContext);
   const { userInfo, userToken } = useContext(AuthFunctionContext);
@@ -45,31 +47,35 @@ export default function EspacePatient() {
     }
   }, [userInfo]);
 
-  let CurrentModalePatient;
+  let CurrentModalePractician;
   switch (linkToActive) {
     case "Home":
+      CurrentModalePractician = <PatientListModal />;
       break;
     case "Mon Compte":
+      CurrentModalePractician = <AccountPracticianModal />;
       break;
     case "Formulaires":
       break;
     case "Stats":
       break;
     case "A propos":
-      CurrentModalePatient = <AboutUs />;
+      CurrentModalePractician = <AboutUs />;
       break;
     default:
+      CurrentModalePractician = <PatientListModal />;
       break;
   }
 
   return (
-    userInfo.role === "patient" &&
+    userInfo.role === "practician" &&
     userToken && (
-      <div className="home-patient">
+      <div className="home-practician">
         <Navbar />
+
         <div className="modal-container">
           <HeaderLocation />
-          {CurrentModalePatient}
+          {CurrentModalePractician}
         </div>
       </div>
     )

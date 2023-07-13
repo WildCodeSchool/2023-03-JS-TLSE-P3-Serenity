@@ -1,4 +1,4 @@
-.practician-list-container {
+.patient-list-container {
   color: white;
   background-color: #242731;
   width: 100%;
@@ -23,8 +23,8 @@
     background-color: rgb(100, 100, 100);
     visibility: visible;
   }
-  .practician-list {
-    .practician-list-header {
+  .patient-list {
+    .patient-list-header {
       .search-input {
         padding-left: 0.5rem;
         background-color: #8f8f9720;
@@ -37,9 +37,9 @@
         box-shadow: 0 0 0.5rem #00000075;
       }
     }
-    .practician-list-table {
+    .patient-list-table {
       width: 100%;
-      .practician-list-table-body {
+      .patient-list-table-body {
         font-size: 0.7rem;
         .clickable-row {
           cursor: pointer;
@@ -48,7 +48,7 @@
           top: 0;
           position: sticky;
           font-size: 0.9rem;
-          background-color: var(--main-bg-admin-practician);
+          background-color: var(--main-bg-admin-patient);
           text-shadow: #00000086 0.5px 0.5px 5px;
         }
         tr {
@@ -73,7 +73,7 @@
             }
           }
         }
-        .practician-list-table-buttons {
+        .patient-list-table-buttons {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -81,7 +81,6 @@
           padding-right: 0;
           height: 3rem;
           .delete-button {
-            margin-left: 1rem;
             background-color: #8f8f9720;
             height: 2rem;
             width: 2rem;
@@ -113,7 +112,7 @@
     }
   }
 }
-.practician-list-footer {
+.patient-list-footer {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
@@ -143,6 +142,6 @@
   }
 }
 .swal2-popup {
-  background-color: #242731;
+  background-color: #8f8f9720;
   color: white;
 }

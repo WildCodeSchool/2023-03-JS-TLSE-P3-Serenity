@@ -33,37 +33,22 @@ const getPracticianById = (req, res) => {
     });
 };
 
-const updatePractician = (req, res) => {
-  const {
-    adeli_number,
-    hashed_password,
-    firstname,
-    lastname,
-    mail,
-    administrator_id,
-  } = req.body;
-  const { id } = req.params;
+const authenticationPracticianCheck = (req, res, next) => {
+  const { adeli } = req.body;
 
   models.practician
-    .update({
-      adeli_number,
-      hashed_password,
-      firstname,
-      lastname,
-      mail,
-      administrator_id,
-      id,
-    })
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404);
+    .getPracticianByAdeliNumber(adeli)
+    .then(([users]) => {
+      if (users[0] != null) {
+        [req.user] = users;
+        next();
       } else {
-        res.sendStatus(204);
+        res.sendStatus(401);
       }
     })
     .catch((err) => {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).send("Error retrieving data from database");
     });
 };
 
@@ -123,10 +108,30 @@ const deletePractician = (req, res) => {
     });
 };
 
+const updatePractician = (req, res) => {
+  const { id } = req.params;
+  const keys = Object.keys(req.body);
+  const values = Object.values(req.body);
+  const valueQuery = keys.map((key) => `${key} = ?`).join(", ");
+  models.practician
+    .update(values, valueQuery, id)
+    .then(([result]) => {
+      if (result.affectedRows !== 0) {
+        res.sendStatus(204);
+      } else {
+        res.status(404).send("User not found...");
+      }
+    })
+    .catch(() => {
+      res.status(500).send("Error while updating user");
+    });
+};
+
 module.exports = {
   getListOfAllPracticians,
   getPracticianById,
   updatePractician,
   AddPractician,
   deletePractician,
+  authenticationPracticianCheck,
 };

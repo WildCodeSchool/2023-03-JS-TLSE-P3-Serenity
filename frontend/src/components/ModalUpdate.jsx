@@ -67,9 +67,6 @@ function ModalUpdate({
             />
           </Form.Group>
           <Modal.Footer>
-            {showSuccessMessageModification && (
-              <span className="success-message">Modification effectuée !</span>
-            )}
             <Button onClick={handleClose} className="button-cancel">
               Annuler
             </Button>
@@ -77,6 +74,11 @@ function ModalUpdate({
               Modifier
             </Button>
           </Modal.Footer>
+          {showSuccessMessageModification && (
+            <span className="success-message-modif">
+              Modification effectuée !
+            </span>
+          )}
         </Form>
       </Modal.Body>
     </Modal>

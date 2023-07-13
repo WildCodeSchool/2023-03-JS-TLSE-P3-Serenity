@@ -18,25 +18,39 @@ export default function EspaceAdmin() {
   useEffect(() => {
     switch (userInfo.role) {
       case "admin":
-        navigate("/espaceadmin");
-        setActiveModal("Practiciens");
+        setActiveModal("Praticiens");
         break;
       case "practician":
-        navigate("/espacepro");
         setActiveModal("Patients");
         break;
       case "patient":
-        navigate("/espacepatient");
         setActiveModal("Ma préparation");
         break;
       default:
-        navigate("/admin");
+        break;
+    }
+  }, []);
+
+  useEffect(() => {
+    switch (userInfo.role) {
+      case "admin":
+        navigate("/espaceadmin");
+        break;
+      case "practician":
+        navigate("/espacepro");
+        break;
+      case "patient":
+        navigate("/espacepatient");
+        break;
+      default:
+        navigate("/");
         break;
     }
   }, [userInfo]);
+
   let CurrentModaleAdmin;
   switch (linkToActive) {
-    case "home":
+    case "Home":
       CurrentModaleAdmin = <PracticianListModal />;
       break;
     case "Mon Compte":
@@ -57,7 +71,7 @@ export default function EspaceAdmin() {
   return (
     userInfo.role === "admin" &&
     userToken && (
-      <div className="home">
+      <div className="home-admin">
         <Navbar />
 
         <div className="modal-container">

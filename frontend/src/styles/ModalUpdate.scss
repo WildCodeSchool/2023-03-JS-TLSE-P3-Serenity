@@ -1,26 +1,43 @@
-
+.success-message-modif {
+  display: block;
+  color: #28a745;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
 
 .button-update {
-    color: #fff;
-    background-color:rgb(50, 53, 66);;
-    border: none;
-    font-size: 1.1rem;
-  }
+  color: #fff;
+  background-color: rgb(50, 53, 66);
+  border: none;
+  font-size: 1.1rem;
+}
 .button-update:hover {
-    background-color:#6c5dd3;
-  }
-  
-  .btn-close:hover {
-    background-color: #eb2f2f; 
-  }
+  background-color: #6c5dd3;
+}
 
-  .button-cancel {
-    color: #fff;
-    background-color:rgb(50, 53, 66);
-    border: none;
-    font-size: 1.1rem;
-  }
-  
-  .button-cancel:hover {
-    background-color: #b02a2a; 
-  }
+.btn-close:hover {
+  background-color: #eb2f2f;
+}
+
+.button-cancel {
+  color: #fff;
+  background-color: rgb(50, 53, 66);
+  border: none;
+  font-size: 1.1rem;
+}
+
+.button-cancel:hover {
+  background-color: #b02a2a;
+}
+
+.form-label {
+  color: white;
+}
+
+.modal-body {
+  padding: 1rem;
+}
+.modal-footer {
+  padding-right: 8rem;
+}
