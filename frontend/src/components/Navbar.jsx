@@ -183,6 +183,7 @@ function navbar() {
               type="button"
               onClick={() => {
                 logoutHandler();
+                setIsMenuOpen(false);
                 navigate("/");
               }}
             >

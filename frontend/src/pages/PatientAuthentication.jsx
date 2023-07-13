@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import Authentication from "../components/Authentication";
 import "../styles/PatientAuthentication.scss";
 import headerLogoBlack from "../assets/header_logo_white.svg";
 
 function PatientAuthentication() {
+  const navigate = useNavigate();
+
   return (
     <div className="background-light">
       <div className="authentication-patient-container">
@@ -16,6 +19,13 @@ function PatientAuthentication() {
           <Authentication />
         </div>
       </div>
+      <button
+        type="button"
+        className="return-button-patient"
+        onClick={() => navigate("/")}
+      >
+        <i className="fi fi-rr-arrow-circle-left" />
+      </button>
     </div>
   );
 }
