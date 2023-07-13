@@ -37,7 +37,14 @@ function DeletePatientButton({ patient, setPatients, patients }) {
             const updatedPatients = patients.filter((el) => el.id !== patient);
             setPatients(updatedPatients);
 
-            Swal.fire("Supprimé !", "Le patient a été supprimé.", "success");
+            Swal.fire({
+              background: "#242731",
+              position: "center",
+              icon: "success",
+              title: "Le patient a été supprimé.",
+              showConfirmButton: false,
+              timer: 1500,
+            });
           })
           .catch((error) => {
             console.error("Error deleting practician:", error);
