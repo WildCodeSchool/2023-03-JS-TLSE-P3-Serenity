@@ -400,7 +400,7 @@ function AccountPatientModal() {
                         <input
                           type="radio"
                           value="M"
-                          name="male"
+                          name="gender"
                           checked={genderInfo === "M"}
                           onChange={(e) => setGenderInfo(e.target.value)}
                         />
@@ -410,7 +410,7 @@ function AccountPatientModal() {
                         <input
                           type="radio"
                           value="F"
-                          name="female"
+                          name="gender"
                           checked={genderInfo === "F"}
                           onChange={(e) => setGenderInfo(e.target.value)}
                         />
@@ -425,7 +425,7 @@ function AccountPatientModal() {
                         <input
                           type="radio"
                           value="Monsieur"
-                          name="mister"
+                          name="civility"
                           checked={civilityInfo === "Monsieur"}
                           onChange={(e) => setCivilityInfo(e.target.value)}
                         />
@@ -435,7 +435,7 @@ function AccountPatientModal() {
                         <input
                           type="radio"
                           value="Madame"
-                          name="mrs"
+                          name="civility"
                           checked={civilityInfo === "Madame"}
                           onChange={(e) => setCivilityInfo(e.target.value)}
                         />
@@ -445,7 +445,7 @@ function AccountPatientModal() {
                         <input
                           type="radio"
                           value="Autre"
-                          name="other"
+                          name="civility"
                           checked={civilityInfo === "Autre"}
                           onChange={(e) => setCivilityInfo(e.target.value)}
                         />
@@ -468,7 +468,7 @@ function AccountPatientModal() {
                     <input
                       type="text"
                       value={birthnameInfo}
-                      name="other_birthname"
+                      name="birthname"
                       id="birthname"
                       onChange={(e) => setBirthnameInfo(e.target.value)}
                     />
@@ -477,7 +477,7 @@ function AccountPatientModal() {
                     <label htmlFor="family">Situation familiale</label>
                     <select
                       value={familyInfo}
-                      name="family"
+                      name="family_situation"
                       onChange={(e) => setFamilyInfo(e.target.value)}
                     >
                       <option className="option-select" value="">
@@ -518,7 +518,7 @@ function AccountPatientModal() {
                     <select
                       type="text"
                       value={childrenInfo}
-                      name="children"
+                      name="children_number"
                       id="children"
                       onChange={(e) => setChildrenInfo(e.target.value)}
                     >
@@ -578,7 +578,7 @@ function AccountPatientModal() {
                     <input
                       type="text"
                       value={postalCodeInfo}
-                      name="postalCode"
+                      name="postal_code"
                       id="postalCode"
                       onChange={(e) => setPostalCodeInfo(e.target.value)}
                     />
@@ -614,7 +614,7 @@ function AccountPatientModal() {
                     <input
                       type="text"
                       value={emergencyFirstnameInfo}
-                      name="emergencyFirstname"
+                      name="emergency_firstname"
                       id="emergencyFirstname"
                       onChange={(e) =>
                         setEmergencyFirstnameInfo(e.target.value)
@@ -626,7 +626,7 @@ function AccountPatientModal() {
                     <input
                       type="text"
                       value={emergencyLastnameInfo}
-                      name="emergencyLastname"
+                      name="emergency_lastname"
                       id="emergencyLastname"
                       onChange={(e) => setEmergencyLastnameInfo(e.target.value)}
                     />
@@ -636,7 +636,7 @@ function AccountPatientModal() {
                     <input
                       type="text"
                       value={emergencyPhoneInfo}
-                      name="emergencyPhone"
+                      name="emergency_phone"
                       id="emergencyPhone"
                       onChange={(e) => setEmergencyPhoneInfo(e.target.value)}
                     />
