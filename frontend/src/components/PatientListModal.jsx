@@ -62,7 +62,7 @@ function PatientListModal() {
                       .includes(searchValue.toLowerCase())
                 )
                 .map((patient) => (
-                  <tr key={patient.id}>
+                  <tr key={patient.patient_id}>
                     <td>
                       {patient.firstname} {patient.lastname}
                     </td>
@@ -75,7 +75,7 @@ function PatientListModal() {
                     <td className="patient-list-table-buttons">
                       <DeletePatientButton
                         patients={patients}
-                        patient={patient.id}
+                        patient={patient.patient_id}
                         setPatients={setPatients}
                       />
                     </td>
