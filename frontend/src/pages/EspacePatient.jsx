@@ -9,8 +9,25 @@ import HeaderLocation from "../components/HeaderLocation";
 
 export default function EspacePatient() {
   const navigate = useNavigate();
-  const { linkToActive } = useContext(StateContext);
+  const { linkToActive, setActiveModal } = useContext(StateContext);
   const { userInfo, userToken } = useContext(AuthFunctionContext);
+
+  useEffect(() => {
+    switch (userInfo.role) {
+      case "admin":
+        setActiveModal("Praticiens");
+        break;
+      case "practician":
+        setActiveModal("Patients");
+        break;
+      case "patient":
+        setActiveModal("Ma préparation");
+        break;
+      default:
+        break;
+    }
+  }, []);
+
   useEffect(() => {
     switch (userInfo.role) {
       case "admin":
@@ -23,10 +40,11 @@ export default function EspacePatient() {
         navigate("/espacepatient");
         break;
       default:
-        navigate("/");
+        navigate("/admin");
         break;
     }
   }, [userInfo]);
+
   let CurrentModalePatient;
   switch (linkToActive) {
     case "Home":

@@ -17,19 +17,32 @@ export default function EspacePro() {
   useEffect(() => {
     switch (userInfo.role) {
       case "admin":
-        navigate("/espaceadmin");
-        setActiveModal("Practiciens");
+        setActiveModal("Praticiens");
         break;
       case "practician":
-        navigate("/espacepro");
         setActiveModal("Patients");
         break;
       case "patient":
-        navigate("/espacepatient");
         setActiveModal("Ma préparation");
         break;
       default:
-        navigate("/");
+        break;
+    }
+  }, []);
+
+  useEffect(() => {
+    switch (userInfo.role) {
+      case "admin":
+        navigate("/espaceadmin");
+        break;
+      case "practician":
+        navigate("/espacepro");
+        break;
+      case "patient":
+        navigate("/espacepatient");
+        break;
+      default:
+        navigate("/admin");
         break;
     }
   }, [userInfo]);
