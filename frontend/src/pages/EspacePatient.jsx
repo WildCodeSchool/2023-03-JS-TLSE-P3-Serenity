@@ -40,7 +40,7 @@ export default function EspacePatient() {
         navigate("/espacepatient");
         break;
       default:
-        navigate("/admin");
+        navigate("/");
         break;
     }
   }, [userInfo]);
