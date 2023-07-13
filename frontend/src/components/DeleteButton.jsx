@@ -39,7 +39,14 @@ function DeleteButton({ practician, setPracticians, practicians }) {
             );
             setPracticians(updatedPracticians);
 
-            Swal.fire("Supprimé !", "Le praticien a été supprimé.", "success");
+            Swal.fire({
+              background: "#242731",
+              position: "center",
+              icon: "success",
+              title: "Le praticien a été supprimé.",
+              showConfirmButton: false,
+              timer: 1500,
+            });
           })
           .catch((error) => {
             console.error("Error deleting practician:", error);

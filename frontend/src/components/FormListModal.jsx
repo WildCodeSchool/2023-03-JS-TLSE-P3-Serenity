@@ -54,11 +54,14 @@ function FormListModal() {
       )
       .catch((error) => {
         console.error(`Error updating form with ID ${formId}:`, error);
-        Swal.fire(
-          "Erreur!",
-          "Une erreur est survenue lors de la mise à jour.",
-          "error"
-        );
+        Swal.fire({
+          background: "#242731",
+          position: "center",
+          icon: "error",
+          title: "Une erreur est survenue lors de la mise à jour.",
+          showConfirmButton: false,
+          timer: 2000,
+        });
         // Revert the local state change if the update fails
         updateFormCheckbox(formId, "is_read", !updatedValue);
       });
@@ -83,11 +86,14 @@ function FormListModal() {
       )
       .catch((error) => {
         console.error(`Error updating form with ID ${formId}:`, error);
-        Swal.fire(
-          "Erreur!",
-          "Une erreur est survenue lors de la mise à jour.",
-          "error"
-        );
+        Swal.fire({
+          background: "#242731",
+          position: "center",
+          icon: "error",
+          title: "Une erreur est survenue lors de la mise à jour.",
+          showConfirmButton: false,
+          timer: 2000,
+        });
         // Revert the local state change if the update fails
         updateFormCheckbox(formId, "is_done", !updatedValue);
       });
@@ -96,6 +102,7 @@ function FormListModal() {
   const handleDeleteFormButtonClick = (event, formId) => {
     event.stopPropagation();
     Swal.fire({
+      background: "#242731",
       title: "Êtes-vous sûr de vouloir supprimer cette requête ?",
       text: "Vous ne pourrez pas annuler cette action !",
       icon: "warning",
@@ -119,15 +126,25 @@ function FormListModal() {
           .then(() => {
             const updatedForms = forms.filter((form) => form.id !== formId);
             setForms(updatedForms);
-            Swal.fire("Supprimé !", "La requête a été supprimée.", "success");
+            Swal.fire({
+              background: "#242731",
+              position: "center",
+              icon: "success",
+              title: "La requête a été supprimée",
+              showConfirmButton: false,
+              timer: 1500,
+            });
           })
           .catch((error) => {
             console.error(`Error deleting form with ID ${formId}:`, error);
-            Swal.fire(
-              "Erreur!",
-              "Une erreur est survenue lors de la suppression.",
-              "Erreur"
-            );
+            Swal.fire({
+              background: "#242731",
+              position: "center",
+              icon: "error",
+              title: "Une erreur est survenue lors de la suppression.",
+              showConfirmButton: false,
+              timer: 2000,
+            });
           });
       }
     });
@@ -140,11 +157,12 @@ function FormListModal() {
     }
 
     Swal.fire({
+      background: "#242731",
       title: "Informations de la requête",
       html: `
-        <p>Utilisateur: ${form.user_type}</p>
-        <p>Objet: ${form.request_type}</p>
-        <p>Requête: ${form.request}</p>
+        <p>Utilisateur: ${form.user_type}</p><br>
+        <p>Objet: ${form.request_type}</p><br>
+        <p>Requête:<br> ${form.request}</p><br>
         <p>Date: ${new Date(form.create_time).toLocaleDateString()}</p>
       `,
       showCancelButton: false,
