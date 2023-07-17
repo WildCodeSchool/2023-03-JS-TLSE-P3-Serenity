@@ -32,10 +32,10 @@ function PracticianListModal() {
   const handleShow = () => setShow(true);
   const handleClose = () => {
     setShow(false);
-    setShowSuccessMessageModification(false);
   };
 
   const handleTrClick = (practician) => {
+    setShowSuccessMessageModification(false);
     setShowSuccessMessageAdd(false);
     setSelectedPractician(practician);
     setModalInputs({
@@ -82,6 +82,7 @@ function PracticianListModal() {
           setShowSuccessMessageModification(true);
           setTimeout(() => {
             setShow(false);
+            setShowSuccessMessageAdd(false);
           }, 1000);
         })
         .catch((error) => {

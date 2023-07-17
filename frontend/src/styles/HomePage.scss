@@ -8,12 +8,14 @@
   height: 100vh;
 }
 .logo-serenity {
+  margin: 0 2rem;
   width: 6rem;
 }
 .card-img-home {
   width: 80vw;
   height: auto;
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 .title-connexion {
@@ -36,6 +38,7 @@
 }
 
 .card-body-choice {
+  margin: 0 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -87,9 +90,6 @@
     width: 9rem;
   }
 
-  .card-img-home {
-    height: auto;
-  }
   .card-body-home {
     display: flex;
     flex-direction: column;

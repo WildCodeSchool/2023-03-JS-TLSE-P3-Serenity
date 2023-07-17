@@ -85,6 +85,7 @@ function AccountPracticianModal() {
 
   const modalValidateInfo = () => {
     return Swal.fire({
+      background: "#242731",
       position: "center",
       icon: "success",
       title: "Informations modifiées",
@@ -95,6 +96,7 @@ function AccountPracticianModal() {
 
   const modalValidatePw = () => {
     return Swal.fire({
+      background: "#242731",
       position: "center",
       icon: "success",
       title: "Mot de passe modifié",
@@ -105,6 +107,7 @@ function AccountPracticianModal() {
 
   const modalProblemWhileUpdate = () => {
     return Swal.fire({
+      background: "#242731",
       position: "center",
       icon: "error",
       title: "Erreur lors de la mise à jour, veuillez réessayer",
@@ -115,6 +118,7 @@ function AccountPracticianModal() {
 
   const modalProblemChar = () => {
     return Swal.fire({
+      background: "#242731",
       position: "center",
       icon: "error",
       title:

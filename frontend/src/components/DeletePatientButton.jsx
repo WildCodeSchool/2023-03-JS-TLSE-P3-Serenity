@@ -34,10 +34,19 @@ function DeletePatientButton({ patient, setPatients, patients }) {
             }
           )
           .then(() => {
-            const updatedPatients = patients.filter((el) => el.id !== patient);
+            const updatedPatients = patients.filter(
+              (p) => p.patient_id !== patient
+            );
             setPatients(updatedPatients);
 
-            Swal.fire("Supprimé !", "Le patient a été supprimé.", "success");
+            Swal.fire({
+              background: "#242731",
+              position: "center",
+              icon: "success",
+              title: "Le patient a été supprimé.",
+              showConfirmButton: false,
+              timer: 1500,
+            });
           })
           .catch((error) => {
             console.error("Error deleting practician:", error);
@@ -58,18 +67,11 @@ function DeletePatientButton({ patient, setPatients, patients }) {
 }
 
 DeletePatientButton.propTypes = {
-  patient: PropTypes.shape({
-    id: PropTypes.number,
-    firstname: PropTypes.string,
-    lastname: PropTypes.string,
-    mail: PropTypes.string,
-    adeli_number: PropTypes.string,
-    administrator_id: PropTypes.number,
-  }).isRequired,
+  patient: PropTypes.number.isRequired,
   setPatients: PropTypes.func.isRequired,
   patients: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      patient_id: PropTypes.number,
       firstname: PropTypes.string,
       lastname: PropTypes.string,
       mail: PropTypes.string,

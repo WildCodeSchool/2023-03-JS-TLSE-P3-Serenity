@@ -43,6 +43,7 @@ function AccountAdminModal() {
 
   const modalValidateInfo = () => {
     return Swal.fire({
+      background: "#242731",
       position: "center",
       icon: "success",
       title: "Informations modifiées",
@@ -53,6 +54,7 @@ function AccountAdminModal() {
 
   const modalValidatePw = () => {
     return Swal.fire({
+      background: "#242731",
       position: "center",
       icon: "success",
       title: "Mot de passe modifié",
@@ -63,6 +65,7 @@ function AccountAdminModal() {
 
   const modalProblemWhileUpdate = () => {
     return Swal.fire({
+      background: "#242731",
       position: "center",
       icon: "error",
       title: "Erreur lors de la mise à jour, veuillez réessayer",
@@ -73,6 +76,7 @@ function AccountAdminModal() {
 
   const modalProblemChar = () => {
     return Swal.fire({
+      background: "#242731",
       position: "center",
       icon: "error",
       title:
