@@ -219,17 +219,14 @@ export default function Authentication() {
       <form onSubmit={handleSubmit} className="connection">
         <div className="connection-input">{authenticationType()}</div>
         <div className="password-input">
-          <label
-            className={credentials === "login" && "admin-practician-label"}
-            htmlFor="password"
-          >
+          <label className="admin-practician-label" htmlFor="password">
             Mot de passe
           </label>
           <div className="password-input-and-show">
             <input
               name="password"
               id="password"
-              className={credentials === "login" && "input-pw-black"}
+              className="input-pw-black"
               autoComplete="current-password"
               type={!passwordShown ? "password" : "text"}
               value={password}
