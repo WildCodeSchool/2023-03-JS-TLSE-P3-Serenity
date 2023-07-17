@@ -1,0 +1,15 @@
+.anticipate-release-modal-container {
+  width: 100vw;
+  padding: 1rem;
+  color: white;
+  .anticipate-release-modal-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    .return-button-modal {
+      background-color: transparent;
+      color: white;
+    }
+  }
+}
