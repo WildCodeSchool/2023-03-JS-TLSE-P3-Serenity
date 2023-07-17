@@ -7,7 +7,6 @@ import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function AccountPatientModal() {
   const { userInfo, setUserInfo, userToken } = useContext(AuthFunctionContext);
-  // eslint-disable-next-line camelcase
   const {
     firstname,
     lastname,
@@ -75,6 +74,7 @@ function AccountPatientModal() {
   const [passwordCheckShown, setPasswordCheckShown] = useState(false);
   const regexPw =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+  const regexCP = /^\d{0,5}$/;
   const checkPasswordCharacter = (password, callback) => {
     if (regexPw.test(password)) {
       if (callback) {
@@ -84,6 +84,7 @@ function AccountPatientModal() {
       callback(false);
     }
   };
+
   const checkPassword = (password) => {
     if (password !== passwordChange) {
       setMessageVerifiedPassword(true);
@@ -229,6 +230,12 @@ function AccountPatientModal() {
     const formData = new FormData(form);
     const dataFromForm = Object.fromEntries(formData.entries());
     modifyPractician(dataFromForm);
+  };
+
+  const handlePostalCode = (e) => {
+    if (regexCP.test(e.target.value)) {
+      setPostalCodeInfo(e.target.value);
+    }
   };
 
   return (
@@ -580,7 +587,7 @@ function AccountPatientModal() {
                       value={postalCodeInfo}
                       name="postal_code"
                       id="postalCode"
-                      onChange={(e) => setPostalCodeInfo(e.target.value)}
+                      onChange={handlePostalCode}
                     />
                   </div>
                   <div className="city-input">

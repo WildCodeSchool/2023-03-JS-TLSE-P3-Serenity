@@ -29,11 +29,6 @@ export function AuthFunctionProvider({ children }) {
     () => ({ userToken, setUser, userInfo, setUserInfo, logoutHandler }),
     [userToken, userInfo]
   );
-  // const AuthValue = useMemo(
-  //   () => ({ userToken, setUser, userInfo, setUserInfo, logoutHandler }),
-  //   [userToken]
-  //   // [userToken, userInfo]
-  // );
 
   return (
     <AuthFunctionContext.Provider value={AuthValue}>

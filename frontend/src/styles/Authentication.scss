@@ -2,10 +2,6 @@
   color: white;
 }
 
-.patient-label {
-  color: var(--main-bg-admin-practician);
-}
-
 .button-to-hide {
   background-color: transparent;
 }
@@ -19,6 +15,8 @@
     height: 30px;
     padding: 0 5px;
     border-radius: 5px;
+    background-color: var(--grey-10);
+    color: white;
   }
 
   .connection-input {
@@ -27,10 +25,6 @@
     gap: 5px;
     .input-username-black {
       background-color: var(--grey-10);
-      color: white;
-    }
-    .input-username-white {
-      background-color: var(--button-color-opacified);
       color: white;
     }
   }
@@ -62,10 +56,6 @@
       position: relative;
       .input-pw-black {
         background-color: var(--grey-10);
-        color: white;
-      }
-      .input-pw-white {
-        background-color: var(--button-color-opacified);
         color: white;
       }
     }
