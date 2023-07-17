@@ -7,6 +7,7 @@ import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import HeaderLocation from "../components/HeaderLocation";
 import AccountPatientModal from "../components/AccountPatientModal";
+import UnderstandInterventionModal from "../components/UnderstandInterventionModal";
 
 export default function EspacePatient() {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ export default function EspacePatient() {
   let CurrentModalePatient;
   switch (linkToActive) {
     case "Home":
+      CurrentModalePatient = <UnderstandInterventionModal />;
       break;
     case "Mon Compte":
       CurrentModalePatient = <AccountPatientModal />;
