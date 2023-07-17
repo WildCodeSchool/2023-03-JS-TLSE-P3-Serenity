@@ -8,6 +8,7 @@ import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import HeaderLocation from "../components/HeaderLocation";
 import HeaderInterventionDate from "../components/HeaderInterventionDate";
 import AccountPatientModal from "../components/AccountPatientModal";
+import ThemeSelection from "../components/ThemeSelection";
 
 export default function EspacePatient() {
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ export default function EspacePatient() {
   let CurrentModalePatient;
   switch (linkToActive) {
     case "Home":
+      CurrentModalePatient = <ThemeSelection />;
       break;
     case "Mon Compte":
       CurrentModalePatient = <AccountPatientModal />;
