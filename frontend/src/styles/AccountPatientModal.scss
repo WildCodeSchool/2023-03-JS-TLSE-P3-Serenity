@@ -10,7 +10,7 @@
 
   .container-scroll {
     overflow: auto;
-    margin: 20px 0;
+    margin: 1.25rem 0;
     &::-webkit-scrollbar {
       width: 0.5rem;
     }
@@ -61,21 +61,21 @@
     .first-infos-patient {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 0.5rem;
       padding: 0 1rem;
       z-index: 2;
 
       .account-info-list-patient {
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 2rem;
         padding: 1.5rem 1rem;
         z-index: 2;
 
         .global-info-form-patient {
           display: flex;
           flex-direction: column;
-          gap: 15px;
+          gap: 1rem;
         }
 
         // media query desktop grid
@@ -114,6 +114,7 @@
         .password-input-check {
           display: flex;
           flex-direction: column;
+          justify-content: space-between;
           width: 100%;
           max-width: 350px;
           gap: 8px;
@@ -131,8 +132,8 @@
           #phone,
           #password,
           #passwordCheck {
-            height: 24px;
-            padding: 0 0.5rem;
+            min-height: 1.5rem;
+            padding: 0.5rem 0.5rem;
           }
         }
         .password-input,
@@ -173,44 +174,37 @@
           //end media query desktop for pw
           .password-input {
             .password-input-and-show {
-              display: flex;
-              flex-direction: column;
-              justify-content: flex-end;
-              height: 100%;
               position: relative;
             }
             .hide-or-show-button {
-              height: 20px;
-              width: 20px;
               position: absolute;
-              right: 3px;
-              bottom: 0px;
+              right: 0.5rem;
+              top: 50%;
+              transform: translateY(-50%);
               background-color: transparent;
               color: white;
             }
 
             #pw-icon-show-hide {
-              font-size: 15px;
+              font-size: 20px;
             }
           }
 
           .password-check-input-and-show {
-            display: flex;
             height: 100%;
             position: relative;
           }
           .hide-or-show-button {
-            height: 20px;
-            width: 20px;
             position: absolute;
-            right: 3px;
-            top: 3px;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
             background-color: transparent;
             color: white;
           }
 
           #pw-icon-show-hide {
-            font-size: 15px;
+            font-size: 20px;
           }
         }
       }
@@ -279,12 +273,19 @@
               input[type="date"],
               select {
                 border-radius: 5px;
-                height: 24px;
                 padding: 0 0.5rem;
                 font-size: 1rem;
               }
 
+              input[type="text"],
+              input[type="date"] {
+                min-height: 1.5rem;
+                padding: 0.5rem;
+              }
+
               select {
+                min-height: 1.5rem;
+                padding: 0.5rem;
                 background-color: var(--main-bg-admin-practician);
                 color: white;
                 .option-select {
@@ -403,8 +404,8 @@
               }
               input[type="text"] {
                 border-radius: 5px;
-                height: 24px;
-                padding: 0 0.5rem;
+                min-height: 1.5rem;
+                padding: 0.5rem 0.5rem;
                 font-size: 1rem;
               }
             }
@@ -469,8 +470,8 @@
               }
               input[type="text"] {
                 border-radius: 5px;
-                height: 24px;
-                padding: 0 0.5rem;
+                min-height: 1.5rem;
+                padding: 0.5rem 0.5rem;
                 font-size: 1rem;
               }
             }
@@ -493,6 +494,14 @@
                 .emergency-phone-input {
                   grid-column: 1;
                   grid-row: 3;
+                }
+                .emergency-firstname-input > label,
+                .emergency-firstname-input > input,
+                .emergency-lastname-input > label,
+                .emergency-lastname-input > input,
+                .emergency-phone-input > label,
+                .emergency-phone-input > input {
+                  width: 100%;
                 }
               }
             }

@@ -142,7 +142,7 @@ export default function Authentication() {
               id="matricule"
               className="input-username-black"
               type="text"
-              autoComplete="true"
+              autoComplete="username"
               value={matricule}
               onChange={handleMatriculeChange}
             />
@@ -169,7 +169,7 @@ export default function Authentication() {
               id="adeli"
               className="input-username-black"
               type="text"
-              autoComplete="true"
+              autoComplete="username"
               value={adeli}
               onChange={handleAdeliChange}
             />
@@ -196,7 +196,7 @@ export default function Authentication() {
               id="mail"
               className="input-username-white"
               type="text"
-              autoComplete="true"
+              autoComplete="username"
               value={mail}
               onChange={handleMailChange}
             />
