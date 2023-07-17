@@ -74,8 +74,8 @@ export default function EspacePatient() {
         <Navbar />
         <div className="modal-container">
           <HeaderLocation />
-          {CurrentModalePatient}
           <HeaderInterventionDate />
+          {CurrentModalePatient}
         </div>
       </div>
     )

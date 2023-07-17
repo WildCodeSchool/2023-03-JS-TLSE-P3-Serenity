@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import "../styles/ThemeSelection.scss";
 import StateContext from "../contexts/StateContext";
+import AnticipateReleaseModal from "./AnticipateReleaseModal";
+import CheckListModal from "./CheckListModal";
 
 function ThemeSelection() {
   const { activeTheme, setActiveTheme } = useContext(StateContext);
@@ -45,10 +47,10 @@ function ThemeSelection() {
       CurrentModaleTheme = <p>{activeTheme}</p>;
       break;
     case "anticipate":
-      CurrentModaleTheme = <p>{activeTheme}</p>;
+      CurrentModaleTheme = <AnticipateReleaseModal />;
       break;
     case "checklist":
-      CurrentModaleTheme = <p>{activeTheme}</p>;
+      CurrentModaleTheme = <CheckListModal />;
       break;
     default:
       CurrentModaleTheme = <p>Vide</p>;
@@ -68,7 +70,7 @@ function ThemeSelection() {
           </button>
         ))}
       </div>
-      <p>{CurrentModaleTheme}</p>
+      {CurrentModaleTheme}
     </div>
   );
 }
