@@ -441,7 +441,7 @@ INSERT INTO
         anesthesia,
         practician_id
     )
-VALUES ('intervention1', '1h', 'AG', 1), ('intervention2', '5h', 'AL', 2), (
+VALUES ('Opération des ligaments croisés gauche', '1h', 'AG', 1), ('intervention2', '5h', 'AL', 2), (
         'intervention3',
         '2h30',
         'Aucune',

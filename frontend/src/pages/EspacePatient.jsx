@@ -6,8 +6,10 @@ import "../styles/EspacePatient.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import HeaderLocation from "../components/HeaderLocation";
+import HeaderInterventionDate from "../components/HeaderInterventionDate";
 import AccountPatientModal from "../components/AccountPatientModal";
 import UnderstandInterventionModal from "../components/UnderstandInterventionModal";
+import ThemeSelection from "../components/ThemeSelection";
 
 export default function EspacePatient() {
   const navigate = useNavigate();
@@ -51,6 +53,7 @@ export default function EspacePatient() {
   switch (linkToActive) {
     case "Home":
       CurrentModalePatient = <UnderstandInterventionModal />;
+      CurrentModalePatient = <ThemeSelection />;
       break;
     case "Mon Compte":
       CurrentModalePatient = <AccountPatientModal />;
@@ -74,6 +77,7 @@ export default function EspacePatient() {
         <div className="modal-container">
           <HeaderLocation />
           {CurrentModalePatient}
+          <HeaderInterventionDate />
         </div>
       </div>
     )
