@@ -18,7 +18,7 @@ function HeaderInterventionDate() {
       })
       .then((response) => {
         if (response.data && response.data.length > 0) {
-          setPatient(response.data[0]); // Choisir le premier patient
+          setPatient(response.data[0]);
         }
       })
       .catch((error) => {
@@ -26,7 +26,7 @@ function HeaderInterventionDate() {
       });
   }, []);
 
-  if (!patient) return null; // Afficher rien tant que le patient n'est pas chargé
+  if (!patient) return null;
 
   return (
     <div className="header-intervention-date">
