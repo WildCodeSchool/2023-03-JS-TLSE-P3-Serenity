@@ -1,0 +1,466 @@
+.container-list-info-patient {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background-color: #242731;
+  width: 100%;
+  max-height: 70%;
+  border-radius: 20px;
+  box-shadow: 0 0 1rem #000000;
+
+  .container-scroll {
+    overflow: auto;
+    margin: 20px 0;
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(100, 100, 100);
+      border-radius: 5px;
+      visibility: hidden;
+    }
+    &:hover::-webkit-scrollbar-thumb {
+      visibility: visible;
+    }
+    .button-modification-validation {
+      width: 60%;
+      margin: 0 auto;
+      padding: 10px;
+      border-radius: 5px;
+      min-width: 130px;
+      max-width: 300px;
+      background-color: var(--button-color);
+      color: white;
+      p {
+        width: 100%;
+      }
+    }
+    .disable-button {
+      cursor: not-allowed;
+      background-color: rgb(161, 161, 161);
+    }
+
+    input {
+      background-color: var(--grey-10);
+      color: white;
+    }
+
+    .title-first-info,
+    .section-account-info h2,
+    .section-address-info h2,
+    .section-emergency-info h2 {
+      font-size: 1.3rem;
+    }
+
+    hr {
+      width: 95%;
+      margin: 0 auto;
+    }
+
+    .first-infos-patient {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 1rem;
+      z-index: 2;
+
+      .account-info-list-patient {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 1.5rem 1rem;
+        z-index: 2;
+
+        .global-info-form-patient {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .global-info-patient-grid {
+          display: grid;
+          grid-template-columns: 1fr 10px 1fr;
+          grid-template-rows: 1fr 12px 1fr;
+          label {
+            width: 100%;
+          }
+          input {
+            width: 100%;
+          }
+          .lastname-input-patient {
+            grid-column: 3;
+            grid-row: 1;
+          }
+          .mail-input-patient {
+            grid-column: 1;
+            grid-row: 3;
+          }
+          .phone-input-patient {
+            grid-column: 3;
+            grid-row: 3;
+          }
+        }
+
+        .firstname-input-patient,
+        .lastname-input-patient,
+        .mail-input-patient,
+        .phone-input-patient,
+        .password-input,
+        .password-input-check {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          max-width: 350px;
+          gap: 8px;
+          margin: 0 auto;
+
+          input {
+            border-radius: 5px;
+          }
+
+          #firstname,
+          #lastname,
+          #mail,
+          #adeli,
+          #speciality,
+          #phone,
+          #password,
+          #passwordCheck {
+            height: 24px;
+            padding: 0 0.5rem;
+          }
+        }
+        .password-input,
+        .password-input-check {
+          width: 100%;
+          label {
+            width: 100%;
+          }
+          input {
+            width: 100%;
+          }
+        }
+
+        .password-form {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+
+          .verified-message {
+            color: red;
+            font-size: 0.9rem;
+            align-self: center;
+          }
+          .verified-message-hidden {
+            display: none;
+          }
+          .password-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 10px 1fr;
+
+            .password-input {
+              justify-content: flex-end;
+
+              .password-input-and-show {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                height: 100%;
+                position: relative;
+              }
+              .hide-or-show-button {
+                height: 20px;
+                width: 20px;
+                position: absolute;
+                right: 3px;
+                bottom: 0px;
+                background-color: transparent;
+                color: white;
+              }
+
+              #pw-icon-show-hide {
+                font-size: 15px;
+              }
+            }
+
+            .password-input-check {
+              justify-content: flex-end;
+              grid-column: 3;
+
+              .password-check-input-and-show {
+                display: flex;
+                height: 100%;
+                position: relative;
+              }
+              .hide-or-show-button {
+                height: 20px;
+                width: 20px;
+                position: absolute;
+                right: 3px;
+                top: 3px;
+                background-color: transparent;
+                color: white;
+              }
+
+              #pw-icon-show-hide {
+                font-size: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .other-infos-patient {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 1rem;
+      z-index: 2;
+
+      .global-other-info-form-patient {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        .global-other-info-patient-flex {
+          & h2 {
+            margin-left: -1rem;
+          }
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          padding: 0rem 1rem;
+
+          .section-account-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 1.25rem;
+
+            .section-other-info {
+              padding: 1.5rem 0;
+              display: grid;
+              grid-template-columns: 1fr 10px 1fr;
+              grid-template-rows: 1fr 12px 1fr 12px 1fr 12px 1fr;
+
+              input[type="radio"] {
+                accent-color: var(--button-color);
+              }
+              .gender-info,
+              .civility-info,
+              .birthday-input,
+              .birthname-input,
+              .family-input,
+              .job-input,
+              .children-input {
+                width: 100%;
+                max-width: 350px;
+                gap: 8px;
+                margin: 0 auto;
+              }
+
+              input[type="text"],
+              input[type="date"],
+              select {
+                border-radius: 5px;
+                height: 24px;
+                padding: 0 0.5rem;
+                font-size: 1rem;
+              }
+
+              select {
+                background-color: var(--main-bg-admin-practician);
+                color: white;
+                .option-select {
+                  background-color: var(--main-bg-admin-practician);
+                  color: white;
+                }
+              }
+
+              .gender-info {
+                grid-column: 1;
+                grid-row: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                .gender-radio {
+                  display: flex;
+                  gap: 1rem;
+                  flex-wrap: wrap;
+                }
+              }
+              .civility-info {
+                grid-column: 3;
+                grid-row: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                .civility-radio {
+                  display: flex;
+                  gap: 1rem;
+                  flex-wrap: wrap;
+                }
+              }
+              .birthday-input {
+                grid-column: 1;
+                grid-row: 3;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                #birthday {
+                  min-width: 10rem;
+                  max-width: 50%;
+                  &::-webkit-calendar-picker-indicator {
+                    filter: invert(1);
+                  }
+                }
+              }
+              .birthname-input {
+                grid-column: 3;
+                grid-row: 3;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+              }
+              .family-input {
+                grid-column: 1;
+                grid-row: 5;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+              }
+              .job-input {
+                grid-column: 3;
+                grid-row: 5;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+              }
+              .children-input {
+                grid-column: 1;
+                grid-row: 7;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+              }
+
+              p,
+              label,
+              input {
+                font-size: 1rem;
+              }
+            }
+          }
+
+          .section-address-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 1.25rem;
+
+            .address-info {
+              padding: 1.5rem 0;
+              display: grid;
+              grid-template-columns: 1fr 10px 1fr;
+              grid-template-rows: 1fr 12px 1fr 12px 1fr;
+
+              .street-input {
+                grid-column: 1 / 4;
+                grid-row: 1;
+              }
+              .postal-input {
+                grid-column: 1;
+                grid-row: 3;
+              }
+              .city-input {
+                grid-column: 3;
+                grid-row: 3;
+              }
+              .country-input {
+                grid-column: 1;
+                grid-row: 5;
+              }
+              .street-input,
+              .postal-input,
+              .city-input,
+              .country-input {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+              }
+              input[type="text"] {
+                border-radius: 5px;
+                height: 24px;
+                padding: 0 0.5rem;
+                font-size: 1rem;
+              }
+            }
+          }
+
+          .section-emergency-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 1.25rem;
+
+            .emergency-info {
+              padding: 1.5rem 0;
+              display: grid;
+              grid-template-columns: 1fr 10px 1fr;
+              grid-template-rows: 1fr 12px 1fr;
+
+              .emergency-firstname-input {
+                grid-column: 1;
+                grid-row: 1;
+              }
+              .emergency-lastname-input {
+                grid-column: 3;
+                grid-row: 1;
+              }
+              .emergency-phone-input {
+                grid-column: 1;
+                grid-row: 3;
+              }
+              .emergency-firstname-input,
+              .emergency-lastname-input,
+              .emergency-phone-input {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+              }
+              input[type="text"] {
+                border-radius: 5px;
+                height: 24px;
+                padding: 0 0.5rem;
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .first-infos-patient {
+        .account-info-list-patient {
+          .global-info-form-patient {
+            .global-info-patient-grid {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+            }
+          }
+          .password-form {
+            .password-form-grid {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -39,6 +39,13 @@ practician ON practician.id = I.practician_id`;
 
     return this.database.query(sql);
   }
+
+  update(values, valueQuery, id) {
+    return this.database.query(
+      `update ${this.table} set ${valueQuery} where id = ?`,
+      [...values, id]
+    );
+  }
 }
 
 module.exports = PatientManager;

@@ -188,7 +188,7 @@ export default function Authentication() {
       case "login":
         authentificationTypeToShow = (
           <>
-            <label className="patient-label" htmlFor="mail">
+            <label className="admin-practician-label" htmlFor="mail">
               Mail
             </label>
             <input
@@ -200,14 +200,9 @@ export default function Authentication() {
               value={mail}
               onChange={handleMailChange}
             />
-            {warningMail ? (
+            {warningMail && (
               <p className="warning-username">
                 Le nom d'utilisateur doit être un mail
-              </p>
-            ) : (
-              <p className="description-username">
-                Votre nom d'utilisateur est votre mail fournit à votre
-                inscription
               </p>
             )}
           </>
@@ -225,11 +220,7 @@ export default function Authentication() {
         <div className="connection-input">{authenticationType()}</div>
         <div className="password-input">
           <label
-            className={
-              credentials === "login"
-                ? "patient-label"
-                : "admin-practician-label"
-            }
+            className={credentials === "login" && "admin-practician-label"}
             htmlFor="password"
           >
             Mot de passe
@@ -238,9 +229,7 @@ export default function Authentication() {
             <input
               name="password"
               id="password"
-              className={
-                credentials === "login" ? "input-pw-white" : "input-pw-black"
-              }
+              className={credentials === "login" && "input-pw-black"}
               autoComplete="current-password"
               type={!passwordShown ? "password" : "text"}
               value={password}
