@@ -6,6 +6,7 @@ import "../styles/EspacePatient.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import HeaderLocation from "../components/HeaderLocation";
+import HeaderInterventionDate from "../components/HeaderInterventionDate";
 import AccountPatientModal from "../components/AccountPatientModal";
 
 export default function EspacePatient() {
@@ -72,6 +73,7 @@ export default function EspacePatient() {
         <div className="modal-container">
           <HeaderLocation />
           {CurrentModalePatient}
+          <HeaderInterventionDate />
         </div>
       </div>
     )
