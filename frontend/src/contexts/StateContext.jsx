@@ -13,7 +13,7 @@ export function StateProvider({ children }) {
   const [showSuccessMessageAdd, setShowSuccessMessageAdd] = useState(false);
   const [show, setShow] = useState(false); // Display modal
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeTheme, setActiveTheme] = useState("understand");
+  const [activeTheme, setActiveTheme] = useState(null);
 
   const stateContext = useMemo(
     () => ({

@@ -6,6 +6,8 @@ import "../styles/EspacePatient.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import HeaderLocation from "../components/HeaderLocation";
+import HeaderInterventionDate from "../components/HeaderInterventionDate";
+import AccountPatientModal from "../components/AccountPatientModal";
 import ThemeSelection from "../components/ThemeSelection";
 
 export default function EspacePatient() {
@@ -52,6 +54,7 @@ export default function EspacePatient() {
       CurrentModalePatient = <ThemeSelection />;
       break;
     case "Mon Compte":
+      CurrentModalePatient = <AccountPatientModal />;
       break;
     case "Formulaires":
       break;
@@ -72,6 +75,7 @@ export default function EspacePatient() {
         <div className="modal-container">
           <HeaderLocation />
           {CurrentModalePatient}
+          <HeaderInterventionDate />
         </div>
       </div>
     )

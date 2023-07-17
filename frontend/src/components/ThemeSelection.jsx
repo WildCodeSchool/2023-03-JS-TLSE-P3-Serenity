@@ -51,7 +51,7 @@ function ThemeSelection() {
       CurrentModaleTheme = <p>{activeTheme}</p>;
       break;
     default:
-      CurrentModaleTheme = <p>{activeTheme}</p>;
+      CurrentModaleTheme = <p>Vide</p>;
       break;
   }
 

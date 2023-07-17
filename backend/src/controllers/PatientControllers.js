@@ -68,9 +68,29 @@ const deletePatient = (req, res) => {
     });
 };
 
+const updatePatient = (req, res) => {
+  const { id } = req.params;
+  const keys = Object.keys(req.body);
+  const values = Object.values(req.body);
+  const valueQuery = keys.map((key) => `${key} = ?`).join(", ");
+  models.patient
+    .update(values, valueQuery, id)
+    .then(([result]) => {
+      if (result.affectedRows !== 0) {
+        res.sendStatus(204);
+      } else {
+        res.status(404).send("User not found...");
+      }
+    })
+    .catch(() => {
+      res.status(500).send("Error while updating user");
+    });
+};
+
 module.exports = {
   getListOfAllPatients,
   getPatientById,
   deletePatient,
   authenticationPatientCheck,
+  updatePatient,
 };
