@@ -76,7 +76,7 @@ function ThemeSelection() {
         ))}
       </div>
       {CurrentModaleTheme}
-    </div>
+    </>
   );
 }
 
