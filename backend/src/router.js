@@ -92,6 +92,12 @@ router.post(
   hashPassword,
   practicianControllers.AddPractician
 );
+router.get(
+  "/patients/practician/:id",
+  verifyToken,
+  checkId,
+  patients.getPracticianInfoByIdPatient
+);
 
 // route "form"
 router.get("/admins/forms/", formControllers.getListOfAllForm);

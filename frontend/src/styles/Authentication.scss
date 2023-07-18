@@ -19,6 +19,10 @@
     color: white;
   }
 
+  input:autofill {
+    background: var(--grey-10);
+  }
+
   .connection-input {
     display: flex;
     flex-direction: column;

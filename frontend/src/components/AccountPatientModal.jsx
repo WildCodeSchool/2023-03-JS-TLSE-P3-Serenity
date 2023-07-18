@@ -38,8 +38,8 @@ function AccountPatientModal() {
     ? useState(civility)
     : useState("Monsieur");
   const [birthdayInfo, setBirthdayInfo] = birthday
-    ? useState(birthday)
-    : useState("");
+    ? useState(birthday.split("T")[0])
+    : useState("1970-01-01");
   const [birthnameInfo, setBirthnameInfo] = birthname
     ? useState(birthname)
     : useState("");
