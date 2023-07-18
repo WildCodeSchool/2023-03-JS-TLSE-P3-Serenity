@@ -1,0 +1,23 @@
+.header-intervention-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.5rem;
+  color: white;
+  text-shadow: 0 0 5px #000000;
+  padding-right: 1rem;
+}
+
+.intervention-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.date-label {
+  align-self: flex-end;
+  color: rgba(255, 255, 255, 0.508);
+  font-size: 0.8rem;
+  text-shadow: 0 0 5px #000000;
+}

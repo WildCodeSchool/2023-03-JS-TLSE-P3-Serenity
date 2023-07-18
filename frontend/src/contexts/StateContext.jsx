@@ -12,8 +12,8 @@ export function StateProvider({ children }) {
     useState(false); // for tracking success message display
   const [showSuccessMessageAdd, setShowSuccessMessageAdd] = useState(false);
   const [show, setShow] = useState(false); // Display modal
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeTheme, setActiveTheme] = useState(null);
 
   const stateContext = useMemo(
     () => ({
@@ -29,6 +29,8 @@ export function StateProvider({ children }) {
       setActiveModal,
       show,
       setShow,
+      activeTheme,
+      setActiveTheme,
     }),
     [
       linkToActive,
@@ -37,6 +39,7 @@ export function StateProvider({ children }) {
       showSuccessMessageAdd,
       activeModal,
       show,
+      activeTheme,
     ]
   );
   return (
