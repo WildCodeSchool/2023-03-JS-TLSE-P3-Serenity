@@ -13,31 +13,44 @@ function ThemeSelection() {
   const themeButton = [
     {
       label: "understand",
-      className: "understand-button",
+      className:
+        activeTheme === "understand"
+          ? "understand-button active"
+          : "understand-button",
       action: () => setActiveTheme("understand"),
       themeName: "Comprendre mon opération",
     },
     {
       label: "administrative",
-      className: "administrative-button",
+      className:
+        activeTheme === "administrative"
+          ? "administrative-button active"
+          : "administrative-button",
       action: () => setActiveTheme("administrative"),
       themeName: "Finir les démarches administratives",
     },
     {
       label: "prepare",
-      className: "prepare-button",
+      className:
+        activeTheme === "prepare" ? "prepare-button active" : "prepare-button",
       action: () => setActiveTheme("prepare"),
       themeName: "Préparer mon arrivée en toute sérénité",
     },
     {
       label: "anticipate",
-      className: "anticipate-button",
+      className:
+        activeTheme === "anticipate"
+          ? "anticipate-button active"
+          : "anticipate-button",
       action: () => setActiveTheme("anticipate"),
       themeName: "Anticiper ma sortie",
     },
     {
       label: "checklist",
-      className: "checklist-button",
+      className:
+        activeTheme === "checklist"
+          ? "checklist-button active"
+          : "checklist-button",
       action: () => setActiveTheme("checklist"),
       themeName: "Ma check-list avant le départ à la Clinique",
     },

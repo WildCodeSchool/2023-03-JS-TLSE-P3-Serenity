@@ -71,7 +71,7 @@ function CheckListModal() {
       </h2>
       <div className="check-list-modal-list">
         {checkedItems.map((item, index) => (
-          <div key={item.name}>
+          <div key={item.name} className="check-list-item">
             <label>
               <input
                 type="checkbox"
