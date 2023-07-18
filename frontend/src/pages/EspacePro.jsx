@@ -57,8 +57,6 @@ export default function EspacePro() {
       break;
     case "Formulaires":
       break;
-    case "Stats":
-      break;
     case "A propos":
       CurrentModalePractician = <AboutUs />;
       break;
