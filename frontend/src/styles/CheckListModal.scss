@@ -53,4 +53,41 @@
       font-size: 0.8rem;
     }
   }
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    width: 75vw;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    left: auto;
+    border-radius: 20px;
+    border: #7265e3 2px solid;
+    margin: 0 1.8rem 1rem 0;
+    .check-list-modal-header {
+      display: none;
+    }
+    .modal-title {
+      background: none;
+      margin-top: 1rem;
+    }
+    .check-list-modal-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      .check-list-modal-list {
+        column-count: 2;
+        width: 70%;
+        p {
+          width: 100%;
+        }
+      }
+    }
+  }
 }
