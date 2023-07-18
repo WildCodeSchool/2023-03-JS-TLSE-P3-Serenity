@@ -65,7 +65,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60vh;
+    height: 55vh;
     width: 75vw;
     position: fixed;
     right: 0;
@@ -73,8 +73,9 @@
     top: auto;
     left: auto;
     border-radius: 20px;
-    border: #44d660 2px solid;
-    margin: 0 1.8rem 1rem 0;
+    border: #44d660 1px solid;
+    box-shadow: 0 0 5px #44d660;
+    margin: 0 1.8rem 1.8rem 0;
     .anticipate-release-modal-header {
       display: none;
     }

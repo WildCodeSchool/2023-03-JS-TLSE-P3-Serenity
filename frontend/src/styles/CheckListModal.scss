@@ -9,6 +9,7 @@
   left: 0;
   z-index: 20;
   text-shadow: 0 0 5px #000000;
+
   .check-list-modal-header {
     display: flex;
     justify-content: flex-start;
@@ -16,14 +17,17 @@
     font-size: 2rem;
     gap: 2rem;
     padding: 1rem;
+
     .return-button-modal {
       background-color: transparent;
       color: white;
+
       .fi-rr-arrow-circle-left {
         font-size: 2rem;
       }
     }
   }
+
   .modal-title {
     display: flex;
     border-radius: 14px;
@@ -37,28 +41,38 @@
     text-shadow: black 1px 1px 10px;
     margin-bottom: 1rem;
   }
+
   .check-list-modal-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     line-height: 1.5rem;
     gap: 1.5rem;
     padding: 1rem 2rem;
     font-size: 1.1rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
     .checkbox {
       margin-right: 1rem;
     }
+
     .note {
       color: rgba(255, 255, 255, 0.538);
       margin-left: 29px;
       font-size: 0.8rem;
     }
+
+    .check-list-item {
+      width: 100%;
+    }
   }
+
   @media (min-width: 1024px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 60vh;
+    height: 55vh;
     width: 75vw;
     position: fixed;
     right: 0;
@@ -66,27 +80,24 @@
     top: auto;
     left: auto;
     border-radius: 20px;
-    border: #7265e3 2px solid;
-    margin: 0 1.8rem 1rem 0;
+    border: #7265e3 1px solid;
+    box-shadow: 0 0 5px #7265e3;
+    margin: 0 1.8rem 1.8rem 0;
+
     .check-list-modal-header {
       display: none;
     }
+
     .modal-title {
       background: none;
       margin-top: 1rem;
     }
-    .check-list-modal-body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.2rem;
-      .check-list-modal-list {
-        column-count: 2;
-        width: 70%;
-        p {
-          width: 100%;
-        }
+
+    .check-list-modal-list {
+      .check-list-item {
+        width: 40%;
+        margin-bottom: 1rem;
+        margin-left: 3rem;
       }
     }
   }
