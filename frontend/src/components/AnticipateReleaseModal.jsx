@@ -21,7 +21,9 @@ function AnticipateReleaseModal() {
         </button>
         <h1>Ma préparation</h1>
       </div>
-      <h2>Anticiper ma sortie en prenant rendez-vous</h2>
+      <h2 className="modal-title">
+        Anticiper ma sortie en prenant rendez-vous
+      </h2>
       <p className="anticipate-release-modal-text">
         Afin de sécuriser votre retour à la maison votre chirurgien vous invite
         à prendre rendez-vous avec les professionnels de santé suivants :

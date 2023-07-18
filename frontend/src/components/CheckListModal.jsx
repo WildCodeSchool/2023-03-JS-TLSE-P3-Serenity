@@ -66,7 +66,9 @@ function CheckListModal() {
         </button>
         <h1>Ma préparation</h1>
       </div>
-      <h2>Ma check-list avant le départ à la clinique</h2>
+      <h2 className="modal-title">
+        Ma check-list avant le départ à la clinique
+      </h2>
       <div className="check-list-modal-list">
         {checkedItems.map((item, index) => (
           <div key={item.name}>
