@@ -57,10 +57,10 @@ export default function EspacePatient() {
     case "Mon Compte":
       CurrentModalePatient = <AccountPatientModal />;
       break;
-    case "Mon médecin":
+    case "Mon praticien":
       CurrentModalePatient = <MyPracticianModal />;
       break;
-    case "Formulaires":
+    case "Formulaire":
       break;
     case "A propos":
       CurrentModalePatient = <AboutUs />;
