@@ -1,4 +1,4 @@
-.understand-modal-container {
+.prepare-arrival-modal-container {
   width: 100vw;
   height: 90vh;
   padding: 1rem;
@@ -9,27 +9,28 @@
   left: 0;
   z-index: 20;
   text-shadow: 0 0 5px #000000;
-  .understand-modal-header {
+  .prepare-arrival-modal-header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     font-size: 2rem;
     gap: 2rem;
     padding: 1rem;
-    .return-button-modal-understand {
+    .return-button-modal-prepare-arrival {
       background-color: transparent;
       color: white;
+     
       .fi-rr-arrow-circle-left {
         font-size: 2rem;
       }
     }
   }
-  .understand-modal-title {
+  .prepare-arrival-modal-title {
     display: flex;
     border-radius: 14px;
     height: 70px;
-  
-    background-color: var(--button-understand);
+
+    background-color:var(--button-prepare);
     color: white;
     align-items: center;
     justify-content: center;
@@ -38,13 +39,14 @@
     text-shadow: black 1px 1px 10px;
     margin-bottom: 1rem;
   }
-  .understand-modal-list {
+  .prepare-arrival-modal-list {
     display: flex;
     flex-direction: column;
     line-height: 1.5rem;
     gap: 1.5rem;
     padding: 1rem 2rem;
     font-size: 1.1rem;
+    margin-top: 5rem;
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -52,7 +54,6 @@
   width: 20rem;
   margin: 0 auto;
 }
-
 .large-image {
   width: 95%;
   height: auto;
@@ -68,34 +69,49 @@
   height: auto;
 }
 
+.card-container{
+  display: flex;
+  justify-content: space-between;
+    flex-wrap: wrap;
+
+}
 .card-container-list {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
- 
-  p {
-    font-size: 0.9rem;
-  }
+          p {
+            font-size: 0.8rem;
 
-  .time-ressource {
-    color: #9c9db9;
-  }
-
-  .Img-ressource-container {
-    width: 100px;
-    padding: 7px;
-  }
-
-  .Img-ressource{
-    width: 100%;
-  }
+          }
+          .time-ressource {
+            color: #9c9db9;
+          }
+          .Img-ressource-container {
+            width: 100px;
+            padding: 7px;
+          }
+          .Img-ressource{
+            width: 100%;
+          }
 }
 
   }
 }
-
 
 p{
+  margin: 0 auto;
+  padding-left: 14px;
+}
+.prepare-arrival-button
+{
+  background-color:var(--button-prepare);
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: black 1px 1px 10px;
+  border-radius: 14px;
+  width: 9rem;
+  height: 3rem;
+  font-size: 1rem;
   margin: 0 auto;
 }

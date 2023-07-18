@@ -1,4 +1,4 @@
-.understand-modal-container {
+.administrative-modal-container {
   width: 100vw;
   height: 90vh;
   padding: 1rem;
@@ -9,14 +9,14 @@
   left: 0;
   z-index: 20;
   text-shadow: 0 0 5px #000000;
-  .understand-modal-header {
+  .administrative-modal-header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     font-size: 2rem;
     gap: 2rem;
     padding: 1rem;
-    .return-button-modal-understand {
+    .return-button-modal-administrative {
       background-color: transparent;
       color: white;
       .fi-rr-arrow-circle-left {
@@ -24,12 +24,12 @@
       }
     }
   }
-  .understand-modal-title {
+  .administrative-modal-title {
     display: flex;
     border-radius: 14px;
     height: 70px;
   
-    background-color: var(--button-understand);
+    background-color:var(--button-administrative);
     color: white;
     align-items: center;
     justify-content: center;
@@ -38,7 +38,7 @@
     text-shadow: black 1px 1px 10px;
     margin-bottom: 1rem;
   }
-  .understand-modal-list {
+  .administrative-modal-list {
     display: flex;
     flex-direction: column;
     line-height: 1.5rem;
@@ -68,14 +68,22 @@
   height: auto;
 }
 
+.card-container{
+  display: flex;
+  justify-content: space-between;
+    flex-wrap: wrap;
+
+}
 .card-container-list {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
+  
  
   p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+
   }
 
   .time-ressource {
@@ -95,7 +103,7 @@
   }
 }
 
-
 p{
   margin: 0 auto;
+  padding-left: 14px;
 }
