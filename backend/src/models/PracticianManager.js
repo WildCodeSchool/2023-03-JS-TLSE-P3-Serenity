@@ -39,6 +39,13 @@ class PracticianManager extends AbstractManager {
     );
   }
 
+  getRessource(id) {
+    return this.database.query(
+      `SELECT R.id, R.title, R.type, R.url, R.description, TR.theme FROM ressource R JOIN theme_ressource TR ON TR.id = R.theme_ressource_id WHERE practician_id = ?`,
+      [id]
+    );
+  }
+
   update(values, valueQuery, id) {
     return this.database.query(
       `update ${this.table} set ${valueQuery} where id = ?`,

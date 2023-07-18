@@ -99,6 +99,13 @@ router.get(
   patients.getPracticianInfoByIdPatient
 );
 
+router.get(
+  "/practicians/:id/ressources",
+  verifyToken,
+  checkId,
+  practicianControllers.getRessources
+);
+
 // route "form"
 router.get("/admins/forms/", formControllers.getListOfAllForm);
 router.get("/admins/forms/:id", formControllers.getFormById);
