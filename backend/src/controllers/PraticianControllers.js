@@ -127,22 +127,6 @@ const updatePractician = (req, res) => {
     });
 };
 
-const getRessources = (req, res) => {
-  models.practician
-    .getRessource(req.params.id)
-    .then(([result]) => {
-      if (result.length) {
-        res.status(200).json(result);
-      } else {
-        res.sendStatus(404);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-};
-
 module.exports = {
   getListOfAllPracticians,
   getPracticianById,
@@ -150,5 +134,4 @@ module.exports = {
   AddPractician,
   deletePractician,
   authenticationPracticianCheck,
-  getRessources,
 };

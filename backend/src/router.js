@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const interventionController = require("./controllers/interventionController");
-const ressourceCountController = require("./controllers/ressourceCountController");
+const ressourceController = require("./controllers/ressourceController");
 const admins = require("./controllers/adminControllers");
 const practicianControllers = require("./controllers/PraticianControllers");
 const patients = require("./controllers/PatientControllers");
@@ -68,7 +68,7 @@ router.get(
   "/admins/practicians/countressource/:id",
   verifyToken,
   verifyAdminRole,
-  ressourceCountController.getRessourceCount
+  ressourceController.getRessourceCount
 );
 
 router.put(
@@ -99,11 +99,19 @@ router.get(
   patients.getPracticianInfoByIdPatient
 );
 
+// route "managing ressource"
 router.get(
-  "/practicians/:id/ressources",
+  "/ressources/practicians/:id",
   verifyToken,
   checkId,
-  practicianControllers.getRessources
+  ressourceController.getRessources
+);
+
+router.delete(
+  "/ressources/:ressourceId/:id",
+  verifyToken,
+  checkId,
+  ressourceController.deleteRessource
 );
 
 // route "form"

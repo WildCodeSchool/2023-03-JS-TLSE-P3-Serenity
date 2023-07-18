@@ -2,18 +2,20 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import "../styles/RessourcesModal.scss";
+import Swal from "sweetalert2";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function RessourcesModal() {
   const { userInfo, userToken } = useContext(AuthFunctionContext);
   const { id, role } = userInfo;
   const [ressources, setRessources] = useState([]);
+  const [ressourcesChange, setRessourcesChange] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeTheme, setActiveTheme] = useState("Comprendre");
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/practicians/${id}/ressources`, {
+      .get(`${import.meta.env.VITE_BACKEND_URL}/ressources/practicians/${id}`, {
         headers: {
           Authorization: `Bearer ${userToken}`,
           Role: `${role}`,
@@ -26,7 +28,7 @@ function RessourcesModal() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [ressourcesChange]);
 
   const themeButton = [
     {
@@ -62,7 +64,43 @@ function RessourcesModal() {
   ];
 
   const handleDeleteButtonClick = (idRessourceToDelete) => {
-    console.info(idRessourceToDelete);
+    axios
+      .delete(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/ressources/${idRessourceToDelete}/${userInfo.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
+      )
+      .then(() => {
+        setRessourcesChange(!ressourcesChange);
+        Swal.fire({
+          background: "#242731",
+          position: "center",
+          icon: "success",
+          title: "La ressource a été supprimée",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) => {
+        console.error(
+          `Error deleting ressource with ID ${idRessourceToDelete}:`,
+          error
+        );
+        Swal.fire({
+          background: "#242731",
+          position: "center",
+          icon: "error",
+          title: "Une erreur est survenue lors de la suppression.",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      });
   };
 
   return isLoaded ? (
