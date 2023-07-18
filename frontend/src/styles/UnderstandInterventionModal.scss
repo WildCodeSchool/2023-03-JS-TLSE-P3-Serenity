@@ -1,54 +1,56 @@
-.preparation-understand {
-  display: flex;
-  flex-direction: column;
-  color: white;
+.understand-modal-container {
+  width: 100vw;
+  height: 90vh;
+  padding: 1rem;
+  color: #ffffff;
   background-color: #242731;
-  border-radius: 20px;
-  box-shadow: 0 0 1rem #000000;
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 37;
-  width: 100vw;
-  height: 95vh;
-}
-
-.understand-button {
-  background: var(--button-understand);
-  border-radius: 14px;
-  width: 90vw;
-  height: 90px;
-}
-
-p {
-  color: white;
-  font-size: 1.5rem;
-  text-shadow: black 1px 1px 10px;
-}
-
-.title-preparation {
-  display: flex;
-  padding: 20px;
-
-  .return-button-preparation .fi {
+  z-index: 20;
+  text-shadow: 0 0 5px #000000;
+  .understand-modal-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     font-size: 2rem;
+    gap: 2rem;
+    padding: 1rem;
+    .return-button-modal-understand {
+      background-color: transparent;
+      color: white;
+      .fi-rr-arrow-circle-left {
+        font-size: 2rem;
+      }
+    }
+  }
+  .understand-modal-title {
+    display: flex;
+    border-radius: 14px;
+    height: 70px;
+  
+    background-color: var(--button-understand);
     color: white;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5rem;
+    text-shadow: black 1px 1px 10px;
+    margin-bottom: 1rem;
   }
-
-  p {
-    font-size: 2rem;
-  }
-}
-
-.schema-preparation {
-  padding: 20px;
-  margin: 0 auto;
-}
-
+  .understand-modal-list {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5rem;
+    gap: 1.5rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
+  width: 65vw;
+  margin: 0 auto;
 }
 
 .large-image {
@@ -66,27 +68,30 @@ p {
   height: auto;
 }
 
-.lunch-3 {
+.card-container-list {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  width: 70vw;
-  margin: 0 auto;
-
+ 
   p {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .time-ressource {
     color: #9c9db9;
   }
 
-  .img {
-    width: 200px;
-    padding: 10px;
+  .Img-ressource-container {
+    width: 100px;
+    padding: 7px;
   }
 
-  img {
+  .Img-ressource{
     width: 100%;
   }
 }
+
+  }
+}
+
+
