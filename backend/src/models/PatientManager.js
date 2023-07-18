@@ -45,16 +45,16 @@ practician ON practician.id = I.practician_id`;
     practician.id,
     practician.firstname,
     practician.lastname,
-    practician.speciality,
+    speciality,
     practician.phone,
-    practician.language,
-    practician.biography,
-    practician.diploma,
-    practician.other_formation,
-    practician.experience,
-    practician.association,
-    practician.publication,
-    practician.award
+    language,
+    biography,
+    diploma,
+    other_formation,
+    experience,
+    association,
+    publication,
+    award
     FROM practician
     JOIN intervention I ON practician.id = I.practician_id
     JOIN intervention_patient IP ON I.id = IP.intervention_id

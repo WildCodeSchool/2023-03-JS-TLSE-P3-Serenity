@@ -85,10 +85,7 @@ function MyPracticianModal() {
                   <div className="biography-practician">
                     <label htmlFor="biography">Biographie</label>
                     <div className="biography information">
-                      <p>
-                        {/* {infoPractician.biography.replace(/\n\r?/g, "\n")} */}
-                        {infoPractician.biography}
-                      </p>
+                      <p>{infoPractician.biography}</p>
                     </div>
                   </div>
                 )}
