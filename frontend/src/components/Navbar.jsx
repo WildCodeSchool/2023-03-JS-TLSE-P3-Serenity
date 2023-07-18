@@ -78,7 +78,7 @@ function navbar() {
     {
       role: "all",
       className: linkToActive === "Mon Compte" ? "active" : "nav-serenity",
-      label: "Mon Compte",
+      label: "Mon compte",
       icon: "circle-user",
       action: () => {
         setLinkToActive("Mon Compte");
@@ -88,24 +88,24 @@ function navbar() {
     },
     {
       role: "patient",
-      className: linkToActive === "Mon médecin" ? "active" : "nav-serenity",
-      label: "Mon médecin",
+      className: linkToActive === "Mon praticien" ? "active" : "nav-serenity",
+      label: "Mon praticien",
       icon: "user-md",
       action: () => {
-        setLinkToActive("Mon médecin");
+        setLinkToActive("Mon praticien");
         setIsMenuOpen(false);
-        setActiveModal("Mon médecin");
+        setActiveModal("Mon praticien");
       },
     },
     {
       role: "all",
-      className: linkToActive === "Formulaires" ? "active" : "nav-serenity",
-      label: "Formulaires",
+      className: linkToActive === "Formulaire" ? "active" : "nav-serenity",
+      label: "Formulaire",
       icon: "document-signed",
       action: () => {
-        setLinkToActive("Formulaires");
+        setLinkToActive("Formulaire");
         setIsMenuOpen(false);
-        setActiveModal("Formulaires");
+        setActiveModal("Formulaire");
       },
     },
     {

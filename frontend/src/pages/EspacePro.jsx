@@ -55,7 +55,7 @@ export default function EspacePro() {
     case "Mon Compte":
       CurrentModalePractician = <AccountPracticianModal />;
       break;
-    case "Formulaires":
+    case "Formulaire":
       break;
     case "A propos":
       CurrentModalePractician = <AboutUs />;
