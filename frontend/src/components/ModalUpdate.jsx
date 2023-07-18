@@ -47,7 +47,7 @@ function ModalUpdate({
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-            <Form.Label>Email</Form.Label>
+            <Form.Label>Mail</Form.Label>
             <Form.Control
               type="email"
               name="mail"
@@ -62,6 +62,7 @@ function ModalUpdate({
               type="text"
               name="adeli_number"
               defaultValue={modalInputs.adeli_number}
+              maxLength={9}
               autoFocus
               onChange={handleInputChange}
             />

@@ -92,6 +92,12 @@ router.post(
   hashPassword,
   practicianControllers.AddPractician
 );
+router.get(
+  "/patients/practician/:id",
+  verifyToken,
+  checkId,
+  patients.getPracticianInfoByIdPatient
+);
 
 // route "form"
 router.get("/admins/forms/", formControllers.getListOfAllForm);
@@ -115,6 +121,13 @@ router.put(
   hashPassword,
   checkId,
   practicianControllers.updatePractician
+);
+router.put(
+  "/patients/account/:id",
+  verifyToken,
+  hashPassword,
+  checkId,
+  patients.updatePatient
 );
 
 module.exports = router;

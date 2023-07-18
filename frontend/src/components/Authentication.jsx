@@ -142,7 +142,7 @@ export default function Authentication() {
               id="matricule"
               className="input-username-black"
               type="text"
-              autoComplete="true"
+              autoComplete="username"
               value={matricule}
               onChange={handleMatriculeChange}
             />
@@ -169,7 +169,7 @@ export default function Authentication() {
               id="adeli"
               className="input-username-black"
               type="text"
-              autoComplete="true"
+              autoComplete="username"
               value={adeli}
               onChange={handleAdeliChange}
             />
@@ -188,7 +188,7 @@ export default function Authentication() {
       case "login":
         authentificationTypeToShow = (
           <>
-            <label className="patient-label" htmlFor="mail">
+            <label className="admin-practician-label" htmlFor="mail">
               Mail
             </label>
             <input
@@ -196,18 +196,13 @@ export default function Authentication() {
               id="mail"
               className="input-username-white"
               type="text"
-              autoComplete="true"
+              autoComplete="username"
               value={mail}
               onChange={handleMailChange}
             />
-            {warningMail ? (
+            {warningMail && (
               <p className="warning-username">
                 Le nom d'utilisateur doit être un mail
-              </p>
-            ) : (
-              <p className="description-username">
-                Votre nom d'utilisateur est votre mail fournit à votre
-                inscription
               </p>
             )}
           </>
@@ -224,23 +219,14 @@ export default function Authentication() {
       <form onSubmit={handleSubmit} className="connection">
         <div className="connection-input">{authenticationType()}</div>
         <div className="password-input">
-          <label
-            className={
-              credentials === "login"
-                ? "patient-label"
-                : "admin-practician-label"
-            }
-            htmlFor="password"
-          >
+          <label className="admin-practician-label" htmlFor="password">
             Mot de passe
           </label>
           <div className="password-input-and-show">
             <input
               name="password"
               id="password"
-              className={
-                credentials === "login" ? "input-pw-white" : "input-pw-black"
-              }
+              className="input-pw-black"
               autoComplete="current-password"
               type={!passwordShown ? "password" : "text"}
               value={password}

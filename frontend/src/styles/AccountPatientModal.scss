@@ -1,0 +1,534 @@
+.container-list-info-patient {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background-color: #242731;
+  width: 100%;
+  max-height: 70%;
+  border-radius: 20px;
+  box-shadow: 0 0 1rem #000000;
+
+  .container-scroll {
+    overflow: auto;
+    margin: 1.25rem 0;
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(100, 100, 100);
+      border-radius: 5px;
+      visibility: hidden;
+    }
+    &:hover::-webkit-scrollbar-thumb {
+      visibility: visible;
+    }
+    .button-modification-validation {
+      width: 60%;
+      margin: 0 auto;
+      padding: 10px;
+      border-radius: 5px;
+      min-width: 130px;
+      max-width: 300px;
+      background-color: var(--button-color);
+      color: white;
+      line-height: 1.2rem;
+      p {
+        width: 100%;
+      }
+    }
+    .disable-button {
+      cursor: not-allowed;
+      background-color: rgb(161, 161, 161);
+    }
+
+    input {
+      background-color: var(--grey-10);
+      color: white;
+    }
+
+    .title-first-info,
+    .section-account-info h2,
+    .section-address-info h2,
+    .section-emergency-info h2 {
+      font-size: 1.3rem;
+    }
+
+    hr {
+      width: 95%;
+      margin: 0 auto;
+    }
+
+    .first-infos-patient {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0 1rem;
+      z-index: 2;
+
+      .account-info-list-patient {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1.5rem 1rem;
+        z-index: 2;
+
+        .global-info-form-patient {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        // media query desktop grid
+        @media screen and (min-width: 480px) {
+          .global-info-patient-grid {
+            display: grid;
+            grid-template-columns: 1fr 10px 1fr;
+            grid-template-rows: 1fr 12px 1fr;
+            label {
+              width: 100%;
+            }
+            input {
+              width: 100%;
+            }
+            .lastname-input-patient {
+              grid-column: 3;
+              grid-row: 1;
+            }
+            .mail-input-patient {
+              grid-column: 1;
+              grid-row: 3;
+            }
+            .phone-input-patient {
+              grid-column: 3;
+              grid-row: 3;
+            }
+          }
+        }
+        // end media query desktop
+
+        .firstname-input-patient,
+        .lastname-input-patient,
+        .mail-input-patient,
+        .phone-input-patient,
+        .password-input,
+        .password-input-check {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 100%;
+          max-width: 350px;
+          gap: 8px;
+          margin: 0 auto;
+
+          input {
+            border-radius: 5px;
+          }
+
+          #firstname,
+          #lastname,
+          #mail,
+          #adeli,
+          #speciality,
+          #phone,
+          #password,
+          #passwordCheck {
+            min-height: 1.5rem;
+            padding: 0.5rem 0.5rem;
+          }
+        }
+        .password-input,
+        .password-input-check {
+          width: 100%;
+          label {
+            width: 100%;
+          }
+          input {
+            width: 100%;
+          }
+        }
+
+        .password-form {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+
+          .verified-message {
+            color: red;
+            font-size: 0.9rem;
+            align-self: center;
+          }
+          .verified-message-hidden {
+            display: none;
+          }
+
+          // media query desktop for pw
+          @media screen and (min-width: 480px) {
+            .password-form-grid {
+              display: grid;
+              grid-template-columns: 1fr 10px 1fr;
+            }
+            .password-input-check {
+              grid-column: 3;
+            }
+          }
+          //end media query desktop for pw
+          .password-input {
+            .password-input-and-show {
+              position: relative;
+            }
+            .hide-or-show-button {
+              position: absolute;
+              right: 0.5rem;
+              top: 50%;
+              transform: translateY(-50%);
+              background-color: transparent;
+              color: white;
+            }
+
+            #pw-icon-show-hide {
+              font-size: 20px;
+            }
+          }
+
+          .password-check-input-and-show {
+            height: 100%;
+            position: relative;
+          }
+          .hide-or-show-button {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: white;
+          }
+
+          #pw-icon-show-hide {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+    .other-infos-patient {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 1rem;
+      z-index: 2;
+
+      .global-other-info-form-patient {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        .global-other-info-patient-flex {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+
+          .section-account-info {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1.25rem;
+
+            .section-other-info {
+              padding: 1.5rem 1rem;
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+
+              input[type="radio"] {
+                accent-color: var(--button-color);
+              }
+              .gender-info,
+              .civility-info,
+              .birthday-input,
+              .birthname-input,
+              .family-input,
+              .job-input,
+              .children-input {
+                width: 100%;
+                max-width: 350px;
+                gap: 8px;
+                margin: 0 auto;
+              }
+
+              .gender-info > p,
+              .gender-info > div,
+              .civility-info > p,
+              .civility-info > div,
+              .birthday-input > label,
+              .birthday-input > input,
+              .birthname-input > label,
+              .birthname-input > input,
+              .family-input > label,
+              .family-input > select,
+              .job-input > label,
+              .job-input > input,
+              .children-input > label,
+              .children-input > select {
+                width: 100%;
+              }
+
+              input[type="text"],
+              input[type="date"],
+              select {
+                border-radius: 5px;
+                padding: 0 0.5rem;
+                font-size: 1rem;
+              }
+
+              input[type="text"],
+              input[type="date"] {
+                min-height: 1.5rem;
+                padding: 0.5rem;
+              }
+
+              select {
+                min-height: 1.5rem;
+                padding: 0.5rem;
+                background-color: var(--main-bg-admin-practician);
+                color: white;
+                .option-select {
+                  background-color: var(--main-bg-admin-practician);
+                  color: white;
+                }
+              }
+
+              .gender-info {
+                grid-column: 1;
+                grid-row: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                .gender-radio {
+                  display: flex;
+                  gap: 0.4rem;
+                  flex-wrap: wrap;
+                }
+              }
+              .civility-info {
+                grid-column: 3;
+                grid-row: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                .civility-radio {
+                  display: flex;
+                  gap: 0.4rem;
+                  flex-wrap: wrap;
+                }
+              }
+              .birthday-input {
+                grid-column: 1;
+                grid-row: 3;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                #birthday {
+                  min-width: 10rem;
+                  max-width: 50%;
+                  &::-webkit-calendar-picker-indicator {
+                    filter: invert(1);
+                  }
+                }
+              }
+              .birthname-input {
+                grid-column: 3;
+                grid-row: 3;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+              }
+              .family-input {
+                grid-column: 1;
+                grid-row: 5;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+              }
+              .job-input {
+                grid-column: 3;
+                grid-row: 5;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+              }
+              .children-input {
+                grid-column: 1;
+                grid-row: 7;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+              }
+
+              p,
+              label,
+              input {
+                font-size: 1rem;
+              }
+            }
+            // media query desktop for other info section grid
+            @media screen and (min-width: 480px) {
+              .section-other-info {
+                display: grid;
+                grid-template-columns: 1fr 10px 1fr;
+                grid-template-rows: auto 12px auto 12px auto 12px auto;
+              }
+            }
+            // end media query desktop for other info section grid
+          }
+
+          .section-address-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 1.25rem;
+
+            .address-info {
+              padding: 1.5rem 1rem;
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+
+              .street-input,
+              .postal-input,
+              .city-input,
+              .country-input {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+              }
+              input[type="text"] {
+                border-radius: 5px;
+                min-height: 1.5rem;
+                padding: 0.5rem 0.5rem;
+                font-size: 1rem;
+              }
+            }
+            // media query desktop for address section grid
+            @media screen and (min-width: 480px) {
+              .address-info {
+                display: grid;
+                grid-template-columns: 1fr 10px 1fr;
+                grid-template-rows: 1fr 12px 1fr 12px 1fr;
+                gap: 0;
+
+                .street-input {
+                  grid-column: 1 / 4;
+                  grid-row: 1;
+                }
+                .postal-input {
+                  grid-column: 1;
+                  grid-row: 3;
+                }
+                .city-input {
+                  grid-column: 3;
+                  grid-row: 3;
+                }
+                .country-input {
+                  grid-column: 1;
+                  grid-row: 5;
+                }
+
+                .street-input > label,
+                .street-input > input,
+                .postal-input > label,
+                .postal-input > input,
+                .city-input > label,
+                .city-input > input,
+                .country-input > label,
+                .country-input > input {
+                  width: 100%;
+                }
+              }
+            }
+            // end media query desktop for address section grid
+          }
+
+          .section-emergency-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 1.25rem;
+
+            .emergency-info {
+              padding: 1.5rem 1rem;
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+
+              .emergency-firstname-input,
+              .emergency-lastname-input,
+              .emergency-phone-input {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+              }
+              input[type="text"] {
+                border-radius: 5px;
+                min-height: 1.5rem;
+                padding: 0.5rem 0.5rem;
+                font-size: 1rem;
+              }
+            }
+
+            @media screen and (min-width: 480px) {
+              .emergency-info {
+                display: grid;
+                grid-template-columns: 1fr 10px 1fr;
+                grid-template-rows: 1fr 12px 1fr;
+                gap: 0;
+
+                .emergency-firstname-input {
+                  grid-column: 1;
+                  grid-row: 1;
+                }
+                .emergency-lastname-input {
+                  grid-column: 3;
+                  grid-row: 1;
+                }
+                .emergency-phone-input {
+                  grid-column: 1;
+                  grid-row: 3;
+                }
+                .emergency-firstname-input > label,
+                .emergency-firstname-input > input,
+                .emergency-lastname-input > label,
+                .emergency-lastname-input > input,
+                .emergency-phone-input > label,
+                .emergency-phone-input > input {
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .first-infos-patient {
+        .account-info-list-patient {
+          .global-info-form-patient {
+            .global-info-patient-grid {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+            }
+          }
+          .password-form {
+            .password-form-grid {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

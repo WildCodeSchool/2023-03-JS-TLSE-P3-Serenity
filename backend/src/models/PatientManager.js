@@ -36,8 +36,39 @@ LEFT JOIN
     intervention I ON I.id = IP.intervention_id
 LEFT JOIN
 practician ON practician.id = I.practician_id`;
-
     return this.database.query(sql);
+  }
+
+  getPatientPractician(id) {
+    const sql = `
+    SELECT 
+    practician.id,
+    practician.firstname,
+    practician.lastname,
+    speciality,
+    practician.phone,
+    language,
+    biography,
+    diploma,
+    other_formation,
+    experience,
+    association,
+    publication,
+    award
+    FROM practician
+    JOIN intervention I ON practician.id = I.practician_id
+    JOIN intervention_patient IP ON I.id = IP.intervention_id
+    JOIN patient P ON P.id = IP.patient_id
+    WHERE P.id = ?`;
+
+    return this.database.query(sql, [id]);
+  }
+
+  update(values, valueQuery, id) {
+    return this.database.query(
+      `update ${this.table} set ${valueQuery} where id = ?`,
+      [...values, id]
+    );
   }
 }
 
