@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import "../styles/ThemeSelection.scss";
 import StateContext from "../contexts/StateContext";
+import UnderstandInterventionModal from "./UnderstandInterventionModal";
 
 function ThemeSelection() {
   const { activeTheme, setActiveTheme } = useContext(StateContext);
@@ -36,7 +37,7 @@ function ThemeSelection() {
   let CurrentModaleTheme;
   switch (activeTheme) {
     case "understand":
-      CurrentModaleTheme = <p>{activeTheme}</p>;
+      CurrentModaleTheme = <UnderstandInterventionModal />;
       break;
     case "administrative":
       CurrentModaleTheme = <p>{activeTheme}</p>;
@@ -68,7 +69,7 @@ function ThemeSelection() {
           </button>
         ))}
       </div>
-      <p>{CurrentModaleTheme}</p>
+      {CurrentModaleTheme}
     </div>
   );
 }
