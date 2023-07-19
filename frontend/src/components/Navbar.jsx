@@ -22,7 +22,7 @@ function navbar() {
   const navbarLinks = [
     {
       role: "admin",
-      className: linkToActive === "Home" ? "active" : "nav-serenity",
+      className: linkToActive === "Home" ? "active-navbar" : "nav-serenity",
       label: "Praticiens",
       icon: "users",
       action: () => {
@@ -33,7 +33,7 @@ function navbar() {
     },
     {
       role: "practician",
-      className: linkToActive === "Home" ? "active" : "nav-serenity",
+      className: linkToActive === "Home" ? "active-navbar" : "nav-serenity",
       label: "Patients",
       icon: "users",
       action: () => {
@@ -44,7 +44,7 @@ function navbar() {
     },
     {
       role: "patient",
-      className: linkToActive === "Home" ? "active" : "nav-serenity",
+      className: linkToActive === "Home" ? "active-navbar" : "nav-serenity",
       label: "Ma préparation",
       icon: "poll-h",
       action: () => {
@@ -55,7 +55,8 @@ function navbar() {
     },
     {
       role: "practician",
-      className: linkToActive === "Interventions" ? "active" : "nav-serenity",
+      className:
+        linkToActive === "Interventions" ? "active-navbar" : "nav-serenity",
       label: "Interventions",
       icon: "file-medical-alt",
       action: () => {
@@ -66,7 +67,8 @@ function navbar() {
     },
     {
       role: "practician",
-      className: linkToActive === "Ressources" ? "active" : "nav-serenity",
+      className:
+        linkToActive === "Ressources" ? "active-navbar" : "nav-serenity",
       label: "Ressources",
       icon: "folder-tree",
       action: () => {
@@ -77,7 +79,8 @@ function navbar() {
     },
     {
       role: "all",
-      className: linkToActive === "Mon Compte" ? "active" : "nav-serenity",
+      className:
+        linkToActive === "Mon Compte" ? "active-navbar" : "nav-serenity",
       label: "Mon compte",
       icon: "circle-user",
       action: () => {
@@ -88,7 +91,8 @@ function navbar() {
     },
     {
       role: "patient",
-      className: linkToActive === "Mon praticien" ? "active" : "nav-serenity",
+      className:
+        linkToActive === "Mon praticien" ? "active-navbar" : "nav-serenity",
       label: "Mon praticien",
       icon: "user-md",
       action: () => {
@@ -99,7 +103,8 @@ function navbar() {
     },
     {
       role: "all",
-      className: linkToActive === "Formulaire" ? "active" : "nav-serenity",
+      className:
+        linkToActive === "Formulaire" ? "active-navbar" : "nav-serenity",
       label: "Formulaire",
       icon: "document-signed",
       action: () => {
@@ -110,7 +115,7 @@ function navbar() {
     },
     {
       role: "all",
-      className: linkToActive === "A propos" ? "active" : "nav-serenity",
+      className: linkToActive === "A propos" ? "active-navbar" : "nav-serenity",
       label: "A propos",
       icon: "info",
       action: () => {

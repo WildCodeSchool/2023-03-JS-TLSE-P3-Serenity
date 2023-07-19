@@ -10,6 +10,7 @@ import HeaderInterventionDate from "../components/HeaderInterventionDate";
 import AccountPatientModal from "../components/AccountPatientModal";
 import ThemeSelection from "../components/ThemeSelection";
 import MyPracticianModal from "../components/MyPracticianModal";
+import SendForm from "../components/SendForm";
 
 export default function EspacePatient() {
   const navigate = useNavigate();
@@ -61,6 +62,7 @@ export default function EspacePatient() {
       CurrentModalePatient = <MyPracticianModal />;
       break;
     case "Formulaire":
+      CurrentModalePatient = <SendForm />;
       break;
     case "A propos":
       CurrentModalePatient = <AboutUs />;
