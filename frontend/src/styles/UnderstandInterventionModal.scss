@@ -104,8 +104,8 @@
     top: auto;
     left: auto;
     border-radius: 20px;
-    border: #44d660 1px solid;
-    box-shadow: 0 0 5px #44d660;
+    border: var(--button-understand);
+    box-shadow: 0 0 5px var(--button-understand);
     text-shadow: 0 0 5px #000000;
     margin: 0 1.8rem 1.8rem 0;
     .understand-modal-header {
@@ -114,17 +114,11 @@
     .understand-modal-title {
       display: none;
     }
-    .anticipate-release-modal-body {
+    .understand-modal-list {
       display: flex;
-      justify-content: center;
+      flex-direction: row;
+      line-height: 1.5rem;
       align-items: center;
-      font-size: 1.2rem;
-      // .anticipate-release-modal-list {
-      //   width: 70%;
-      //   p {
-      //     width: 100%;
-      //   }
-      // }
     }
   }
 }

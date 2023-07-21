@@ -54,6 +54,15 @@ function UnderstandInterventionModal() {
               <img alt="" className="Img-ressource" src={img3} />
             </div>
           </div>
+          <div className="card-container-list">
+            <div>
+              <p className="card-title">Mon chirurgien me parle des croisées</p>
+              <p className="time-ressource">3minutes</p>
+            </div>
+            <div className="Img-ressource-container">
+              <img alt="" className="Img-ressource" src={img3} />
+            </div>
+          </div>
         </div>
       </div>
     </div>
