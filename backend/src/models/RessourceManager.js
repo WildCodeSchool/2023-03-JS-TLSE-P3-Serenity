@@ -18,6 +18,13 @@ class RessourceManager extends AbstractManager {
       [practicianId]
     );
   }
+
+  add(title, type, url, description, practicianId, themeRessourceId) {
+    return this.database.query(
+      `INSERT INTO ${this.table} (title, type, url, description, practician_id, theme_ressource_id) VALUES(?,?,?,?,?,?)`,
+      [title, type, url, description, practicianId, themeRessourceId]
+    );
+  }
 }
 
 module.exports = RessourceManager;

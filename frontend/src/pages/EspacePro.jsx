@@ -8,7 +8,7 @@ import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import HeaderLocation from "../components/HeaderLocation";
 import PatientListModal from "../components/PatientListModal";
 import AccountPracticianModal from "../components/AccountPracticianModal";
-import RessourcesModal from "../components/RessoucesModal";
+import RessourcesModal from "../components/RessourcesModal";
 
 export default function EspacePro() {
   const navigate = useNavigate();

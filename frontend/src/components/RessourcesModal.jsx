@@ -4,16 +4,21 @@ import axios from "axios";
 import "../styles/RessourcesModal.scss";
 import Swal from "sweetalert2";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
+import StateContext from "../contexts/StateContext";
+import ModalAddRessource from "./ModalAddRessource";
 
 function RessourcesModal() {
   const { userInfo, userToken } = useContext(AuthFunctionContext);
+  const { ressourcesChange, setRessourcesChange } = useContext(StateContext);
   const { id, role } = userInfo;
   const [ressources, setRessources] = useState([]);
-  const [ressourcesChange, setRessourcesChange] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeTheme, setActiveTheme] = useState("Comprendre");
 
+  const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
+    setRessourcesChange(false);
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/ressources/practicians/${id}`, {
         headers: {
@@ -33,37 +38,55 @@ function RessourcesModal() {
   const themeButton = [
     {
       label: "understand",
-      className: "understand-selection",
+      className:
+        activeTheme === "Comprendre"
+          ? "understand-selection active-selection"
+          : "understand-selection",
       action: () => setActiveTheme("Comprendre"),
       themeName: "Comprendre mon opération",
     },
     {
       label: "administrative",
-      className: "administrative-selection",
+      className:
+        activeTheme === "Administratif"
+          ? "administrative-selection active-selection"
+          : "administrative-selection",
       action: () => setActiveTheme("Administratif"),
       themeName: "Finir les démarches administratives",
     },
     {
       label: "prepare",
-      className: "prepare-selection",
+      className:
+        activeTheme === "Préparation"
+          ? "prepare-selection active-selection"
+          : "prepare-selection",
       action: () => setActiveTheme("Préparation"),
       themeName: "Préparer mon arrivée en toute sérénité",
     },
     {
       label: "anticipate",
-      className: "anticipate-selection",
+      className:
+        activeTheme === "Anticipation"
+          ? "anticipate-selection active-selection"
+          : "anticipate-selection",
       action: () => setActiveTheme("Anticipation"),
       themeName: "Anticiper ma sortie",
     },
     {
       label: "checklist",
-      className: "checklist-selection",
+      className:
+        activeTheme === "Checklist"
+          ? "checklist-selection active-selection"
+          : "checklist-selection",
       action: () => setActiveTheme("Checklist"),
       themeName: "Ma check-list avant le départ à la Clinique",
     },
   ];
 
-  const handleDeleteButtonClick = (idRessourceToDelete) => {
+  const handleDeleteButtonClick = (
+    idRessourceToDelete,
+    urlRessourceToDelete
+  ) => {
     axios
       .delete(
         `${
@@ -77,6 +100,7 @@ function RessourcesModal() {
         }
       )
       .then(() => {
+        console.info(urlRessourceToDelete);
         setRessourcesChange(!ressourcesChange);
         Swal.fire({
           background: "#242731",
@@ -103,10 +127,18 @@ function RessourcesModal() {
       });
   };
 
+  const handleAddRessource = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return isLoaded ? (
     <div className="container-ressources">
       <div className="theme-selection-container">
-        <p>Choisissez un thème</p>
+        <h2>Choisissez un thème</h2>
         <div className="select-theme-container">
           {themeButton.map((theme) => (
             <button
@@ -120,27 +152,41 @@ function RessourcesModal() {
           ))}
         </div>
       </div>
-      <div className="container-scroll-ressources">
-        <div className="list-ressources">
-          {ressources
-            .filter(
-              (ressourceFiltered) => ressourceFiltered.theme === activeTheme
-            )
-            .map((ressource) => (
-              <div className="ressource">
-                <p key={ressource.id} className="ressource-title">
-                  {ressource.title}.{ressource.type}
-                </p>
-                <button
-                  className="delete-ressource-button"
-                  type="button"
-                  onClick={() => handleDeleteButtonClick(ressource.id)}
-                >
-                  <i className="fi fi-rr-trash" />
-                </button>
-              </div>
-            ))}
+      <div className="section-ressources">
+        <div className="container-scroll-ressources">
+          <div className="list-ressources">
+            {ressources
+              .filter(
+                (ressourceFiltered) => ressourceFiltered.theme === activeTheme
+              )
+              .map((ressource) => (
+                <div key={ressource.id} className="ressource">
+                  <p className="ressource-title">
+                    {ressource.title}.{ressource.type}
+                  </p>
+                  <button
+                    className="delete-ressource-button"
+                    type="button"
+                    onClick={() =>
+                      handleDeleteButtonClick(ressource.id, ressource.url)
+                    }
+                  >
+                    <i className="fi fi-rr-trash" />
+                  </button>
+                </div>
+              ))}
+          </div>
         </div>
+        <button
+          className="add-ressource-button"
+          type="button"
+          onClick={() => handleAddRessource(activeTheme)}
+        >
+          Ajouter ressource
+        </button>
+        {showModal && (
+          <ModalAddRessource closeModal={closeModal} theme={activeTheme} />
+        )}
       </div>
     </div>
   ) : (

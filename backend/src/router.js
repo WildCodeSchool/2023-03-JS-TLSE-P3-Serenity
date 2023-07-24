@@ -1,5 +1,10 @@
 const express = require("express");
 
+const multer = require("multer");
+
+// ressource file destination
+const upload = multer({ dest: "./public/uploads/" });
+
 const router = express.Router();
 
 const interventionController = require("./controllers/interventionController");
@@ -143,6 +148,21 @@ router.put(
   hashPassword,
   checkId,
   patients.updatePatient
+);
+
+router.post(
+  "/practicians/:id/ressources/file",
+  verifyToken,
+  checkId,
+  upload.single("ressource-file"),
+  ressourceController.addRessourceFile
+);
+
+router.post(
+  "/practicians/:id/ressources",
+  verifyToken,
+  checkId,
+  ressourceController.addRessource
 );
 
 module.exports = router;
