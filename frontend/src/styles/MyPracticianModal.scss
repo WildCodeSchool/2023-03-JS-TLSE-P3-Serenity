@@ -19,7 +19,7 @@
       width: 0.5rem;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: rgb(100, 100, 100);
+      background-color: hsl(0, 0%, 39%);
       border-radius: 5px;
       visibility: hidden;
     }
@@ -67,5 +67,10 @@
       width: 95%;
       margin: 0 auto;
     }
+  }
+}
+@media (max-width: 1024px) {
+  .container-info-practician {
+    max-height: 60%;
   }
 }

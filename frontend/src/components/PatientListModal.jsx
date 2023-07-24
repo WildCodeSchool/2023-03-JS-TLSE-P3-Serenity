@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "../styles/PatientListModal.scss";
-import ButtonAddPatient from "./ButtonAddPractician";
+import ButtonAddPatient from "./ButtonAddPatient";
 import StateContext from "../contexts/StateContext";
 import DeletePatientButton from "./DeletePatientButton";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";

@@ -1,4 +1,4 @@
-.anticipate-release-modal-container {
+.understand-modal-container {
   width: 100vw;
   height: 90vh;
   padding: 1rem;
@@ -9,14 +9,14 @@
   left: 0;
   z-index: 20;
   text-shadow: 0 0 5px #000000;
-  .anticipate-release-modal-header {
+  .understand-modal-header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     font-size: 2rem;
     gap: 2rem;
     padding: 1rem;
-    .return-button-modal {
+    .return-button-modal-understand {
       background-color: transparent;
       color: white;
       .fi-rr-arrow-circle-left {
@@ -24,11 +24,12 @@
       }
     }
   }
-  .modal-title {
+  .understand-modal-title {
     display: flex;
     border-radius: 14px;
     height: 70px;
-    background-color: #44d660;
+
+    background-color: var(--button-understand);
     color: white;
     align-items: center;
     justify-content: center;
@@ -37,28 +38,58 @@
     text-shadow: black 1px 1px 10px;
     margin-bottom: 1rem;
   }
-  .anticipate-release-modal-text {
-    padding: 1rem 2rem;
-    line-height: 1.5rem;
-  }
-  .anticipate-release-modal-list {
+  .understand-modal-list {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    line-height: 1.5rem;
+    gap: 1.5rem;
     padding: 1rem 2rem;
-    p {
+    font-size: 1.1rem;
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      width: 20rem;
+      margin: 0 auto;
+    }
+
+    .large-image {
+      width: 95%;
+      height: auto;
+    }
+
+    .small-images {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .small-images img {
+      width: 95%;
+      height: auto;
+    }
+
+    .card-container-list {
       display: flex;
-      font-size: 1.2rem;
-      background-color: rgba(0, 214, 93, 0.5);
-      border-radius: 14px;
-      color: white;
-      align-items: center;
+      flex-direction: row-reverse;
       justify-content: center;
-      text-align: center;
-      height: 40px;
-      padding: 0 1rem;
-      width: 60vw;
+      align-items: center;
+
+      p {
+        font-size: 0.9rem;
+      }
+
+      .time-ressource {
+        color: #9c9db9;
+      }
+
+      .Img-ressource-container {
+        width: 100px;
+        padding: 7px;
+      }
+
+      .Img-ressource {
+        width: 100%;
+      }
     }
   }
   @media (min-width: 1024px) {
@@ -73,27 +104,21 @@
     top: auto;
     left: auto;
     border-radius: 20px;
-    border: #44d660 1px solid;
-    box-shadow: 0 0 5px #44d660;
+    border: var(--button-understand);
+    box-shadow: 0 0 5px var(--button-understand);
     text-shadow: 0 0 5px #000000;
     margin: 0 1.8rem 1.8rem 0;
-    .anticipate-release-modal-header {
+    .understand-modal-header {
       display: none;
     }
-    .modal-title {
+    .understand-modal-title {
       display: none;
     }
-    .anticipate-release-modal-body {
+    .understand-modal-list {
       display: flex;
-      justify-content: center;
+      flex-direction: row;
+      line-height: 1.5rem;
       align-items: center;
-      font-size: 1.2rem;
-      .anticipate-release-modal-list {
-        width: 70%;
-        p {
-          width: 100%;
-        }
-      }
     }
   }
 }
