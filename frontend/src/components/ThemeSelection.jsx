@@ -74,7 +74,7 @@ function ThemeSelection() {
       CurrentModaleTheme = <CheckListModal />;
       break;
     default:
-      CurrentModaleTheme = <p>Vide</p>;
+      CurrentModaleTheme = <UnderstandInterventionModal />;
       break;
   }
 
