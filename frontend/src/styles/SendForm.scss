@@ -1,0 +1,22 @@
+.container-send-form {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background-color: #242731;
+  width: 100%;
+  max-height: 70%;
+  border-radius: 20px;
+  box-shadow: 0 0 1rem #000000;
+  padding: 1rem;
+  .form-control {
+    max-height: 300px;
+  }
+}
+@media (max-width: 1024px) {
+  .container-send-form {
+    max-height: 60%;
+    .form-control {
+      max-height: 140px;
+    }
+  }
+}
