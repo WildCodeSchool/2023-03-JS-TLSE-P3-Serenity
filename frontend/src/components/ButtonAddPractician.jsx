@@ -96,7 +96,7 @@ function ButtonaddPractician() {
   return (
     <>
       <Button variant="primary" onClick={handleShow} className="add-user">
-        Ajouter un patient
+        Ajouter un praticien
       </Button>
 
       <Modal
