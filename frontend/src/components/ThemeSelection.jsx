@@ -1,8 +1,11 @@
 import React, { useContext } from "react";
 import "../styles/ThemeSelection.scss";
 import StateContext from "../contexts/StateContext";
+import UnderstandInterventionModal from "./UnderstandInterventionModal";
 import AnticipateReleaseModal from "./AnticipateReleaseModal";
 import CheckListModal from "./CheckListModal";
+import AdministrativeModal from "./AdministrativeModal";
+import PrepareMyArrivateModal from "./PrepareMyArrivateModal";
 
 function ThemeSelection() {
   const { activeTheme, setActiveTheme } = useContext(StateContext);
@@ -56,13 +59,13 @@ function ThemeSelection() {
   let CurrentModaleTheme;
   switch (activeTheme) {
     case "understand":
-      CurrentModaleTheme = <p>{activeTheme}</p>;
+      CurrentModaleTheme = <UnderstandInterventionModal />;
       break;
     case "administrative":
-      CurrentModaleTheme = <p>{activeTheme}</p>;
+      CurrentModaleTheme = <AdministrativeModal />;
       break;
     case "prepare":
-      CurrentModaleTheme = <p>{activeTheme}</p>;
+      CurrentModaleTheme = <PrepareMyArrivateModal />;
       break;
     case "anticipate":
       CurrentModaleTheme = <AnticipateReleaseModal />;
