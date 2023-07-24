@@ -52,19 +52,15 @@ function ModalAddRessource({ closeModal, theme }) {
     formData.append("ressource-file", inputRef.current.files[0]);
 
     axios
-      .post(
-        `${import.meta.env.VITE_BACKEND_URL}/practicians/${id}/ressources/file`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${userToken}`,
-            Role: `${role}`,
-          },
-        }
-      )
+      .post(`${import.meta.env.VITE_BACKEND_URL}/upload/ressources`, formData, {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+          Role: `${role}`,
+        },
+      })
       .then((response) => {
-        bodyAddRessource.url = response.data.url;
-        bodyAddRessource.type = response.data.type;
+        bodyAddRessource.url = response.data.imageUrl;
+        bodyAddRessource.type = response.data.imageUrl.split(".").at(-1);
         axios.post(
           `${import.meta.env.VITE_BACKEND_URL}/practicians/${id}/ressources`,
           bodyAddRessource,

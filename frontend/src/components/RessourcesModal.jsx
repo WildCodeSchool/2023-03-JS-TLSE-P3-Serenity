@@ -85,13 +85,13 @@ function RessourcesModal() {
 
   const handleDeleteButtonClick = (
     idRessourceToDelete,
-    urlRessourceToDelete
+    nameRessourceToDelete
   ) => {
     axios
       .delete(
         `${
           import.meta.env.VITE_BACKEND_URL
-        }/ressources/${idRessourceToDelete}/${userInfo.id}`,
+        }/practicians/${id}/ressources/${idRessourceToDelete}`,
         {
           headers: {
             Authorization: `Bearer ${userToken}`,
@@ -100,7 +100,13 @@ function RessourcesModal() {
         }
       )
       .then(() => {
-        console.info(urlRessourceToDelete);
+        axios
+          .delete(
+            `${
+              import.meta.env.VITE_BACKEND_URL
+            }/delete/ressources/${nameRessourceToDelete}`
+          )
+          .catch((error) => console.error(error));
         setRessourcesChange(!ressourcesChange);
         Swal.fire({
           background: "#242731",
@@ -168,7 +174,10 @@ function RessourcesModal() {
                     className="delete-ressource-button"
                     type="button"
                     onClick={() =>
-                      handleDeleteButtonClick(ressource.id, ressource.url)
+                      handleDeleteButtonClick(
+                        ressource.id,
+                        ressource.url.split("/").at(-1).split(".")[0]
+                      )
                     }
                   >
                     <i className="fi fi-rr-trash" />

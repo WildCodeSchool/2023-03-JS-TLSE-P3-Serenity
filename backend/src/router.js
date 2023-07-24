@@ -14,6 +14,7 @@ const practicianControllers = require("./controllers/PraticianControllers");
 const patients = require("./controllers/PatientControllers");
 const formControllers = require("./controllers/FormControllers");
 const mailControllers = require("./controllers/mailControllers");
+const uploadControllers = require("./controllers/uploadControllers");
 
 const {
   hashPassword,
@@ -113,10 +114,32 @@ router.get(
 );
 
 router.delete(
-  "/ressources/:ressourceId/:id",
+  "/practicians/:id/ressources/:ressourceId",
+  // verifyToken,
+  // checkId,
+  ressourceController.deleteRessource
+);
+
+router.post(
+  "/practicians/:id/ressources",
   verifyToken,
   checkId,
-  ressourceController.deleteRessource
+  ressourceController.addRessource
+);
+
+// upload ressource on cloudinary
+router.post(
+  "/upload/ressources",
+  upload.single("ressource-file"),
+  uploadControllers.uploadRessource
+);
+
+// delete ressource on cloudinary
+router.delete(
+  "/delete/ressources/:nameRessourceToDelete",
+  // verifyToken,
+  // checkId,
+  uploadControllers.destroy
 );
 
 // route "form"
@@ -148,21 +171,6 @@ router.put(
   hashPassword,
   checkId,
   patients.updatePatient
-);
-
-router.post(
-  "/practicians/:id/ressources/file",
-  verifyToken,
-  checkId,
-  upload.single("ressource-file"),
-  ressourceController.addRessourceFile
-);
-
-router.post(
-  "/practicians/:id/ressources",
-  verifyToken,
-  checkId,
-  ressourceController.addRessource
 );
 
 module.exports = router;
