@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import StateContext from "../contexts/StateContext";
 import "../styles/PrepareMyArrivateModal.scss";
 
-function AdministrativeModal() {
+function PrepareMyArrivateModal() {
   const { setActiveTheme } = useContext(StateContext);
 
   const handleReturnButtonClick = () => {
@@ -37,4 +37,4 @@ function AdministrativeModal() {
   );
 }
 
-export default AdministrativeModal;
+export default PrepareMyArrivateModal;
