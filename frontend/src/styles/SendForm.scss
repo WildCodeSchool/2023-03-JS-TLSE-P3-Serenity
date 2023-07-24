@@ -11,12 +11,20 @@
   .form-control {
     max-height: 300px;
   }
+  .form-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    .form-check-input {
+      margin-top: 0;
+    }
+  }
 }
 @media (max-width: 1024px) {
   .container-send-form {
     max-height: 60%;
     .form-control {
-      max-height: 140px;
+      max-height: 134px;
     }
   }
 }

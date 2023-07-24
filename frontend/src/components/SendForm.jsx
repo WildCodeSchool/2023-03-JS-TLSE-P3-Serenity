@@ -36,7 +36,7 @@ function SendForm() {
               controlId="validationCustom01"
               aria-label="Default select example"
             >
-              <option>Sélectionnez votre requête</option>
+              <option value="">Sélectionnez votre requête</option>
               <option value="1">Problème avec une ressources</option>
               <option value="2">Problème avec une interventions</option>
               <option value="3">Problème avec mon compte</option>
@@ -59,11 +59,11 @@ function SendForm() {
             </Form.Control.Feedback>
           </Form.Group>
         </Row>
-        <Form.Group className="mb-3 text-white">
+        <Form.Group className="mb-3 text-white" controlId="formBasicCheckbox">
           <Form.Check
             required
+            type="checkbox"
             label="J'ai vérifié les informations de ma requête."
-            feedback="Veuillez cocher la case."
             feedbackType="invalid"
           />
         </Form.Group>
