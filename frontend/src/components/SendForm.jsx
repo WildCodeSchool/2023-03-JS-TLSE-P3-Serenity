@@ -50,7 +50,6 @@ function SendForm() {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
-    // const formJson = Object.fromEntries(formData.entries());
     const formJson = {
       user_type: role,
       request_type: formData.get("request_type"),
