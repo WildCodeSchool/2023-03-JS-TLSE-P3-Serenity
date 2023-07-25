@@ -109,7 +109,7 @@ router.get(
 
 router.get(
   "/patients/ressourceintervention/:id",
-  verifyToken,
+  // verifyToken,
   ressourceController.patientInterventionRessource
 );
 

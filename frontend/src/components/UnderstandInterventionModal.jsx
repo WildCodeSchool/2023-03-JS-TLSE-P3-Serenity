@@ -28,14 +28,18 @@ function UnderstandInterventionModal() {
   };
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/patients/ressource`, {
-        headers: {
-          Authorization: `Bearer ${userToken}`,
-          Role: `${role}`,
-        },
-      })
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/patients/ressourceintervention/1`,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
+      )
       .then((response) => {
         setUnderstandData(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.error(error);
@@ -43,7 +47,7 @@ function UnderstandInterventionModal() {
   }, []);
 
   const filteredData = understandData.filter(
-    (data) => data.theme === "Comprendre"
+    (data) => data.theme === "Checklist"
   );
   return (
     <div className="understand-modal-container">
@@ -64,7 +68,7 @@ function UnderstandInterventionModal() {
           <button
             type="button"
             className="image-container"
-            key={el.id}
+            key={el.patient_id}
             onClick={() => handleshowModalUnderstand(el)}
           >
             <div className="small-images">

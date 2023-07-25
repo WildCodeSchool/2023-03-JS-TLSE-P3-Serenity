@@ -15,7 +15,7 @@ class RessourceManager extends AbstractManager {
 
   getPatientInterventionRessource(id) {
     return this.database.query(
-      `SELECT PIR.id, PIR.is_done, R.title, R.description, IP.patient_id FROM patient_intervention_ressource PIR JOIN ${this.table} R ON PIR.intervention_ressource_ressource_id = R.id join intervention_patient IP on IP.intervention_id = PIR.intervention_patient_id where IP.patient_id = ?`,
+      `SELECT PIR.id, PIR.is_done, R.title, R.description, IP.patient_id, T.theme FROM patient_intervention_ressource PIR JOIN ${this.table} R ON PIR.intervention_ressource_ressource_id = R.id join intervention_patient IP on IP.intervention_id = PIR.intervention_patient_id join theme_ressource as T on R.theme_ressource_id=t.id where IP.patient_id = ?`,
       [id]
     );
   }
