@@ -99,6 +99,17 @@ router.get(
   patients.getPracticianInfoByIdPatient
 );
 
+router.get(
+  "/patients/ressourceintervention/:id",
+  ressourceCountController.patientInterventionRessource,
+  verifyToken
+);
+
+router.put(
+  "/patients/ressourceintervention/:id",
+  ressourceCountController.updatePatientInterventionRessource
+);
+
 // route "form"
 router.get("/admins/forms/", formControllers.getListOfAllForm);
 router.get("/admins/forms/:id", formControllers.getFormById);

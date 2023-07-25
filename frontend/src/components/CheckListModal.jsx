@@ -1,53 +1,51 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import axios from "axios";
 import "../styles/CheckListModal.scss";
 import StateContext from "../contexts/StateContext";
 
 function CheckListModal() {
   const { setActiveTheme } = useContext(StateContext);
 
-  const [checkedItems, setCheckedItems] = useState([
-    {
-      name: "carte d'identité",
-      checked: false,
-      obligatory: true,
-      note: "Obligatoire",
-    },
-    {
-      name: "carte vitale",
-      checked: false,
-      obligatory: true,
-      note: "Obligatoire",
-    },
-    {
-      name: "moyen de paiement",
-      checked: false,
-      obligatory: true,
-      note: "Obligatoire",
-    },
-    {
-      name: "test covid",
-      checked: false,
-      obligatory: true,
-      note: "Datant de moins de 72h",
-    },
-    {
-      name: "carnet de vaccination",
-      checked: false,
-      obligatory: true,
-      note: "Obligatoire et à jour",
-    },
-    {
-      name: "attestation mutuelle",
-      checked: false,
-      obligatory: false,
-      note: "Obligatoire",
-    },
-  ]);
+  const [checkedItems, setCheckedItems] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/patients/ressourceintervention/1`
+      )
+      .then((response) => {
+        const fetchedItems = response.data.map((item) => ({
+          id: item.id,
+          name: item.title,
+          checked: item.is_done,
+          obligatory: true,
+          note: item.description,
+        }));
+
+        setCheckedItems(fetchedItems);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const handleCheckboxChange = (index) => (event) => {
     const newItems = [...checkedItems];
     newItems[index].checked = event.target.checked;
-    setCheckedItems(newItems);
+
+    axios
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/patients/ressourceintervention/${
+          newItems[index].id
+        }`,
+        { is_done: newItems[index].checked }
+      )
+      .then(() => {
+        setCheckedItems(newItems);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const handleReturnButtonClick = () => {
@@ -71,7 +69,7 @@ function CheckListModal() {
       </h2>
       <div className="check-list-modal-list">
         {checkedItems.map((item, index) => (
-          <div key={item.name} className="check-list-item">
+          <div key={item.id} className="check-list-item">
             <label>
               <input
                 type="checkbox"
