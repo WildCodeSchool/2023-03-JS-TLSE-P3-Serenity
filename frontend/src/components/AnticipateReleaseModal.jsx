@@ -6,7 +6,7 @@ import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function AnticipateReleaseModal() {
   const { userToken, userInfo } = useContext(AuthFunctionContext);
-  const { role } = userInfo;
+  const { role, id } = userInfo;
   const { setActiveTheme } = useContext(StateContext);
 
   const [resources, setResources] = useState([]);
@@ -16,7 +16,7 @@ function AnticipateReleaseModal() {
       .get(
         `${
           import.meta.env.VITE_BACKEND_URL
-        }/patients/ressourceintervention/1?theme_id=4`,
+        }/patients/ressourceintervention/${id}?theme_id=4`,
         {
           headers: {
             Authorization: `Bearer ${userToken}`,

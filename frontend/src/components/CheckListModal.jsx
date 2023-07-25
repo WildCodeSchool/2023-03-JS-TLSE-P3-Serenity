@@ -6,7 +6,7 @@ import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function CheckListModal() {
   const { userToken, userInfo } = useContext(AuthFunctionContext);
-  const { role } = userInfo;
+  const { role, id } = userInfo;
   const { setActiveTheme } = useContext(StateContext);
 
   const [checkedItems, setCheckedItems] = useState([]);
@@ -16,7 +16,7 @@ function CheckListModal() {
       .get(
         `${
           import.meta.env.VITE_BACKEND_URL
-        }/patients/ressourceintervention/1?theme_id=5`,
+        }/patients/ressourceintervention/${id}?theme_id=5`,
         {
           headers: {
             Authorization: `Bearer ${userToken}`,
