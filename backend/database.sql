@@ -185,9 +185,11 @@ CREATE TABLE
 
 CREATE TABLE
     IF NOT EXISTS `serenity`.`patient_intervention_ressource` (
+        `id` INT NOT NULL AUTO_INCREMENT,
         `intervention_patient_id` INT NOT NULL,
         `intervention_ressource_ressource_id` INT NOT NULL,
         `is_done` TINYINT NOT NULL,
+        PRIMARY KEY (`id`),
         CONSTRAINT `fk_intervention_patient_has_intervention_ressource_descriptio1` FOREIGN KEY (
             `intervention_ressource_ressource_id`
         ) REFERENCES `serenity`.`intervention_ressource` (`ressource_id`),
@@ -1020,6 +1022,9 @@ VALUES(1, 52);
 INSERT INTO
     intervention_ressource(intervention_id, ressource_id)
 VALUES(1, 53);
+INSERT INTO
+    intervention_ressource(intervention_id, ressource_id)
+VALUES(1, 54);
 
 INSERT INTO
     intervention_ressource(intervention_id, ressource_id)
@@ -1029,9 +1034,6 @@ INSERT INTO
     intervention_ressource(intervention_id, ressource_id)
 VALUES(1, 56);
 
-INSERT INTO
-    intervention_ressource(intervention_id, ressource_id)
-VALUES(1, 57);
 
 INSERT INTO
     patient_intervention_ressource(
@@ -1063,6 +1065,14 @@ INSERT INTO
         intervention_ressource_ressource_id,
         is_done
     )
+VALUES(1, 54, 0);
+
+INSERT INTO
+    patient_intervention_ressource(
+        intervention_patient_id,
+        intervention_ressource_ressource_id,
+        is_done
+    )
 VALUES(1, 55, 0);
 
 INSERT INTO
@@ -1072,11 +1082,3 @@ INSERT INTO
         is_done
     )
 VALUES(1, 56, 0);
-
-INSERT INTO
-    patient_intervention_ressource(
-        intervention_patient_id,
-        intervention_ressource_ressource_id,
-        is_done
-    )
-VALUES(1, 57, 0);

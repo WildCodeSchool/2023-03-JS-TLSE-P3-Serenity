@@ -105,6 +105,17 @@ router.get(
   patients.getPracticianInfoByIdPatient
 );
 
+router.get(
+  "/patients/ressourceintervention/:id",
+  verifyToken,
+  ressourceController.patientInterventionRessource
+);
+
+router.put(
+  "/patients/ressourceintervention/:id",
+  verifyToken,
+  ressourceController.updatePatientInterventionRessource
+);
 // route "managing ressource"
 router.get(
   "/ressources/practicians/:id",
