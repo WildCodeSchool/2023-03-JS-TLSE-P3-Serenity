@@ -1012,28 +1012,16 @@ VALUES (
     );
 
 INSERT INTO
-    intervention_ressource(intervention_id, ressource_id)
-VALUES(1, 51);
+    ressource(
+        title,
+        practician_id,
+        theme_ressource_id
+    )
+VALUES ('Kinésithérapeute', 1, 4), ('Psychologue', 1, 4), ('Nutritioniste', 1, 4), ('Infirmière', 1, 4);
 
 INSERT INTO
     intervention_ressource(intervention_id, ressource_id)
-VALUES(1, 52);
-
-INSERT INTO
-    intervention_ressource(intervention_id, ressource_id)
-VALUES(1, 53);
-INSERT INTO
-    intervention_ressource(intervention_id, ressource_id)
-VALUES(1, 54);
-
-INSERT INTO
-    intervention_ressource(intervention_id, ressource_id)
-VALUES(1, 55);
-
-INSERT INTO
-    intervention_ressource(intervention_id, ressource_id)
-VALUES(1, 56);
-
+VALUES (1, 51), (1, 52), (1, 53), (1, 54), (1, 55), (1, 56), (1, 57), (1, 58), (1, 59), (1, 60);
 
 INSERT INTO
     patient_intervention_ressource(
@@ -1041,44 +1029,5 @@ INSERT INTO
         intervention_ressource_ressource_id,
         is_done
     )
-VALUES(1, 51, 0);
-
-INSERT INTO
-    patient_intervention_ressource(
-        intervention_patient_id,
-        intervention_ressource_ressource_id,
-        is_done
-    )
-VALUES(1, 52, 0);
-
-INSERT INTO
-    patient_intervention_ressource(
-        intervention_patient_id,
-        intervention_ressource_ressource_id,
-        is_done
-    )
-VALUES(1, 53, 0);
-
-INSERT INTO
-    patient_intervention_ressource(
-        intervention_patient_id,
-        intervention_ressource_ressource_id,
-        is_done
-    )
-VALUES(1, 54, 0);
-
-INSERT INTO
-    patient_intervention_ressource(
-        intervention_patient_id,
-        intervention_ressource_ressource_id,
-        is_done
-    )
-VALUES(1, 55, 0);
-
-INSERT INTO
-    patient_intervention_ressource(
-        intervention_patient_id,
-        intervention_ressource_ressource_id,
-        is_done
-    )
-VALUES(1, 56, 0);
+VALUES
+(1, 51, 0), (1, 52, 0), (1, 53, 0), (1, 54, 0), (1, 55, 0), (1, 56, 0), (1, 57, 0), (1, 58, 0), (1, 59, 0), (1, 60, 0);

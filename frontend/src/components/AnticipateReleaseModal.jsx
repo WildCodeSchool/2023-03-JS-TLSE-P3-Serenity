@@ -1,9 +1,36 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import axios from "axios";
 import "../styles/AnticipateReleaseModal.scss";
 import StateContext from "../contexts/StateContext";
+import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function AnticipateReleaseModal() {
+  const { userToken, userInfo } = useContext(AuthFunctionContext);
+  const { role } = userInfo;
   const { setActiveTheme } = useContext(StateContext);
+
+  const [resources, setResources] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/patients/ressourceintervention/1?theme_id=4`,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
+      )
+      .then((response) => {
+        setResources(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const handleReturnButtonClick = () => {
     setActiveTheme(null);
@@ -31,9 +58,9 @@ function AnticipateReleaseModal() {
           :
         </p>
         <div className="anticipate-release-modal-list">
-          <p>Praticien 1</p>
-          <p>Praticien 2</p>
-          <p>Praticien 3</p>
+          {resources.map((resource) => (
+            <p key={resource.id}>{resource.title}</p>
+          ))}
         </div>
       </div>
     </div>

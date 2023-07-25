@@ -14,7 +14,9 @@ function CheckListModal() {
   useEffect(() => {
     axios
       .get(
-        `${import.meta.env.VITE_BACKEND_URL}/patients/ressourceintervention/1`,
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/patients/ressourceintervention/1?theme_id=5`,
         {
           headers: {
             Authorization: `Bearer ${userToken}`,
