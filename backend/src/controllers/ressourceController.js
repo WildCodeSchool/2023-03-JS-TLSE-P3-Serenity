@@ -16,6 +16,56 @@ const getRessourceCount = (req, res) => {
     });
 };
 
+const deleteRessource = (req, res) => {
+  models.ressource
+    .delete(req.params.ressourceId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const getRessources = (req, res) => {
+  models.ressource
+    .getRessourceByPracticianId(req.params.id)
+    .then(([result]) => {
+      if (result.length) {
+        res.status(200).json(result);
+      } else {
+        res.sendStatus(404);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const addRessource = (req, res) => {
+  const { title, type, url, description, practicianId, themeRessourceId } =
+    req.body;
+  models.ressource
+    .add(title, type, url, description, practicianId, themeRessourceId)
+    .then(([result]) => {
+      if (result.affectedRows) {
+        res.sendStatus(201);
+      } else {
+        res.sendStatus(400);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const patientInterventionRessource = (req, res) => {
   models.ressource
     .getPatientInterventionRessource(req.params.id)
@@ -50,6 +100,9 @@ const updatePatientInterventionRessource = (req, res) => {
 
 module.exports = {
   getRessourceCount,
+  deleteRessource,
+  getRessources,
+  addRessource,
   patientInterventionRessource,
   updatePatientInterventionRessource,
 };

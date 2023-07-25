@@ -1,0 +1,159 @@
+.container-ressources {
+  display: flex;
+  color: white;
+  background-color: #242731;
+  width: 100%;
+  max-height: 70%;
+  border-radius: 20px;
+  box-shadow: 0 0 1rem #000000;
+  position: relative;
+
+  .theme-selection-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    padding: 1rem 0.25rem;
+    h2 {
+      font-size: 1.3rem;
+    }
+    .select-theme-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.5rem 0;
+      height: 100%;
+      overflow: auto;
+      width: 100%;
+      &::-webkit-scrollbar {
+        width: 0.5rem;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: rgb(100, 100, 100);
+        border-radius: 5px;
+        visibility: hidden;
+      }
+      &:hover::-webkit-scrollbar-thumb {
+        visibility: visible;
+      }
+      button {
+        padding: 1rem;
+        border-radius: 14px;
+        height: 80px;
+        width: clamp(150px, 95%, 560px);
+        p {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          width: 100%;
+          color: white;
+          font-size: 1.2rem;
+          text-shadow: black 1px 1px 10px;
+          text-align: center;
+        }
+      }
+      .active-selection,
+      .active-selection:focus {
+        outline: thick double white;
+      }
+      .understand-selection {
+        background: var(--button-understand);
+      }
+      .administrative-selection {
+        background: var(--button-administrative);
+      }
+      .prepare-selection {
+        background: var(--button-prepare);
+      }
+      .anticipate-selection {
+        background: var(--button-anticipate);
+      }
+      .checklist-selection {
+        background: var(--button-checklist);
+      }
+      .understand-selection:hover {
+        background: var(--button-understand-opacified);
+      }
+      .administrative-selection:hover {
+        background: var(--button-administrative-opacified);
+      }
+      .prepare-selection:hover {
+        background: var(--button-prepare-opacified);
+      }
+      .anticipate-selection:hover {
+        background: var(--button-anticipate-opacified);
+      }
+      .checklist-selection:hover {
+        background: var(--button-checklist-opacified);
+      }
+    }
+  }
+
+  .section-ressources {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+    .container-scroll-ressources {
+      display: flex;
+      flex-direction: column;
+      margin-top: 3rem;
+      gap: 1rem;
+      width: 100%;
+      overflow: auto;
+      &::-webkit-scrollbar {
+        width: 0.5rem;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: rgb(100, 100, 100);
+        border-radius: 5px;
+        visibility: hidden;
+      }
+      &:hover::-webkit-scrollbar-thumb {
+        visibility: visible;
+      }
+
+      .list-ressources {
+        padding: 0.5rem;
+        padding-right: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        .ressource {
+          display: flex;
+          justify-content: space-between;
+          gap: 0.5rem;
+          p {
+            word-break: break-all;
+            line-height: 1.3rem;
+          }
+          .delete-ressource-button {
+            background-color: transparent;
+            .fi-rr-trash {
+              color: white;
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+    }
+    .add-ressource-button {
+      max-width: 350px;
+      margin: 0 auto;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border-radius: 5px;
+      background-color: var(--button-color);
+      color: white;
+    }
+
+    .add-ressource-button:hover {
+      background-color: var(--button-color-opacified);
+    }
+  }
+}

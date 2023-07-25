@@ -15,6 +15,8 @@ export function StateProvider({ children }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTheme, setActiveTheme] = useState(null);
 
+  const [ressourcesChange, setRessourcesChange] = useState(false);
+
   const stateContext = useMemo(
     () => ({
       linkToActive,
@@ -31,6 +33,8 @@ export function StateProvider({ children }) {
       setShow,
       activeTheme,
       setActiveTheme,
+      ressourcesChange,
+      setRessourcesChange,
     }),
     [
       linkToActive,
@@ -40,6 +44,7 @@ export function StateProvider({ children }) {
       activeModal,
       show,
       activeTheme,
+      ressourcesChange,
     ]
   );
   return (

@@ -26,6 +26,20 @@ class RessourceManager extends AbstractManager {
       [is_done, id]
     );
   }
+
+  getRessourceByPracticianId(practicianId) {
+    return this.database.query(
+      `SELECT R.id, R.title, R.type, R.url, R.description, TR.theme FROM ${this.table} R JOIN theme_ressource TR ON TR.id = R.theme_ressource_id WHERE practician_id = ?`,
+      [practicianId]
+    );
+  }
+
+  add(title, type, url, description, practicianId, themeRessourceId) {
+    return this.database.query(
+      `INSERT INTO ${this.table} (title, type, url, description, practician_id, theme_ressource_id) VALUES(?,?,?,?,?,?)`,
+      [title, type, url, description, practicianId, themeRessourceId]
+    );
+  }
 }
 
 module.exports = RessourceManager;
