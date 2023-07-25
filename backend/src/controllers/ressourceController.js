@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const models = require("../models");
 
 const getRessourceCount = (req, res) => {
@@ -67,8 +68,9 @@ const addRessource = (req, res) => {
 };
 
 const patientInterventionRessource = (req, res) => {
+  const { theme_id } = req.query;
   models.ressource
-    .getPatientInterventionRessource(req.params.id)
+    .getPatientInterventionRessource(req.params.id, theme_id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);
