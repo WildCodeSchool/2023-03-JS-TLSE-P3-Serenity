@@ -14,6 +14,7 @@ function navbar() {
     isMenuOpen,
     setIsMenuOpen,
     setActiveModal,
+    setActiveTheme,
   } = useContext(StateContext);
   const { userInfo, logoutHandler } = useContext(AuthFunctionContext);
   const toggleMenu = () => {
@@ -51,6 +52,7 @@ function navbar() {
         setLinkToActive("Home");
         setIsMenuOpen(false);
         setActiveModal("Ma préparation");
+        setActiveTheme("understand");
       },
     },
     {
