@@ -115,8 +115,8 @@ router.get(
 
 router.delete(
   "/practicians/:id/ressources/:ressourceId",
-  // verifyToken,
-  // checkId,
+  verifyToken,
+  checkId,
   ressourceController.deleteRessource
 );
 
