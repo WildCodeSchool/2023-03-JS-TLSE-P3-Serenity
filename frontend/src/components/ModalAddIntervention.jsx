@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../styles/ModalAddIntervention.scss";
 import PropTypes from "prop-types";
 import axios from "axios";
@@ -8,10 +8,14 @@ import StateContext from "../contexts/StateContext";
 
 function ModalAddIntervention({ closeModal }) {
   const { userInfo, userToken } = useContext(AuthFunctionContext);
-  const { setInterventionsChange } = useContext(StateContext);
+  const { interventions, setInterventions } = useContext(StateContext);
   const { id, role } = userInfo;
   const [nameIntervention, setNameIntervention] = useState("");
-  const [durationIntervention, setDurationIntervention] = useState("");
+  const [durationIntervention, setDurationIntervention] = useState("00:00");
+  const [anesthesiaChoice, setAnesthesiaChoice] = useState("∅");
+  const [activeTheme, setActiveTheme] = useState("Comprendre");
+  const [ressources, setRessources] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const handleValidateAddIntervention = (event) => {
     event.preventDefault();
@@ -30,8 +34,9 @@ function ModalAddIntervention({ closeModal }) {
           },
         }
       )
-      .then(() => {
-        setInterventionsChange(true);
+      .then((response) => {
+        console.info(response.data);
+        setInterventions(...interventions, response.data);
         Swal.fire({
           background: "#242731",
           position: "center",
@@ -45,6 +50,75 @@ function ModalAddIntervention({ closeModal }) {
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const themeButton = [
+    {
+      label: "understand",
+      className:
+        activeTheme === "Comprendre"
+          ? "understand-selection active-selection"
+          : "understand-selection",
+      action: () => setActiveTheme("Comprendre"),
+      themeName: "Compréhension",
+    },
+    {
+      label: "administrative",
+      className:
+        activeTheme === "Administratif"
+          ? "administrative-selection active-selection"
+          : "administrative-selection",
+      action: () => setActiveTheme("Administratif"),
+      themeName: "Administratif",
+    },
+    {
+      label: "prepare",
+      className:
+        activeTheme === "Préparation"
+          ? "prepare-selection active-selection"
+          : "prepare-selection",
+      action: () => setActiveTheme("Préparation"),
+      themeName: "Préparation",
+    },
+    {
+      label: "anticipate",
+      className:
+        activeTheme === "Anticipation"
+          ? "anticipate-selection active-selection"
+          : "anticipate-selection",
+      action: () => setActiveTheme("Anticipation"),
+      themeName: "Anticipation",
+    },
+    {
+      label: "checklist",
+      className:
+        activeTheme === "Checklist"
+          ? "checklist-selection active-selection"
+          : "checklist-selection",
+      action: () => setActiveTheme("Checklist"),
+      themeName: "Checklist",
+    },
+  ];
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/ressources/practicians/${id}`, {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+          Role: `${role}`,
+        },
+      })
+      .then((response) => {
+        setRessources(response.data);
+        setIsLoaded(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleDeleteButtonClick = () => {
+    console.info("coucou");
   };
 
   return (
@@ -61,26 +135,109 @@ function ModalAddIntervention({ closeModal }) {
         >
           <i className="fi fi-rr-cross" />
         </button>
-        <div className="add-intervention-input-container">
-          <div className="intervention-name-label-input">
-            <label htmlFor="name">Nom de l'intervention</label>
-            <input
-              type="text"
-              value={nameIntervention}
-              name="name"
-              className="intervention-name-input"
-              onChange={(e) => setNameIntervention(e.target.value)}
-            />
+        <div className="intervention-input-theme-list">
+          <div className="add-intervention-input-container">
+            <div className="intervention-name-label-input">
+              <label htmlFor="name">Nom de l'intervention</label>
+              <input
+                type="text"
+                value={nameIntervention}
+                name="name"
+                className="intervention-name-input"
+                onChange={(e) => setNameIntervention(e.target.value)}
+                required
+              />
+            </div>
+            <div className="intervention-duration-label-input">
+              <label htmlFor="duration">Durée</label>
+              <input
+                type="time"
+                value={durationIntervention}
+                name="duration"
+                min="00:00"
+                max="24:00"
+                className="intervention-duration-input"
+                onChange={(e) => setDurationIntervention(e.target.value)}
+                required
+              />
+            </div>
+            <div className="anesthesia-input">
+              <p>Anesthésie</p>
+              <div className="anesthesia-radio">
+                <div className="none-radio">
+                  <input
+                    type="radio"
+                    value="∅"
+                    name="None"
+                    checked={anesthesiaChoice === "∅"}
+                    onChange={(e) => setAnesthesiaChoice(e.target.value)}
+                  />
+                  <label htmlFor="none">∅</label>
+                </div>
+                <div className="general-radio">
+                  <input
+                    type="radio"
+                    value="AG"
+                    name="general"
+                    checked={anesthesiaChoice === "AG"}
+                    onChange={(e) => setAnesthesiaChoice(e.target.value)}
+                  />
+                  <label htmlFor="general">AG</label>
+                </div>
+                <div className="local-radio">
+                  <input
+                    type="radio"
+                    value="AL"
+                    name="local"
+                    checked={anesthesiaChoice === "AL"}
+                    onChange={(e) => setAnesthesiaChoice(e.target.value)}
+                  />
+                  <label htmlFor="local">AL</label>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="intervention-duration-label-input">
-            <label htmlFor="duration">Durée de l'intervention</label>
-            <input
-              type="text"
-              value={durationIntervention}
-              name="duration"
-              className="intervention-duration-input"
-              onChange={(e) => setDurationIntervention(e.target.value)}
-            />
+          <div className="theme-selection-container">
+            <h2>Choisissez un thème</h2>
+            <div className="select-theme-container">
+              {themeButton.map((theme) => (
+                <button
+                  key={theme.label}
+                  type="button"
+                  className={theme.className}
+                  onClick={theme.action}
+                >
+                  <p>{theme.themeName}</p>
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="section-ressources">
+            <div className="container-scroll-ressources">
+              <p className="title-existing-ressources">Ressources existantes</p>
+              <div className="list-ressources">
+                {isLoaded &&
+                  ressources
+                    .filter(
+                      (ressourceFiltered) =>
+                        ressourceFiltered.theme === activeTheme
+                    )
+                    .map((ressource) => (
+                      <div key={ressource.id} className="ressource">
+                        <p className="ressource-title">
+                          {ressource.title}.{ressource.type}
+                        </p>
+                        <button
+                          className="add-ressource-button"
+                          type="button"
+                          onClick={handleDeleteButtonClick}
+                        >
+                          <i className="fi fi-rr-add" />
+                        </button>
+                      </div>
+                    ))}
+              </div>
+            </div>
           </div>
         </div>
         <button type="submit" className="button-add-intervention">

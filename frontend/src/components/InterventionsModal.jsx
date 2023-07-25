@@ -4,12 +4,13 @@ import axios from "axios";
 import "../styles/InterventionsModal.scss";
 import Swal from "sweetalert2";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
+import StateContext from "../contexts/StateContext";
 import ModalAddIntervention from "./ModalAddIntervention";
 
 function InterventionsModal() {
   const { userInfo, userToken } = useContext(AuthFunctionContext);
+  const { interventions, setInterventions } = useContext(StateContext);
   const { id, role } = userInfo;
-  const [interventions, setInterventions] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
