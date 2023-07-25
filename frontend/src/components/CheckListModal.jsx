@@ -2,8 +2,11 @@ import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/CheckListModal.scss";
 import StateContext from "../contexts/StateContext";
+import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
 function CheckListModal() {
+  const { userToken, userInfo } = useContext(AuthFunctionContext);
+  const { role } = userInfo;
   const { setActiveTheme } = useContext(StateContext);
 
   const [checkedItems, setCheckedItems] = useState([]);
@@ -11,7 +14,13 @@ function CheckListModal() {
   useEffect(() => {
     axios
       .get(
-        `${import.meta.env.VITE_BACKEND_URL}/patients/ressourceintervention/1`
+        `${import.meta.env.VITE_BACKEND_URL}/patients/ressourceintervention/1`,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
       )
       .then((response) => {
         const fetchedItems = response.data.map((item) => ({
@@ -38,7 +47,13 @@ function CheckListModal() {
         `${import.meta.env.VITE_BACKEND_URL}/patients/ressourceintervention/${
           newItems[index].id
         }`,
-        { is_done: newItems[index].checked }
+        { is_done: newItems[index].checked },
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
       )
       .then(() => {
         setCheckedItems(newItems);
