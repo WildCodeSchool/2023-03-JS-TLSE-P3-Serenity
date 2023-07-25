@@ -52,6 +52,9 @@
       &:hover {
         background-color: var(--button-color-opacified);
       }
+      .validate-label-button {
+        padding: 0;
+      }
     }
   }
 }

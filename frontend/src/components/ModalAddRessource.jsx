@@ -135,7 +135,7 @@ function ModalAddRessource({ closeModal, theme }) {
           </Form.Group>
         </div>
         <button type="submit" className="button-add-ressource">
-          <p>Valider ajout</p>
+          <p className="validate-label-button">Valider ajout</p>
         </button>
       </form>
     </div>
