@@ -9,7 +9,7 @@ import img2 from "../assets/picture.png";
 function UnderstandInterventionModal() {
   const { userToken, userInfo } = useContext(AuthFunctionContext);
   const [understandData, setUnderstandData] = useState([]);
-  const { role } = userInfo;
+  const { role, id } = userInfo;
   const { setActiveTheme } = useContext(StateContext);
   const [, setSelectedData] = useState(null);
 
@@ -29,7 +29,9 @@ function UnderstandInterventionModal() {
   useEffect(() => {
     axios
       .get(
-        `${import.meta.env.VITE_BACKEND_URL}/patients/ressourceintervention/1`,
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/patients/ressourceintervention/${id}?theme_id=1`,
         {
           headers: {
             Authorization: `Bearer ${userToken}`,
@@ -39,16 +41,12 @@ function UnderstandInterventionModal() {
       )
       .then((response) => {
         setUnderstandData(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
 
-  const filteredData = understandData.filter(
-    (data) => data.theme === "Checklist"
-  );
   return (
     <div className="understand-modal-container">
       <div className="understand-modal-header">
@@ -64,7 +62,7 @@ function UnderstandInterventionModal() {
       <h2 className="understand-modal-title">Comprendre mon opération</h2>
       <h3>Schémas et documentations</h3>
       <div className="understand-modal-list">
-        {filteredData.map((el) => (
+        {understandData.map((el) => (
           <button
             type="button"
             className="image-container"

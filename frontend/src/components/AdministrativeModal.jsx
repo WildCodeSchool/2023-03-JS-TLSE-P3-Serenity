@@ -1,82 +1,106 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
+import "../styles/CheckListModal.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
-import "../styles/AdministrativeModal.scss";
-import img3 from "../assets/picture.png";
 
-function AdministrativeModal() {
+function CheckListModal() {
   const { userToken, userInfo } = useContext(AuthFunctionContext);
-  const [understandData, setUnderstandData] = useState([]);
-  const { role } = userInfo;
+  const { role, id } = userInfo;
   const { setActiveTheme } = useContext(StateContext);
-  const [checkboxStatus, setCheckboxStatus] = useState({});
-  const handleReturnButtonClick = () => {
-    setActiveTheme(null);
-  };
+
+  const [checkedItems, setCheckedItems] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/patients/ressource`, {
-        headers: {
-          Authorization: `Bearer ${userToken}`,
-          Role: `${role}`,
-        },
-      })
+      .get(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/patients/ressourceintervention/${id}?theme_id=2`,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
+      )
       .then((response) => {
-        setUnderstandData(response.data);
+        const fetchedItems = response.data.map((item) => ({
+          id: item.id,
+          name: item.title,
+          checked: item.is_done,
+          obligatory: true,
+          note: item.description,
+        }));
+
+        setCheckedItems(fetchedItems);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
 
-  const filteredData = understandData.filter(
-    (data) => data.theme === "Préparation"
-  );
+  const handleCheckboxChange = (index) => (event) => {
+    const newItems = [...checkedItems];
+    newItems[index].checked = event.target.checked;
 
-  const handleToggleCheckbox = (id) => {
-    setCheckboxStatus((prevStatus) => ({
-      ...prevStatus,
-      [id]: !prevStatus[id], // Basculez le statut de la checkbox pour l'ID donné
-    }));
+    axios
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/patients/ressourceintervention/${
+          newItems[index].id
+        }`,
+        { is_done: newItems[index].checked },
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
+      )
+      .then(() => {
+        setCheckedItems(newItems);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleReturnButtonClick = () => {
+    setActiveTheme(null);
   };
 
   return (
-    <div className="administrative-modal-container">
-      <div className="administrative-modal-header">
+    <div className="check-list-modal-container">
+      <div className="check-list-modal-header">
         <button
           type="button"
-          className="return-button-modal-administrative"
+          className="return-button-modal"
           onClick={handleReturnButtonClick}
         >
           <i className="fi fi-rr-arrow-circle-left" />
         </button>
         <h1>Ma préparation</h1>
       </div>
-      <h2 className="administrative-modal-title">
-        Finir les démarches administratives
+      <h2 className="modal-title">
+        Quelques démarches administratives à finaliser
       </h2>
-      <div className="administrative-modal-list">
-        <p>Quelques documents a preparer</p>
-        <div className="card-container">
-          {filteredData.map((el) => (
-            <button type="button" className="card-container-list">
-              <p className="card-title">{el.title}</p>
-              <div className="Img-ressource-container">
-                <img alt="" className="Img-ressource" src={img3} />
-              </div>
+      <div className="check-list-modal-list">
+        {checkedItems.map((item, index) => (
+          <div key={item.id} className="check-list-item">
+            <label>
               <input
                 type="checkbox"
-                checked={checkboxStatus[el.id]}
-                onChange={() => handleToggleCheckbox(el.id)}
+                checked={item.checked}
+                onChange={handleCheckboxChange(index)}
+                className="checkbox"
               />
-            </button>
-          ))}
-        </div>
+              {item.name}
+            </label>
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
-export default AdministrativeModal;
+export default CheckListModal;

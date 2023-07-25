@@ -1,4 +1,4 @@
-.administrative-modal-container {
+.check-list-modal-container {
   width: 100vw;
   height: 90vh;
   padding: 1rem;
@@ -9,27 +9,30 @@
   left: 0;
   z-index: 20;
   text-shadow: 0 0 5px #000000;
-  .administrative-modal-header {
+
+  .check-list-modal-header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     font-size: 2rem;
     gap: 2rem;
     padding: 1rem;
-    .return-button-modal-administrative {
+
+    .return-button-modal {
       background-color: transparent;
       color: white;
+
       .fi-rr-arrow-circle-left {
         font-size: 2rem;
       }
     }
   }
-  .administrative-modal-title {
+
+  .modal-title {
     display: flex;
     border-radius: 14px;
     height: 70px;
-
-    background-color: var(--button-administrative);
+    background-color: #7265e3;
     color: white;
     align-items: center;
     justify-content: center;
@@ -38,75 +41,35 @@
     text-shadow: black 1px 1px 10px;
     margin-bottom: 1rem;
   }
-  .administrative-modal-list {
+
+  .check-list-modal-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     line-height: 1.5rem;
     gap: 1.5rem;
     padding: 1rem 2rem;
     font-size: 1.1rem;
-    .grid-container {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      width: 20rem;
-      margin: 0 auto;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    .checkbox {
+      margin-right: 1rem;
     }
 
-    .large-image {
-      width: 95%;
-      height: auto;
+    .note {
+      color: rgba(255, 255, 255, 0.538);
+      margin-left: 29px;
+      font-size: 0.8rem;
     }
 
-    .small-images {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .small-images img {
-      width: 95%;
-      height: auto;
-    }
-
-    .card-container {
-      display: flex;
-      // justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    .card-container-list {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: center;
-      align-items: center;
-      background-color: transparent;
-      width: 20rem;
-
-      p {
-        font-size: 0.8rem;
-        color: white;
-      }
-
-      .time-ressource {
-        color: #9c9db9;
-      }
-
-      .Img-ressource-container {
-        width: 100px;
-        padding: 7px;
-      }
-
-      .Img-ressource {
-        width: 100%;
-      }
-    }
-    .card-title {
-      width: 25rem;
-      text-align: start;
+    .check-list-item {
+      width: 100%;
     }
   }
 
   @media (min-width: 1024px) {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 55vh;
@@ -117,16 +80,26 @@
     top: auto;
     left: auto;
     border-radius: 20px;
-    border: var(--button-administrative) 1px solid;
-    box-shadow: 0 0 5px var(--button-administrative);
+    border: #7265e3 1px solid;
+    box-shadow: 0 0 5px #7265e3;
     text-shadow: 0 0 5px #000000;
     margin: 0 1.8rem 1.8rem 0;
-    .administrative-modal-header {
+
+    .check-list-modal-header {
       display: none;
     }
-    .administrative-modal-title {
-      outline: 2px solid red;
-      display: none;
+
+    .modal-title {
+      background: none;
+      margin-top: 1rem;
+    }
+
+    .check-list-modal-list {
+      .check-list-item {
+        width: 40%;
+        margin-bottom: 1rem;
+        margin-left: 3rem;
+      }
     }
   }
 }

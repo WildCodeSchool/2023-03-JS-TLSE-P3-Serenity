@@ -1012,28 +1012,73 @@ VALUES (
     );
 
 INSERT INTO
-    intervention_ressource(intervention_id, ressource_id)
-VALUES(1, 51);
+    ressource(
+        title,
+        practician_id,
+        theme_ressource_id
+    )
+VALUES ('Kinésithérapeute', 1, 4), ('Psychologue', 1, 4), ('Nutritioniste', 1, 4), ('Infirmière', 1, 4);
 
 INSERT INTO
-    intervention_ressource(intervention_id, ressource_id)
-VALUES(1, 52);
+    ressource(
+        title,
+        url,
+        description,
+        practician_id,
+        theme_ressource_id
+    )
+VALUES (
+        'les ligaments croisés',
+        'http:www.image1.com',
+        'Les ligaments ont pour rôle de relier les deux os d''une articulation afin d''éviter une laxité trop importante de cette dernière, c''est-à-dire qu''elle aille dans tous les sens. Les ligaments participent également à l''''orientation des mouvements de l''articulation. L''insertion des ligaments sur l''''os va donner une structure rigide de l''articulation.',
+        1,
+        1
+    ), (
+        'Comment se deroule mon intervention',
+        'http:www.image2.com',
+        'Lors de l''intervention, le ligament croisé déchiré est stabilisé puis refixé à l''aide d''un fil solide. On procède ensuite à une suture du ligament croisé précédemment déchiré afin de soutenir l''auto-guérison. L''opération a lieu sous arthroscopie et est par conséquent mini-invasive. Les lésions associées (déchirure du ménisque ou lésion du cartilage) peuvent être traitées lors de la même opération.',
+        1,
+        1
+    ),(
+        'Etre à jeun ',
+        'http:www.image3.com',
+        'ne rien boire, ni manger (même pas un chewing-gum), ni fumer, durant les 8 heures qui précèdent l''intervention',
+        1,
+        3
+    ),(
+        'Consigne pour prendre préoperatoire',
+        'http:www.image4.com',
+        'une douche si possible avec un savon désinfectant, type « bétadine », selon la prescription médicale
+ 
+Les étapes à suivre pour une douche pré-opératoire efficace :
+Enlever le vernis, couper et curer les ongles.
+Se mouiller le corps et les cheveux.
+Appliquer le savon antiseptique - Commencer par les cheveux.
+Faire mousser jusqu’à ce que la mousse blanchisse. 
+Laver le visage et le cou en insistant derrière les oreilles.
+Insister sur les aisselles, le nombril, les plis de l’aine et les pieds.
+Savonner en dernier la région génitale, puis anale.
+Rincer de haut en bas. Renouveler la toilette (étapes 2 à 8), puis rincer.
+Se sécher avec un serviette propre, mettre des vêtements propres.',
+        1,
+        3
+    ), (
+        'Quelques conseils pré-operatoires',
+        'http:www.image4.com',
+        'Vous devez réaliser la préparation cutanée conformément au document qui vous a été remis par votre chirurgien. 
 
+Attention, le rasage au rasoir mécanique du site opératoire est interdit ; il entraîne nécessairement le report de votre intervention. 
+Les ongles des mains et des pieds doivent être brossés et sans vernis à ongles. 
+Les bijoux sont interdits (y compris les piercings) ainsi que le maquillage. 
+Vous devez arriver avec les dents brossées, les cheveux propres et attachés.',
+        1,
+        3
+    );
+
+INSERT INTO ressource(title,practician_id,theme_ressource_id) VALUES('Compléter l''espace ''Mon compte''',1,2),('Votre retour de mutuel',1,2),('consentement éclairé',1,2),('consultation pré-anesthésique',1,2);
 INSERT INTO
     intervention_ressource(intervention_id, ressource_id)
-VALUES(1, 53);
-INSERT INTO
-    intervention_ressource(intervention_id, ressource_id)
-VALUES(1, 54);
-
-INSERT INTO
-    intervention_ressource(intervention_id, ressource_id)
-VALUES(1, 55);
-
-INSERT INTO
-    intervention_ressource(intervention_id, ressource_id)
-VALUES(1, 56);
-
+VALUES (1, 51), (1, 52), (1, 53), (1, 54), (1, 55), (1, 56), (1, 57), (1, 58), (1, 59), (1, 60), (1, 61), (1, 62), (1, 63), (1, 64), (1, 65), (1, 66), (1, 67), (1, 68), (1, 69);
 
 INSERT INTO
     patient_intervention_ressource(
@@ -1041,44 +1086,4 @@ INSERT INTO
         intervention_ressource_ressource_id,
         is_done
     )
-VALUES(1, 51, 0);
-
-INSERT INTO
-    patient_intervention_ressource(
-        intervention_patient_id,
-        intervention_ressource_ressource_id,
-        is_done
-    )
-VALUES(1, 52, 0);
-
-INSERT INTO
-    patient_intervention_ressource(
-        intervention_patient_id,
-        intervention_ressource_ressource_id,
-        is_done
-    )
-VALUES(1, 53, 0);
-
-INSERT INTO
-    patient_intervention_ressource(
-        intervention_patient_id,
-        intervention_ressource_ressource_id,
-        is_done
-    )
-VALUES(1, 54, 0);
-
-INSERT INTO
-    patient_intervention_ressource(
-        intervention_patient_id,
-        intervention_ressource_ressource_id,
-        is_done
-    )
-VALUES(1, 55, 0);
-
-INSERT INTO
-    patient_intervention_ressource(
-        intervention_patient_id,
-        intervention_ressource_ressource_id,
-        is_done
-    )
-VALUES(1, 56, 0);
+VALUES (1, 51, 0), (1, 52, 0), (1, 53, 0), (1, 54, 0), (1, 55, 0), (1, 56, 0), (1, 57, 0), (1, 58, 0), (1, 59, 0), (1, 60, 0), (1, 61, 0), (1, 62, 0), (1, 63, 0), (1, 64, 0), (1, 65, 0), (1, 66, 0), (1, 67, 0), (1, 68, 0), (1, 69, 0);

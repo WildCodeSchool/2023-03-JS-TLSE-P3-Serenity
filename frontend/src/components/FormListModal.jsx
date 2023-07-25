@@ -159,16 +159,32 @@ function FormListModal() {
     Swal.fire({
       background: "#242731",
       title: "Informations de la requête",
-      html: `
+      html: `<div class="info-request">
         <p>Utilisateur: ${form.user_type}</p><br>
         <p>Objet: ${form.request_type}</p><br>
-        <p>Requête:<br> ${form.request}</p><br>
+        <p>Requête:<br><br> <p class="request-form">${form.request}</p></p><br>
         <p>Date: ${new Date(form.create_time).toLocaleDateString()}</p>
+      </div>
       `,
       showCancelButton: false,
       confirmButtonText: "Fermer",
     });
     updateFormCheckbox(form.id, "is_read", true);
+
+    axios
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/admins/forms/${form.id}`,
+        { is_read: true },
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
+      )
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
