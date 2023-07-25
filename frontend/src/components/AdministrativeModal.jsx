@@ -1,13 +1,45 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import StateContext from "../contexts/StateContext";
+import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import "../styles/AdministrativeModal.scss";
-import img3 from "../assets/img-1.png";
+import img3 from "../assets/picture.png";
 
 function AdministrativeModal() {
+  const { userToken, userInfo } = useContext(AuthFunctionContext);
+  const [understandData, setUnderstandData] = useState([]);
+  const { role } = userInfo;
   const { setActiveTheme } = useContext(StateContext);
-
+  const [checkboxStatus, setCheckboxStatus] = useState({});
   const handleReturnButtonClick = () => {
     setActiveTheme(null);
+  };
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/patients/ressource`, {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+          Role: `${role}`,
+        },
+      })
+      .then((response) => {
+        setUnderstandData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const filteredData = understandData.filter(
+    (data) => data.theme === "Préparation"
+  );
+
+  const handleToggleCheckbox = (id) => {
+    setCheckboxStatus((prevStatus) => ({
+      ...prevStatus,
+      [id]: !prevStatus[id], // Basculez le statut de la checkbox pour l'ID donné
+    }));
   };
 
   return (
@@ -26,44 +58,21 @@ function AdministrativeModal() {
         Finir les démarches administratives
       </h2>
       <div className="administrative-modal-list">
-        <p>Quelques documents</p>
+        <p>Quelques documents a preparer</p>
         <div className="card-container">
-          <div className="card-container-list">
-            <div>
-              <p className="card-title">Fiches administratives</p>
-              <p className="time-ressource">15 minutes</p>
-            </div>
-            <div className="Img-ressource-container">
-              <img alt="" className="Img-ressource" src={img3} />
-            </div>
-          </div>
-          <div className="card-container-list">
-            <div>
-              <p className="card-title">Consentement éclairé</p>
-              <p className="time-ressource">15 minutes</p>
-            </div>
-            <div className="Img-ressource-container">
-              <img alt="" className="Img-ressource" src={img3} />
-            </div>
-          </div>
-          <div className="card-container-list">
-            <div>
-              <p className="card-title">Votre retour mutuelle</p>
-              <p className="time-ressource">15 minutes</p>
-            </div>
-            <div className="Img-ressource-container">
-              <img alt="" className="Img-ressource" src={img3} />
-            </div>
-          </div>
-          <div className="card-container-list">
-            <div>
-              <p className="card-title">Votre anesthésite</p>
-              <p className="time-ressource">15 minutes</p>
-            </div>
-            <div className="Img-ressource-container">
-              <img alt="" className="Img-ressource" src={img3} />
-            </div>
-          </div>
+          {filteredData.map((el) => (
+            <button type="button" className="card-container-list">
+              <p className="card-title">{el.title}</p>
+              <div className="Img-ressource-container">
+                <img alt="" className="Img-ressource" src={img3} />
+              </div>
+              <input
+                type="checkbox"
+                checked={checkboxStatus[el.id]}
+                onChange={() => handleToggleCheckbox(el.id)}
+              />
+            </button>
+          ))}
         </div>
       </div>
     </div>

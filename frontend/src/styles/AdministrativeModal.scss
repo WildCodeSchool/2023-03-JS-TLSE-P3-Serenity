@@ -70,17 +70,20 @@
 
     .card-container {
       display: flex;
-      justify-content: space-between;
+      // justify-content: space-between;
       flex-wrap: wrap;
     }
     .card-container-list {
       display: flex;
-      flex-direction: column-reverse;
+      flex-direction: row-reverse;
       justify-content: center;
       align-items: center;
+      background-color: transparent;
+      width: 20rem;
 
       p {
         font-size: 0.8rem;
+        color: white;
       }
 
       .time-ressource {
@@ -95,6 +98,10 @@
       .Img-ressource {
         width: 100%;
       }
+    }
+    .card-title {
+      width: 25rem;
+      text-align: start;
     }
   }
 
@@ -122,9 +129,4 @@
       display: none;
     }
   }
-}
-
-p {
-  margin: 0 auto;
-  padding-left: 14px;
 }

@@ -4,6 +4,7 @@ const router = express.Router();
 
 const interventionController = require("./controllers/interventionController");
 const ressourceCountController = require("./controllers/ressourceCountController");
+const ressource = require("./controllers/ressourceController");
 const admins = require("./controllers/adminControllers");
 const practicianControllers = require("./controllers/PraticianControllers");
 const patients = require("./controllers/PatientControllers");
@@ -70,7 +71,8 @@ router.get(
   verifyAdminRole,
   ressourceCountController.getRessourceCount
 );
-
+// get all ressource for patients
+router.get("/patients/ressource", ressource.getAllRessource);
 router.put(
   "/admins/:id",
   verifyToken,
