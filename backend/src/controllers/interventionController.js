@@ -21,7 +21,36 @@ const getPatientIntervention = (req, res) => {
   models.intervention
     .getPatientIntervention(patientId)
     .then((result) => {
-      res.json(result);
+      res.sendStatus(200).json(result);
+    })
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+};
+
+const getPracticianIntervention = (req, res) => {
+  const practicianId = req.params.id;
+  models.intervention
+    .getAllPracticianIntervention(practicianId)
+    .then(([result]) => {
+      if (result.length) {
+        res.status(200).json(result);
+      } else {
+        res.sendStatus(404);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const deleteIntervention = (req, res) => {
+  const { interventionId } = req.params;
+  models.intervention
+    .delete(interventionId)
+    .then((result) => {
+      res.status(200).json(result);
     })
     .catch((error) => {
       res.status(500).send(error);
@@ -31,4 +60,6 @@ const getPatientIntervention = (req, res) => {
 module.exports = {
   getInterventionCount,
   getPatientIntervention,
+  getPracticianIntervention,
+  deleteIntervention,
 };

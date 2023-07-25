@@ -153,6 +153,21 @@ router.delete(
   uploadControllers.destroy
 );
 
+// routes for intervention
+router.get(
+  "/practicians/:id/interventions",
+  verifyToken,
+  checkId,
+  interventionController.getPracticianIntervention
+);
+
+router.delete(
+  "/practicians/:id/interventions/:interventionId",
+  verifyToken,
+  checkId,
+  interventionController.deleteIntervention
+);
+
 // route "form"
 router.get("/admins/forms/", formControllers.getListOfAllForm);
 router.get("/admins/forms/:id", formControllers.getFormById);

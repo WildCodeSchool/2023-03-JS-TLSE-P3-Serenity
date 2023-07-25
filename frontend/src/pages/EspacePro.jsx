@@ -10,6 +10,7 @@ import PatientListModal from "../components/PatientListModal";
 import AccountPracticianModal from "../components/AccountPracticianModal";
 import SendForm from "../components/SendForm";
 import RessourcesModal from "../components/RessourcesModal";
+import InterventionsModal from "../components/InterventionsModal";
 
 export default function EspacePro() {
   const navigate = useNavigate();
@@ -56,6 +57,9 @@ export default function EspacePro() {
       break;
     case "Mon Compte":
       CurrentModalePractician = <AccountPracticianModal />;
+      break;
+    case "Interventions":
+      CurrentModalePractician = <InterventionsModal />;
       break;
     case "Ressources":
       CurrentModalePractician = <RessourcesModal />;
