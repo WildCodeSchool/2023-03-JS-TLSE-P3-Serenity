@@ -91,14 +91,18 @@ function ModalAddRessource({ closeModal, theme }) {
 
   return (
     <div className="modal-add-ressource-container">
-      <button type="button" onClick={() => closeModal()}>
-        <i className="fi fi-rr-cross" />
-      </button>
       <form
         onSubmit={handleValidateAddRessource}
         className="global-add-ressource-form"
         encType="multipart/form-data"
       >
+        <button
+          type="button"
+          className="close-button"
+          onClick={() => closeModal()}
+        >
+          <i className="fi fi-rr-cross" />
+        </button>
         <div className="add-ressource-input-container">
           <div className="ressource-title-label-input">
             <label htmlFor="title">Titre de la ressource</label>

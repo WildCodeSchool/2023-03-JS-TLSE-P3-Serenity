@@ -130,6 +130,7 @@ router.post(
 // upload ressource on cloudinary
 router.post(
   "/upload/ressources",
+  verifyToken,
   upload.single("ressource-file"),
   uploadControllers.uploadRessource
 );
@@ -137,8 +138,7 @@ router.post(
 // delete ressource on cloudinary
 router.delete(
   "/delete/ressources/:nameRessourceToDelete",
-  // verifyToken,
-  // checkId,
+  verifyToken,
   uploadControllers.destroy
 );
 

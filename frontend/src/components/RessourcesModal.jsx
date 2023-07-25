@@ -104,7 +104,13 @@ function RessourcesModal() {
           .delete(
             `${
               import.meta.env.VITE_BACKEND_URL
-            }/delete/ressources/${nameRessourceToDelete}`
+            }/delete/ressources/${nameRessourceToDelete}`,
+            {
+              headers: {
+                Authorization: `Bearer ${userToken}`,
+                Role: `${role}`,
+              },
+            }
           )
           .catch((error) => console.error(error));
         setRessourcesChange(!ressourcesChange);
@@ -193,10 +199,10 @@ function RessourcesModal() {
         >
           Ajouter ressource
         </button>
-        {showModal && (
-          <ModalAddRessource closeModal={closeModal} theme={activeTheme} />
-        )}
       </div>
+      {showModal && (
+        <ModalAddRessource closeModal={closeModal} theme={activeTheme} />
+      )}
     </div>
   ) : (
     <p>Chargement...</p>
