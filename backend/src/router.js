@@ -107,12 +107,13 @@ router.get(
 
 router.get(
   "/patients/ressourceintervention/:id",
-  ressourceController.patientInterventionRessource,
-  verifyToken
+  verifyToken,
+  ressourceController.patientInterventionRessource
 );
 
 router.put(
   "/patients/ressourceintervention/:id",
+  verifyToken,
   ressourceController.updatePatientInterventionRessource
 );
 // route "managing ressource"
