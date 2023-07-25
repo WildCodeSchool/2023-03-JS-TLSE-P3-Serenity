@@ -209,3 +209,9 @@
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .container-list-info {
+    max-height: 60%;
+  }
+}

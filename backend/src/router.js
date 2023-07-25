@@ -1,15 +1,21 @@
 const express = require("express");
 
+const multer = require("multer");
+
+// ressource file destination
+const upload = multer({ dest: "./public/uploads/" });
+
 const router = express.Router();
 
 const interventionController = require("./controllers/interventionController");
-const ressourceCountController = require("./controllers/ressourceCountController");
+const ressourceController = require("./controllers/ressourceController");
 const ressource = require("./controllers/ressourceController");
 const admins = require("./controllers/adminControllers");
 const practicianControllers = require("./controllers/PraticianControllers");
 const patients = require("./controllers/PatientControllers");
 const formControllers = require("./controllers/FormControllers");
 const mailControllers = require("./controllers/mailControllers");
+const uploadControllers = require("./controllers/uploadControllers");
 
 const {
   hashPassword,
@@ -69,7 +75,7 @@ router.get(
   "/admins/practicians/countressource/:id",
   verifyToken,
   verifyAdminRole,
-  ressourceCountController.getRessourceCount
+  ressourceController.getRessourceCount
 );
 // get all ressource for patients
 router.get("/patients/ressource", ressource.getAllRessource);
@@ -99,6 +105,54 @@ router.get(
   verifyToken,
   checkId,
   patients.getPracticianInfoByIdPatient
+);
+
+router.get(
+  "/patients/ressourceintervention/:id",
+  verifyToken,
+  ressourceController.patientInterventionRessource
+);
+
+router.put(
+  "/patients/ressourceintervention/:id",
+  verifyToken,
+  ressourceController.updatePatientInterventionRessource
+);
+// route "managing ressource"
+router.get(
+  "/ressources/practicians/:id",
+  verifyToken,
+  checkId,
+  ressourceController.getRessources
+);
+
+router.delete(
+  "/practicians/:id/ressources/:ressourceId",
+  verifyToken,
+  checkId,
+  ressourceController.deleteRessource
+);
+
+router.post(
+  "/practicians/:id/ressources",
+  verifyToken,
+  checkId,
+  ressourceController.addRessource
+);
+
+// upload ressource on cloudinary
+router.post(
+  "/upload/ressources",
+  verifyToken,
+  upload.single("ressource-file"),
+  uploadControllers.uploadRessource
+);
+
+// delete ressource on cloudinary
+router.delete(
+  "/delete/ressources/:nameRessourceToDelete",
+  verifyToken,
+  uploadControllers.destroy
 );
 
 // route "form"

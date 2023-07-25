@@ -185,9 +185,11 @@ CREATE TABLE
 
 CREATE TABLE
     IF NOT EXISTS `serenity`.`patient_intervention_ressource` (
+        `id` INT NOT NULL AUTO_INCREMENT,
         `intervention_patient_id` INT NOT NULL,
         `intervention_ressource_ressource_id` INT NOT NULL,
         `is_done` TINYINT NOT NULL,
+        PRIMARY KEY (`id`),
         CONSTRAINT `fk_intervention_patient_has_intervention_ressource_descriptio1` FOREIGN KEY (
             `intervention_ressource_ressource_id`
         ) REFERENCES `serenity`.`intervention_ressource` (`ressource_id`),
@@ -441,7 +443,12 @@ INSERT INTO
         anesthesia,
         practician_id
     )
-VALUES ('Opération des ligaments croisés gauche', '1h', 'AG', 1), ('intervention2', '5h', 'AL', 2), (
+VALUES (
+        'Opération des ligaments croisés gauche',
+        '1h',
+        'AG',
+        1
+    ), ('intervention2', '5h', 'AL', 2), (
         'intervention3',
         '2h30',
         'Aucune',
@@ -516,23 +523,20 @@ VALUES (
         '0612345678',
         'patient'
     );
+
 -- -----------------------------------------------------
 
 -- INSERT INTO 'intervention_patient'
 
 -- -----------------------------------------------------
+
 INSERT INTO
     intervention_patient(
         intervention_id,
         patient_id,
         intervention_date
     )
-VALUES (
-        1,
-        1,
-        '2023-07-04'
-    );
-
+VALUES (1, 1, '2023-07-04');
 
 -- -----------------------------------------------------
 
@@ -910,3 +914,171 @@ VALUES (
         1,
         4
     );
+
+INSERT INTO
+    ressource(
+        title,
+        `type`,
+        description,
+        practician_id,
+        theme_ressource_id
+    )
+VALUES (
+        'Carte d''identité',
+        'checkbox',
+        'Obligatoire',
+        1,
+        5
+    );
+
+INSERT INTO
+    ressource(
+        title,
+        `type`,
+        description,
+        practician_id,
+        theme_ressource_id
+    )
+VALUES (
+        'Carte vitale',
+        'checkbox',
+        'Obligatoire',
+        1,
+        5
+    );
+
+INSERT INTO
+    ressource(
+        title,
+        `type`,
+        description,
+        practician_id,
+        theme_ressource_id
+    )
+VALUES (
+        'Moyen de paiement',
+        'checkbox',
+        'Obligatoire',
+        1,
+        5
+    );
+
+INSERT INTO
+    ressource(
+        title,
+        description,
+        practician_id,
+        theme_ressource_id,
+        `type`
+    )
+VALUES (
+        'Attestation anesthésiste',
+        'Obligatoire',
+        1,
+        5,
+        'checkbox'
+    );
+
+INSERT INTO
+    ressource(
+        title,
+        `type`,
+        description,
+        practician_id,
+        theme_ressource_id
+    )
+VALUES (
+        'Carnet de vaccination',
+        'checkbox',
+        'Obligatoire et à jour',
+        1,
+        5
+    );
+
+INSERT INTO
+    ressource(
+        title,
+        `type`,
+        description,
+        practician_id,
+        theme_ressource_id
+    )
+VALUES (
+        'Attestation mutuelle',
+        'checkbox',
+        'Si possédé',
+        1,
+        5
+    );
+
+INSERT INTO
+    intervention_ressource(intervention_id, ressource_id)
+VALUES(1, 51);
+
+INSERT INTO
+    intervention_ressource(intervention_id, ressource_id)
+VALUES(1, 52);
+
+INSERT INTO
+    intervention_ressource(intervention_id, ressource_id)
+VALUES(1, 53);
+INSERT INTO
+    intervention_ressource(intervention_id, ressource_id)
+VALUES(1, 54);
+
+INSERT INTO
+    intervention_ressource(intervention_id, ressource_id)
+VALUES(1, 55);
+
+INSERT INTO
+    intervention_ressource(intervention_id, ressource_id)
+VALUES(1, 56);
+
+
+INSERT INTO
+    patient_intervention_ressource(
+        intervention_patient_id,
+        intervention_ressource_ressource_id,
+        is_done
+    )
+VALUES(1, 51, 0);
+
+INSERT INTO
+    patient_intervention_ressource(
+        intervention_patient_id,
+        intervention_ressource_ressource_id,
+        is_done
+    )
+VALUES(1, 52, 0);
+
+INSERT INTO
+    patient_intervention_ressource(
+        intervention_patient_id,
+        intervention_ressource_ressource_id,
+        is_done
+    )
+VALUES(1, 53, 0);
+
+INSERT INTO
+    patient_intervention_ressource(
+        intervention_patient_id,
+        intervention_ressource_ressource_id,
+        is_done
+    )
+VALUES(1, 54, 0);
+
+INSERT INTO
+    patient_intervention_ressource(
+        intervention_patient_id,
+        intervention_ressource_ressource_id,
+        is_done
+    )
+VALUES(1, 55, 0);
+
+INSERT INTO
+    patient_intervention_ressource(
+        intervention_patient_id,
+        intervention_ressource_ressource_id,
+        is_done
+    )
+VALUES(1, 56, 0);

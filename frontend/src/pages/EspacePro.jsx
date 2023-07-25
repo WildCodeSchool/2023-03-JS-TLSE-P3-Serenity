@@ -8,6 +8,8 @@ import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import HeaderLocation from "../components/HeaderLocation";
 import PatientListModal from "../components/PatientListModal";
 import AccountPracticianModal from "../components/AccountPracticianModal";
+import SendForm from "../components/SendForm";
+import RessourcesModal from "../components/RessourcesModal";
 
 export default function EspacePro() {
   const navigate = useNavigate();
@@ -55,7 +57,11 @@ export default function EspacePro() {
     case "Mon Compte":
       CurrentModalePractician = <AccountPracticianModal />;
       break;
+    case "Ressources":
+      CurrentModalePractician = <RessourcesModal />;
+      break;
     case "Formulaire":
+      CurrentModalePractician = <SendForm />;
       break;
     case "A propos":
       CurrentModalePractician = <AboutUs />;

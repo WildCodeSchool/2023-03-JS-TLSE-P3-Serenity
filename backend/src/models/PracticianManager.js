@@ -46,5 +46,4 @@ class PracticianManager extends AbstractManager {
     );
   }
 }
-
 module.exports = PracticianManager;
