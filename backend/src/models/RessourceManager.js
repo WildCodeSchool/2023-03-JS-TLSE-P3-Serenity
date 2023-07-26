@@ -20,12 +20,6 @@ class RessourceManager extends AbstractManager {
     );
   }
 
-  getAllRessource() {
-    return this.database.query(
-      `select r.title,r.type,r.url,r.description,t.theme,p.firstname, p.lastname from  ${this.table} as r inner join practician as p on r.practician_id=p.id left outer join theme_ressource as t on r.theme_ressource_id=t.id where practician_id=1`
-    );
-  }
-
   updatePatientInterventionRessource(id, is_done) {
     return this.database.query(
       `UPDATE patient_intervention_ressource SET is_done = ? WHERE id = ?`,
