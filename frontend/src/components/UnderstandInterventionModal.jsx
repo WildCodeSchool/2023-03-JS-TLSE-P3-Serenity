@@ -1,16 +1,51 @@
 import "../styles/UnderstandInterventionModal.scss";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+import AuthFunctionContext from "../contexts/AuthFunctionContext";
 import StateContext from "../contexts/StateContext";
-import imglarge from "../assets/photo-1.svg";
-import img2 from "../assets/photo-2.png";
-import img3 from "../assets/img-1.png";
+import img2 from "../assets/picture.png";
 
 function UnderstandInterventionModal() {
+  const { userToken, userInfo } = useContext(AuthFunctionContext);
+  const [understandData, setUnderstandData] = useState([]);
+  const { role, id } = userInfo;
   const { setActiveTheme } = useContext(StateContext);
+  const [, setSelectedData] = useState(null);
 
-  const handleReturnButtonClick = () => {
+  const handleReturnButtonClickModalUnderstand = () => {
     setActiveTheme(null);
   };
+
+  const handleshowModalUnderstand = (image) => {
+    setSelectedData(image);
+    Swal.fire({
+      background: "#242731",
+      title: image.title,
+      text: image.description,
+      imageAlt: "",
+    });
+  };
+  useEffect(() => {
+    axios
+      .get(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/patients/ressourceintervention/${id}?theme_id=1`,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
+      )
+      .then((response) => {
+        setUnderstandData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <div className="understand-modal-container">
@@ -18,7 +53,7 @@ function UnderstandInterventionModal() {
         <button
           type="button"
           className="return-button-modal-understand"
-          onClick={handleReturnButtonClick}
+          onClick={handleReturnButtonClickModalUnderstand}
         >
           <i className="fi fi-rr-arrow-circle-left" />
         </button>
@@ -26,35 +61,20 @@ function UnderstandInterventionModal() {
       </div>
       <h2 className="understand-modal-title">Comprendre mon opération</h2>
       <div className="understand-modal-list">
-        <p>Schémas et documentations</p>
-        <div className="grid-container">
-          <img className="large-image" src={imglarge} alt="" />
-          <div className="small-images">
-            <img src={img2} alt="" />
-            <img src={img2} alt="" />
-          </div>
-        </div>
-        <p>Les videos du Dr</p>
-        <div className="card-container">
-          <div className="card-container-list">
-            <div>
-              <p className="card-title">Mon chirurgien me parle des croisées</p>
-              <p className="time-ressource">3minutes</p>
+        <h3>Tout comprendre sur mon opération c'est par ici !</h3>
+        {understandData.map((el) => (
+          <button
+            type="button"
+            className="image-container"
+            key={el.title}
+            onClick={() => handleshowModalUnderstand(el)}
+          >
+            <div className="small-images">
+              <img src={img2} alt="logo" />
             </div>
-            <div className="Img-ressource-container">
-              <img alt="" className="Img-ressource" src={img3} />
-            </div>
-          </div>
-          <div className="card-container-list">
-            <div>
-              <p className="card-title">Mon chirurgien me parle des croisées</p>
-              <p className="time-ressource">3minutes</p>
-            </div>
-            <div className="Img-ressource-container">
-              <img alt="" className="Img-ressource" src={img3} />
-            </div>
-          </div>
-        </div>
+            <p>{el.title}</p>
+          </button>
+        ))}
       </div>
     </div>
   );
