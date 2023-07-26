@@ -26,9 +26,9 @@ function ButtonaddPatient() {
     const form = event.target;
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
-    axios
-      .post(
-        `${import.meta.env.VITE_BACKEND_URL}/admins/practicians/`,
+    Promise.all([
+      axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/practicians/patients/`,
         formJson,
         {
           headers: {
@@ -36,10 +36,25 @@ function ButtonaddPatient() {
             Role: `${role}`,
           },
         }
-      )
+      ),
+      axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/practicians/patients/mail`,
+        formJson,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            Role: `${role}`,
+          },
+        }
+      ),
+    ])
       .then(() => {
         // Updates status to indicate successful submission
         setShowSuccessMessageAdd(true); // Displays success message
+        setTimeout(() => {
+          setShow(false);
+          setShowSuccessMessageAdd(false);
+        }, 1000);
       })
       .catch((error) => {
         // Handle API request or response errors
@@ -126,23 +141,7 @@ function ButtonaddPatient() {
                 required
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="Buttonadd.ControlInput4">
-              <Form.Label>Numéro ADELI</Form.Label>
-              <Form.Control
-                type="text"
-                name="adeli_number"
-                placeholder="12345678"
-                autoFocus
-                maxLength={9}
-                required
-              />
-            </Form.Group>
-            <input
-              type="hidden"
-              name="hashed_password"
-              value={generatePassword()}
-            />
-            <input type="hidden" name="administrator_id" value={1} />
+            <input type="hidden" name="password" value={generatePassword()} />
             <Modal.Footer>
               {showSuccessMessageAdd && (
                 <span className="success-message">Ajout effectué !</span>
