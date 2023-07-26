@@ -136,7 +136,7 @@ function SendForm() {
             feedbackType="invalid"
           />
         </Form.Group>
-        <Button type="submit">Submit form</Button>
+        <Button type="submit">Envoyer ma requête</Button>
       </Form>
     </div>
   );
