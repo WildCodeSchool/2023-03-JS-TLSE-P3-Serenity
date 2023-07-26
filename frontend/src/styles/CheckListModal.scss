@@ -51,9 +51,12 @@
     font-size: 1.1rem;
     flex-wrap: wrap;
     align-items: flex-start;
-
+    justify-content: space-evenly;
     .checkbox {
       margin-right: 1rem;
+      accent-color: var(--button-checklist);
+      width: 18px;
+      height: 18px;
     }
 
     .note {
@@ -64,6 +67,10 @@
 
     .check-list-item {
       width: 100%;
+      label {
+        display: flex;
+        align-items: center;
+      }
     }
   }
 
@@ -80,8 +87,7 @@
     top: auto;
     left: auto;
     border-radius: 20px;
-    border: #7265e3 1px solid;
-    box-shadow: 0 0 5px #7265e3;
+    border: var(--button-checklist) 2px solid;
     text-shadow: 0 0 5px #000000;
     margin: 0 1.8rem 1.8rem 0;
 
