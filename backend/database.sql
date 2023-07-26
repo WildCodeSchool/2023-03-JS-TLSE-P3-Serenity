@@ -126,7 +126,7 @@ CREATE TABLE
         `patient_id` INT NOT NULL,
         `intervention_date` DATE NOT NULL,
         PRIMARY KEY (`id`),
-        CONSTRAINT `fk_intervention_has_patient_intervention1` FOREIGN KEY (`intervention_id`) REFERENCES `serenity`.`intervention` (`id`),
+        CONSTRAINT `fk_intervention_has_patient_intervention1` FOREIGN KEY (`intervention_id`) REFERENCES `serenity`.`intervention` (`id`) ON DELETE CASCADE,
         CONSTRAINT `fk_intervention_has_patient_patient1` FOREIGN KEY (`patient_id`) REFERENCES `serenity`.`patient` (`id`) ON DELETE CASCADE
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -229,9 +229,9 @@ INSERT INTO
 VALUES (
         '12345678',
         '$argon2id$v=19$m=65536,t=5,p=1$lgQhMd6/YI8RXwZQrt1VMA$oBtHiEp7JSwbC+H8aVkORWC2ycR5fln8a2CrKvPT9pQ',
-        '1@1.com',
-        'Super',
-        'Administrateur',
+        'christophe@kobalski.com',
+        'Christophe',
+        'Kobalski',
         'admin'
     );
 
@@ -258,9 +258,9 @@ VALUES (
         '$argon2id$v=19$m=65536,t=5,p=1$lgQhMd6/YI8RXwZQrt1VMA$oBtHiEp7JSwbC+H8aVkORWC2ycR5fln8a2CrKvPT9pQ',
         'Louis',
         'Pasteur',
-        '1P@1.com',
-        'test1',
-        '123456789',
+        'louis@pasteur.com',
+        'Chirurgien',
+        '0634567890',
         1,
         "practician"
     );
@@ -288,11 +288,11 @@ VALUES(
             FROM
                 1 FOR 9
         ),
-        'test2P',
-        'test2P',
-        '2P@2.com',
-        'test2',
-        '123456789',
+        'Marie',
+        'Strognoff',
+        'marie@strognoff.com',
+        'Neurochirurgienne',
+        '0123456789',
         1,
         "practician"
     );
@@ -320,11 +320,11 @@ VALUES(
             FROM
                 1 FOR 9
         ),
-        'test3P',
-        'test3P',
-        '3P@3.com',
-        'test3',
-        '123456789',
+        'Rodolphe',
+        'Krueger',
+        'rodolphe@krueger.com',
+        'Cardiologue',
+        '0123459090',
         1,
         "practician"
     );
@@ -448,21 +448,26 @@ VALUES (
         '1h',
         'AG',
         1
-    ), ('intervention2', '5h', 'AL', 2), (
-        'intervention3',
+    ), ('Abblation de l''apendice', '2h', 'AL', 1), (
+        'Opération de la cataracte',
+        '1h30',
+        'AG',
+        1
+    ), (
+        'Arthroscopie du genou',
         '2h30',
-        'Aucune',
-        3
+        'AG',
+        1
+    ), ('Chirurgie des varices',
+        '2h30',
+        'AG',
+        1
+    ), (
+        'Déviation de la cloison nasale',
+        '1h45',
+        'AL',
+        1
     );
-
-INSERT INTO
-    intervention(
-        name,
-        duration,
-        anesthesia,
-        practician_id
-    )
-VALUES ('intervention4', '1h', 'AG', 1);
 
 -- -----------------------------------------------------
 
@@ -480,49 +485,33 @@ INSERT INTO
         role
     )
 VALUES (
-        'patient1@patient1.com',
+        'fabrice@coulon.com',
         '$argon2id$v=19$m=65536,t=5,p=1$lgQhMd6/YI8RXwZQrt1VMA$oBtHiEp7JSwbC+H8aVkORWC2ycR5fln8a2CrKvPT9pQ',
-        'patient1',
-        'patient1',
+        'Fabrice',
+        'Coulon',
         '0612345678',
         'patient'
-    );
-
-INSERT INTO
-    patient(
-        mail,
-        hashed_password,
-        firstname,
-        lastname,
-        phone,
-        role
-    )
-VALUES (
-        'patient2@patient2.com',
-        'test',
-        'patient2',
-        'patient2',
-        '0612345678',
+    ), (
+        'luc@resse.com',
+        '$argon2id$v=19$m=65536,t=5,p=1$lgQhMd6/YI8RXwZQrt1VMA$oBtHiEp7JSwbC+H8aVkORWC2ycR5fln8a2CrKvPT9pQ',
+        'Luc',
+        'Resse',
+        '0634567890',
         'patient'
-    );
-
-INSERT INTO
-    patient(
-        mail,
-        hashed_password,
-        firstname,
-        lastname,
-        phone,
-        role
-    )
-VALUES (
-        'patient3@patient3.com',
-        'test',
-        'patient3',
-        'patient3',
-        '0612345678',
+    ), (
+        'marjorie@louparde.com',
+        '$argon2id$v=19$m=65536,t=5,p=1$lgQhMd6/YI8RXwZQrt1VMA$oBtHiEp7JSwbC+H8aVkORWC2ycR5fln8a2CrKvPT9pQ',
+        'Marjorie',
+        'Louparde',
+        '0123456789',
         'patient'
-    );
+    ), (
+        'rene@gossian.com',
+        '$argon2id$v=19$m=65536,t=5,p=1$lgQhMd6/YI8RXwZQrt1VMA$oBtHiEp7JSwbC+H8aVkORWC2ycR5fln8a2CrKvPT9pQ',
+        'René',
+        'Gossian',
+        '0123459090',
+        'patient');
 
 -- -----------------------------------------------------
 

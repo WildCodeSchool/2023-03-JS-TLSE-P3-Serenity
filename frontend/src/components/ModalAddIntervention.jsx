@@ -8,7 +8,7 @@ import StateContext from "../contexts/StateContext";
 
 function ModalAddIntervention({ closeModal }) {
   const { userInfo, userToken } = useContext(AuthFunctionContext);
-  const { interventions, setInterventions } = useContext(StateContext);
+  const { setInterventionAdded } = useContext(StateContext);
   const { id, role } = userInfo;
   const [nameIntervention, setNameIntervention] = useState("");
   const [durationIntervention, setDurationIntervention] = useState("00:00");
@@ -18,12 +18,12 @@ function ModalAddIntervention({ closeModal }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [arrayOfRessources, setArrayOfRessources] = useState([]);
 
-  const handleValidateAddIntervention = (event) => {
+  const handleValidateAddIntervention = (event, linkedRessources) => {
     event.preventDefault();
+    setInterventionAdded(false);
     const form = event.target;
     const formData = new FormData(form);
     const dataFromForm = Object.fromEntries(formData.entries());
-
     axios
       .post(
         `${import.meta.env.VITE_BACKEND_URL}/practicians/${id}/interventions`,
@@ -36,7 +36,25 @@ function ModalAddIntervention({ closeModal }) {
         }
       )
       .then((response) => {
-        setInterventions(...interventions, response.data);
+        const idInter = response.data.id;
+        linkedRessources.map((ressource) =>
+          axios
+            .post(
+              `${
+                import.meta.env.VITE_BACKEND_URL
+              }/practicians/${id}/interventions/${idInter}/ressources`,
+              ressource,
+              {
+                headers: {
+                  Authorization: `Bearer ${userToken}`,
+                  Role: `${role}`,
+                },
+              }
+            )
+            .catch((error) => {
+              console.error(error);
+            })
+        );
         Swal.fire({
           background: "#242731",
           position: "center",
@@ -45,6 +63,7 @@ function ModalAddIntervention({ closeModal }) {
           showConfirmButton: false,
           timer: 1500,
         });
+        setInterventionAdded(true);
         closeModal();
       })
       .catch((error) => {
@@ -146,7 +165,9 @@ function ModalAddIntervention({ closeModal }) {
   return (
     <div className="modal-add-intervention-container">
       <form
-        onSubmit={handleValidateAddIntervention}
+        onSubmit={(event) =>
+          handleValidateAddIntervention(event, arrayOfRessources)
+        }
         className="global-add-intervention-form"
         encType="multipart/form-data"
       >
@@ -190,7 +211,7 @@ function ModalAddIntervention({ closeModal }) {
                   <input
                     type="radio"
                     value="∅"
-                    name="None"
+                    name="anesthesia"
                     checked={anesthesiaChoice === "∅"}
                     onChange={(e) => setAnesthesiaChoice(e.target.value)}
                   />
@@ -200,7 +221,7 @@ function ModalAddIntervention({ closeModal }) {
                   <input
                     type="radio"
                     value="AG"
-                    name="general"
+                    name="anesthesia"
                     checked={anesthesiaChoice === "AG"}
                     onChange={(e) => setAnesthesiaChoice(e.target.value)}
                   />
@@ -210,7 +231,7 @@ function ModalAddIntervention({ closeModal }) {
                   <input
                     type="radio"
                     value="AL"
-                    name="local"
+                    name="anesthesia"
                     checked={anesthesiaChoice === "AL"}
                     onChange={(e) => setAnesthesiaChoice(e.target.value)}
                   />

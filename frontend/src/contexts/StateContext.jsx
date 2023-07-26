@@ -17,6 +17,7 @@ export function StateProvider({ children }) {
 
   const [ressourcesChange, setRessourcesChange] = useState(false);
   const [interventions, setInterventions] = useState([]);
+  const [interventionAdded, setInterventionAdded] = useState(false);
   const isNotDesktop = window.matchMedia("(max-width: 1024px)").matches;
   useEffect(() => {
     if (isNotDesktop) {
@@ -44,6 +45,8 @@ export function StateProvider({ children }) {
       setRessourcesChange,
       interventions,
       setInterventions,
+      interventionAdded,
+      setInterventionAdded,
       isNotDesktop,
     }),
     [
@@ -56,6 +59,7 @@ export function StateProvider({ children }) {
       activeTheme,
       ressourcesChange,
       interventions,
+      interventionAdded,
       isNotDesktop,
     ]
   );

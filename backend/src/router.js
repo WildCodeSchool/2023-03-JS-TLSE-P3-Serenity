@@ -8,6 +8,7 @@ const upload = multer({ dest: "./public/uploads/" });
 const router = express.Router();
 
 const interventionController = require("./controllers/interventionController");
+const interventionRessource = require("./controllers/interventionRessourceController");
 const ressourceController = require("./controllers/ressourceController");
 const admins = require("./controllers/adminControllers");
 const practicianControllers = require("./controllers/PraticianControllers");
@@ -83,6 +84,7 @@ router.put(
   hashPassword,
   admins.modifyAdmin
 );
+// router to send mail to practician
 router.post(
   "/admins/practicians/mail",
   verifyToken,
@@ -160,11 +162,33 @@ router.get(
   interventionController.getPracticianIntervention
 );
 
+router.post(
+  "/practicians/:id/interventions",
+  verifyToken,
+  checkId,
+  interventionController.addPracticianIntervention
+);
+
 router.delete(
   "/practicians/:id/interventions/:interventionId",
   verifyToken,
   checkId,
   interventionController.deleteIntervention
+);
+
+// routes for intervention_ressource
+router.post(
+  "/practicians/:id/interventions/:idInter/ressources",
+  verifyToken,
+  checkId,
+  interventionRessource.addInterventionRessources
+);
+
+router.delete(
+  "/practicians/:id/delete/interventions/:idInter/ressources",
+  verifyToken,
+  checkId,
+  interventionRessource.deleteInterventionRessources
 );
 
 // route "form"
@@ -198,4 +222,16 @@ router.put(
   patients.updatePatient
 );
 
+// router to add patient
+router.post(
+  "/practicians/patients/mail",
+  verifyToken,
+  mailControllers.sendContactMailToPatient
+);
+router.post(
+  "/practicians/patients/",
+  verifyToken,
+  hashPassword,
+  patients.AddPatient
+);
 module.exports = router;

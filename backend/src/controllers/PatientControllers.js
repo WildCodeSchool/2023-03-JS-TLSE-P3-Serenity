@@ -104,6 +104,35 @@ const getPracticianInfoByIdPatient = (req, res) => {
     });
 };
 
+const AddPatient = (req, res) => {
+  const { hashed_password, firstname, lastname, mail } = req.body;
+
+  models.patient
+    .insert({
+      hashed_password,
+      firstname,
+      lastname,
+      mail,
+    })
+    .then(([result]) => {
+      if (result.affectedRows) {
+        res.status(201).json({
+          id: result.insertId,
+          hashed_password,
+          firstname,
+          lastname,
+          mail,
+        });
+      } else {
+        res.sendStatus(400);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   getListOfAllPatients,
   getPatientById,
@@ -111,4 +140,5 @@ module.exports = {
   authenticationPatientCheck,
   updatePatient,
   getPracticianInfoByIdPatient,
+  AddPatient,
 };
