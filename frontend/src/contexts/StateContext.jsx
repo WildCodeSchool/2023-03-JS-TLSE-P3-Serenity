@@ -1,4 +1,4 @@
-import { useMemo, useState, createContext } from "react";
+import { useMemo, useState, createContext, useEffect } from "react";
 import PropTypes from "prop-types";
 
 const StateContext = createContext();
@@ -18,6 +18,12 @@ export function StateProvider({ children }) {
   const [ressourcesChange, setRessourcesChange] = useState(false);
   const [interventions, setInterventions] = useState([]);
   const [interventionAdded, setInterventionAdded] = useState(false);
+  const isNotDesktop = window.matchMedia("(max-width: 1024px)").matches;
+  useEffect(() => {
+    if (isNotDesktop) {
+      setActiveTheme(null);
+    }
+  }, []);
 
   const stateContext = useMemo(
     () => ({
@@ -41,6 +47,7 @@ export function StateProvider({ children }) {
       setInterventions,
       interventionAdded,
       setInterventionAdded,
+      isNotDesktop,
     }),
     [
       linkToActive,
@@ -53,6 +60,7 @@ export function StateProvider({ children }) {
       ressourcesChange,
       interventions,
       interventionAdded,
+      isNotDesktop,
     ]
   );
   return (

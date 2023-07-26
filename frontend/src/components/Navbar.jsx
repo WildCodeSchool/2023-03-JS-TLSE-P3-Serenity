@@ -14,7 +14,9 @@ function navbar() {
     isMenuOpen,
     setIsMenuOpen,
     setActiveModal,
+    activeTheme,
     setActiveTheme,
+    isNotDesktop,
   } = useContext(StateContext);
   const { userInfo, logoutHandler } = useContext(AuthFunctionContext);
   const toggleMenu = () => {
@@ -52,7 +54,11 @@ function navbar() {
         setLinkToActive("Home");
         setIsMenuOpen(false);
         setActiveModal("Ma préparation");
-        setActiveTheme("understand");
+        if (isNotDesktop) {
+          setActiveTheme(null);
+        } else {
+          setActiveTheme("understand");
+        }
       },
     },
     {
@@ -129,7 +135,13 @@ function navbar() {
   ];
   return (
     <div className="header-navbar">
-      <div className="header-avatar">
+      <div
+        className={
+          activeTheme === null
+            ? "header-avatar"
+            : "header-avatar header-avatar-hidden"
+        }
+      >
         <img src={avatar} alt="avatar" className="admin-avatar" />
         <span className="admin-name">
           {userInfo.firstname} {userInfo.lastname}
@@ -141,6 +153,7 @@ function navbar() {
           onClick={() => {
             setLinkToActive("Home");
             setIsMenuOpen(false);
+            setActiveTheme(null);
           }}
         >
           <i alt="Home" className="fi fi-rr-home home-icon-mobile" />
@@ -191,6 +204,12 @@ function navbar() {
               onClick={() => {
                 logoutHandler();
                 setIsMenuOpen(false);
+                setLinkToActive("Home");
+                if (isNotDesktop) {
+                  setActiveTheme(null);
+                } else {
+                  setActiveTheme("understand");
+                }
                 navigate("/");
               }}
             >
