@@ -56,7 +56,6 @@ function SendForm() {
       request: formData.get("request"),
       create_time: currentDateFormatted,
     };
-    console.info(formJson);
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();

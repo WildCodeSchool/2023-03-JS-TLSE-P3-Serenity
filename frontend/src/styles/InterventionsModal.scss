@@ -14,19 +14,20 @@
   .tab-button-intervention {
     width: 100%;
     overflow: auto;
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(100, 100, 100);
+      border-radius: 5px;
+      visibility: hidden;
+    }
+    &:hover::-webkit-scrollbar-thumb {
+      visibility: visible;
+    }
     .tab-interventions {
       width: 100%;
-      &::-webkit-scrollbar {
-        width: 0.5rem;
-      }
-      &::-webkit-scrollbar-thumb {
-        background-color: rgb(100, 100, 100);
-        border-radius: 5px;
-        visibility: hidden;
-      }
-      &:hover::-webkit-scrollbar-thumb {
-        visibility: visible;
-      }
     }
   }
   .intervention-row {
