@@ -16,6 +16,7 @@ function ModalAddIntervention({ closeModal }) {
   const [activeTheme, setActiveTheme] = useState("Comprendre");
   const [ressources, setRessources] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [arrayOfRessources, setArrayOfRessources] = useState([]);
 
   const handleValidateAddIntervention = (event) => {
     event.preventDefault();
@@ -117,8 +118,30 @@ function ModalAddIntervention({ closeModal }) {
       });
   }, []);
 
-  const handleDeleteButtonClick = () => {
-    console.info("coucou");
+  const handleAddButtonClick = (ressource) => {
+    setArrayOfRessources((prevArray) => [...prevArray, ressource]);
+  };
+
+  const handleMinusButtonClick = (index) => {
+    const arrayToUpload = [...arrayOfRessources];
+    arrayToUpload.splice(index, 1);
+    setArrayOfRessources(arrayToUpload);
+  };
+
+  const generateOptions = () => {
+    const options = [];
+    for (let hour = 0; hour < 24; hour += 1) {
+      for (let minute = 0; minute < 60; minute += 15) {
+        const formattedHour = String(hour).padStart(2, "0");
+        const formattedMinute = String(minute).padStart(2, "0");
+        const optionValue = `${formattedHour}:${formattedMinute}`;
+        const optionLabel = `${formattedHour}:${formattedMinute}`;
+        options.push(
+          <option key={optionValue} value={optionValue} label={optionLabel} />
+        );
+      }
+    }
+    return options;
   };
 
   return (
@@ -154,12 +177,12 @@ function ModalAddIntervention({ closeModal }) {
                 type="time"
                 value={durationIntervention}
                 name="duration"
-                min="00:00"
-                max="24:00"
+                list="times"
                 className="intervention-duration-input"
                 onChange={(e) => setDurationIntervention(e.target.value)}
                 required
               />
+              <datalist id="times">{generateOptions()}</datalist>
             </div>
             <div className="anesthesia-input">
               <p>Anesthésie</p>
@@ -212,30 +235,56 @@ function ModalAddIntervention({ closeModal }) {
               ))}
             </div>
           </div>
-          <div className="section-ressources">
-            <div className="container-scroll-ressources">
-              <p className="title-existing-ressources">Ressources existantes</p>
-              <div className="list-ressources">
-                {isLoaded &&
-                  ressources
-                    .filter(
-                      (ressourceFiltered) =>
-                        ressourceFiltered.theme === activeTheme
-                    )
-                    .map((ressource) => (
-                      <div key={ressource.id} className="ressource">
-                        <p className="ressource-title">
-                          {ressource.title}.{ressource.type}
-                        </p>
-                        <button
-                          className="add-ressource-button"
-                          type="button"
-                          onClick={handleDeleteButtonClick}
-                        >
-                          <i className="fi fi-rr-add" />
-                        </button>
-                      </div>
-                    ))}
+          <div className="ressource-and-selected">
+            <div className="section-ressources">
+              <div className="container-scroll-ressources">
+                <p className="title-existing-ressources">
+                  Ressources existantes
+                </p>
+                <div className="list-ressources">
+                  {isLoaded &&
+                    ressources
+                      .filter(
+                        (ressourceFiltered) =>
+                          ressourceFiltered.theme === activeTheme
+                      )
+                      .map((ressource) => (
+                        <div key={ressource.id} className="ressource">
+                          <p className="ressource-title">
+                            {ressource.title}.{ressource.type}
+                          </p>
+                          <button
+                            className="add-ressource-button"
+                            type="button"
+                            onClick={() => handleAddButtonClick(ressource)}
+                          >
+                            <i className="fi fi-rr-add" />
+                          </button>
+                        </div>
+                      ))}
+                </div>
+              </div>
+            </div>
+            <div className="section-ressource-selected">
+              <p className="title-selected-ressources">
+                Ressources sélectionnées
+              </p>
+              <div className="list-selected-ressources">
+                {arrayOfRessources &&
+                  arrayOfRessources.map((ressource, index) => (
+                    <div key={ressource.id} className="ressource-selected">
+                      <p className="ressource-selected-title">
+                        {ressource.title}.{ressource.type}
+                      </p>
+                      <button
+                        className="minus-ressource-button"
+                        type="button"
+                        onClick={() => handleMinusButtonClick(index)}
+                      >
+                        <i className="fi fi-rr-minus-circle" />
+                      </button>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
