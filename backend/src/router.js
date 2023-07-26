@@ -8,6 +8,7 @@ const upload = multer({ dest: "./public/uploads/" });
 const router = express.Router();
 
 const interventionController = require("./controllers/interventionController");
+const interventionPatient = require("./controllers/interventionPatientController");
 const interventionRessource = require("./controllers/interventionRessourceController");
 const ressourceController = require("./controllers/ressourceController");
 const admins = require("./controllers/adminControllers");
@@ -189,6 +190,14 @@ router.delete(
   verifyToken,
   checkId,
   interventionRessource.deleteInterventionRessources
+);
+
+// route for intervention_patient
+router.post(
+  "/practicians/:id/patients/interventions",
+  verifyToken,
+  checkId,
+  interventionPatient.addInterventionForPatient
 );
 
 // route "form"
