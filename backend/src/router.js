@@ -84,6 +84,7 @@ router.put(
   hashPassword,
   admins.modifyAdmin
 );
+// router to send mail to practician
 router.post(
   "/admins/practicians/mail",
   verifyToken,
@@ -221,4 +222,16 @@ router.put(
   patients.updatePatient
 );
 
+// router to add patient
+router.post(
+  "/practicians/patients/mail",
+  verifyToken,
+  mailControllers.sendContactMailToPatient
+);
+router.post(
+  "/practicians/patients/",
+  verifyToken,
+  hashPassword,
+  patients.AddPatient
+);
 module.exports = router;

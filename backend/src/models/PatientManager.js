@@ -70,6 +70,14 @@ practician ON practician.id = I.practician_id`;
       [...values, id]
     );
   }
+
+  insert(patient) {
+    const { hashed_password, firstname, lastname, mail } = patient;
+    return this.database.query(
+      `insert into ${this.table} (hashed_password, firstname, lastname, mail) values (?, ?, ?, ?)`,
+      [hashed_password, firstname, lastname, mail]
+    );
+  }
 }
 
 module.exports = PatientManager;
