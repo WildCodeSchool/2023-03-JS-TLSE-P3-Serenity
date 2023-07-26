@@ -16,6 +16,7 @@ export function StateProvider({ children }) {
   const [activeTheme, setActiveTheme] = useState("understand");
 
   const [ressourcesChange, setRessourcesChange] = useState(false);
+  const [interventions, setInterventions] = useState([]);
 
   const stateContext = useMemo(
     () => ({
@@ -35,6 +36,8 @@ export function StateProvider({ children }) {
       setActiveTheme,
       ressourcesChange,
       setRessourcesChange,
+      interventions,
+      setInterventions,
     }),
     [
       linkToActive,
@@ -45,6 +48,7 @@ export function StateProvider({ children }) {
       show,
       activeTheme,
       ressourcesChange,
+      interventions,
     ]
   );
   return (

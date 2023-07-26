@@ -56,7 +56,6 @@ function SendForm() {
       request: formData.get("request"),
       create_time: currentDateFormatted,
     };
-    console.info(formJson);
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
@@ -136,7 +135,7 @@ function SendForm() {
             feedbackType="invalid"
           />
         </Form.Group>
-        <Button type="submit">Submit form</Button>
+        <Button type="submit">Envoyer ma requête</Button>
       </Form>
     </div>
   );

@@ -40,8 +40,6 @@ export default function Authentication() {
             setUser(response.data.token);
             setUserInfo(response.data.user);
             navigate("/espaceadmin");
-          } else {
-            console.info(response);
           }
         })
         .catch((error) => {
@@ -59,8 +57,6 @@ export default function Authentication() {
             setUser(response.data.token);
             setUserInfo(response.data.user);
             navigate("/espacepro");
-          } else {
-            console.info(response);
           }
         })
         .catch((error) => {
@@ -78,8 +74,6 @@ export default function Authentication() {
             setUser(response.data.token);
             setUserInfo(response.data.user);
             navigate("/espacepatient");
-          } else {
-            console.info(response);
           }
         })
         .catch((error) => {
