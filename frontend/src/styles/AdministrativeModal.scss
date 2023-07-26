@@ -30,9 +30,10 @@
 
   .administrative-modal-title {
     display: flex;
+    font-weight: 700;
     border-radius: 14px;
     height: 70px;
-    background-color: #7265e3;
+    background-color: var(--button-administrative);
     color: white;
     align-items: center;
     justify-content: center;
