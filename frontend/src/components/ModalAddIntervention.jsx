@@ -36,7 +36,6 @@ function ModalAddIntervention({ closeModal }) {
         }
       )
       .then((response) => {
-        console.info(response.data);
         setInterventions(...interventions, response.data);
         Swal.fire({
           background: "#242731",
