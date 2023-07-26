@@ -99,6 +99,7 @@ function AccountPatientModal() {
 
   const modalValidateInfo = () => {
     return Swal.fire({
+      background: "#242731",
       position: "center",
       icon: "success",
       title: "Informations modifiées",
@@ -109,6 +110,7 @@ function AccountPatientModal() {
 
   const modalValidatePw = () => {
     return Swal.fire({
+      background: "#242731",
       position: "center",
       icon: "success",
       title: "Mot de passe modifié",
@@ -119,6 +121,7 @@ function AccountPatientModal() {
 
   const modalProblemWhileUpdate = () => {
     return Swal.fire({
+      background: "#242731",
       position: "center",
       icon: "error",
       title: "Erreur lors de la mise à jour, veuillez réessayer",
@@ -129,6 +132,7 @@ function AccountPatientModal() {
 
   const modalProblemChar = () => {
     return Swal.fire({
+      background: "#242731",
       position: "center",
       icon: "error",
       title:
@@ -155,7 +159,7 @@ function AccountPatientModal() {
     setPasswordCheckShown(!passwordCheckShown);
   };
 
-  const modifyPractician = (dataFromForm) => {
+  const modifyPatient = (dataFromForm) => {
     axios
       .put(
         `${import.meta.env.VITE_BACKEND_URL}/patients/account/${id}`,
@@ -180,7 +184,7 @@ function AccountPatientModal() {
               phone: dataFromForm.phone,
             });
             modalValidateInfo();
-          } else if (dataFromForm.language) {
+          } else if (dataFromForm.gender) {
             setUserInfo({
               ...userInfo,
               gender: dataFromForm.gender,
@@ -217,7 +221,7 @@ function AccountPatientModal() {
     const passwordFromForm = { password: dataFromForm.password };
     checkPasswordCharacter(passwordChange, (isValid) => {
       if (isValid) {
-        modifyPractician(passwordFromForm);
+        modifyPatient(passwordFromForm);
       } else {
         modalProblemChar();
       }
@@ -229,7 +233,7 @@ function AccountPatientModal() {
     const form = event.target;
     const formData = new FormData(form);
     const dataFromForm = Object.fromEntries(formData.entries());
-    modifyPractician(dataFromForm);
+    modifyPatient(dataFromForm);
   };
 
   const handlePostalCode = (e) => {
