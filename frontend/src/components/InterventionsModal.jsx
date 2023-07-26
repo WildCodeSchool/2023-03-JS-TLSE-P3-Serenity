@@ -9,7 +9,8 @@ import ModalAddIntervention from "./ModalAddIntervention";
 
 function InterventionsModal() {
   const { userInfo, userToken } = useContext(AuthFunctionContext);
-  const { interventions, setInterventions } = useContext(StateContext);
+  const { interventions, setInterventions, interventionAdded } =
+    useContext(StateContext);
   const { id, role } = userInfo;
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -33,7 +34,7 @@ function InterventionsModal() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [interventionAdded]);
 
   const handleDeleteButtonClick = (idInterventionToDelete) => {
     Swal.fire({
@@ -52,7 +53,7 @@ function InterventionsModal() {
           .delete(
             `${
               import.meta.env.VITE_BACKEND_URL
-            }/practicians/${id}/interventions/${idInterventionToDelete}`,
+            }/practicians/${id}/delete/interventions/${idInterventionToDelete}/ressources`,
             {
               headers: {
                 Authorization: `Bearer ${userToken}`,
@@ -61,6 +62,19 @@ function InterventionsModal() {
             }
           )
           .then(() => {
+            axios
+              .delete(
+                `${
+                  import.meta.env.VITE_BACKEND_URL
+                }/practicians/${id}/interventions/${idInterventionToDelete}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${userToken}`,
+                    Role: `${role}`,
+                  },
+                }
+              )
+              .catch((error) => console.error(error));
             const updateInterventions = interventions.filter(
               (el) => el.id !== idInterventionToDelete
             );
