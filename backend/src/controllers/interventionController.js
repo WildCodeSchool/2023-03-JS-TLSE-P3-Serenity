@@ -57,9 +57,30 @@ const deleteIntervention = (req, res) => {
     });
 };
 
+const addPracticianIntervention = (req, res) => {
+  const { name, duration, anesthesia } = req.body;
+  const { id } = req.params;
+  models.intervention
+    .insert(name, duration, anesthesia, id)
+    .then(([result]) => {
+      if (result.affectedRows) {
+        res.status(201).json({
+          id: result.insertId,
+        });
+      } else {
+        res.sendStatus(400);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   getInterventionCount,
   getPatientIntervention,
   getPracticianIntervention,
   deleteIntervention,
+  addPracticianIntervention,
 };

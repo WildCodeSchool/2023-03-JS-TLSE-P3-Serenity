@@ -18,6 +18,13 @@ class InterventionManager extends AbstractManager {
       [practicianId]
     );
   }
+
+  insert(name, duration, anesthesia, practicianId) {
+    return this.database.query(
+      `INSERT INTO ${this.table} (name,duration, anesthesia, practician_id ) VALUES(?, ?, ?, ?)`,
+      [name, duration, anesthesia, practicianId]
+    );
+  }
 }
 
 module.exports = InterventionManager;
