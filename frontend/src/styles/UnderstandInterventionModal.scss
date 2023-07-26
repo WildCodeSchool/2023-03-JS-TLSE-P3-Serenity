@@ -1,13 +1,13 @@
 .understand-modal-container {
   width: 100vw;
-  height: 90vh;
+  height: 100%;
+  margin-bottom: 10vh;
   padding: 1rem;
   color: #ffffff;
   background-color: #242731;
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 20;
   text-shadow: 0 0 5px #000000;
   .understand-modal-header {
     display: flex;
@@ -44,7 +44,7 @@
     gap: 1.5rem;
     padding: 1rem 2rem;
     font-size: 1.1rem;
-    h3{
+    h3 {
       font-size: 1.3rem;
     }
     .image-container {

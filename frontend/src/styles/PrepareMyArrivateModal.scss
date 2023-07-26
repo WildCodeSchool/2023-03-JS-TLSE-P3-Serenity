@@ -1,13 +1,13 @@
 .prepare-arrival-modal-container {
   width: 100vw;
-  height: 90vh;
+  height: 100%;
+  margin-bottom: 10vh;
   padding: 1rem;
   color: #ffffff;
   background-color: #242731;
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 20;
   text-shadow: 0 0 5px #000000;
   .prepare-arrival-modal-header {
     display: flex;
@@ -38,19 +38,19 @@
     text-shadow: black 1px 1px 10px;
     margin-bottom: 1rem;
   }
- 
+
   .prepare-arrival-modal-list {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     padding: 1rem 2rem;
     font-size: 1.1rem;
-    h3{
+    h3 {
       font-size: 1.3rem;
     }
     .image-container {
       display: flex;
-      flex-direction:column-reverse;
+      flex-direction: column-reverse;
       align-items: center;
       width: 10rem;
       border-radius: 10px;
