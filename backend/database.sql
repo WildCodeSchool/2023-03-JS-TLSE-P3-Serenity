@@ -1028,13 +1028,13 @@ INSERT INTO
         theme_ressource_id
     )
 VALUES (
-        'les ligaments croisés',
+        'Les ligaments croisés',
         'http:www.image1.com',
         'Les ligaments ont pour rôle de relier les deux os d''une articulation afin d''éviter une laxité trop importante de cette dernière, c''est-à-dire qu''elle aille dans tous les sens. Les ligaments participent également à l''''orientation des mouvements de l''articulation. L''insertion des ligaments sur l''''os va donner une structure rigide de l''articulation.',
         1,
         1
     ), (
-        'Comment se deroule mon intervention',
+        'Comment se déroule mon intervention',
         'http:www.image2.com',
         'Lors de l''intervention, le ligament croisé déchiré est stabilisé puis refixé à l''aide d''un fil solide. On procède ensuite à une suture du ligament croisé précédemment déchiré afin de soutenir l''auto-guérison. L''opération a lieu sous arthroscopie et est par conséquent mini-invasive. Les lésions associées (déchirure du ménisque ou lésion du cartilage) peuvent être traitées lors de la même opération.',
         1,
@@ -1042,15 +1042,14 @@ VALUES (
     ),(
         'Etre à jeun ',
         'http:www.image3.com',
-        'ne rien boire, ni manger (même pas un chewing-gum), ni fumer, durant les 8 heures qui précèdent l''intervention',
+        'Ne rien boire, ni manger (même pas un chewing-gum), ni fumer, durant les 8 heures qui précèdent l''intervention.',
         1,
         3
     ),(
-        'Consigne pour prendre préoperatoire',
+        'Consigne pour prendre une douche préoperatoire',
         'http:www.image4.com',
-        'une douche si possible avec un savon désinfectant, type « bétadine », selon la prescription médicale
- 
-Les étapes à suivre pour une douche pré-opératoire efficace :
+        'Une douche si possible avec un savon désinfectant, type « bétadine », selon la prescription médicale
+ Les étapes à suivre pour une douche pré-opératoire efficace :
 Enlever le vernis, couper et curer les ongles.
 Se mouiller le corps et les cheveux.
 Appliquer le savon antiseptique - Commencer par les cheveux.
@@ -1075,7 +1074,7 @@ Vous devez arriver avec les dents brossées, les cheveux propres et attachés.',
         3
     );
 
-INSERT INTO ressource(title,practician_id,theme_ressource_id) VALUES('Compléter l''espace ''Mon compte''',1,2),('Votre retour de mutuel',1,2),('consentement éclairé',1,2),('consultation pré-anesthésique',1,2);
+INSERT INTO ressource(title,practician_id,theme_ressource_id) VALUES('Compléter l''espace ''Mon compte''',1,2),('Votre retour de mutuelle',1,2),('Consentement éclairé',1,2),('Consultation pré-anesthésique',1,2);
 INSERT INTO
     intervention_ressource(intervention_id, ressource_id)
 VALUES (1, 51), (1, 52), (1, 53), (1, 54), (1, 55), (1, 56), (1, 57), (1, 58), (1, 59), (1, 60), (1, 61), (1, 62), (1, 63), (1, 64), (1, 65), (1, 66), (1, 67), (1, 68), (1, 69);

@@ -13,7 +13,7 @@ function UnderstandInterventionModal() {
   const { setActiveTheme } = useContext(StateContext);
   const [, setSelectedData] = useState(null);
 
-  const handleReturnButtonClick = () => {
+  const handleReturnButtonClickModalUnderstand = () => {
     setActiveTheme(null);
   };
 
@@ -53,15 +53,15 @@ function UnderstandInterventionModal() {
         <button
           type="button"
           className="return-button-modal-understand"
-          onClick={handleReturnButtonClick}
+          onClick={handleReturnButtonClickModalUnderstand}
         >
           <i className="fi fi-rr-arrow-circle-left" />
         </button>
         <h1>Ma préparation</h1>
       </div>
       <h2 className="understand-modal-title">Comprendre mon opération</h2>
-      <h3>Schémas et documentations</h3>
       <div className="understand-modal-list">
+        <h3>Tout comprendre sur mon opération c'est par ici !</h3>
         {understandData.map((el) => (
           <button
             type="button"

@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
-import "../styles/CheckListModal.scss";
+import "../styles/AdministrativeModal.scss";
 import StateContext from "../contexts/StateContext";
 import AuthFunctionContext from "../contexts/AuthFunctionContext";
 
-function CheckListModal() {
+function AdministrativeModal() {
   const { userToken, userInfo } = useContext(AuthFunctionContext);
   const { role, id } = userInfo;
   const { setActiveTheme } = useContext(StateContext);
@@ -65,34 +65,34 @@ function CheckListModal() {
       });
   };
 
-  const handleReturnButtonClick = () => {
+  const handleReturnButtonClickModalAdministrative = () => {
     setActiveTheme(null);
   };
 
   return (
-    <div className="check-list-modal-container">
-      <div className="check-list-modal-header">
+    <div className="administrative-list-modal-container">
+      <div className="administrative-list-modal-header">
         <button
           type="button"
-          className="return-button-modal"
-          onClick={handleReturnButtonClick}
+          className="administrative-return-button-modal"
+          onClick={handleReturnButtonClickModalAdministrative}
         >
           <i className="fi fi-rr-arrow-circle-left" />
         </button>
         <h1>Ma préparation</h1>
       </div>
-      <h2 className="modal-title">
+      <h2 className="administrative-modal-title">
         Quelques démarches administratives à finaliser
       </h2>
-      <div className="check-list-modal-list">
+      <div className="administrative-list-modal-list">
         {checkedItems.map((item, index) => (
-          <div key={item.id} className="check-list-item">
+          <div key={item.id} className="administrative-list-item">
             <label>
               <input
                 type="checkbox"
                 checked={item.checked}
                 onChange={handleCheckboxChange(index)}
-                className="checkbox"
+                className="administrative-checkbox"
               />
               {item.name}
             </label>
@@ -103,4 +103,4 @@ function CheckListModal() {
   );
 }
 
-export default CheckListModal;
+export default AdministrativeModal;

@@ -28,7 +28,6 @@
     display: flex;
     border-radius: 14px;
     height: 70px;
-
     background-color: var(--button-understand);
     color: white;
     align-items: center;
@@ -45,6 +44,9 @@
     gap: 1.5rem;
     padding: 1rem 2rem;
     font-size: 1.1rem;
+    h3{
+      font-size: 1.3rem;
+    }
     .image-container {
       display: flex;
       flex-direction: column-reverse;
@@ -136,9 +138,11 @@
     .understand-modal-list {
       display: flex;
       flex-wrap: wrap;
-      flex-direction: row;
       line-height: 1.5rem;
       align-items: center;
     }
+  }
+  .swal2-container {
+    text-align: left;
   }
 }

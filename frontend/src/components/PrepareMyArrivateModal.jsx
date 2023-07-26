@@ -13,7 +13,7 @@ function PrepareMyArrivateModal() {
   const [, setSelectedData] = useState(null);
   const { setActiveTheme } = useContext(StateContext);
 
-  const handleReturnButtonClick = () => {
+  const handleReturnButtonClickModalPrepare = () => {
     setActiveTheme(null);
   };
   const handleshowModalUnderstand = (image) => {
@@ -51,7 +51,7 @@ function PrepareMyArrivateModal() {
         <button
           type="button"
           className="return-button-modal-prepare-arrival"
-          onClick={handleReturnButtonClick}
+          onClick={handleReturnButtonClickModalPrepare}
         >
           <i className="fi fi-rr-arrow-circle-left" />
         </button>
@@ -60,11 +60,11 @@ function PrepareMyArrivateModal() {
       <h2 className="prepare-arrival-modal-title">
         Préparer mon arrivée en toute sérénité
       </h2>
-      <p>
-        Préparons nous à vivre la journée de l’intevention une première fois,
-        histoire d’être en toute sérénité le jour J
-      </p>
       <div className="prepare-arrival-modal-list">
+        <h3>
+          Préparons nous à vivre la journée de l’intevention une première fois,
+          histoire d’être en toute sérénité le jour J
+        </h3>
         {understandData.map((el) => (
           <button
             type="button"

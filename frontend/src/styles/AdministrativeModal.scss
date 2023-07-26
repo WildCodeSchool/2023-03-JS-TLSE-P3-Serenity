@@ -1,4 +1,4 @@
-.check-list-modal-container {
+.administrative-list-modal-container {
   width: 100vw;
   height: 90vh;
   padding: 1rem;
@@ -10,7 +10,7 @@
   z-index: 20;
   text-shadow: 0 0 5px #000000;
 
-  .check-list-modal-header {
+  .administrative-list-modal-header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -18,7 +18,7 @@
     gap: 2rem;
     padding: 1rem;
 
-    .return-button-modal {
+    .administrative-return-button-modal {
       background-color: transparent;
       color: white;
 
@@ -28,7 +28,7 @@
     }
   }
 
-  .modal-title {
+  .administrative-modal-title {
     display: flex;
     border-radius: 14px;
     height: 70px;
@@ -42,7 +42,7 @@
     margin-bottom: 1rem;
   }
 
-  .check-list-modal-list {
+  .administrative-list-modal-list {
     display: flex;
     flex-direction: row;
     line-height: 1.5rem;
@@ -52,7 +52,7 @@
     flex-wrap: wrap;
     align-items: flex-start;
 
-    .checkbox {
+    .administrative-checkbox {
       margin-right: 1rem;
     }
 
@@ -80,22 +80,22 @@
     top: auto;
     left: auto;
     border-radius: 20px;
-    border: #7265e3 1px solid;
-    box-shadow: 0 0 5px #7265e3;
+    border: var(--button-administrative) 1px solid;
+    box-shadow: 0 0 5px var(--button-administrative);
     text-shadow: 0 0 5px #000000;
     margin: 0 1.8rem 1.8rem 0;
 
-    .check-list-modal-header {
+    .administrative-list-modal-header {
       display: none;
     }
 
-    .modal-title {
+    .administrative-modal-title {
       background: none;
       margin-top: 1rem;
     }
 
-    .check-list-modal-list {
-      .check-list-item {
+    .administrative-list-modal-list {
+      .administrative-list-item {
         width: 40%;
         margin-bottom: 1rem;
         margin-left: 3rem;

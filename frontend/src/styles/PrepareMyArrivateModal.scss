@@ -39,17 +39,20 @@
     text-shadow: black 1px 1px 10px;
     margin-bottom: 1rem;
   }
+ 
   .prepare-arrival-modal-list {
     display: flex;
     flex-direction: column;
-    line-height: 1.5rem;
     gap: 1.5rem;
     padding: 1rem 2rem;
     font-size: 1.1rem;
-    margin-top: 5rem;
+    h3{
+      font-size: 1.3rem;
+    }
     .image-container {
       display: flex;
-      flex-direction: column-reverse;
+      flex-direction:column-reverse;
+      align-items: center;
       width: 10rem;
       border-radius: 10px;
       margin: 0 auto;
@@ -135,7 +138,7 @@
     .prepare-arrival-modal-title {
       display: none;
     }
-    .prepare--modal-list {
+    .prepare-arrival-modal-list {
       display: flex;
       flex-wrap: wrap;
       flex-direction: row;
