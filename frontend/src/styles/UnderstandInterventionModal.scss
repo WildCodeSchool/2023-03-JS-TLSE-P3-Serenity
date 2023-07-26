@@ -44,7 +44,7 @@
     gap: 1.5rem;
     padding: 1rem 2rem;
     font-size: 1.1rem;
-    h3{
+    h3 {
       font-size: 1.3rem;
     }
     .image-container {
@@ -141,7 +141,7 @@
       align-items: center;
     }
   }
-  .swal2-container {
-    text-align: left;
-  }
+}
+.swal2-html-container {
+  text-align: left !important;
 }
