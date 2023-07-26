@@ -29,7 +29,6 @@
     display: flex;
     border-radius: 14px;
     height: 70px;
-
     background-color: var(--button-prepare);
     color: white;
     align-items: center;
@@ -39,33 +38,55 @@
     text-shadow: black 1px 1px 10px;
     margin-bottom: 1rem;
   }
+ 
   .prepare-arrival-modal-list {
     display: flex;
     flex-direction: column;
-    line-height: 1.5rem;
     gap: 1.5rem;
     padding: 1rem 2rem;
     font-size: 1.1rem;
-    margin-top: 5rem;
-    .grid-container {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      width: 20rem;
-      margin: 0 auto;
+    h3{
+      font-size: 1.3rem;
     }
-    .large-image {
-      width: 95%;
-      height: auto;
+    .image-container {
+      display: flex;
+      flex-direction:column-reverse;
+      align-items: center;
+      width: 10rem;
+      border-radius: 10px;
+      margin: 0 auto;
+      background-color: transparent;
+      p {
+        font-size: 0.8rem;
+        color: white;
+      }
+    }
+    .image-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      background-color: rgba(240, 248, 248, 0.5);
+      transition: all 0.9s ease;
     }
 
+    .image-container:hover::before {
+      left: 0;
+    }
+    .image-container:hover {
+      color: rgb(255, 255, 255);
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(187, 183, 183, 0.3);
+      background-color: var(--button-color);
+    }
     .small-images {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      width: 5rem;
+      height: 5rem;
+      display: flex;
+      margin: 0 auto;
     }
 
     .small-images img {
-      width: 95%;
+      width: 100%;
       height: auto;
     }
 
@@ -106,8 +127,7 @@
     top: auto;
     left: auto;
     border-radius: 20px;
-    border: var(--button-prepare) 1px solid;
-    box-shadow: 0 0 5px var(--button-prepare);
+    border: var(--button-prepare) 2px solid;
     text-shadow: 0 0 5px #000000;
     margin: 0 1.8rem 1.8rem 0;
     .prepare-arrival-modal-header {
@@ -115,6 +135,13 @@
     }
     .prepare-arrival-modal-title {
       display: none;
+    }
+    .prepare-arrival-modal-list {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      line-height: 1.5rem;
+      align-items: center;
     }
   }
 }

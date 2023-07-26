@@ -76,7 +76,6 @@ router.get(
   verifyAdminRole,
   ressourceController.getRessourceCount
 );
-
 router.put(
   "/admins/:id",
   verifyToken,
