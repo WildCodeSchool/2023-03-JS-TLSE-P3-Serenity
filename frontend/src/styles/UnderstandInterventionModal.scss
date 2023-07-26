@@ -125,8 +125,7 @@
     top: auto;
     left: auto;
     border-radius: 20px;
-    border: var(--button-understand);
-    box-shadow: 0 0 5px var(--button-understand);
+    border: 2px solid var(--button-understand);
     text-shadow: 0 0 5px #000000;
     margin: 0 1.8rem 1.8rem 0;
     .understand-modal-header {

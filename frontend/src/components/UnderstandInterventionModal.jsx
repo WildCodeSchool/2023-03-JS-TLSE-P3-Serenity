@@ -66,7 +66,7 @@ function UnderstandInterventionModal() {
           <button
             type="button"
             className="image-container"
-            key={el.patient_id}
+            key={el.title}
             onClick={() => handleshowModalUnderstand(el)}
           >
             <div className="small-images">

@@ -54,6 +54,9 @@
 
     .administrative-checkbox {
       margin-right: 1rem;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--button-administrative);
     }
 
     .note {
@@ -62,8 +65,12 @@
       font-size: 0.8rem;
     }
 
-    .check-list-item {
+    .administrative-list-item {
       width: 100%;
+      label {
+        display: flex;
+        align-items: center;
+      }
     }
   }
 
@@ -80,8 +87,7 @@
     top: auto;
     left: auto;
     border-radius: 20px;
-    border: var(--button-administrative) 1px solid;
-    box-shadow: 0 0 5px var(--button-administrative);
+    border: var(--button-administrative) 2px solid;
     text-shadow: 0 0 5px #000000;
     margin: 0 1.8rem 1.8rem 0;
 

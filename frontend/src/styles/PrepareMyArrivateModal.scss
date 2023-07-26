@@ -29,7 +29,6 @@
     display: flex;
     border-radius: 14px;
     height: 70px;
-
     background-color: var(--button-prepare);
     color: white;
     align-items: center;
@@ -128,8 +127,7 @@
     top: auto;
     left: auto;
     border-radius: 20px;
-    border: var(--button-prepare) 1px solid;
-    box-shadow: 0 0 5px var(--button-prepare);
+    border: var(--button-prepare) 2px solid;
     text-shadow: 0 0 5px #000000;
     margin: 0 1.8rem 1.8rem 0;
     .prepare-arrival-modal-header {
