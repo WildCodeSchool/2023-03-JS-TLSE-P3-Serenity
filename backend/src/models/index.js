@@ -54,6 +54,22 @@ const RessourceManager = require("./RessourceManager");
 models.ressource = new RessourceManager();
 models.ressource.setDatabase(pool);
 
+const InterventionRessourceManager = require("./InterventionRessourceManager");
+
+models.intervention_ressource = new InterventionRessourceManager();
+models.intervention_ressource.setDatabase(pool);
+
+const PatientInterventionRessourceManager = require("./PatientInterventionRessourceManager");
+
+models.patient_intervention_ressource =
+  new PatientInterventionRessourceManager();
+models.patient_intervention_ressource.setDatabase(pool);
+
+const InterventionPatientManager = require("./InterventionPatientManager");
+
+models.intervention_patient = new InterventionPatientManager();
+models.intervention_patient.setDatabase(pool);
+
 const FormManager = require("./FormManager");
 
 models.form = new FormManager();

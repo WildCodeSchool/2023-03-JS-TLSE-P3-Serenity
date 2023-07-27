@@ -14,6 +14,9 @@ function navbar() {
     isMenuOpen,
     setIsMenuOpen,
     setActiveModal,
+    activeTheme,
+    setActiveTheme,
+    isNotDesktop,
   } = useContext(StateContext);
   const { userInfo, logoutHandler } = useContext(AuthFunctionContext);
   const toggleMenu = () => {
@@ -22,7 +25,7 @@ function navbar() {
   const navbarLinks = [
     {
       role: "admin",
-      className: linkToActive === "Home" ? "active" : "nav-serenity",
+      className: linkToActive === "Home" ? "active-navbar" : "nav-serenity",
       label: "Praticiens",
       icon: "users",
       action: () => {
@@ -33,7 +36,7 @@ function navbar() {
     },
     {
       role: "practician",
-      className: linkToActive === "Home" ? "active" : "nav-serenity",
+      className: linkToActive === "Home" ? "active-navbar" : "nav-serenity",
       label: "Patients",
       icon: "users",
       action: () => {
@@ -44,18 +47,24 @@ function navbar() {
     },
     {
       role: "patient",
-      className: linkToActive === "Home" ? "active" : "nav-serenity",
+      className: linkToActive === "Home" ? "active-navbar" : "nav-serenity",
       label: "Ma préparation",
       icon: "poll-h",
       action: () => {
         setLinkToActive("Home");
         setIsMenuOpen(false);
         setActiveModal("Ma préparation");
+        if (isNotDesktop) {
+          setActiveTheme(null);
+        } else {
+          setActiveTheme("understand");
+        }
       },
     },
     {
       role: "practician",
-      className: linkToActive === "Interventions" ? "active" : "nav-serenity",
+      className:
+        linkToActive === "Interventions" ? "active-navbar" : "nav-serenity",
       label: "Interventions",
       icon: "file-medical-alt",
       action: () => {
@@ -66,7 +75,8 @@ function navbar() {
     },
     {
       role: "practician",
-      className: linkToActive === "Ressources" ? "active" : "nav-serenity",
+      className:
+        linkToActive === "Ressources" ? "active-navbar" : "nav-serenity",
       label: "Ressources",
       icon: "folder-tree",
       action: () => {
@@ -77,8 +87,9 @@ function navbar() {
     },
     {
       role: "all",
-      className: linkToActive === "Mon Compte" ? "active" : "nav-serenity",
-      label: "Mon Compte",
+      className:
+        linkToActive === "Mon Compte" ? "active-navbar" : "nav-serenity",
+      label: "Mon compte",
       icon: "circle-user",
       action: () => {
         setLinkToActive("Mon Compte");
@@ -88,29 +99,31 @@ function navbar() {
     },
     {
       role: "patient",
-      className: linkToActive === "Mon médecin" ? "active" : "nav-serenity",
-      label: "Mon médecin",
+      className:
+        linkToActive === "Mon praticien" ? "active-navbar" : "nav-serenity",
+      label: "Mon praticien",
       icon: "user-md",
       action: () => {
-        setLinkToActive("Mon médecin");
+        setLinkToActive("Mon praticien");
         setIsMenuOpen(false);
-        setActiveModal("Mon médecin");
+        setActiveModal("Mon praticien");
       },
     },
     {
       role: "all",
-      className: linkToActive === "Formulaires" ? "active" : "nav-serenity",
-      label: "Formulaires",
+      className:
+        linkToActive === "Formulaire" ? "active-navbar" : "nav-serenity",
+      label: "Formulaire",
       icon: "document-signed",
       action: () => {
-        setLinkToActive("Formulaires");
+        setLinkToActive("Formulaire");
         setIsMenuOpen(false);
-        setActiveModal("Formulaires");
+        setActiveModal("Formulaire");
       },
     },
     {
       role: "all",
-      className: linkToActive === "A propos" ? "active" : "nav-serenity",
+      className: linkToActive === "A propos" ? "active-navbar" : "nav-serenity",
       label: "A propos",
       icon: "info",
       action: () => {
@@ -122,7 +135,13 @@ function navbar() {
   ];
   return (
     <div className="header-navbar">
-      <div className="header-avatar">
+      <div
+        className={
+          activeTheme === null
+            ? "header-avatar"
+            : "header-avatar header-avatar-hidden"
+        }
+      >
         <img src={avatar} alt="avatar" className="admin-avatar" />
         <span className="admin-name">
           {userInfo.firstname} {userInfo.lastname}
@@ -134,6 +153,7 @@ function navbar() {
           onClick={() => {
             setLinkToActive("Home");
             setIsMenuOpen(false);
+            setActiveTheme(null);
           }}
         >
           <i alt="Home" className="fi fi-rr-home home-icon-mobile" />
@@ -184,6 +204,12 @@ function navbar() {
               onClick={() => {
                 logoutHandler();
                 setIsMenuOpen(false);
+                setLinkToActive("Home");
+                if (isNotDesktop) {
+                  setActiveTheme(null);
+                } else {
+                  setActiveTheme("understand");
+                }
                 navigate("/");
               }}
             >

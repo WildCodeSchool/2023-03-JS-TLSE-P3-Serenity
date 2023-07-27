@@ -75,7 +75,7 @@
   border-radius: 12px;
 }
 
-.active {
+.active-navbar {
   padding: 16px 0px;
   width: 100%;
   height: 100%;
@@ -135,6 +135,10 @@
     height: 15vh;
   }
 
+  .header-avatar-hidden {
+    visibility: hidden;
+  }
+
   .admin-avatar {
     width: 80px;
     height: 80px;
@@ -157,7 +161,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border-top: #5c5c5c 2px;
+    background-color: var(--main-bg-admin-practician);
   }
 
   .bg-burger {
@@ -190,13 +194,13 @@
     margin-bottom: 8%;
   }
 
-  .active {
+  .active-navbar {
     color: black;
     margin-bottom: 8%;
   }
 
   .home-icon-mobile {
-    font-size: 60px;
+    font-size: 50px;
     display: flex;
     background: var(--main-bg-admin-practician);
     color: white;
@@ -207,7 +211,7 @@
   }
 
   .menu-burger-icon {
-    font-size: 60px;
+    font-size: 50px;
     display: flex;
     background: var(--main-bg-admin-practician);
     color: white;
@@ -217,5 +221,20 @@
 @media (max-width: 480px) {
   .admin-name {
     width: 40%;
+  }
+  .home-icon-mobile {
+    font-size: 40px;
+  }
+  .menu-burger-icon {
+    font-size: 40px;
+  }
+  .navbar-serenity {
+    .links {
+      .list-item-navbar {
+        .list-navbar {
+          margin-top: 0;
+        }
+      }
+    }
   }
 }

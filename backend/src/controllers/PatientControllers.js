@@ -68,9 +68,77 @@ const deletePatient = (req, res) => {
     });
 };
 
+const updatePatient = (req, res) => {
+  const { id } = req.params;
+  const keys = Object.keys(req.body);
+  const values = Object.values(req.body);
+  const valueQuery = keys.map((key) => `${key} = ?`).join(", ");
+  models.patient
+    .update(values, valueQuery, id)
+    .then(([result]) => {
+      if (result.affectedRows !== 0) {
+        res.sendStatus(204);
+      } else {
+        res.status(404).send("User not found...");
+      }
+    })
+    .catch(() => {
+      res.status(500).send("Error while updating user");
+    });
+};
+
+const getPracticianInfoByIdPatient = (req, res) => {
+  const { id } = req.params;
+  models.patient
+    .getPatientPractician(id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.status(200).send(rows[0]);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const AddPatient = (req, res) => {
+  const { hashed_password, firstname, lastname, mail } = req.body;
+
+  models.patient
+    .insert({
+      hashed_password,
+      firstname,
+      lastname,
+      mail,
+    })
+    .then(([result]) => {
+      if (result.affectedRows) {
+        res.status(201).json({
+          id: result.insertId,
+          hashed_password,
+          firstname,
+          lastname,
+          mail,
+        });
+      } else {
+        res.sendStatus(400);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   getListOfAllPatients,
   getPatientById,
   deletePatient,
   authenticationPatientCheck,
+  updatePatient,
+  getPracticianInfoByIdPatient,
+  AddPatient,
 };

@@ -1,0 +1,246 @@
+.modal-add-intervention-container {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  background-color: var(--main-bg-admin-practician);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+
+  .global-add-intervention-form {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    position: relative;
+
+    .intervention-input-theme-list {
+      overflow: auto;
+      margin-bottom: 3.3rem;
+      width: 100%;
+      &::-webkit-scrollbar {
+        width: 0.5rem;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: rgb(100, 100, 100);
+        border-radius: 5px;
+        visibility: hidden;
+      }
+      &:hover::-webkit-scrollbar-thumb {
+        visibility: visible;
+      }
+
+      .ressource-and-selected {
+        display: flex;
+        .section-ressources {
+          width: 50%;
+
+          .container-scroll-ressources {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            .title-existing-ressources {
+              font-size: 1.3rem;
+            }
+            .list-ressources {
+              display: flex;
+              flex-direction: column;
+              gap: 0.5rem;
+              padding-right: 1rem;
+
+              .ressource {
+                display: flex;
+                padding: 0.25rem;
+                justify-content: space-between;
+                p {
+                  word-break: break-all;
+                }
+                .add-ressource-button {
+                  background-color: transparent;
+                  .fi-rr-add {
+                    color: white;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .section-ressource-selected {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          .title-selected-ressources {
+            font-size: 1.3rem;
+          }
+          .list-selected-ressources {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding-right: 1rem;
+            .ressource-selected {
+              display: flex;
+              padding: 0.25rem;
+              justify-content: space-between;
+              p {
+                word-break: break-all;
+              }
+              .minus-ressource-button {
+                background-color: transparent;
+                .fi-rr-minus-circle {
+                  color: white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .add-intervention-input-container {
+      display: flex;
+      justify-content: space-around;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      padding-bottom: 1rem;
+      & > div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        & > input {
+          border-radius: 5px;
+          padding: 0.25rem;
+        }
+      }
+
+      .intervention-name-label-input {
+        width: 60%;
+      }
+
+      .anesthesia-input {
+        .anesthesia-radio {
+          display: flex;
+          gap: 0.5rem;
+          padding: 0.25rem;
+          div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            input {
+              accent-color: var(--button-color);
+            }
+          }
+        }
+      }
+    }
+    .close-button {
+      background-color: transparent;
+      padding: 0.5rem;
+      align-self: flex-end;
+
+      .fi-rr-cross {
+        color: red;
+      }
+    }
+
+    .button-add-intervention {
+      align-self: center;
+      width: 150px;
+      background-color: var(--button-color);
+      color: white;
+      padding: 1rem;
+      border-radius: 5px;
+      position: absolute;
+      bottom: 1rem;
+      &:hover {
+        background-color: var(--button-color-opacified);
+      }
+      .validate-label-button-intervention {
+        padding: 0;
+      }
+    }
+    .theme-selection-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0.25rem;
+      h2 {
+        font-size: 1.3rem;
+      }
+      .select-theme-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.5rem 0;
+        height: 100%;
+        width: 100%;
+
+        button {
+          padding: 1rem;
+          border-radius: 14px;
+          width: 160px;
+          font-size: 0.8rem;
+          p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            color: white;
+            font-size: 1rem;
+            text-shadow: black 1px 1px 10px;
+            text-align: center;
+          }
+        }
+        .active-selection,
+        .active-selection:focus {
+          outline: thick double white;
+        }
+        .understand-selection {
+          background: var(--button-understand);
+        }
+        .administrative-selection {
+          background: var(--button-administrative);
+        }
+        .prepare-selection {
+          background: var(--button-prepare);
+        }
+        .anticipate-selection {
+          background: var(--button-anticipate);
+        }
+        .checklist-selection {
+          background: var(--button-checklist);
+        }
+        .understand-selection:hover {
+          background: var(--button-understand-opacified);
+        }
+        .administrative-selection:hover {
+          background: var(--button-administrative-opacified);
+        }
+        .prepare-selection:hover {
+          background: var(--button-prepare-opacified);
+        }
+        .anticipate-selection:hover {
+          background: var(--button-anticipate-opacified);
+        }
+        .checklist-selection:hover {
+          background: var(--button-checklist-opacified);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .modal-add-intervention-container {
+    transform: translate(50%, -50%);
+  }
+}

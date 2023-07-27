@@ -1,14 +1,23 @@
 const express = require("express");
 
+const multer = require("multer");
+
+// ressource file destination
+const upload = multer({ dest: "./public/uploads/" });
+
 const router = express.Router();
 
 const interventionController = require("./controllers/interventionController");
-const ressourceCountController = require("./controllers/ressourceCountController");
+const interventionPatient = require("./controllers/interventionPatientController");
+const interventionRessource = require("./controllers/interventionRessourceController");
+const patientInterventionRessources = require("./controllers/patientInterventionRessourceController");
+const ressourceController = require("./controllers/ressourceController");
 const admins = require("./controllers/adminControllers");
 const practicianControllers = require("./controllers/PraticianControllers");
 const patients = require("./controllers/PatientControllers");
 const formControllers = require("./controllers/FormControllers");
 const mailControllers = require("./controllers/mailControllers");
+const uploadControllers = require("./controllers/uploadControllers");
 
 const {
   hashPassword,
@@ -68,9 +77,8 @@ router.get(
   "/admins/practicians/countressource/:id",
   verifyToken,
   verifyAdminRole,
-  ressourceCountController.getRessourceCount
+  ressourceController.getRessourceCount
 );
-
 router.put(
   "/admins/:id",
   verifyToken,
@@ -78,6 +86,7 @@ router.put(
   hashPassword,
   admins.modifyAdmin
 );
+// router to send mail to practician
 router.post(
   "/admins/practicians/mail",
   verifyToken,
@@ -91,6 +100,121 @@ router.post(
   verifyAdminRole,
   hashPassword,
   practicianControllers.AddPractician
+);
+router.get(
+  "/patients/practician/:id",
+  verifyToken,
+  checkId,
+  patients.getPracticianInfoByIdPatient
+);
+
+router.get(
+  "/patients/ressourceintervention/:id",
+  verifyToken,
+  ressourceController.patientInterventionRessource
+);
+
+router.put(
+  "/patients/ressourceintervention/:id",
+  verifyToken,
+  ressourceController.updatePatientInterventionRessource
+);
+// route "managing ressource"
+router.get(
+  "/ressources/practicians/:id",
+  verifyToken,
+  checkId,
+  ressourceController.getRessources
+);
+
+router.delete(
+  "/practicians/:id/ressources/:ressourceId",
+  verifyToken,
+  checkId,
+  ressourceController.deleteRessource
+);
+
+router.post(
+  "/practicians/:id/ressources",
+  verifyToken,
+  checkId,
+  ressourceController.addRessource
+);
+
+// upload ressource on cloudinary
+router.post(
+  "/upload/ressources",
+  verifyToken,
+  upload.single("ressource-file"),
+  uploadControllers.uploadRessource
+);
+
+// delete ressource on cloudinary
+router.delete(
+  "/delete/ressources/:nameRessourceToDelete",
+  verifyToken,
+  uploadControllers.destroy
+);
+
+// routes for intervention
+router.get(
+  "/practicians/:id/interventions",
+  verifyToken,
+  checkId,
+  interventionController.getPracticianIntervention
+);
+
+router.post(
+  "/practicians/:id/interventions",
+  verifyToken,
+  checkId,
+  interventionController.addPracticianIntervention
+);
+
+router.delete(
+  "/practicians/:id/interventions/:interventionId",
+  verifyToken,
+  checkId,
+  interventionController.deleteIntervention
+);
+
+// routes for intervention_ressource
+
+router.get(
+  "/practicians/:id/interventions/:idInter/ressources",
+  verifyToken,
+  checkId,
+  interventionRessource.getInterventionRessource
+);
+
+router.post(
+  "/practicians/:id/interventions/:idInter/ressources",
+  verifyToken,
+  checkId,
+  interventionRessource.addInterventionRessources
+);
+
+router.delete(
+  "/practicians/:id/delete/interventions/:idInter/ressources",
+  verifyToken,
+  checkId,
+  interventionRessource.deleteInterventionRessources
+);
+
+// route for intervention_patient
+router.post(
+  "/practicians/:id/patients/interventions",
+  verifyToken,
+  checkId,
+  interventionPatient.addInterventionForPatient
+);
+
+// route for patient_intervention_ressource
+router.post(
+  "/practicians/:id/interventions/patients/:interventionPatientId/ressources",
+  verifyToken,
+  checkId,
+  patientInterventionRessources.addInterventionRessourceForPatient
 );
 
 // route "form"
@@ -116,5 +240,24 @@ router.put(
   checkId,
   practicianControllers.updatePractician
 );
+router.put(
+  "/patients/account/:id",
+  verifyToken,
+  hashPassword,
+  checkId,
+  patients.updatePatient
+);
 
+// router to add patient
+router.post(
+  "/practicians/patients/mail",
+  verifyToken,
+  mailControllers.sendContactMailToPatient
+);
+router.post(
+  "/practicians/patients/",
+  verifyToken,
+  hashPassword,
+  patients.AddPatient
+);
 module.exports = router;

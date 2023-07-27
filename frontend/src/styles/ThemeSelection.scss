@@ -1,0 +1,79 @@
+.theme-container {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: auto;
+  padding: 0 0.5rem 10vh 0.5rem;
+  button {
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 14px;
+    height: clamp(55px, 16%, 85px);
+    width: clamp(290px, 80%, 560px);
+    p {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      color: white;
+      font-size: 1.2rem;
+      text-shadow: black 1px 1px 10px;
+      text-align: center;
+    }
+  }
+  .understand-button {
+    background: var(--button-understand);
+  }
+  .administrative-button {
+    background: var(--button-administrative);
+  }
+  .prepare-button {
+    background: var(--button-prepare);
+  }
+  .anticipate-button {
+    background: var(--button-anticipate);
+  }
+  .checklist-button {
+    background: var(--button-checklist);
+  }
+}
+@media (min-width: 1024px) {
+  .theme-container {
+    flex: none;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0;
+    button {
+      min-width: 135px;
+      min-height: 135px;
+      padding: 0;
+      margin: 0;
+      p {
+        word-break: break-word;
+        font-size: max(1rem, 1rem, 1.2rem);
+      }
+    }
+    .active,
+    .active:focus {
+      outline: thick double white;
+    }
+    .understand-button:hover {
+      background: var(--button-understand-opacified);
+    }
+    .administrative-button:hover {
+      background: var(--button-administrative-opacified);
+    }
+    .prepare-button:hover {
+      background: var(--button-prepare-opacified);
+    }
+    .anticipate-button:hover {
+      background: var(--button-anticipate-opacified);
+    }
+    .checklist-button:hover {
+      background: var(--button-checklist-opacified);
+    }
+  }
+}

@@ -21,14 +21,66 @@ const getPatientIntervention = (req, res) => {
   models.intervention
     .getPatientIntervention(patientId)
     .then((result) => {
-      res.json(result);
+      res.sendStatus(200).json(result);
     })
     .catch((error) => {
       res.status(500).send(error);
     });
 };
 
+const getPracticianIntervention = (req, res) => {
+  const practicianId = req.params.id;
+  models.intervention
+    .getAllPracticianIntervention(practicianId)
+    .then(([result]) => {
+      if (result.length) {
+        res.status(200).json(result);
+      } else {
+        res.sendStatus(404);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const deleteIntervention = (req, res) => {
+  const { interventionId } = req.params;
+  models.intervention
+    .delete(interventionId)
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+};
+
+const addPracticianIntervention = (req, res) => {
+  const { name, duration, anesthesia } = req.body;
+  const { id } = req.params;
+  models.intervention
+    .insert(name, duration, anesthesia, id)
+    .then(([result]) => {
+      if (result.affectedRows) {
+        res.status(201).json({
+          id: result.insertId,
+        });
+      } else {
+        res.sendStatus(400);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   getInterventionCount,
   getPatientIntervention,
+  getPracticianIntervention,
+  deleteIntervention,
+  addPracticianIntervention,
 };

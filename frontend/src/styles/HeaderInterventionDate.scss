@@ -1,0 +1,53 @@
+.header-intervention-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.5rem;
+  color: white;
+  text-shadow: 0 0 5px #000000;
+  padding-right: 1rem;
+  margin-bottom: 1rem;
+  p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    line-height: 2rem;
+    padding: 0;
+    text-align: right;
+  }
+  .intervention-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    .date-label {
+      color: rgba(255, 255, 255, 0.508);
+      font-size: 0.8rem;
+      text-shadow: 0 0 5px #000000;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-intervention-date {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    margin: 0.5rem 0;
+    max-width: 440px;
+    max-height: 140px;
+    justify-content: flex-start;
+    p {
+      font-size: 1.3rem;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+      line-height: 2rem;
+      padding: 0;
+      text-align: right;
+    }
+  }
+}

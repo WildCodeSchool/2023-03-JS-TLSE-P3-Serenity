@@ -2,13 +2,13 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import Authentication from "../components/Authentication";
 import "../styles/PatientAuthentication.scss";
-import headerLogoBlack from "../assets/header_logo_white.svg";
+import headerLogoBlack from "../assets/header_logo_black.svg";
 
 function PatientAuthentication() {
   const navigate = useNavigate();
 
   return (
-    <div className="background-light">
+    <div className="background-dark">
       <div className="authentication-patient-container">
         <img src={headerLogoBlack} alt="logo serenity" />
         <h1 className="title-connection-patient">

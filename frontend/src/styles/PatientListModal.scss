@@ -56,7 +56,7 @@
           border-bottom: #8f8f973a solid 0.5px;
           th,
           td {
-            padding-right: 4rem;
+            padding-right: 1rem;
             line-height: 1rem;
             vertical-align: middle;
           }
@@ -144,4 +144,10 @@
 .swal2-popup {
   background-color: #8f8f9720;
   color: white;
+}
+
+@media (max-width: 1024px) {
+  .patient-list-container {
+    max-height: 60%;
+  }
 }

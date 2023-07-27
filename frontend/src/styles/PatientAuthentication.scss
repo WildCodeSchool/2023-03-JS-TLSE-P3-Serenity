@@ -1,5 +1,5 @@
-.background-light .authentication-patient-container {
-  background-color: white;
+.background-dark .authentication-patient-container {
+  background-color: var(--main-bg-admin-practician);
 }
 
 .authentication-patient-container {
@@ -20,7 +20,7 @@
   background-color: transparent;
   .fi {
     font-size: 2rem;
-    color: var(--main-bg-admin-practician);
+    color: white;
   }
 }
 
@@ -28,7 +28,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--main-bg-admin-practician);
+  color: white;
   align-self: center;
   font-size: clamp(1.3rem, 2.5vw, 1.8rem);
   line-height: 120%;
