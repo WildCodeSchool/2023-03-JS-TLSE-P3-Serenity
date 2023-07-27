@@ -10,6 +10,7 @@ const router = express.Router();
 const interventionController = require("./controllers/interventionController");
 const interventionPatient = require("./controllers/interventionPatientController");
 const interventionRessource = require("./controllers/interventionRessourceController");
+const patientInterventionRessources = require("./controllers/patientInterventionRessourceController");
 const ressourceController = require("./controllers/ressourceController");
 const admins = require("./controllers/adminControllers");
 const practicianControllers = require("./controllers/PraticianControllers");
@@ -178,6 +179,14 @@ router.delete(
 );
 
 // routes for intervention_ressource
+
+router.get(
+  "/practicians/:id/interventions/:idInter/ressources",
+  verifyToken,
+  checkId,
+  interventionRessource.getInterventionRessource
+);
+
 router.post(
   "/practicians/:id/interventions/:idInter/ressources",
   verifyToken,
@@ -198,6 +207,14 @@ router.post(
   verifyToken,
   checkId,
   interventionPatient.addInterventionForPatient
+);
+
+// route for patient_intervention_ressource
+router.post(
+  "/practicians/:id/interventions/patients/:interventionPatientId/ressources",
+  verifyToken,
+  checkId,
+  patientInterventionRessources.addInterventionRessourceForPatient
 );
 
 // route "form"
