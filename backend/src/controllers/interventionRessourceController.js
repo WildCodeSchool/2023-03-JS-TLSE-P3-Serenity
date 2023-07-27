@@ -31,7 +31,20 @@ const deleteInterventionRessources = (req, res) => {
     });
 };
 
+const getInterventionRessource = (req, res) => {
+  const { idInter } = req.params;
+  models.intervention_ressource
+    .findRessourcesByInterId(idInter)
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+};
+
 module.exports = {
   addInterventionRessources,
   deleteInterventionRessources,
+  getInterventionRessource,
 };

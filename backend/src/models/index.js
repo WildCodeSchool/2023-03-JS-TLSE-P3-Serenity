@@ -59,6 +59,12 @@ const InterventionRessourceManager = require("./InterventionRessourceManager");
 models.intervention_ressource = new InterventionRessourceManager();
 models.intervention_ressource.setDatabase(pool);
 
+const PatientInterventionRessourceManager = require("./PatientInterventionRessourceManager");
+
+models.patient_intervention_ressource =
+  new PatientInterventionRessourceManager();
+models.patient_intervention_ressource.setDatabase(pool);
+
 const InterventionPatientManager = require("./InterventionPatientManager");
 
 models.intervention_patient = new InterventionPatientManager();
