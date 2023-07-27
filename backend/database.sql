@@ -347,84 +347,84 @@ INSERT INTO
 VALUES (
         "patient",
         "Demande de devis",
-        "1Mz4 gsU5g2QC6KOO P3dXP9m53151361F kP6Yod8AR",
+        "Je souhaiterais obtenir un devis pour une consultation générale",
         "2023-07-04",
         0,
         0
     ), (
         "patient",
         "Demande de renseignements",
-        "V1wsIDEJe3 YS9RFTNAkwmjeq 2Dyfk7hiJHX91rY9o9926p8XL",
+        "Pourriez-vous me donner plus d'informations sur les horaires de consultation?",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de renseignements",
-        "31LllxPtQ9MyrnKx NvTkqVQamRK o674s72oX",
+        "J'aimerais avoir plus de détails sur l'équipement disponible dans le cabinet médical",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de support technique",
-        "842 402BN lGcpYM9g 2P2Vm5Sdz aJFe7999q5 WfLN7",
+        "J'ai des difficultés à utiliser le logiciel de gestion des patients. Pouvez-vous aider?",
         "2023-07-04",
         0,
         0
     ), (
         "patient",
         "Demande de devis",
-        "1Mz4 gsU5g2QC6KOO P3dXP9m53151361F kP6Yod8AR",
+        "Je voudrais un devis pour une séance de physiothérapie",
         "2023-07-04",
         0,
         0
     ), (
         "patient",
         "Demande de renseignements",
-        "V1wsIDEJe3 YS9RFTNAkwmjeq 2Dyfk7hiJHX91rY9o9926p8XL",
+        "Quels sont les tarifs pour une consultation avec le spécialiste?",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de renseignements",
-        "31LllxPtQ9MyrnKx NvTkqVQamRK o674s72oX",
+        "Pouvez-vous me fournir des informations sur les formations continues disponibles?",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de support technique",
-        "842 402BN lGcpYM9g 2P2Vm5Sdz aJFe7999q5 WfLN7",
+        "J'ai un problème avec la mise à jour du système. Pouvez-vous aider?",
         "2023-07-04",
         0,
         0
     ), (
         "patient",
         "Demande de devis",
-        "1Mz4 gsU5g2QC6KOO P3dXP9m53151361F kP6Yod8AR",
+        "J'aimerais savoir combien coûterait une consultation pour un bilan de santé complet",
         "2023-07-04",
         0,
         0
     ), (
         "patient",
         "Demande de renseignements",
-        "V1wsIDEJe3 YS9RFTNAkwmjeq 2Dyfk7hiJHX91rY9o9926p8XL",
+        "Est-ce que vous faites des consultations le week-end?",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de renseignements",
-        "31LllxPtQ9MyrnKx NvTkqVQamRK o674s72oX",
+        "Je suis intéressé par l'achat d'un nouvel équipement. Pouvez-vous me donner plus de détails?",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de support technique",
-        "842 402BN lGcpYM9g 2P2Vm5Sdz aJFe7999q5 WfLN7",
+        "J'ai un problème avec la fonction d'impression du logiciel. Pouvez-vous aider?",
         "2023-07-04",
         0,
         0
@@ -448,7 +448,12 @@ VALUES (
         '1h',
         'AG',
         1
-    ), ('Abblation de l''apendice', '2h', 'AL', 1), (
+    ), (
+        'Abblation de l''apendice',
+        '2h',
+        'AL',
+        1
+    ), (
         'Opération de la cataracte',
         '1h30',
         'AG',
@@ -458,7 +463,8 @@ VALUES (
         '2h30',
         'AG',
         1
-    ), ('Chirurgie des varices',
+    ), (
+        'Chirurgie des varices',
         '2h30',
         'AG',
         1
@@ -511,7 +517,8 @@ VALUES (
         'René',
         'Gossian',
         '0123459090',
-        'patient');
+        'patient'
+    );
 
 -- -----------------------------------------------------
 
@@ -1028,13 +1035,13 @@ VALUES (
         'Lors de l''intervention, le ligament croisé déchiré est stabilisé puis refixé à l''aide d''un fil solide. On procède ensuite à une suture du ligament croisé précédemment déchiré afin de soutenir l''auto-guérison. L''opération a lieu sous arthroscopie et est par conséquent mini-invasive. Les lésions associées (déchirure du ménisque ou lésion du cartilage) peuvent être traitées lors de la même opération.',
         1,
         1
-    ),(
+    ), (
         'Etre à jeun ',
         'http:www.image3.com',
         'Ne rien boire, ni manger (même pas un chewing-gum), ni fumer, durant les 8 heures qui précèdent l''intervention.',
         1,
         3
-    ),(
+    ), (
         'Consigne pour prendre une douche préoperatoire',
         'http:www.image4.com',
         'Une douche si possible avec un savon désinfectant, type « bétadine », selon la prescription médicale
@@ -1063,7 +1070,27 @@ Vous devez arriver avec les dents brossées, les cheveux propres et attachés.',
         3
     );
 
-INSERT INTO ressource(title,practician_id,theme_ressource_id) VALUES('Compléter l''espace ''Mon compte''',1,2),('Votre retour de mutuelle',1,2),('Consentement éclairé',1,2),('Consultation pré-anesthésique',1,2);
+INSERT INTO
+    ressource(
+        title,
+        practician_id,
+        theme_ressource_id
+    )
+VALUES
+(
+        'Compléter l''espace ''Mon compte''',
+        1,
+        2
+    ), (
+        'Votre retour de mutuelle',
+        1,
+        2
+    ), ('Consentement éclairé', 1, 2), (
+        'Consultation pré-anesthésique',
+        1,
+        2
+    );
+
 INSERT INTO
     intervention_ressource(intervention_id, ressource_id)
 VALUES (1, 51), (1, 52), (1, 53), (1, 54), (1, 55), (1, 56), (1, 57), (1, 58), (1, 59), (1, 60), (1, 61), (1, 62), (1, 63), (1, 64), (1, 65), (1, 66), (1, 67), (1, 68), (1, 69);
