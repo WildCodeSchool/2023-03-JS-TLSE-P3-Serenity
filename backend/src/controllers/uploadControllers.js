@@ -19,7 +19,6 @@ class uploadControllers {
             .status(500)
             .json({ message: "Erreur lors de l'upload de la ressource" });
         }
-
         fs.unlink(req.file.path, (err) => {
           if (err) {
             console.error(
