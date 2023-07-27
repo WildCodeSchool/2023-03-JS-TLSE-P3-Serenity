@@ -28,6 +28,11 @@
     }
     .tab-interventions {
       width: 100%;
+      .tab-body-interventions {
+        .no-interventions {
+          padding: 2rem;
+        }
+      }
     }
   }
   .intervention-row {

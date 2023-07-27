@@ -64,7 +64,12 @@ router.get(
   verifyAdminRole,
   practicianControllers.getListOfAllPracticians
 );
-router.get("/practician/patients", verifyToken, patients.getListOfAllPatients);
+router.get(
+  "/practician/:id/patients",
+  verifyToken,
+  checkId,
+  patients.getListOfAllPatients
+);
 
 router.get(
   "/admins/practicians/countintervention/:id",

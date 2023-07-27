@@ -18,7 +18,7 @@ class PatientManager extends AbstractManager {
     ]);
   }
 
-  getPatientIntervention() {
+  getPatientIntervention(idPractician) {
     const sql = `
     SELECT 
     P.id AS patient_id,
@@ -30,13 +30,15 @@ class PatientManager extends AbstractManager {
     IP.intervention_date
 FROM 
     patient P
-LEFT JOIN
+JOIN
     intervention_patient IP ON P.id = IP.patient_id
-LEFT JOIN 
+JOIN 
     intervention I ON I.id = IP.intervention_id
-LEFT JOIN
-practician ON practician.id = I.practician_id`;
-    return this.database.query(sql);
+JOIN
+  practician ON practician.id = I.practician_id
+WHERE practician.id = ?  
+  `;
+    return this.database.query(sql, [idPractician]);
   }
 
   getPatientPractician(id) {
