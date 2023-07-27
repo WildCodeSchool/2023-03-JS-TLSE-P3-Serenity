@@ -6,11 +6,11 @@ import "../styles/HeaderInterventionDate.scss";
 function HeaderInterventionDate() {
   const [patient, setPatient] = useState(null);
   const { userToken, userInfo } = useContext(AuthFunctionContext);
-  const { role } = userInfo;
+  const { role, id } = userInfo;
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/practician/patients`, {
+      .get(`${import.meta.env.VITE_BACKEND_URL}/practician/${id}/patients`, {
         headers: {
           Authorization: `Bearer ${userToken}`,
           Role: `${role}`,
