@@ -85,7 +85,7 @@ function RessourcesModal() {
 
   const handleDeleteButtonClick = (
     idRessourceToDelete,
-    nameRessourceToDelete
+    urlRessourceToDelete
   ) => {
     axios
       .delete(
@@ -100,28 +100,34 @@ function RessourcesModal() {
         }
       )
       .then(() => {
-        axios
-          .delete(
-            `${
-              import.meta.env.VITE_BACKEND_URL
-            }/delete/ressources/${nameRessourceToDelete}`,
-            {
-              headers: {
-                Authorization: `Bearer ${userToken}`,
-                Role: `${role}`,
-              },
-            }
-          )
-          .catch((error) => console.error(error));
+        if (urlRessourceToDelete) {
+          const nameRessourceToDelete = urlRessourceToDelete
+            .split("/")
+            .at(-1)
+            .split(".")[0];
+          axios
+            .delete(
+              `${
+                import.meta.env.VITE_BACKEND_URL
+              }/delete/ressources/${nameRessourceToDelete}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${userToken}`,
+                  Role: `${role}`,
+                },
+              }
+            )
+            .catch((error) => console.error(error));
+          Swal.fire({
+            background: "#242731",
+            position: "center",
+            icon: "success",
+            title: "La ressource a été supprimée",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
         setRessourcesChange(!ressourcesChange);
-        Swal.fire({
-          background: "#242731",
-          position: "center",
-          icon: "success",
-          title: "La ressource a été supprimée",
-          showConfirmButton: false,
-          timer: 1500,
-        });
       })
       .catch((error) => {
         console.error(
@@ -180,10 +186,7 @@ function RessourcesModal() {
                     className="delete-ressource-button"
                     type="button"
                     onClick={() =>
-                      handleDeleteButtonClick(
-                        ressource.id,
-                        ressource.url.split("/").at(-1).split(".")[0]
-                      )
+                      handleDeleteButtonClick(ressource.id, ressource.url)
                     }
                   >
                     <i className="fi fi-rr-trash" />
