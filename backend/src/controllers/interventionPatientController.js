@@ -6,7 +6,10 @@ const addInterventionForPatient = (req, res) => {
     .insert(interventionId, idPatient, interventionDate)
     .then(([result]) => {
       if (result.affectedRows) {
-        res.status(201).send("Ok");
+        res.status(201).json({
+          idInterventionPatient: result.insertId,
+          ...req.body,
+        });
       } else {
         res.sendStatus(400);
       }

@@ -101,7 +101,42 @@ function ButtonaddPatient() {
               },
             }
           )
-          .then(() => {
+          .then((response) => {
+            const { interventionId, idInterventionPatient } = response.data;
+            axios
+              .get(
+                `${
+                  import.meta.env.VITE_BACKEND_URL
+                }/practicians/${id}/interventions/${interventionId}/ressources`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${userToken}`,
+                    Role: `${role}`,
+                  },
+                }
+              )
+              .then((ressourcesFromGet) => {
+                const arrayOfRessourcesToAdd = ressourcesFromGet.data[0];
+                if (arrayOfRessourcesToAdd.length > 0) {
+                  arrayOfRessourcesToAdd.map((ressourceFromArray) =>
+                    axios
+                      .post(
+                        `${
+                          import.meta.env.VITE_BACKEND_URL
+                        }/practicians/${id}/interventions/patients/${idInterventionPatient}/ressources`,
+                        ressourceFromArray,
+                        {
+                          headers: {
+                            Authorization: `Bearer ${userToken}`,
+                            Role: `${role}`,
+                          },
+                        }
+                      )
+                      .catch((error) => console.error(error))
+                  );
+                }
+              })
+              .catch((error) => console.error(error));
             setInterventionDate("");
             setInterventionSelected("");
           })
