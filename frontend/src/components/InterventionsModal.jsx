@@ -114,7 +114,7 @@ function InterventionsModal() {
     setShowModal(false);
   };
 
-  return isLoaded ? (
+  return (
     <div className="container-interventions">
       <div className="tab-button-intervention">
         <table className="tab-interventions">
@@ -127,22 +127,28 @@ function InterventionsModal() {
             </tr>
           </thead>
           <tbody className="tab-body-interventions">
-            {interventions.map((intervention) => (
-              <tr key={intervention.id} className="intervention-row">
-                <td>{intervention.name}</td>
-                <td>{intervention.duration}</td>
-                <td>{intervention.anesthesia}</td>
-                <td>
-                  <button
-                    className="delete-intervention-button"
-                    type="button"
-                    onClick={() => handleDeleteButtonClick(intervention.id)}
-                  >
-                    <i className="fi fi-rr-trash" />
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {isLoaded ? (
+              interventions.map((intervention) => (
+                <tr key={intervention.id} className="intervention-row">
+                  <td>{intervention.name}</td>
+                  <td>{intervention.duration}</td>
+                  <td>{intervention.anesthesia}</td>
+                  <td>
+                    <button
+                      className="delete-intervention-button"
+                      type="button"
+                      onClick={() => handleDeleteButtonClick(intervention.id)}
+                    >
+                      <i className="fi fi-rr-trash" />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <p className="no-interventions">
+                Pas encore d'interventions ajoutées.
+              </p>
+            )}
           </tbody>
         </table>
       </div>
@@ -155,8 +161,6 @@ function InterventionsModal() {
       </button>
       {showModal && <ModalAddIntervention closeModal={closeModal} />}
     </div>
-  ) : (
-    <p>Chargement...</p>
   );
 }
 

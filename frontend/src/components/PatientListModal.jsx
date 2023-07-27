@@ -10,12 +10,12 @@ function PatientListModal() {
   const [patients, setPatients] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const { userToken, userInfo } = useContext(AuthFunctionContext);
-  const { role } = userInfo;
+  const { id, role } = userInfo;
   const { showSuccessMessageAdd } = useContext(StateContext);
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/practician/patients`, {
+      .get(`${import.meta.env.VITE_BACKEND_URL}/practician/${id}/patients`, {
         headers: {
           Authorization: `Bearer ${userToken}`,
           Role: `${role}`,

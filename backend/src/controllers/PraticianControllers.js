@@ -7,8 +7,6 @@ const getListOfAllPracticians = (req, res) => {
     .then(([result]) => {
       if (result.length) {
         res.status(200).json(result);
-      } else {
-        res.sendStatus(404);
       }
     })
     .catch((err) => {
