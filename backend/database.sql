@@ -973,7 +973,7 @@ INSERT INTO
     )
 VALUES (
         'Les ligaments croisés',
-        'Les ligaments ont pour rôle de relier les deux os d''une articulation afin d''éviter une laxité trop importante de cette dernière, c''est-à-dire qu''elle aille dans tous les sens. Les ligaments participent également à l''''orientation des mouvements de l''articulation. L''insertion des ligaments sur l''''os va donner une structure rigide de l''articulation.',
+        'Les ligaments ont pour rôle de relier les deux os d''une articulation afin d''éviter une laxité trop importante de cette dernière, c''est-à-dire qu''elle aille dans tous les sens. Les ligaments participent également à l''orientation des mouvements de l''articulation. L''insertion des ligaments sur l''os va donner une structure rigide de l''articulation.',
         1,
         1
     ), (
