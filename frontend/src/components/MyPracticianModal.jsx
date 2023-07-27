@@ -31,7 +31,7 @@ function MyPracticianModal() {
     <div className="container-info-practician">
       <div className="container-scroll-infos-practician">
         <div className="contact-practician-info">
-          <h2 className="title-practician-info">Contacts praticien</h2>
+          <h2 className="title-practician-info">Informations praticien</h2>
           <div className="practician-infos">
             <div className="firstname-practician">
               <label htmlFor="firstname">Prénom</label>

@@ -80,7 +80,7 @@ function AccountAdminModal() {
       position: "center",
       icon: "error",
       title:
-        "Le mot de passe doit contenir au moins 8 caractères dont au moins une majuscule, un chiffre et un caractère spécial.",
+        "Le mot de passe doit contenir au moins 8 caractères dont une majuscule, un chiffre et un caractère spécial.",
       showConfirmButton: false,
       timer: 3000,
     });
@@ -295,8 +295,8 @@ function AccountAdminModal() {
               Valider changement de mot de passe
             </button>
             <p>
-              Le mot de passe doit contenir au moins 8 caractères dont au moins
-              une majuscule, un chiffre et un caractère spécial.
+              Le mot de passe doit contenir au moins 8 caractères dont une
+              majuscule, un chiffre et un caractère spécial.
             </p>
           </form>
         </div>
