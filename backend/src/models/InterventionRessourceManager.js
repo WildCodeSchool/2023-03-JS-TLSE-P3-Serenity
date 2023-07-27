@@ -18,6 +18,13 @@ class InterventionRessourceManager extends AbstractManager {
       [idInter]
     );
   }
+
+  findRessourcesByInterId(interventionId) {
+    return this.database.query(
+      `select * from ${this.table} where intervention_id = ?`,
+      [interventionId]
+    );
+  }
 }
 
 module.exports = InterventionRessourceManager;
