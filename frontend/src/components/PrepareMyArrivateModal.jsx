@@ -62,8 +62,8 @@ function PrepareMyArrivateModal() {
       </h2>
       <div className="prepare-arrival-modal-list">
         <h3>
-          Préparons nous à vivre la journée de l’intevention une première fois,
-          histoire d’être en toute sérénité le jour J
+          Simuler la journée de l’intervention une première fois, afin d’être
+          serein pour le jour J
         </h3>
         {understandData.map((el) => (
           <button
