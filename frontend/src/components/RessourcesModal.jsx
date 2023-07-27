@@ -30,8 +30,8 @@ function RessourcesModal() {
         setRessources(response.data);
         setIsLoaded(true);
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
+        setRessources([]);
       });
   }, [ressourcesChange]);
 
@@ -153,7 +153,7 @@ function RessourcesModal() {
     setShowModal(false);
   };
 
-  return isLoaded ? (
+  return (
     <div className="container-ressources">
       <div className="theme-selection-container">
         <h2>Choisissez un thème</h2>
@@ -171,32 +171,36 @@ function RessourcesModal() {
         </div>
       </div>
       <div className="section-ressources">
-        <div className="container-scroll-ressources">
-          <div className="list-ressources">
-            {ressources
-              .filter(
-                (ressourceFiltered) => ressourceFiltered.theme === activeTheme
-              )
-              .map((ressource) => (
-                <div key={ressource.id} className="ressource">
-                  <p className="ressource-title">
-                    {ressource.type
-                      ? `${ressource.title}.${ressource.type}`
-                      : `${ressource.title}`}
-                  </p>
-                  <button
-                    className="delete-ressource-button"
-                    type="button"
-                    onClick={() =>
-                      handleDeleteButtonClick(ressource.id, ressource.url)
-                    }
-                  >
-                    <i className="fi fi-rr-trash" />
-                  </button>
-                </div>
-              ))}
+        {isLoaded ? (
+          <div className="container-scroll-ressources">
+            <div className="list-ressources">
+              {ressources
+                .filter(
+                  (ressourceFiltered) => ressourceFiltered.theme === activeTheme
+                )
+                .map((ressource) => (
+                  <div key={ressource.id} className="ressource">
+                    <p className="ressource-title">
+                      {ressource.type
+                        ? `${ressource.title}.${ressource.type}`
+                        : `${ressource.title}`}
+                    </p>
+                    <button
+                      className="delete-ressource-button"
+                      type="button"
+                      onClick={() =>
+                        handleDeleteButtonClick(ressource.id, ressource.url)
+                      }
+                    >
+                      <i className="fi fi-rr-trash" />
+                    </button>
+                  </div>
+                ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <p className="no-ressources">Pas encore de ressources ajoutées</p>
+        )}
         <button
           className="add-ressource-button"
           type="button"
@@ -209,8 +213,6 @@ function RessourcesModal() {
         <ModalAddRessource closeModal={closeModal} theme={activeTheme} />
       )}
     </div>
-  ) : (
-    <p>Chargement...</p>
   );
 }
 

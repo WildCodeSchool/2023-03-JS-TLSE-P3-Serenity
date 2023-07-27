@@ -55,7 +55,7 @@ export default function EspacePro() {
     case "Home":
       CurrentModalePractician = <PatientListModal />;
       break;
-    case "Mon Compte":
+    case "Mon compte":
       CurrentModalePractician = <AccountPracticianModal />;
       break;
     case "Interventions":
