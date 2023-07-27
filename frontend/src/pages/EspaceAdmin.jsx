@@ -53,7 +53,7 @@ export default function EspaceAdmin() {
     case "Home":
       CurrentModaleAdmin = <PracticianListModal />;
       break;
-    case "Mon Compte":
+    case "Mon compte":
       CurrentModaleAdmin = <AccountAdminModal />;
       break;
     case "Formulaire":

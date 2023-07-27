@@ -88,13 +88,13 @@ function navbar() {
     {
       role: "all",
       className:
-        linkToActive === "Mon Compte" ? "active-navbar" : "nav-serenity",
+        linkToActive === "Mon compte" ? "active-navbar" : "nav-serenity",
       label: "Mon compte",
       icon: "circle-user",
       action: () => {
-        setLinkToActive("Mon Compte");
+        setLinkToActive("Mon compte");
         setIsMenuOpen(false);
-        setActiveModal("Mon Compte");
+        setActiveModal("Mon compte");
       },
     },
     {

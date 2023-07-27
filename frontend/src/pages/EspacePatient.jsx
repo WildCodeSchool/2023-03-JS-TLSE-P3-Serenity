@@ -55,7 +55,7 @@ export default function EspacePatient() {
     case "Home":
       CurrentModalePatient = <ThemeSelection />;
       break;
-    case "Mon Compte":
+    case "Mon compte":
       CurrentModalePatient = <AccountPatientModal />;
       break;
     case "Mon praticien":

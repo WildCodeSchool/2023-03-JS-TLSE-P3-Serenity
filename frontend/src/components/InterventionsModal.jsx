@@ -145,9 +145,11 @@ function InterventionsModal() {
                 </tr>
               ))
             ) : (
-              <p className="no-interventions">
-                Pas encore d'interventions ajoutées.
-              </p>
+              <div>
+                <p className="no-interventions">
+                  Pas encore d'interventions ajoutées.
+                </p>
+              </div>
             )}
           </tbody>
         </table>
