@@ -51,17 +51,50 @@ function ModalAddRessource({ closeModal, theme }) {
     const formData = new FormData();
     formData.append("ressource-file", inputRef.current.files[0]);
 
-    axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/upload/ressources`, formData, {
-        headers: {
-          Authorization: `Bearer ${userToken}`,
-          Role: `${role}`,
-        },
-      })
-      .then((response) => {
-        bodyAddRessource.url = response.data.imageUrl;
-        bodyAddRessource.type = response.data.imageUrl.split(".").at(-1);
-        axios.post(
+    if (inputRef.current.files[0]) {
+      axios
+        .post(
+          `${import.meta.env.VITE_BACKEND_URL}/upload/ressources`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${userToken}`,
+              Role: `${role}`,
+            },
+          }
+        )
+        .then((response) => {
+          bodyAddRessource.url = response.data.imageUrl;
+          bodyAddRessource.type = response.data.imageUrl.split(".").at(-1);
+          axios.post(
+            `${import.meta.env.VITE_BACKEND_URL}/practicians/${id}/ressources`,
+            bodyAddRessource,
+            {
+              headers: {
+                Authorization: `Bearer ${userToken}`,
+                Role: `${role}`,
+              },
+            }
+          );
+        })
+        .then(() => {
+          setRessourcesChange(true);
+          Swal.fire({
+            background: "#242731",
+            position: "center",
+            icon: "success",
+            title: "La ressource a été ajoutée",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          closeModal();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      axios
+        .post(
           `${import.meta.env.VITE_BACKEND_URL}/practicians/${id}/ressources`,
           bodyAddRessource,
           {
@@ -70,23 +103,23 @@ function ModalAddRessource({ closeModal, theme }) {
               Role: `${role}`,
             },
           }
-        );
-      })
-      .then(() => {
-        setRessourcesChange(true);
-        Swal.fire({
-          background: "#242731",
-          position: "center",
-          icon: "success",
-          title: "La ressource a été ajoutée",
-          showConfirmButton: false,
-          timer: 1500,
+        )
+        .then(() => {
+          setRessourcesChange(true);
+          Swal.fire({
+            background: "#242731",
+            position: "center",
+            icon: "success",
+            title: "La ressource a été ajoutée",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          closeModal();
+        })
+        .catch((error) => {
+          console.error(error);
         });
-        closeModal();
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    }
   };
 
   return (

@@ -310,7 +310,7 @@ function ModalAddIntervention({ closeModal }) {
           </div>
         </div>
         <button type="submit" className="button-add-intervention">
-          <p className="validate-label-button-intervention">Valider ajout</p>
+          <p className="validate-label-button-intervention">Valider l'ajout</p>
         </button>
       </form>
     </div>
