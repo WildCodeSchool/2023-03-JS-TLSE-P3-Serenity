@@ -347,84 +347,84 @@ INSERT INTO
 VALUES (
         "patient",
         "Demande de devis",
-        "1Mz4 gsU5g2QC6KOO P3dXP9m53151361F kP6Yod8AR",
+        "Je souhaiterais obtenir un devis pour une consultation générale",
         "2023-07-04",
         0,
         0
     ), (
         "patient",
         "Demande de renseignements",
-        "V1wsIDEJe3 YS9RFTNAkwmjeq 2Dyfk7hiJHX91rY9o9926p8XL",
+        "Pourriez-vous me donner plus d'informations sur les horaires de consultation?",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de renseignements",
-        "31LllxPtQ9MyrnKx NvTkqVQamRK o674s72oX",
+        "J'aimerais avoir plus de détails sur l'équipement disponible dans le cabinet médical",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de support technique",
-        "842 402BN lGcpYM9g 2P2Vm5Sdz aJFe7999q5 WfLN7",
+        "J'ai des difficultés à utiliser le logiciel de gestion des patients. Pouvez-vous aider?",
         "2023-07-04",
         0,
         0
     ), (
         "patient",
         "Demande de devis",
-        "1Mz4 gsU5g2QC6KOO P3dXP9m53151361F kP6Yod8AR",
+        "Je voudrais un devis pour une séance de physiothérapie",
         "2023-07-04",
         0,
         0
     ), (
         "patient",
         "Demande de renseignements",
-        "V1wsIDEJe3 YS9RFTNAkwmjeq 2Dyfk7hiJHX91rY9o9926p8XL",
+        "Quels sont les tarifs pour une consultation avec le spécialiste?",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de renseignements",
-        "31LllxPtQ9MyrnKx NvTkqVQamRK o674s72oX",
+        "Pouvez-vous me fournir des informations sur les formations continues disponibles?",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de support technique",
-        "842 402BN lGcpYM9g 2P2Vm5Sdz aJFe7999q5 WfLN7",
+        "J'ai un problème avec la mise à jour du système. Pouvez-vous aider?",
         "2023-07-04",
         0,
         0
     ), (
         "patient",
         "Demande de devis",
-        "1Mz4 gsU5g2QC6KOO P3dXP9m53151361F kP6Yod8AR",
+        "J'aimerais savoir combien coûterait une consultation pour un bilan de santé complet",
         "2023-07-04",
         0,
         0
     ), (
         "patient",
         "Demande de renseignements",
-        "V1wsIDEJe3 YS9RFTNAkwmjeq 2Dyfk7hiJHX91rY9o9926p8XL",
+        "Est-ce que vous faites des consultations le week-end?",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de renseignements",
-        "31LllxPtQ9MyrnKx NvTkqVQamRK o674s72oX",
+        "Je suis intéressé par l'achat d'un nouvel équipement. Pouvez-vous me donner plus de détails?",
         "2023-07-04",
         0,
         0
     ), (
         "practician",
         "Demande de support technique",
-        "842 402BN lGcpYM9g 2P2Vm5Sdz aJFe7999q5 WfLN7",
+        "J'ai un problème avec la fonction d'impression du logiciel. Pouvez-vous aider?",
         "2023-07-04",
         0,
         0
