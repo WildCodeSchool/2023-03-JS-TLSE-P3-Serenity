@@ -118,15 +118,15 @@ function RessourcesModal() {
               }
             )
             .catch((error) => console.error(error));
-          Swal.fire({
-            background: "#242731",
-            position: "center",
-            icon: "success",
-            title: "La ressource a été supprimée",
-            showConfirmButton: false,
-            timer: 1500,
-          });
         }
+        Swal.fire({
+          background: "#242731",
+          position: "center",
+          icon: "success",
+          title: "La ressource a été supprimée",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         setRessourcesChange(!ressourcesChange);
       })
       .catch((error) => {
@@ -180,7 +180,9 @@ function RessourcesModal() {
               .map((ressource) => (
                 <div key={ressource.id} className="ressource">
                   <p className="ressource-title">
-                    {ressource.title}.{ressource.type}
+                    {ressource.type
+                      ? `${ressource.title}.${ressource.type}`
+                      : `${ressource.title}`}
                   </p>
                   <button
                     className="delete-ressource-button"

@@ -63,7 +63,7 @@ CREATE TABLE
         `administrator_id` INT NOT NULL,
         `role` VARCHAR(10) NOT NULL DEFAULT "practician",
         PRIMARY KEY (`id`),
-        CONSTRAINT `fk_administrator_id` FOREIGN KEY (`administrator_id`) REFERENCES `serenity`.`administrator` (`id`) ON DELETE CASCADE
+        FOREIGN KEY (`administrator_id`) REFERENCES `serenity`.`administrator` (`id`) ON DELETE CASCADE
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 -- Table `serenity`.`intervention`
@@ -78,7 +78,7 @@ CREATE TABLE
         `anesthesia` VARCHAR(6) NOT NULL,
         `practician_id` INT NOT NULL,
         PRIMARY KEY (`id`),
-        CONSTRAINT `fk_intervention_practician` FOREIGN KEY (`practician_id`) REFERENCES `serenity`.`practician` (`id`) ON DELETE CASCADE
+        FOREIGN KEY (`practician_id`) REFERENCES `serenity`.`practician` (`id`) ON DELETE CASCADE
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
@@ -126,8 +126,8 @@ CREATE TABLE
         `patient_id` INT NOT NULL,
         `intervention_date` DATE NOT NULL,
         PRIMARY KEY (`id`),
-        CONSTRAINT `fk_intervention_has_patient_intervention1` FOREIGN KEY (`intervention_id`) REFERENCES `serenity`.`intervention` (`id`) ON DELETE CASCADE,
-        CONSTRAINT `fk_intervention_has_patient_patient1` FOREIGN KEY (`patient_id`) REFERENCES `serenity`.`patient` (`id`) ON DELETE CASCADE
+        FOREIGN KEY (`intervention_id`) REFERENCES `serenity`.`intervention` (`id`) ON DELETE CASCADE,
+        FOREIGN KEY (`patient_id`) REFERENCES `serenity`.`patient` (`id`) ON DELETE CASCADE
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
@@ -159,8 +159,8 @@ CREATE TABLE
         `practician_id` INT NOT NULL,
         `theme_ressource_id` INT NOT NULL,
         PRIMARY KEY (`id`),
-        CONSTRAINT `fk_ressource_practician` FOREIGN KEY (`practician_id`) REFERENCES `serenity`.`practician` (`id`) ON DELETE CASCADE,
-        CONSTRAINT `fk_ressource_theme_ressource` FOREIGN KEY (`theme_ressource_id`) REFERENCES `serenity`.`theme_ressource` (`id`)
+        FOREIGN KEY (`practician_id`) REFERENCES `serenity`.`practician` (`id`) ON DELETE CASCADE,
+        FOREIGN KEY (`theme_ressource_id`) REFERENCES `serenity`.`theme_ressource` (`id`)
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
@@ -173,8 +173,8 @@ CREATE TABLE
     IF NOT EXISTS `serenity`.`intervention_ressource` (
         `intervention_id` INT NOT NULL,
         `ressource_id` INT NOT NULL,
-        CONSTRAINT `fk_intervention_has_ressource_postop_intervention1` FOREIGN KEY (`intervention_id`) REFERENCES `serenity`.`intervention` (`id`),
-        CONSTRAINT `fk_intervention_has_ressource_postop_ressource_postop1` FOREIGN KEY (`ressource_id`) REFERENCES `serenity`.`ressource` (`id`)
+        FOREIGN KEY (`intervention_id`) REFERENCES `serenity`.`intervention` (`id`),
+        FOREIGN KEY (`ressource_id`) REFERENCES `serenity`.`ressource` (`id`) ON DELETE CASCADE
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
@@ -190,10 +190,10 @@ CREATE TABLE
         `intervention_ressource_ressource_id` INT NOT NULL,
         `is_done` TINYINT NOT NULL,
         PRIMARY KEY (`id`),
-        CONSTRAINT `fk_intervention_patient_has_intervention_ressource_descriptio1` FOREIGN KEY (
+        FOREIGN KEY (
             `intervention_ressource_ressource_id`
-        ) REFERENCES `serenity`.`intervention_ressource` (`ressource_id`),
-        CONSTRAINT `fk_patient_intervention_ressource_intervention_patient1` FOREIGN KEY (`intervention_patient_id`) REFERENCES `serenity`.`intervention_patient` (`id`)
+        ) REFERENCES `serenity`.`intervention_ressource` (`ressource_id`) ON DELETE CASCADE,
+        FOREIGN KEY (`intervention_patient_id`) REFERENCES `serenity`.`intervention_patient` (`id`) ON DELETE CASCADE
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
