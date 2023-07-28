@@ -13,6 +13,16 @@ function HomePage() {
 
   return (
     <div className="background-dark">
+      <div className="info-visitor">
+        <p>
+          Les identifiants pour chaque compte :<br />
+          Patient : fabrice@coulon.com / A1b2c3* <br />
+          Praticien : 123456789 / A1b2c3* <br /> Pour l'administrateur, rajouter
+          /admin à l'url <br /> Admin : 12345678 / A1b2c3* <br />
+          Toutes les possibilités d'ajout, modification et suppression sont
+          désactivées.
+        </p>
+      </div>
       <div className="card-home">
         <img alt="background-home" className="card-img-home" src={bgImg} />
         <div className="card-body-home">

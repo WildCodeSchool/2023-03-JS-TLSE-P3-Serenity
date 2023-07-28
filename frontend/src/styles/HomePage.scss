@@ -1,5 +1,14 @@
 .background-dark {
   background-color: var(--main-bg-admin-practician);
+  width: 100vw;
+  .info-visitor {
+    color: white;
+    line-height: 1.3rem;
+    width: 100%;
+    background-color: transparent;
+    border-bottom: 2px solid var(--button-color);
+    padding: 0.5rem;
+  }
 }
 
 .card-home {
