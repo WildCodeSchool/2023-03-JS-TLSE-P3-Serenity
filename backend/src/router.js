@@ -119,11 +119,11 @@ router.get(
   ressourceController.patientInterventionRessource
 );
 
-// router.put(
-//   "/patients/ressourceintervention/:id",
-//   verifyToken,
-//   ressourceController.updatePatientInterventionRessource
-// );
+router.put(
+  "/patients/ressourceintervention/:id",
+  verifyToken,
+  ressourceController.updatePatientInterventionRessource
+);
 // route "managing ressource"
 router.get(
   "/ressources/practicians/:id",
